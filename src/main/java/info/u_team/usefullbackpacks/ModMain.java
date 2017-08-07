@@ -2,9 +2,9 @@ package info.u_team.usefullbackpacks;
 
 import info.u_team.u_team_core.UTeamCoreMod;
 import info.u_team.u_team_core.mod.UTeamCoreReference;
-import info.u_team.usefullbackpacks.block.ModBlocks;
 import info.u_team.usefullbackpacks.creativetab.ModCreativeTabs;
 import info.u_team.usefullbackpacks.handler.GuiHandler;
+import info.u_team.usefullbackpacks.item.ModItems;
 import info.u_team.usefullbackpacks.mod.MetadataFetcher;
 import info.u_team.usefullbackpacks.proxy.CommonProxy;
 import net.minecraftforge.fml.common.*;
@@ -23,13 +23,13 @@ public class ModMain {
 	private static CommonProxy proxy;
 	
 	private ModCreativeTabs creativetabs;
-	private ModBlocks blocks;
+	private ModItems items;
 	
 	@EventHandler
 	public void preinit(FMLPreInitializationEvent event) {
 		new MetadataFetcher().applyMetadata(event.getModMetadata());
 		creativetabs = new ModCreativeTabs();
-		blocks = new ModBlocks();
+		items = new ModItems();
 		proxy.registerModels();
 	}
 	
@@ -59,8 +59,8 @@ public class ModMain {
 		return creativetabs;
 	}
 	
-	public ModBlocks getBlocks() {
-		return blocks;
+	public ModItems getItems() {
+		return items;
 	}
 	
 }
