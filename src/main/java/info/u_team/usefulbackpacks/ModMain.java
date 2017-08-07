@@ -1,12 +1,13 @@
-package info.u_team.usefullbackpacks;
+package info.u_team.usefulbackpacks;
 
 import info.u_team.u_team_core.UTeamCoreMod;
 import info.u_team.u_team_core.mod.UTeamCoreReference;
-import info.u_team.usefullbackpacks.creativetab.ModCreativeTabs;
-import info.u_team.usefullbackpacks.handler.GuiHandler;
-import info.u_team.usefullbackpacks.item.ModItems;
-import info.u_team.usefullbackpacks.mod.MetadataFetcher;
-import info.u_team.usefullbackpacks.proxy.CommonProxy;
+import info.u_team.usefulbackpacks.crafting.ModCrafting;
+import info.u_team.usefulbackpacks.creativetab.ModCreativeTabs;
+import info.u_team.usefulbackpacks.handler.GuiHandler;
+import info.u_team.usefulbackpacks.item.ModItems;
+import info.u_team.usefulbackpacks.mod.MetadataFetcher;
+import info.u_team.usefulbackpacks.proxy.CommonProxy;
 import net.minecraftforge.fml.common.*;
 import net.minecraftforge.fml.common.Mod.*;
 import net.minecraftforge.fml.common.event.*;
@@ -19,11 +20,12 @@ public class ModMain {
 	@Instance(value = Reference.modid)
 	private static ModMain instance;
 	
-	@SidedProxy(serverSide = "info.u_team.usefullbackpacks.proxy.ServerProxy", clientSide = "info.u_team.usefullbackpacks.proxy.ClientProxy", modId = Reference.modid)
+	@SidedProxy(serverSide = "info.u_team.usefulbackpacks.proxy.ServerProxy", clientSide = "info.u_team.usefulbackpacks.proxy.ClientProxy", modId = Reference.modid)
 	private static CommonProxy proxy;
 	
 	private ModCreativeTabs creativetabs;
 	private ModItems items;
+	private ModCrafting crafting;
 	
 	@EventHandler
 	public void preinit(FMLPreInitializationEvent event) {
@@ -36,11 +38,12 @@ public class ModMain {
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
 		core.getCommonRegistry().registerGuiHandler(this, new GuiHandler());
+		crafting = new ModCrafting();
 	}
 	
 	@EventHandler
 	public void postinit(FMLPostInitializationEvent event) {
-		
+		proxy.registerColors();
 	}
 	
 	public static ModMain getInstance() {
@@ -61,6 +64,10 @@ public class ModMain {
 	
 	public ModItems getItems() {
 		return items;
+	}
+	
+	public ModCrafting getCrafting() {
+		return crafting;
 	}
 	
 }

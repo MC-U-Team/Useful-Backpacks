@@ -28,7 +28,8 @@ minecraft {
 }
 
 jar {
-    from "LICENSE"
+    from "LICENSE",
+    from "LICENSE-EXCLUSIONS"
 }
 
 dependencies {
