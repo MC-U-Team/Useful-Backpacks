@@ -1,0 +1,38 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven { url = "http://files.minecraftforge.net/maven" }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
+    }
+}
+
+apply plugin: 'net.minecraftforge.gradle.forge'
+
+version = "1.0"
+group= "info.u_team.usefullbackpacks"
+archivesBaseName = "usefullpackpacks"
+
+sourceCompatibility = targetCompatibility = "1.8"
+
+compileJava {
+    sourceCompatibility = targetCompatibility = "1.8"
+}
+
+minecraft {
+    version = "1.10.2-12.18.3.2422"
+    runDir = "run"
+    mappings = "snapshot_20161111"
+    makeObfSourceJar = false
+}
+
+jar {
+    from "LICENSE"
+}
+
+dependencies {
+}
+
+processResources {
+}
