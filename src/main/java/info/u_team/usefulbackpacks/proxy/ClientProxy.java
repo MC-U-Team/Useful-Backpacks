@@ -5,10 +5,13 @@ import info.u_team.usefulbackpacks.enums.EnumBackPacks;
 import info.u_team.usefulbackpacks.item.ItemBackPack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.item.Item;
+import net.minecraft.client.renderer.color.IItemColor;
+import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.relauncher.*;
 
+@SideOnly(Side.CLIENT)
 public class ClientProxy extends CommonProxy {
 	
 	public void registerModels() {
@@ -24,7 +27,13 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public void registerColors() {
 		Item backpacks = ModMain.getInstance().getItems().backpack;
-		Minecraft.getMinecraft().getItemColors().registerItemColorHandler((ItemBackPack) backpacks, backpacks);
+		Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new IItemColor() {
+			
+			@Override
+			public int getColorFromItemstack(ItemStack stack, int tintIndex) {
+				return ((ItemBackPack) backpacks).getColor(stack);
+			}
+		}, backpacks);
 	}
 	
 }

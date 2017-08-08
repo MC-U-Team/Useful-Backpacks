@@ -5,7 +5,6 @@ import java.util.List;
 import info.u_team.usefulbackpacks.*;
 import info.u_team.usefulbackpacks.container.ContainerBackPack;
 import info.u_team.usefulbackpacks.enums.EnumBackPacks;
-import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,8 +13,9 @@ import net.minecraft.item.*;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.*;
 
-public class ItemBackPack extends Item implements IItemColor {
+public class ItemBackPack extends Item {
 	
 	public ItemBackPack() {
 		super();
@@ -25,6 +25,7 @@ public class ItemBackPack extends Item implements IItemColor {
 		setUnlocalizedName("backpack");
 	}
 	
+	@SideOnly(Side.CLIENT)
 	@Override
 	public String getUnlocalizedName(ItemStack itemstack) {
 		EnumBackPacks type = EnumBackPacks.byMetadata(itemstack.getMetadata());
@@ -36,6 +37,7 @@ public class ItemBackPack extends Item implements IItemColor {
 		return damage;
 	}
 	
+	@SideOnly(Side.CLIENT)
 	@Override
 	public void getSubItems(Item item, CreativeTabs creativetab, List<ItemStack> list) {
 		for (int i = 0; i < EnumBackPacks.values().length; i++) {
@@ -80,11 +82,6 @@ public class ItemBackPack extends Item implements IItemColor {
 		}
 	}
 	
-	@Override
-	public int getColorFromItemstack(ItemStack stack, int tintIndex) {
-		return getColor(stack);
-	}
-	
 	public int getColor(ItemStack stack) {
 		NBTTagCompound tag = stack.getTagCompound();
 		if (tag != null) {
@@ -111,6 +108,19 @@ public class ItemBackPack extends Item implements IItemColor {
 		displaytag.setInteger("color", color);
 		
 		stack.setTagCompound(tag);
+	}
+	
+	public void removeColor(ItemStack stack) {
+		NBTTagCompound tag = stack.getTagCompound();
+		if (tag == null) {
+			return;
+		}
+		
+		if (!tag.hasKey("display", 10)) {
+			return;
+		}
+		NBTTagCompound displaytag = tag.getCompoundTag("display");
+		displaytag.removeTag("color");
 	}
 	
 	public boolean hasColor(ItemStack stack) {
