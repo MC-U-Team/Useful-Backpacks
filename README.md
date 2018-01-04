@@ -1,1 +1,2 @@
-# U-Team-Core 1.10.2
+# Useful-Backpacks
+https://minecraft.curseforge.com/projects/useful-backpacks
