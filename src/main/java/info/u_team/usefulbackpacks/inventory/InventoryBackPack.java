@@ -52,4 +52,5 @@ public class InventoryBackPack extends InventoryBackPackBase {
 			tag.removeTag("backpack");
 		}
 	}
+
 }

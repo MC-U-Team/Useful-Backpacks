@@ -2,10 +2,11 @@
 	{
 		"modid": "usefulbackpacks",
 		"description": "This mod adds cool new Backpacks to your game. Will not crash like other 1.10 backpack mods ;)",
-		"url": "https://u-team.info",
+		"url": "https://u-team.info/usefulbackpacks",
 		"authorList": [
 			"HyCraftHD"
 		],
-		"credits": "Team U-Team"
+		"credits": "Team U-Team",
+		"logoFile": "assets/usefulbackpacks/logo.png"
 	}
 ]

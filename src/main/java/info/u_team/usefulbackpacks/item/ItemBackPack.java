@@ -2,6 +2,8 @@ package info.u_team.usefulbackpacks.item;
 
 import java.util.List;
 
+import info.u_team.u_team_core.creativetab.UCreativeTab;
+import info.u_team.u_team_core.item.UItem;
 import info.u_team.usefulbackpacks.*;
 import info.u_team.usefulbackpacks.container.ContainerBackPack;
 import info.u_team.usefulbackpacks.enums.EnumBackPacks;
@@ -15,47 +17,17 @@ import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.*;
 
-public class ItemBackPack extends Item {
+public class ItemBackPack extends UItem {
 	
-	public ItemBackPack() {
-		super();
+	public ItemBackPack(String name, UCreativeTab tab) {
+		super(name, tab);
 		setMaxStackSize(1);
 		hasSubtypes = true;
-		setCreativeTab(ModMain.getInstance().getCreativeTabs().usefullbackpacks);
-		setUnlocalizedName("backpack");
-	}
-	
-	@SideOnly(Side.CLIENT)
-	@Override
-	public String getUnlocalizedName(ItemStack itemstack) {
-		EnumBackPacks type = EnumBackPacks.byMetadata(itemstack.getMetadata());
-		return "item.backpack." + type.getName();
-	}
-	
-	@Override
-	public int getMetadata(int damage) {
-		return damage;
-	}
-	
-	@SideOnly(Side.CLIENT)
-	@Override
-	public void getSubItems(Item item, CreativeTabs creativetab, List<ItemStack> list) {
-		for (int i = 0; i < EnumBackPacks.values().length; i++) {
-			ItemStack normalstack = new ItemStack(item, 1, i);
-			list.add(normalstack);
-		}
-		for (EnumDyeColor color : EnumDyeColor.values()) {
-			for (int i = 0; i < EnumBackPacks.values().length; i++) {
-				ItemStack dyedstack = new ItemStack(item, 1, i);
-				setColor(dyedstack, color.getMapColor().colorValue);
-				list.add(dyedstack);
-			}
-		}
 	}
 	
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
-		player.openGui(Reference.modid, 0, world, 0, 0, 0);
+		player.openGui(UsefulBackPacksConstants.MODID, 0, world, 0, 0, 0);
 		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
 	}
 	
@@ -80,6 +52,16 @@ public class ItemBackPack extends Item {
 			container.saveToNBT(itemstack);
 			container.updateNotification = false;
 		}
+	}
+	
+	@Override
+	public int getMetadata(int damage) {
+		return damage;
+	}
+	
+	@Override
+	public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
+		return !ItemStack.areItemsEqual(oldStack, newStack);
 	}
 	
 	public int getColor(ItemStack stack) {
@@ -126,6 +108,29 @@ public class ItemBackPack extends Item {
 	public boolean hasColor(ItemStack stack) {
 		NBTTagCompound tag = stack.getTagCompound();
 		return tag != null && tag.hasKey("display", 10) ? tag.getCompoundTag("display").hasKey("color", 3) : false;
+	}
+	
+	@SideOnly(Side.CLIENT)
+	@Override
+	public void getSubItems(Item item, CreativeTabs creativetab, List<ItemStack> list) {
+		for (int i = 0; i < EnumBackPacks.values().length; i++) {
+			ItemStack normalstack = new ItemStack(item, 1, i);
+			list.add(normalstack);
+		}
+		for (EnumDyeColor color : EnumDyeColor.values()) {
+			for (int i = 0; i < EnumBackPacks.values().length; i++) {
+				ItemStack dyedstack = new ItemStack(item, 1, i);
+				setColor(dyedstack, color.getMapColor().colorValue);
+				list.add(dyedstack);
+			}
+		}
+	}
+	
+	@SideOnly(Side.CLIENT)
+	@Override
+	public String getUnlocalizedName(ItemStack itemstack) {
+		EnumBackPacks type = EnumBackPacks.byMetadata(itemstack.getMetadata());
+		return "item.backpack." + type.getName();
 	}
 	
 }

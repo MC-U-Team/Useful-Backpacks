@@ -1,6 +1,6 @@
 package info.u_team.usefulbackpacks.gui;
 
-import info.u_team.usefulbackpacks.Reference;
+import info.u_team.usefulbackpacks.UsefulBackPacksConstants;
 import info.u_team.usefulbackpacks.container.ContainerBackPack;
 import info.u_team.usefulbackpacks.enums.EnumBackPacks;
 import info.u_team.usefulbackpacks.inventory.InventoryBackPack;
@@ -13,9 +13,9 @@ import net.minecraftforge.fml.relauncher.*;
 @SideOnly(Side.CLIENT)
 public class GuiBackPack extends GuiContainer {
 	
-	private ResourceLocation texture_small = new ResourceLocation(Reference.modid, "textures/gui/backpack/small.png");
-	private ResourceLocation texture_medium = new ResourceLocation(Reference.modid, "textures/gui/backpack/medium.png");
-	private ResourceLocation texture_big = new ResourceLocation(Reference.modid, "textures/gui/backpack/large.png");
+	private ResourceLocation texture_small = new ResourceLocation(UsefulBackPacksConstants.MODID, "textures/gui/backpack/small.png");
+	private ResourceLocation texture_medium = new ResourceLocation(UsefulBackPacksConstants.MODID, "textures/gui/backpack/medium.png");
+	private ResourceLocation texture_big = new ResourceLocation(UsefulBackPacksConstants.MODID, "textures/gui/backpack/large.png");
 	
 	private EnumBackPacks type;
 	

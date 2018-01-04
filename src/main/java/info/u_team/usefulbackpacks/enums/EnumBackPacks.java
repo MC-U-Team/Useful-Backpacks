@@ -1,6 +1,8 @@
 package info.u_team.usefulbackpacks.enums;
 
-public enum EnumBackPacks {
+import net.minecraft.util.IStringSerializable;
+
+public enum EnumBackPacks implements IStringSerializable {
 	
 	SMALL(0, "small", 5, 3),
 	MEDIUM(1, "medium", 9, 6),

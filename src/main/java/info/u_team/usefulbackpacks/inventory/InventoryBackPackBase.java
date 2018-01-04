@@ -71,7 +71,7 @@ public abstract class InventoryBackPackBase implements IInventory {
 	}
 	
 	@Override
-	public boolean isUseableByPlayer(EntityPlayer myPlayer) {
+	public boolean isUsableByPlayer(EntityPlayer player) {
 		return true;
 	}
 	
