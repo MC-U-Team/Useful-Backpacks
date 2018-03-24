@@ -1,2 +1,2 @@
 # Useful-Backpacks
-https://minecraft.curseforge.com/projects/useful-backpacks
+https://www.curseforge.com/minecraft/mc-mods/useful-backpacks
