@@ -4,7 +4,7 @@ import java.util.List;
 
 import info.u_team.u_team_core.creativetab.UCreativeTab;
 import info.u_team.u_team_core.item.UItem;
-import info.u_team.usefulbackpacks.*;
+import info.u_team.usefulbackpacks.UsefulBackPacksConstants;
 import info.u_team.usefulbackpacks.container.ContainerBackPack;
 import info.u_team.usefulbackpacks.enums.EnumBackPacks;
 import net.minecraft.creativetab.CreativeTabs;
@@ -130,7 +130,7 @@ public class ItemBackPack extends UItem {
 	@Override
 	public String getUnlocalizedName(ItemStack itemstack) {
 		EnumBackPacks type = EnumBackPacks.byMetadata(itemstack.getMetadata());
-		return "item.backpack." + type.getName();
+		return UsefulBackPacksConstants.MODID + ":item.backpack." + type.getName();
 	}
 	
 }

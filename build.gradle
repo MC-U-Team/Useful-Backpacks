@@ -60,7 +60,7 @@ jar {
 }
 
 dependencies {
-	compile 'u-team-core:u_team_core:1.10.2:v1.0.1'
+	compile 'u-team-core:u_team_core-1.10.2:v1.1.0:dev'
 }
 
 processResources {

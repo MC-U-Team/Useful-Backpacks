@@ -1,5 +1,5 @@
-itemGroup.usefulbackpacks=Useful Backpacks
+itemGroup.usefulbackpacks:usefulbackpacks=Useful Backpacks
 
-item.backpack.small.name=Small Backpack
-item.backpack.medium.name=Medium Backpack
-item.backpack.large.name=Large Backpack
+usefulbackpacks:item.backpack.small.name=Small Backpack
+usefulbackpacks:item.backpack.medium.name=Medium Backpack
+usefulbackpacks:item.backpack.large.name=Large Backpack
