@@ -2,7 +2,7 @@ package info.u_team.usefulbackpacks.crafting;
 
 import info.u_team.usefulbackpacks.item.*;
 import net.minecraft.init.*;
-import net.minecraft.item.*;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class UsefulBackPacksCrafting {

@@ -1,4 +1,4 @@
-itemGroup.usefulbackpacks:usefulbackpacks=Nützliche Rucksäcke
+itemGroup.usefulbackpacks:tab=Nützliche Rucksäcke
 
 usefulbackpacks:item.backpack.small.name=Kleiner Rucksack
 usefulbackpacks:item.backpack.medium.name=Mittlerer Rucksack

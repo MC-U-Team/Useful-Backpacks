@@ -4,7 +4,7 @@ import java.util.List;
 
 import info.u_team.u_team_core.creativetab.UCreativeTab;
 import info.u_team.u_team_core.item.UItem;
-import info.u_team.usefulbackpacks.UsefulBackPacksConstants;
+import info.u_team.usefulbackpacks.*;
 import info.u_team.usefulbackpacks.container.ContainerBackPack;
 import info.u_team.usefulbackpacks.enums.EnumBackPacks;
 import net.minecraft.creativetab.CreativeTabs;
@@ -27,7 +27,7 @@ public class ItemBackPack extends UItem {
 	
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
-		player.openGui(UsefulBackPacksConstants.MODID, 0, world, 0, 0, 0);
+		player.openGui(UsefulBackpacksMod.getInstance(), 0, world, 0, 0, 0);
 		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
 	}
 	
