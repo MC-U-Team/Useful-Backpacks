@@ -1,18 +1,26 @@
 buildscript {
-    repositories {
+    
+	apply from: "https://raw.githubusercontent.com/HyCraftHD/Blank-Forge-Project/master/build.methods"
+	setup()
+		
+	repositories {
         jcenter()
         maven { url = "http://files.minecraftforge.net/maven" }
         maven { url = "https://plugins.gradle.org/m2/" }
     }
     dependencies {
-        classpath "net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT"
-        classpath "gradle.plugin.com.matthewprenger:CurseGradle:1.0.9"
+        classpath "net.minecraftforge.gradle:ForgeGradle:${config.forge.gradle}"
+        classpath "gradle.plugin.com.matthewprenger:CurseGradle:1.0.10"
     }
 }
 
+apply from: "https://raw.githubusercontent.com/HyCraftHD/Blank-Forge-Project/master/build.methods"
+apply from: "https://raw.githubusercontent.com/HyCraftHD/Blank-Forge-Project/master/git.methods"
+setup()
+info()
+
 apply plugin: "net.minecraftforge.gradle.forge"
 apply plugin: "com.matthewprenger.cursegradle"
-
 
 repositories {
     maven {
@@ -21,16 +29,10 @@ repositories {
     }
 }
 
-ext.buildProps = file "build.properties"
+getBuildNumber()
 
-buildProps.withReader {
-    def prop = new Properties()
-    prop.load(it)
-    ext.config = new ConfigSlurper().parse prop
-}
-
-version = config.mod.version
-archivesBaseName = config.mod.modid
+version = "${config.mod.version}.${config.buildnumber}"
+archivesBaseName = config.mod.filename
 
 sourceCompatibility = targetCompatibility = "1.8"
 
@@ -41,21 +43,22 @@ compileJava {
 minecraft {
     version = config.forge.version
     runDir = "run"
-    mappings = config.forge.mappings
+    mappings = config.forge.mapping
     makeObfSourceJar = false
+	
+	replace "@VERSION@", "${config.mod.version}.${config.buildnumber}"
 }
 
 jar {
     from "LICENSE"
     
-    archiveName = archivesBaseName + "-" + minecraft.version + "-v" + version + ".jar"
+    archiveName = "${archivesBaseName}-${minecraft.version}-v${version}.jar"
     
     manifest.mainAttributes(
        	"Implementation-Title": config.mod.name,
     	"Implementation-Version": version,
 		"Built-On": minecraft.version
 	)
-    exclude ("test/**")
 }
 
 task deobfJar(type: Jar) {
@@ -63,15 +66,13 @@ task deobfJar(type: Jar) {
     
     from "LICENSE"
     
-    archiveName = archivesBaseName + "-" + minecraft.version + "-v" + version + "-dev.jar"
+   	archiveName = "${archivesBaseName}-${minecraft.version}-v${version}-dev.jar"
     
     manifest.mainAttributes(
        	"Implementation-Title": config.mod.name,
     	"Implementation-Version": version,
 		"Built-On": minecraft.version
 	)
-		
-    exclude ("test/**")
 }
 
 artifacts {
@@ -80,7 +81,7 @@ artifacts {
 }
 
 dependencies {
-	compile 'u-team-core:u_team_core-1.8:v1.1.1:dev'
+	compile "u-team-core:u_team_core-${minecraft.version}-v${config.uteamcore.version}:${config.uteamcore.patch}:dev"
 }
 
 processResources {
@@ -91,23 +92,27 @@ processResources {
 
 curseforge {
 	apiKey = project.properties["token"]
+	
+	tasks.curseforge.dependsOn build
+	tasks.curseforge.dependsOn setBuildNumber
+	
   	project {
     	id = config.curse.id
     	releaseType = config.curse.type
 
+		addGameVersion minecraft.version
+
+		relations {
+      		requiredLibrary "u-team-core"
+    	}
+
     	mainArtifact(jar) {
-      		displayName = config.curse.display + "-" + minecraft.version + "-" + version
-      		relations {
-        		requiredLibrary 'u-team-core'
-        	}
+      		displayName = "${config.curse.display}-${minecraft.version}-${version}"
     	}
     	
     	addArtifact(deobfJar) {
-    		displayName = config.curse.display + "-" + minecraft.version + "-" + version + "-dev"
-    		changelog = "Mappings: " + config.forge.mappings
-    		relations {
-        		requiredLibrary 'u-team-core'
-        	}
+    		displayName = "${config.curse.display}-${minecraft.version}-${version}-dev"
+    		changelog = "Mappings: " + config.forge.mapping
     	}
   	}
 }
