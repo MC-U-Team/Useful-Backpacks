@@ -10,6 +10,9 @@ public class InventoryBackPack extends InventoryBasic {
 	
 	public InventoryBackPack(ItemStack itemstack, EntityPlayer player, int backpacksize) {
 		super("backpack", false, backpacksize);
+		if (itemstack.hasTagCompound()) {
+			readNBT(itemstack.getTagCompound());
+		}
 	}
 	
 	public void readNBT(NBTTagCompound compound) {

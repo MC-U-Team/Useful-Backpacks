@@ -45,9 +45,11 @@ public class ItemBackPack extends UItem {
 		if (opencontainer == null || !(opencontainer instanceof ContainerBackPack)) {
 			return;
 		}
+		
 		ContainerBackPack container = (ContainerBackPack) opencontainer;
 		if (container.updateNotification) {
 			container.saveToNBT(itemstack);
+			System.out.println("asdasd");
 			container.updateNotification = false;
 		}
 	}

@@ -1,6 +1,6 @@
 package info.u_team.usefulbackpacks.gui;
 
-import info.u_team.usefulbackpacks.UsefulBackPacksConstants;
+import info.u_team.usefulbackpacks.*;
 import info.u_team.usefulbackpacks.container.ContainerBackPack;
 import info.u_team.usefulbackpacks.enums.EnumBackPacks;
 import info.u_team.usefulbackpacks.inventory.InventoryBackPack;
@@ -41,7 +41,7 @@ public class GuiBackPack extends GuiContainer {
 	
 	@Override
 	public void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-		fontRenderer.drawString(I18n.format("item.backpack." + type.getName() + ".name"), 8, 9, 4210752);
+		fontRenderer.drawString(I18n.format(UsefulBackPacksConstants.MODID + ":item.backpack." + type.getName() + ".name"), 8, 9, 4210752);
 	}
 	
 	@Override

@@ -88,7 +88,7 @@ public class ContainerBackPack extends Container {
 	
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer playerIn, int index) {
-		ItemStack itemstack = null;
+		ItemStack itemstack = ItemStack.EMPTY;
 		Slot slot = (Slot) this.inventorySlots.get(index);
 		
 		if (slot != null && slot.getHasStack()) {
@@ -97,14 +97,14 @@ public class ContainerBackPack extends Container {
 			
 			if (index < type.getCount()) {
 				if (!this.mergeItemStack(itemstack1, type.getCount(), this.inventorySlots.size(), true)) {
-					return null;
+					return ItemStack.EMPTY;
 				}
 			} else if (!this.mergeItemStack(itemstack1, 0, type.getCount(), false)) {
-				return null;
+				return ItemStack.EMPTY;
 			}
 			
-			if (itemstack1.getCount() == 0) {
-				slot.putStack((ItemStack) null);
+			if (itemstack1.isEmpty()) {
+				slot.putStack(ItemStack.EMPTY);
 			} else {
 				slot.onSlotChanged();
 			}
@@ -128,8 +128,8 @@ public class ContainerBackPack extends Container {
 		}
 		if (clickTypeIn == ClickType.SWAP) {
 			ItemStack stack = player.inventory.getStackInSlot(dragType);
-			if (stack != null && stack == player.inventory.getCurrentItem()) {
-				return null;
+			if (stack == player.inventory.getCurrentItem()) {
+				return ItemStack.EMPTY;
 			}
 		}
 		this.updateNotification = true;
