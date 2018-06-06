@@ -83,7 +83,7 @@ public class ContainerBackPack extends Container {
 		if (!itemstack.hasTagCompound()) {
 			itemstack.setTagCompound(new NBTTagCompound());
 		}
-		inventory.writeToNBT(itemstack.getTagCompound());
+		inventory.writeNBT(itemstack.getTagCompound());
 	}
 	
 	@Override
@@ -103,7 +103,7 @@ public class ContainerBackPack extends Container {
 				return null;
 			}
 			
-			if (itemstack1.stackSize == 0) {
+			if (itemstack1.getCount() == 0) {
 				slot.putStack((ItemStack) null);
 			} else {
 				slot.onSlotChanged();

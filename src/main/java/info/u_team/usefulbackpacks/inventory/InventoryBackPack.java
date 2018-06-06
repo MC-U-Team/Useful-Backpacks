@@ -1,56 +1,31 @@
 package info.u_team.usefulbackpacks.inventory;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.*;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.*;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.NonNullList;
 
-public class InventoryBackPack extends InventoryBackPackBase {
+public class InventoryBackPack extends InventoryBasic {
 	
-	public InventoryBackPack(ItemStack itemStack, EntityPlayer player, int backpacksize) {
-		size = backpacksize;
-		inventory = new ItemStack[size];
-		NBTTagCompound tag = itemStack.getTagCompound();
-		if (tag != null) {
-			readFromNBT(tag);
+	public InventoryBackPack(ItemStack itemstack, EntityPlayer player, int backpacksize) {
+		super("backpack", false, backpacksize);
+	}
+	
+	public void readNBT(NBTTagCompound compound) {
+		NonNullList<ItemStack> list = NonNullList.<ItemStack> withSize(getSizeInventory(), ItemStack.EMPTY);
+		ItemStackHelper.loadAllItems(compound, list);
+		for (int i = 0; i < list.size(); i++) {
+			setInventorySlotContents(i, list.get(i));
 		}
 	}
 	
-	@Override
-	public String getName() {
-		return "backpack";
-	}
-	
-	@Override
-	public void readFromNBT(NBTTagCompound tag) {
-		NBTTagList list = tag.getTagList("backpack", 10);
-		for (int i = 0; i < list.tagCount() && i < inventory.length; i++) {
-			NBTTagCompound currenttag = (NBTTagCompound) list.get(i);
-			int slot = currenttag.getInteger("slot");
-			try {
-				inventory[slot] = ItemStack.loadItemStackFromNBT(currenttag);
-			} catch (NullPointerException ex) {
-				inventory[slot] = null;
-			}
+	public void writeNBT(NBTTagCompound compound) {
+		NonNullList<ItemStack> list = NonNullList.<ItemStack> withSize(getSizeInventory(), ItemStack.EMPTY);
+		for (int i = 0; i < list.size(); i++) {
+			list.set(i, getStackInSlot(i));
 		}
+		ItemStackHelper.saveAllItems(compound, list);
 		
 	}
-	
-	@Override
-	public void writeToNBT(NBTTagCompound tag) {
-		NBTTagList list = new NBTTagList();
-		for (int i = 0; i < this.inventory.length; i++) {
-			if (inventory[i] != null && inventory[i].stackSize > 0) {
-				NBTTagCompound currenttag = new NBTTagCompound();
-				list.appendTag(currenttag);
-				currenttag.setInteger("slot", i);
-				inventory[i].writeToNBT(currenttag);
-			}
-		}
-		if (!list.hasNoTags()) {
-			tag.setTag("backpack", list);
-		} else {
-			tag.removeTag("backpack");
-		}
-	}
-
 }

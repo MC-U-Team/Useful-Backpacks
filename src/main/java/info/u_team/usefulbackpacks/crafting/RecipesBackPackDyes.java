@@ -2,36 +2,33 @@ package info.u_team.usefulbackpacks.crafting;
 
 import java.util.List;
 
-import javax.annotation.Nullable;
-
 import com.google.common.collect.Lists;
 
 import info.u_team.usefulbackpacks.item.ItemBackPack;
-import net.minecraft.entity.passive.EntitySheep;
-import net.minecraft.init.Items;
 import net.minecraft.inventory.InventoryCrafting;
-import net.minecraft.item.*;
-import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.*;
+import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 
-public class RecipesBackPackDyes implements IRecipe {
+public class RecipesBackPackDyes extends net.minecraftforge.registries.IForgeRegistryEntry.Impl<IRecipe> implements IRecipe {
 	
 	/**
 	 * TODO Just Copied {@link RecipesArmorDyes} -> Works well, but code is ugly
 	 */
 	
 	public boolean matches(InventoryCrafting inv, World worldIn) {
-		ItemStack itemstack = null;
+		ItemStack itemstack = ItemStack.EMPTY;
 		List<ItemStack> list = Lists.<ItemStack> newArrayList();
 		
 		for (int i = 0; i < inv.getSizeInventory(); ++i) {
 			ItemStack itemstack1 = inv.getStackInSlot(i);
 			
-			if (itemstack1 != null) {
+			if (!itemstack1.isEmpty()) {
 				if (itemstack1.getItem() instanceof ItemBackPack) {
 					itemstack = itemstack1;
 				} else {
-					if (itemstack1.getItem() != Items.DYE) {
+					if (!net.minecraftforge.oredict.DyeUtils.isDye(itemstack1)) {
 						return false;
 					}
 					
@@ -40,29 +37,28 @@ public class RecipesBackPackDyes implements IRecipe {
 			}
 		}
 		
-		return itemstack != null && !list.isEmpty();
+		return !itemstack.isEmpty() && !list.isEmpty();
 	}
 	
-	@Nullable
 	public ItemStack getCraftingResult(InventoryCrafting inv) {
-		ItemStack itemstack = null;
+		ItemStack itemstack = ItemStack.EMPTY;
 		int[] aint = new int[3];
 		int i = 0;
 		int j = 0;
-		ItemBackPack itembackpack = null;
+		ItemBackPack itemarmor = null;
 		
 		for (int k = 0; k < inv.getSizeInventory(); ++k) {
 			ItemStack itemstack1 = inv.getStackInSlot(k);
 			
-			if (itemstack1 != null) {
+			if (!itemstack1.isEmpty()) {
 				if (itemstack1.getItem() instanceof ItemBackPack) {
-					itembackpack = (ItemBackPack) itemstack1.getItem();
+					itemarmor = (ItemBackPack) itemstack1.getItem();
 					
 					itemstack = itemstack1.copy();
-					itemstack.stackSize = 1;
+					itemstack.setCount(1);
 					
-					if (itembackpack.hasColor(itemstack1)) {
-						int l = itembackpack.getColor(itemstack);
+					if (itemarmor.hasColor(itemstack1)) {
+						int l = itemarmor.getColor(itemstack);
 						float f = (float) (l >> 16 & 255) / 255.0F;
 						float f1 = (float) (l >> 8 & 255) / 255.0F;
 						float f2 = (float) (l & 255) / 255.0F;
@@ -73,11 +69,11 @@ public class RecipesBackPackDyes implements IRecipe {
 						++j;
 					}
 				} else {
-					if (itemstack1.getItem() != Items.DYE) {
-						return null;
+					if (!net.minecraftforge.oredict.DyeUtils.isDye(itemstack1)) {
+						return ItemStack.EMPTY;
 					}
 					
-					float[] afloat = EntitySheep.getDyeRgb(EnumDyeColor.byDyeDamage(itemstack1.getMetadata()));
+					float[] afloat = net.minecraftforge.oredict.DyeUtils.colorFromStack(itemstack1).get().getColorComponentValues();
 					int l1 = (int) (afloat[0] * 255.0F);
 					int i2 = (int) (afloat[1] * 255.0F);
 					int j2 = (int) (afloat[2] * 255.0F);
@@ -90,8 +86,8 @@ public class RecipesBackPackDyes implements IRecipe {
 			}
 		}
 		
-		if (itembackpack == null) {
-			return null;
+		if (itemarmor == null) {
+			return ItemStack.EMPTY;
 		} else {
 			int i1 = aint[0] / j;
 			int j1 = aint[1] / j;
@@ -101,30 +97,33 @@ public class RecipesBackPackDyes implements IRecipe {
 			i1 = (int) ((float) i1 * f3 / f4);
 			j1 = (int) ((float) j1 * f3 / f4);
 			k1 = (int) ((float) k1 * f3 / f4);
-			int lvt_12_3_ = (i1 << 8) + j1;
-			lvt_12_3_ = (lvt_12_3_ << 8) + k1;
-			itembackpack.setColor(itemstack, lvt_12_3_);
+			int k2 = (i1 << 8) + j1;
+			k2 = (k2 << 8) + k1;
+			itemarmor.setColor(itemstack, k2);
 			return itemstack;
 		}
 	}
 	
-	public int getRecipeSize() {
-		return 10;
-	}
-	
-	@Nullable
 	public ItemStack getRecipeOutput() {
-		return null;
+		return ItemStack.EMPTY;
 	}
 	
-	public ItemStack[] getRemainingItems(InventoryCrafting inv) {
-		ItemStack[] aitemstack = new ItemStack[inv.getSizeInventory()];
+	public NonNullList<ItemStack> getRemainingItems(InventoryCrafting inv) {
+		NonNullList<ItemStack> nonnulllist = NonNullList.<ItemStack> withSize(inv.getSizeInventory(), ItemStack.EMPTY);
 		
-		for (int i = 0; i < aitemstack.length; ++i) {
+		for (int i = 0; i < nonnulllist.size(); ++i) {
 			ItemStack itemstack = inv.getStackInSlot(i);
-			aitemstack[i] = net.minecraftforge.common.ForgeHooks.getContainerItem(itemstack);
+			nonnulllist.set(i, net.minecraftforge.common.ForgeHooks.getContainerItem(itemstack));
 		}
 		
-		return aitemstack;
+		return nonnulllist;
+	}
+	
+	public boolean isDynamic() {
+		return true;
+	}
+	
+	public boolean canFit(int width, int height) {
+		return width * height >= 2;
 	}
 }

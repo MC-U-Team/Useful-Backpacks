@@ -41,7 +41,7 @@ public class GuiBackPack extends GuiContainer {
 	
 	@Override
 	public void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-		fontRendererObj.drawString(I18n.format("item.backpack." + type.getName() + ".name"), 8, 9, 4210752);
+		fontRenderer.drawString(I18n.format("item.backpack." + type.getName() + ".name"), 8, 9, 4210752);
 	}
 	
 	@Override

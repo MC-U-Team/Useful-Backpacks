@@ -11,7 +11,7 @@ public class SlotBackPack extends Slot {
 	
 	@Override
 	public boolean isItemValid(ItemStack stack) {
-		if (stack != null && stack.getItem() != null && stack.stackSize > 0) {
+		if (!stack.isEmpty()) {
 			return true;
 		}
 		return false;

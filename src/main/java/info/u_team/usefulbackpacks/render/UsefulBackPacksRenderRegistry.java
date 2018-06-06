@@ -18,7 +18,7 @@ public class UsefulBackPacksRenderRegistry {
 		Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new IItemColor() {
 			
 			@Override
-			public int getColorFromItemstack(ItemStack stack, int tintIndex) {
+			public int colorMultiplier(ItemStack stack, int tintIndex) {
 				return backpacks.getColor(stack);
 			}
 		}, backpacks);

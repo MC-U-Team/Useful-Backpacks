@@ -1,7 +1,5 @@
 package info.u_team.usefulbackpacks.item;
 
-import java.util.List;
-
 import info.u_team.u_team_core.creativetab.UCreativeTab;
 import info.u_team.u_team_core.item.UItem;
 import info.u_team.usefulbackpacks.*;
@@ -26,9 +24,9 @@ public class ItemBackPack extends UItem {
 	}
 	
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
+	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
 		player.openGui(UsefulBackpacksMod.getInstance(), 0, world, 0, 0, 0);
-		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
+		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
 	}
 	
 	@Override
@@ -112,16 +110,16 @@ public class ItemBackPack extends UItem {
 	
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void getSubItems(Item item, CreativeTabs creativetab, List<ItemStack> list) {
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
 		for (int i = 0; i < EnumBackPacks.values().length; i++) {
-			ItemStack normalstack = new ItemStack(item, 1, i);
-			list.add(normalstack);
+			ItemStack normalstack = new ItemStack(this, 1, i);
+			items.add(normalstack);
 		}
 		for (EnumDyeColor color : EnumDyeColor.values()) {
 			for (int i = 0; i < EnumBackPacks.values().length; i++) {
-				ItemStack dyedstack = new ItemStack(item, 1, i);
-				setColor(dyedstack, color.getMapColor().colorValue);
-				list.add(dyedstack);
+				ItemStack dyedstack = new ItemStack(this, 1, i);
+				setColor(dyedstack, color.getColorValue());
+				items.add(dyedstack);
 			}
 		}
 	}

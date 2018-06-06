@@ -1,0 +1,25 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"WBW",
+		"LBL",
+		"WLW"
+	],
+	"key": {
+		"W": {
+			"item": "minecraft:wool",
+			"data": 32767
+		},
+		"L": {
+			"item": "minecraft:leather"
+		},
+		"B": {
+			"item": "usefulbackpacks:backpack",
+			"data": 1
+		}
+	},
+	"result": {
+		"item": "usefulbackpacks:backpack",
+		"data": 2
+	}
+}
