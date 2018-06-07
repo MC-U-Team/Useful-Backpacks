@@ -49,7 +49,6 @@ public class ItemBackPack extends UItem {
 		ContainerBackPack container = (ContainerBackPack) opencontainer;
 		if (container.updateNotification) {
 			container.saveToNBT(itemstack);
-			System.out.println("asdasd");
 			container.updateNotification = false;
 		}
 	}
@@ -113,6 +112,9 @@ public class ItemBackPack extends UItem {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
+		if (!isInCreativeTab(tab)) {
+			return;
+		}
 		for (int i = 0; i < EnumBackPacks.values().length; i++) {
 			ItemStack normalstack = new ItemStack(this, 1, i);
 			items.add(normalstack);
