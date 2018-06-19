@@ -102,6 +102,10 @@ curseforge {
 
 		addGameVersion minecraft.version
 
+		relations {
+      		requiredLibrary "u-team-core"
+    	}
+		
     	mainArtifact(jar) {
       		displayName = "${config.curse.display}-${minecraft.version}-${version}"
     	}
