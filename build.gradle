@@ -81,14 +81,6 @@ artifacts {
 
 sourceSets {
    	main {
-		java {
-			srcDirs += "src/repack/java"
-		}
-		resources {
-			srcDirs += "src/repack/resources"
-		}
-   	}
-   	test {
 		java
 		resources
    	}
