@@ -1,22 +1,24 @@
 package info.u_team.usefulbackpacks;
 
+import static info.u_team.usefulbackpacks.UsefulBackPacksConstants.*;
+
 import info.u_team.u_team_core.sub.USubMod;
 import info.u_team.usefulbackpacks.proxy.CommonProxy;
 import net.minecraftforge.fml.common.*;
 import net.minecraftforge.fml.common.Mod.*;
 import net.minecraftforge.fml.common.event.*;
 
-@Mod(modid = UsefulBackPacksConstants.MODID, name = UsefulBackPacksConstants.NAME, version = UsefulBackPacksConstants.VERSION, acceptedMinecraftVersions = UsefulBackPacksConstants.MCVERSION, dependencies = UsefulBackPacksConstants.DEPENDENCIES)
+@Mod(modid = MODID, name = NAME, version = VERSION, acceptedMinecraftVersions = MCVERSION, dependencies = DEPENDENCIES, updateJSON = UPDATEURL)
 public class UsefulBackpacksMod extends USubMod {
 	
 	public UsefulBackpacksMod() {
-		super(UsefulBackPacksConstants.MODID, UsefulBackPacksConstants.NAME, UsefulBackPacksConstants.VERSION, UsefulBackPacksConstants.UPDATEURL);
+		super();
 	}
 	
 	@Instance
 	private static UsefulBackpacksMod instance;
 	
-	@SidedProxy(serverSide = UsefulBackPacksConstants.COMMONPROXY, clientSide = UsefulBackPacksConstants.CLIENTPROXY)
+	@SidedProxy(serverSide = COMMONPROXY, clientSide = CLIENTPROXY)
 	private static CommonProxy proxy;
 	
 	public static UsefulBackpacksMod getInstance() {
