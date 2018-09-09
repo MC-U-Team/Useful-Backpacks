@@ -1,6 +1,6 @@
 package info.u_team.usefulbackpacks.proxy;
 
-import info.u_team.u_team_core.util.registry.CommonRegistry;
+import info.u_team.u_team_core.registry.CommonRegistry;
 import info.u_team.usefulbackpacks.UsefulBackpacksMod;
 import info.u_team.usefulbackpacks.crafting.UsefulBackPacksCrafting;
 import info.u_team.usefulbackpacks.handler.UsefulBackPacksGuiHandler;

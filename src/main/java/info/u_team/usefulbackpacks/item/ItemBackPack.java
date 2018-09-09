@@ -128,10 +128,9 @@ public class ItemBackPack extends UItem {
 		}
 	}
 	
-	@SideOnly(Side.CLIENT)
 	@Override
-	public String getUnlocalizedName(ItemStack itemstack) {
-		EnumBackPacks type = EnumBackPacks.byMetadata(itemstack.getMetadata());
+	public String getTranslationKey(ItemStack stack) {
+		EnumBackPacks type = EnumBackPacks.byMetadata(stack.getMetadata());
 		return UsefulBackPacksConstants.MODID + ":item.backpack." + type.getName();
 	}
 	

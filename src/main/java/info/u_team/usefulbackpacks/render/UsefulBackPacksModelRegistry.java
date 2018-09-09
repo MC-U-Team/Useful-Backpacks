@@ -1,6 +1,6 @@
 package info.u_team.usefulbackpacks.render;
 
-import info.u_team.u_team_core.util.registry.ClientRegistry;
+import info.u_team.u_team_core.registry.ClientRegistry;
 import info.u_team.usefulbackpacks.enums.EnumBackPacks;
 import info.u_team.usefulbackpacks.item.*;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
