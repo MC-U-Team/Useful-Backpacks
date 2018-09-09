@@ -1,10 +1,11 @@
 package info.u_team.usefulbackpacks.item;
 
-import info.u_team.u_team_core.creativetab.UCreativeTab;
 import info.u_team.u_team_core.item.UItem;
+import info.u_team.u_team_core.util.CustomResourceLocation;
 import info.u_team.usefulbackpacks.*;
 import info.u_team.usefulbackpacks.container.ContainerBackPack;
 import info.u_team.usefulbackpacks.enums.EnumBackPacks;
+import info.u_team.usefulbackpacks.init.UsefulBackPacksCreativeTabs;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,10 +18,18 @@ import net.minecraftforge.fml.relauncher.*;
 
 public class ItemBackPack extends UItem {
 	
-	public ItemBackPack(String name, UCreativeTab tab) {
-		super(name, tab);
+	public ItemBackPack(String name) {
+		super(name, UsefulBackPacksCreativeTabs.tab);
 		setMaxStackSize(1);
 		hasSubtypes = true;
+	}
+	
+	@SideOnly(Side.CLIENT)
+	@Override
+	public void registerModel() {
+		for (int i = 0; i < EnumBackPacks.values().length; i++) {
+			setModel(this, i, new CustomResourceLocation(getRegistryName(), "_" + EnumBackPacks.byMetadata(i).getName()));
+		}
 	}
 	
 	@Override

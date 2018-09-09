@@ -8,7 +8,7 @@ public class UsefulBackPacksConstants {
 	public static final String NAME = "Useful Backpacks";
 	public static final String VERSION = "${version}";
 	public static final String MCVERSION = "${mcversion}";
-	public static final String DEPENDENCIES = "required-after:uteamcore@[2.0.0.81,);";
+	public static final String DEPENDENCIES = "required:forge@[14.23.4.2705,);required-after:uteamcore@[2.0.0.81,);";
 	public static final String UPDATEURL = "https://api.u-team.info/update/usefulbackpacks.json";
 	
 	public static final String COMMONPROXY = "info.u_team.usefulbackpacks.proxy.CommonProxy";

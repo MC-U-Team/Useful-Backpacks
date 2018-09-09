@@ -1,6 +1,9 @@
 [
 	{
 		"modid": "usefulbackpacks",
+		"name": "Useful Backpacks",
+		"version": "${version}",
+		"mcversion": "${mcversion}",
 		"description": "This mod adds cool new backpacks to your game.",
 		"url": "https://u-team.info/usefulbackpacks",
 		"authorList": [

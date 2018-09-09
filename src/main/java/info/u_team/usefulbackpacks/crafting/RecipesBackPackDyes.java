@@ -4,12 +4,11 @@ import java.util.List;
 
 import com.google.common.collect.Lists;
 
-import info.u_team.usefulbackpacks.UsefulBackPacksConstants;
 import info.u_team.usefulbackpacks.item.ItemBackPack;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.*;
-import net.minecraft.util.*;
+import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 
 public class RecipesBackPackDyes extends net.minecraftforge.registries.IForgeRegistryEntry.Impl<IRecipe> implements IRecipe {
@@ -19,7 +18,6 @@ public class RecipesBackPackDyes extends net.minecraftforge.registries.IForgeReg
 	 */
 	
 	public RecipesBackPackDyes() {
-		this.setRegistryName(new ResourceLocation(UsefulBackPacksConstants.MODID, "recipespackpackdyes"));
 	}
 	
 	public boolean matches(InventoryCrafting inv, World worldIn) {

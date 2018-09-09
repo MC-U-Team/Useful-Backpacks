@@ -2,21 +2,20 @@ package info.u_team.usefulbackpacks.proxy;
 
 import info.u_team.u_team_core.registry.CommonRegistry;
 import info.u_team.usefulbackpacks.UsefulBackpacksMod;
-import info.u_team.usefulbackpacks.crafting.UsefulBackPacksCrafting;
 import info.u_team.usefulbackpacks.handler.UsefulBackPacksGuiHandler;
-import info.u_team.usefulbackpacks.item.UsefulBackPacksItems;
-import info.u_team.usefulbackpacks.tab.UsefulBackPacksTabs;
+import info.u_team.usefulbackpacks.init.*;
 import net.minecraftforge.fml.common.event.*;
 
 public class CommonProxy {
 	
 	public void preinit(FMLPreInitializationEvent event) {
-		new UsefulBackPacksTabs();
-		new UsefulBackPacksItems();
+		UsefulBackPacksItems.preinit();
 	}
 	
 	public void init(FMLInitializationEvent event) {
-		new UsefulBackPacksCrafting();
+		UsefulBackPacksCreativeTabs.init();
+		UsefulBackPacksRecipes.init();
+		
 		CommonRegistry.registerGuiHandler(UsefulBackpacksMod.getInstance(), new UsefulBackPacksGuiHandler());
 	}
 	
