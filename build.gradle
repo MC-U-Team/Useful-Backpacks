@@ -144,7 +144,6 @@ curseforge {
 	apiKey = project.getProperty("token")
 	
 	tasks.curseforge.dependsOn build
-	tasks.curseforge.dependsOn setBuildNumber
 	
   	project {
     	id = config.curse.id
@@ -168,7 +167,6 @@ curseforge {
 uploadArchives {
 
 	tasks.uploadArchives.dependsOn build
-	tasks.uploadArchives.dependsOn setBuildNumber
 
 	repositories {
 		mavenDeployer {
@@ -216,7 +214,7 @@ uploadArchives {
 
 task uploadBoth {
 	tasks.uploadBoth.dependsOn uploadArchives
-	tasks.uploadBoth.dependsOn curseforge
+	tasks.uploadBoth.dependsOn "curseforge${config.curse.id}"
 	tasks.uploadBoth.dependsOn setBuildNumber
 	doLast {
 		println "Published both"
