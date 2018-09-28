@@ -1,8 +1,8 @@
-package info.u_team.usefulbackpacks;
+package info.u_team.useful_backpacks;
 
-import static info.u_team.usefulbackpacks.UsefulBackPacksConstants.*;
+import static info.u_team.useful_backpacks.UsefulBackPacksConstants.*;
 
-import info.u_team.usefulbackpacks.proxy.CommonProxy;
+import info.u_team.useful_backpacks.proxy.CommonProxy;
 import net.minecraftforge.fml.common.*;
 import net.minecraftforge.fml.common.Mod.*;
 import net.minecraftforge.fml.common.event.*;

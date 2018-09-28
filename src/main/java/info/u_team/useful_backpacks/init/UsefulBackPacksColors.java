@@ -1,6 +1,6 @@
-package info.u_team.usefulbackpacks.init;
+package info.u_team.useful_backpacks.init;
 
-import info.u_team.usefulbackpacks.item.ItemBackPack;
+import info.u_team.useful_backpacks.item.ItemBackPack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraftforge.fml.relauncher.*;

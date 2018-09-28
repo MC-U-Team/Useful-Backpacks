@@ -1,9 +1,9 @@
-package info.u_team.usefulbackpacks.gui;
+package info.u_team.useful_backpacks.gui;
 
-import info.u_team.usefulbackpacks.*;
-import info.u_team.usefulbackpacks.container.ContainerBackPack;
-import info.u_team.usefulbackpacks.enums.EnumBackPacks;
-import info.u_team.usefulbackpacks.inventory.InventoryBackPack;
+import info.u_team.useful_backpacks.*;
+import info.u_team.useful_backpacks.container.ContainerBackPack;
+import info.u_team.useful_backpacks.enums.EnumBackPacks;
+import info.u_team.useful_backpacks.inventory.InventoryBackPack;
 import net.minecraft.client.gui.inventory.*;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;

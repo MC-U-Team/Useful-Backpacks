@@ -1,7 +1,7 @@
-package info.u_team.usefulbackpacks.init;
+package info.u_team.useful_backpacks.init;
 
 import info.u_team.u_team_core.creativetab.UCreativeTab;
-import info.u_team.usefulbackpacks.UsefulBackPacksConstants;
+import info.u_team.useful_backpacks.UsefulBackPacksConstants;
 
 public class UsefulBackPacksCreativeTabs {
 	

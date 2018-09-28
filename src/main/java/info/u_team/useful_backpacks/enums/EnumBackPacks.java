@@ -1,4 +1,4 @@
-package info.u_team.usefulbackpacks.enums;
+package info.u_team.useful_backpacks.enums;
 
 import net.minecraft.util.IStringSerializable;
 

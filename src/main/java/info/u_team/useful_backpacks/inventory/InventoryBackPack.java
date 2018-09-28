@@ -1,4 +1,4 @@
-package info.u_team.usefulbackpacks.inventory;
+package info.u_team.useful_backpacks.inventory;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.*;

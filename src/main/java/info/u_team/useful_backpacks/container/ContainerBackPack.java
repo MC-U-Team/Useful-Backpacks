@@ -1,7 +1,7 @@
-package info.u_team.usefulbackpacks.container;
+package info.u_team.useful_backpacks.container;
 
-import info.u_team.usefulbackpacks.enums.EnumBackPacks;
-import info.u_team.usefulbackpacks.inventory.*;
+import info.u_team.useful_backpacks.enums.EnumBackPacks;
+import info.u_team.useful_backpacks.inventory.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.ItemStack;

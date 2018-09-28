@@ -1,9 +1,9 @@
-package info.u_team.usefulbackpacks.proxy;
+package info.u_team.useful_backpacks.proxy;
 
 import info.u_team.u_team_core.registry.CommonRegistry;
-import info.u_team.usefulbackpacks.UsefulBackpacksMod;
-import info.u_team.usefulbackpacks.handler.UsefulBackPacksGuiHandler;
-import info.u_team.usefulbackpacks.init.*;
+import info.u_team.useful_backpacks.UsefulBackpacksMod;
+import info.u_team.useful_backpacks.handler.UsefulBackPacksGuiHandler;
+import info.u_team.useful_backpacks.init.*;
 import net.minecraftforge.fml.common.event.*;
 
 public class CommonProxy {

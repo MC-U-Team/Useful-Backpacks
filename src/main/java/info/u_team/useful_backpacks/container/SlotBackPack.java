@@ -1,4 +1,4 @@
-package info.u_team.usefulbackpacks.container;
+package info.u_team.useful_backpacks.container;
 
 import net.minecraft.inventory.*;
 import net.minecraft.item.ItemStack;

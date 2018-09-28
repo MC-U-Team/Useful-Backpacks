@@ -1,11 +1,11 @@
-package info.u_team.usefulbackpacks.item;
+package info.u_team.useful_backpacks.item;
 
 import info.u_team.u_team_core.item.UItem;
 import info.u_team.u_team_core.util.CustomResourceLocation;
-import info.u_team.usefulbackpacks.*;
-import info.u_team.usefulbackpacks.container.ContainerBackPack;
-import info.u_team.usefulbackpacks.enums.EnumBackPacks;
-import info.u_team.usefulbackpacks.init.UsefulBackPacksCreativeTabs;
+import info.u_team.useful_backpacks.*;
+import info.u_team.useful_backpacks.container.ContainerBackPack;
+import info.u_team.useful_backpacks.enums.EnumBackPacks;
+import info.u_team.useful_backpacks.init.UsefulBackPacksCreativeTabs;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;

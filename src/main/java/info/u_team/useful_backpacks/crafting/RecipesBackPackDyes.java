@@ -1,10 +1,10 @@
-package info.u_team.usefulbackpacks.crafting;
+package info.u_team.useful_backpacks.crafting;
 
 import java.util.List;
 
 import com.google.common.collect.Lists;
 
-import info.u_team.usefulbackpacks.item.ItemBackPack;
+import info.u_team.useful_backpacks.item.ItemBackPack;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.*;

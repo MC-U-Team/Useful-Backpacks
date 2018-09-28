@@ -1,10 +1,10 @@
-package info.u_team.usefulbackpacks.handler;
+package info.u_team.useful_backpacks.handler;
 
-import info.u_team.usefulbackpacks.container.ContainerBackPack;
-import info.u_team.usefulbackpacks.enums.EnumBackPacks;
-import info.u_team.usefulbackpacks.gui.GuiBackPack;
-import info.u_team.usefulbackpacks.inventory.InventoryBackPack;
-import info.u_team.usefulbackpacks.item.ItemBackPack;
+import info.u_team.useful_backpacks.container.ContainerBackPack;
+import info.u_team.useful_backpacks.enums.EnumBackPacks;
+import info.u_team.useful_backpacks.gui.GuiBackPack;
+import info.u_team.useful_backpacks.inventory.InventoryBackPack;
+import info.u_team.useful_backpacks.item.ItemBackPack;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;

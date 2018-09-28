@@ -1,6 +1,6 @@
-package info.u_team.usefulbackpacks.proxy;
+package info.u_team.useful_backpacks.proxy;
 
-import info.u_team.usefulbackpacks.init.UsefulBackPacksColors;
+import info.u_team.useful_backpacks.init.UsefulBackPacksColors;
 import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.relauncher.*;
 

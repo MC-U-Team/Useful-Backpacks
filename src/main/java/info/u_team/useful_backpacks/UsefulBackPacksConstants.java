@@ -1,4 +1,4 @@
-package info.u_team.usefulbackpacks;
+package info.u_team.useful_backpacks;
 
 import org.apache.logging.log4j.*;
 
