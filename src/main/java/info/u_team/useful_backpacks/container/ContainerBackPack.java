@@ -1,12 +1,19 @@
 package info.u_team.useful_backpacks.container;
 
+import java.util.*;
+
 import info.u_team.useful_backpacks.enums.EnumBackPacks;
-import info.u_team.useful_backpacks.inventory.*;
+import info.u_team.useful_backpacks.inventory.InventoryBackPack;
+import invtweaks.api.container.*;
+import invtweaks.api.container.ChestContainer.RowSizeCallback;
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.entity.player.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.fml.common.Optional;
 
+@ChestContainer
 public class ContainerBackPack extends Container {
 	
 	public boolean updateNotification;
@@ -117,6 +124,7 @@ public class ContainerBackPack extends Container {
 	public ItemStack slotClick(int slotId, int dragType, ClickType clickTypeIn, EntityPlayer player) {
 		Slot tmpSlot;
 		if (slotId >= 0 && slotId < inventorySlots.size()) {
+			System.out.println(slotId);
 			tmpSlot = (Slot) inventorySlots.get(slotId);
 		} else {
 			tmpSlot = null;
@@ -136,4 +144,26 @@ public class ContainerBackPack extends Container {
 		return super.slotClick(slotId, dragType, clickTypeIn, player);
 	}
 	
+	// Inventory Tweaks stuff
+	
+	@RowSizeCallback
+	@Optional.Method(modid = "inventorytweaks")
+	public int getRowSize() {
+		return type.getSizeX();
+	}
+	
+	@ContainerSectionCallback
+	@Optional.Method(modid = "inventorytweaks")
+	public Map<ContainerSection, List<Slot>> getContainerSections() {
+		
+		Map<ContainerSection, List<Slot>> slots = new Object2ObjectOpenHashMap<>();
+		
+		slots.put(ContainerSection.CHEST, inventorySlots.subList(0, type.getCount() - 1));
+		
+		slots.put(ContainerSection.INVENTORY, inventorySlots.subList(type.getCount(), inventorySlots.size()));
+		slots.put(ContainerSection.INVENTORY_NOT_HOTBAR, inventorySlots.subList(type.getCount(), inventorySlots.size() - 9));
+		slots.put(ContainerSection.INVENTORY_HOTBAR, inventorySlots.subList(inventorySlots.size() - 8, inventorySlots.size()));
+		
+		return slots;
+	}
 }
