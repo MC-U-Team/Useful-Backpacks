@@ -124,7 +124,6 @@ public class ContainerBackPack extends Container {
 	public ItemStack slotClick(int slotId, int dragType, ClickType clickTypeIn, EntityPlayer player) {
 		Slot tmpSlot;
 		if (slotId >= 0 && slotId < inventorySlots.size()) {
-			System.out.println(slotId);
 			tmpSlot = (Slot) inventorySlots.get(slotId);
 		} else {
 			tmpSlot = null;
