@@ -1,10 +1,11 @@
 package info.u_team.useful_backpacks.gui;
 
-import info.u_team.useful_backpacks.UsefulBackpacksMod;
+import info.u_team.useful_backpacks.UsefulBackPacksMod;
 import info.u_team.useful_backpacks.container.ContainerBackPack;
 import info.u_team.useful_backpacks.enums.EnumBackPacks;
 import info.u_team.useful_backpacks.inventory.InventoryBackPack;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.*;
@@ -12,9 +13,9 @@ import net.minecraftforge.api.distmarker.*;
 @OnlyIn(Dist.CLIENT)
 public class GuiBackPack extends GuiContainer {
 	
-	private ResourceLocation texture_small = new ResourceLocation(UsefulBackpacksMod.modid, "textures/gui/backpack/small.png");
-	private ResourceLocation texture_medium = new ResourceLocation(UsefulBackpacksMod.modid, "textures/gui/backpack/medium.png");
-	private ResourceLocation texture_big = new ResourceLocation(UsefulBackpacksMod.modid, "textures/gui/backpack/large.png");
+	private ResourceLocation texture_small = new ResourceLocation(UsefulBackPacksMod.modid, "textures/gui/backpack/small.png");
+	private ResourceLocation texture_medium = new ResourceLocation(UsefulBackPacksMod.modid, "textures/gui/backpack/medium.png");
+	private ResourceLocation texture_big = new ResourceLocation(UsefulBackPacksMod.modid, "textures/gui/backpack/large.png");
 	
 	private EnumBackPacks type;
 	
@@ -39,18 +40,17 @@ public class GuiBackPack extends GuiContainer {
 		}
 	}
 	
-	// @Override
-	// public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-	// this.drawDefaultBackground();
-	// super.drawScreen(mouseX, mouseY, partialTicks);
-	// this.renderHoveredToolTip(mouseX, mouseY);
-	// }
+	@Override
+	public void render(int mouseX, int mouseY, float partialTicks) {
+		drawDefaultBackground();
+		super.render(mouseX, mouseY, partialTicks);
+		renderHoveredToolTip(mouseX, mouseY);
+	}
 	
-	// @Override
-	// public void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-	// fontRenderer.drawString(I18n.format(UsefulBackPacksConstants.MODID +
-	// ":item.backpack." + type.getName() + ".name"), 8, 9, 4210752);
-	// }
+	@Override
+	public void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
+		fontRenderer.drawString(I18n.format(UsefulBackPacksMod.modid + ":item.backpack." + type.getName() + ".name"), 8, 9, 4210752);
+	}
 	
 	@Override
 	public void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {

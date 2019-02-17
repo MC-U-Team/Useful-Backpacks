@@ -6,12 +6,12 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.*;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-@Mod(UsefulBackpacksMod.modid)
-public class UsefulBackpacksMod {
+@Mod(UsefulBackPacksMod.modid)
+public class UsefulBackPacksMod {
 	
 	public static final String modid = "usefulbackpacks";
 	
-	public UsefulBackpacksMod() {
+	public UsefulBackPacksMod() {
 		FMLJavaModLoadingContext.get().getModEventBus().register(this);
 		CommonProxy.construct();
 	}

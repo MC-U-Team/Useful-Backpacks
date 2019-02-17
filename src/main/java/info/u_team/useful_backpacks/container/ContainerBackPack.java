@@ -4,6 +4,7 @@ import info.u_team.useful_backpacks.enums.EnumBackPacks;
 import info.u_team.useful_backpacks.inventory.InventoryBackPack;
 import net.minecraft.entity.player.*;
 import net.minecraft.inventory.*;
+import net.minecraft.item.ItemStack;
 
 public class ContainerBackPack extends Container {
 	
@@ -72,6 +73,60 @@ public class ContainerBackPack extends Container {
 	@Override
 	public boolean canInteractWith(EntityPlayer player) {
 		return true;
+	}
+	
+	@Override
+	public void detectAndSendChanges() {
+		super.detectAndSendChanges();
+		backpackInventory.writeItemStack(backpackInventory.getStack());
+	}
+	
+	@Override
+	public ItemStack transferStackInSlot(EntityPlayer playerIn, int index) {
+		ItemStack itemstack = ItemStack.EMPTY;
+		Slot slot = (Slot) this.inventorySlots.get(index);
+		
+		if (slot != null && slot.getHasStack()) {
+			ItemStack itemstack1 = slot.getStack();
+			itemstack = itemstack1.copy();
+			
+			if (index < type.getCount()) {
+				if (!this.mergeItemStack(itemstack1, type.getCount(), this.inventorySlots.size(), true)) {
+					return ItemStack.EMPTY;
+				}
+			} else if (!this.mergeItemStack(itemstack1, 0, type.getCount(), false)) {
+				return ItemStack.EMPTY;
+			}
+			
+			if (itemstack1.isEmpty()) {
+				slot.putStack(ItemStack.EMPTY);
+			} else {
+				slot.onSlotChanged();
+			}
+		}
+		return itemstack;
+	}
+	
+	@Override
+	public ItemStack slotClick(int slotId, int dragType, ClickType clickTypeIn, EntityPlayer player) {
+		Slot tmpSlot;
+		if (slotId >= 0 && slotId < inventorySlots.size()) {
+			tmpSlot = (Slot) inventorySlots.get(slotId);
+		} else {
+			tmpSlot = null;
+		}
+		if (tmpSlot != null) {
+			if (tmpSlot.isHere(player.inventory, player.inventory.currentItem)) {
+				return tmpSlot.getStack();
+			}
+		}
+		if (clickTypeIn == ClickType.SWAP) {
+			ItemStack stack = player.inventory.getStackInSlot(dragType);
+			if (stack == player.inventory.getCurrentItem()) {
+				return ItemStack.EMPTY;
+			}
+		}
+		return super.slotClick(slotId, dragType, clickTypeIn, player);
 	}
 	
 }

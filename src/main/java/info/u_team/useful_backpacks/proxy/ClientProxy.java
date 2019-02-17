@@ -1,6 +1,6 @@
 package info.u_team.useful_backpacks.proxy;
 
-import info.u_team.useful_backpacks.UsefulBackpacksMod;
+import info.u_team.useful_backpacks.UsefulBackPacksMod;
 import info.u_team.useful_backpacks.gui.GuiBackPack;
 import info.u_team.useful_backpacks.inventory.InventoryBackPack;
 import info.u_team.useful_backpacks.item.ItemBackPack;
@@ -18,21 +18,15 @@ public class ClientProxy {
 		ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.GUIFACTORY, () -> {
 			return (openContainer) -> {
 				ResourceLocation location = openContainer.getId();
-				if (location.toString().equalsIgnoreCase(UsefulBackpacksMod.modid + ":backpack")) {
+				if (location.toString().equalsIgnoreCase(UsefulBackPacksMod.modid + ":backpack")) {
 					EntityPlayerSP player = Minecraft.getInstance().player;
 					ItemStack stack = player.getHeldItemMainhand();
 					Item item = stack.getItem();
 					if (!(item instanceof ItemBackPack)) {
 						return null;
 					}
-					
 					ItemBackPack backpack = (ItemBackPack) item;
-					
-					InventoryBackPack backpackInventory = new InventoryBackPack(backpack.getType());
-					
-					backpackInventory.readItemStack(stack);
-					
-					return new GuiBackPack(player.inventory, backpackInventory);
+					return new GuiBackPack(player.inventory, new InventoryBackPack(stack, backpack.getType()));
 				}
 				return null;
 			};

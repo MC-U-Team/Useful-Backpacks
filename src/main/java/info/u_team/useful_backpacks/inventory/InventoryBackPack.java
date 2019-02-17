@@ -9,11 +9,19 @@ import net.minecraft.util.text.TextComponentString;
 
 public class InventoryBackPack extends InventoryBasic {
 	
+	private ItemStack stack;
 	private EnumBackPacks type;
 	
-	public InventoryBackPack(EnumBackPacks type) {
+	public InventoryBackPack(ItemStack stack, EnumBackPacks type) {
 		super(new TextComponentString("backpack"), type.getCount());
+		this.stack = stack;
 		this.type = type;
+		
+		readItemStack(stack);
+	}
+	
+	public ItemStack getStack() {
+		return stack;
 	}
 	
 	public EnumBackPacks getType() {
@@ -44,6 +52,5 @@ public class InventoryBackPack extends InventoryBasic {
 			list.set(i, getStackInSlot(i));
 		}
 		ItemStackHelper.saveAllItems(compound, list);
-		
 	}
 }
