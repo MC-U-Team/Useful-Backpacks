@@ -2,14 +2,21 @@ package info.u_team.useful_backpacks.proxy;
 
 import info.u_team.useful_backpacks.init.*;
 
-public class CommonProxy {
+public class CommonProxy implements IModProxy {
 	
-	public static void construct() {
+	@Override
+	public void construct() {
 		UsefulBackPacksItems.construct();
 	}
 	
-	public static void setup() {
+	@Override
+	public void setup() {
 		UsefulBackPacksItemGroups.setup();
+	}
+	
+	@Override
+	public void complete() {
+		
 	}
 	
 }

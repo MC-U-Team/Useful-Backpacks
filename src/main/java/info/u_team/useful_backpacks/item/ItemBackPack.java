@@ -5,7 +5,7 @@ import info.u_team.useful_backpacks.container.InteractionObjectBackPack;
 import info.u_team.useful_backpacks.enums.EnumBackPacks;
 import info.u_team.useful_backpacks.init.UsefulBackPacksItemGroups;
 import net.minecraft.entity.player.*;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
@@ -16,7 +16,7 @@ public class ItemBackPack extends UItem {
 	private final EnumBackPacks type;
 	
 	public ItemBackPack(EnumBackPacks type) {
-		super("backpack_" + type.getName(), UsefulBackPacksItemGroups.group, new Properties().rarity(type.getRarity()));
+		super("backpack_" + type.getName(), UsefulBackPacksItemGroups.group, new Properties().maxStackSize(1).rarity(type.getRarity()));
 		this.type = type;
 	}
 	
@@ -26,6 +26,7 @@ public class ItemBackPack extends UItem {
 		if (!world.isRemote && player instanceof EntityPlayerMP) {
 			EntityPlayerMP playermp = (EntityPlayerMP) player;
 			NetworkHooks.openGui(playermp, new InteractionObjectBackPack(stack, type), null);
+			System.out.println("OPENED");
 		}
 		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
 	}
@@ -44,7 +45,7 @@ public class ItemBackPack extends UItem {
 	
 	public int getColor(ItemStack stack) {
 		NBTTagCompound nbttagcompound = stack.getChildTag("display");
-		return nbttagcompound != null && nbttagcompound.contains("color", 99) ? nbttagcompound.getInt("color") : 10511680;
+		return nbttagcompound != null && nbttagcompound.contains("color", 99) ? nbttagcompound.getInt("color") : 0x816040;
 	}
 	
 	public void removeColor(ItemStack stack) {
@@ -56,6 +57,20 @@ public class ItemBackPack extends UItem {
 	
 	public void setColor(ItemStack stack, int color) {
 		stack.getOrCreateChildTag("display").setInt("color", color);
+	}
+	
+	// Item group
+	
+	@Override
+	public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
+		if (!this.isInGroup(group)) {
+			return;
+		}
+		for (EnumDyeColor color : EnumDyeColor.values()) {
+			ItemStack dyedstack = new ItemStack(this, 1);
+			setColor(dyedstack, color.getMapColor().colorValue);
+			items.add(dyedstack);
+		}
 	}
 	
 	public EnumBackPacks getType() {
