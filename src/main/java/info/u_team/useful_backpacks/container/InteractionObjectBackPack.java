@@ -40,7 +40,6 @@ public class InteractionObjectBackPack implements IInteractionObject {
 	
 	@Override
 	public Container createContainer(InventoryPlayer playerInventory, EntityPlayer player) {
-		System.out.println("CREATE CONTAINER");
 		return new ContainerBackPack(playerInventory, new InventoryBackPack(stack, type));
 	}
 	

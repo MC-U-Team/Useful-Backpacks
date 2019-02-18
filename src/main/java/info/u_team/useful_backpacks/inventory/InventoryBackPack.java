@@ -16,9 +16,6 @@ public class InventoryBackPack extends InventoryBasic {
 		super(new TextComponentString("backpack"), type.getCount());
 		this.stack = stack;
 		this.type = type;
-		
-		System.out.println("CREATED INVENTORY");
-		
 		readItemStack(stack);
 	}
 	
