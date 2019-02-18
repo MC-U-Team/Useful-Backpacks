@@ -1,0 +1,20 @@
+{
+	"type": "usefulbackpacks:crafting_special_copy_nbt",
+	"pattern": [
+		"###",
+		"#B#",
+		"###"
+	],
+	"key": {
+		"#": {
+			"item": "minecraft:white_wool"
+		},
+		"B": {
+			"type": "usefulbackpacks:copy_nbt",
+			"item": "usefulbackpacks:backpack_small"
+		}
+	},
+	"result": {
+		"item": "usefulbackpacks:backpack_medium"
+	}
+}

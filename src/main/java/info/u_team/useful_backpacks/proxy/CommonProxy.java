@@ -7,6 +7,7 @@ public class CommonProxy implements IModProxy {
 	@Override
 	public void construct() {
 		UsefulBackPacksItems.construct();
+		UsefulBackPacksRecipes.construct();
 	}
 	
 	@Override
