@@ -1,5 +1,5 @@
 {
-	"type": "usefulbackpacks:crafting_special_copy_nbt",
+	"type": "uteamcore:crafting_special_copy_nbt",
 	"pattern": [
 		"WLW",
 		"LBL",
@@ -13,7 +13,7 @@
 			"item": "minecraft:leather"
 		},
 		"B": {
-			"type": "usefulbackpacks:copy_nbt",
+			"type": "uteamcore:copy_nbt",
 			"item": "usefulbackpacks:backpack_small"
 		}
 	},

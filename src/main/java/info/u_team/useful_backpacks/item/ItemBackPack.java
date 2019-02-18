@@ -25,7 +25,7 @@ public class ItemBackPack extends UItem {
 		ItemStack stack = player.getHeldItem(hand);
 		if (!world.isRemote && player instanceof EntityPlayerMP) {
 			EntityPlayerMP playermp = (EntityPlayerMP) player;
-			NetworkHooks.openGui(playermp, new InteractionObjectBackPack(stack, type), null);
+			NetworkHooks.openGui(playermp, new InteractionObjectBackPack(stack, type), (b) -> {});
 		}
 		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
 	}

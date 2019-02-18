@@ -30,6 +30,6 @@ authors="HyCraftHD"
 	[[dependencies.uteamcore]]
 	    modId="uteamcore"
 	    mandatory=true
-	    versionRange="[2.3.0.95-SNAPSHOT,)"
+	    versionRange="[2.3.0.96-SNAPSHOT,)"
 	    ordering="NONE"
 	    side="BOTH"
