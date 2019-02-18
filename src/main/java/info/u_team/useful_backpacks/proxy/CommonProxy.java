@@ -16,7 +16,6 @@ public class CommonProxy implements IModProxy {
 	
 	@Override
 	public void complete() {
-		
 	}
 	
 }

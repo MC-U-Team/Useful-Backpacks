@@ -26,7 +26,6 @@ public class ItemBackPack extends UItem {
 		if (!world.isRemote && player instanceof EntityPlayerMP) {
 			EntityPlayerMP playermp = (EntityPlayerMP) player;
 			NetworkHooks.openGui(playermp, new InteractionObjectBackPack(stack, type), null);
-			System.out.println("OPENED");
 		}
 		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
 	}
@@ -66,6 +65,7 @@ public class ItemBackPack extends UItem {
 		if (!this.isInGroup(group)) {
 			return;
 		}
+		items.add(new ItemStack(this));
 		for (EnumDyeColor color : EnumDyeColor.values()) {
 			ItemStack dyedstack = new ItemStack(this, 1);
 			setColor(dyedstack, color.getMapColor().colorValue);

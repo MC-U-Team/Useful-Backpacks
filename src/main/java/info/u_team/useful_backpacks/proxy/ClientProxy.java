@@ -1,7 +1,5 @@
 package info.u_team.useful_backpacks.proxy;
 
-import java.lang.reflect.Field;
-
 import info.u_team.useful_backpacks.UsefulBackPacksMod;
 import info.u_team.useful_backpacks.gui.GuiBackPack;
 import info.u_team.useful_backpacks.init.UsefulBackPacksItems;
@@ -9,9 +7,9 @@ import info.u_team.useful_backpacks.inventory.InventoryBackPack;
 import info.u_team.useful_backpacks.item.ItemBackPack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
-import net.minecraft.client.renderer.color.*;
+import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.item.*;
-import net.minecraft.util.*;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.*;
 import net.minecraftforge.fml.*;
 
@@ -50,34 +48,12 @@ public class ClientProxy extends CommonProxy implements IModProxy {
 	@Override
 	public void complete() {
 		super.complete();
-		System.out.println("-.--------------------------------------------------------------------------");
-		
-		System.out.println(Item.getIdFromItem(UsefulBackPacksItems.small));
-		
 		ItemColors colors = Minecraft.getInstance().getItemColors();
-		
-		try {
-			
-			Class<?> clazz = ItemColors.class;
-			Field field = clazz.getDeclaredField("colors");
-			field.setAccessible(true);
-			ObjectIntIdentityMap<IItemColor> list = (ObjectIntIdentityMap<IItemColor>) field.get(colors);
-			
-			System.out.println(list);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		colors.register(new IItemColor() {
-			
-			@Override
-			public int getColor(ItemStack itemstack, int tintIndex) {
-				if (itemstack.getItem() instanceof ItemBackPack) {
-					return ((ItemBackPack) itemstack.getItem()).getColor(itemstack);
-				}
-				return 0;
+		colors.register((itemstack, tintIndex) -> {
+			if (itemstack.getItem() instanceof ItemBackPack) {
+				return ((ItemBackPack) itemstack.getItem()).getColor(itemstack);
 			}
+			return 0;
 		}, UsefulBackPacksItems.small, UsefulBackPacksItems.medium, UsefulBackPacksItems.large);
 	}
 }
