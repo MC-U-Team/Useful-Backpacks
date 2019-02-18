@@ -14,10 +14,10 @@
 		},
 		"B": {
 			"type": "usefulbackpacks:copy_nbt",
-			"item": "usefulbackpacks:backpack_small"
+			"item": "usefulbackpacks:backpack_medium"
 		}
 	},
 	"result": {
-		"item": "usefulbackpacks:backpack_medium"
+		"item": "usefulbackpacks:backpack_large"
 	}
 }

@@ -113,9 +113,6 @@ public class RecipeShapedCopyNBT implements IRecipe, net.minecraftforge.common.c
 	
 	public ItemStack getCraftingResult(IInventory inv) {
 		ItemStack nbtstack = getNBTStack(inv);
-		
-		System.out.println(nbtstack);
-		
 		NBTTagCompound compound = !nbtstack.isEmpty() ? nbtstack.getTag() : null;
 		
 		ItemStack stack = this.getRecipeOutput().copy();

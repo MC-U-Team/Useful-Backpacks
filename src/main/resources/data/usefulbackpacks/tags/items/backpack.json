@@ -1,0 +1,8 @@
+{
+	"replace": false,
+	"values": [
+		"usefulbackpacks:backpack_small",
+		"usefulbackpacks:backpack_medium",
+		"usefulbackpacks:backpack_large"
+	]
+}

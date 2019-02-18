@@ -32,7 +32,6 @@ public class ClientProxy extends CommonProxy implements IModProxy {
 						return null;
 					}
 					ItemBackPack backpack = (ItemBackPack) item;
-					System.out.println("YES");
 					return new GuiBackPack(player.inventory, new InventoryBackPack(stack, backpack.getType()));
 				}
 				return null;
