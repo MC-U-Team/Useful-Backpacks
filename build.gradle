@@ -222,6 +222,7 @@ uploadArchives {
 }
 
 task uploadBoth {
+	tasks.uploadBoth.dependsOn build
 	tasks.uploadBoth.dependsOn uploadArchives
 	tasks.uploadBoth.dependsOn "curseforge${config.curse.id}"
 	tasks.uploadBoth.dependsOn setBuildNumber
