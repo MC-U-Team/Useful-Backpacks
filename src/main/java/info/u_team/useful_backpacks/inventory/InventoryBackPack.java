@@ -16,7 +16,7 @@ public class InventoryBackPack extends InventoryBasic {
 		super(new TextComponentString("backpack"), type.getCount());
 		this.stack = stack;
 		this.type = type;
-		readItemStack(stack);
+		readItemStack();
 	}
 	
 	public ItemStack getStack() {
@@ -27,17 +27,17 @@ public class InventoryBackPack extends InventoryBasic {
 		return type;
 	}
 	
-	public void readItemStack(ItemStack stack) {
+	public void readItemStack() {
 		if (stack.getTag() != null) {
 			readNBT(stack.getTag());
 		}
 	}
 	
-	public void writeItemStack(ItemStack stack) {
+	public void writeItemStack() {
 		writeNBT(stack.getOrCreateTag());
 	}
 	
-	public void readNBT(NBTTagCompound compound) {
+	private void readNBT(NBTTagCompound compound) {
 		NonNullList<ItemStack> list = NonNullList.<ItemStack> withSize(getSizeInventory(), ItemStack.EMPTY);
 		ItemStackHelper.loadAllItems(compound, list);
 		for (int i = 0; i < list.size(); i++) {
@@ -45,7 +45,7 @@ public class InventoryBackPack extends InventoryBasic {
 		}
 	}
 	
-	public void writeNBT(NBTTagCompound compound) {
+	private void writeNBT(NBTTagCompound compound) {
 		NonNullList<ItemStack> list = NonNullList.<ItemStack> withSize(getSizeInventory(), ItemStack.EMPTY);
 		for (int i = 0; i < list.size(); i++) {
 			list.set(i, getStackInSlot(i));

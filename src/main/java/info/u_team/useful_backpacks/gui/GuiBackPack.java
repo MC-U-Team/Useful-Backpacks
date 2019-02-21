@@ -1,28 +1,25 @@
 package info.u_team.useful_backpacks.gui;
 
+import info.u_team.u_team_core.gui.UGuiContainer;
 import info.u_team.useful_backpacks.UsefulBackPacksMod;
 import info.u_team.useful_backpacks.container.ContainerBackPack;
 import info.u_team.useful_backpacks.enums.EnumBackPacks;
 import info.u_team.useful_backpacks.inventory.InventoryBackPack;
-import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.*;
 
 @OnlyIn(Dist.CLIENT)
-public class GuiBackPack extends GuiContainer {
+public class GuiBackPack extends UGuiContainer {
 	
-	private ResourceLocation texture_small = new ResourceLocation(UsefulBackPacksMod.modid, "textures/gui/backpack/small.png");
-	private ResourceLocation texture_medium = new ResourceLocation(UsefulBackPacksMod.modid, "textures/gui/backpack/medium.png");
-	private ResourceLocation texture_big = new ResourceLocation(UsefulBackPacksMod.modid, "textures/gui/backpack/large.png");
-	
-	private EnumBackPacks type;
+	private final EnumBackPacks type;
 	
 	public GuiBackPack(InventoryPlayer playerInventory, InventoryBackPack backpackInventory) {
-		super(new ContainerBackPack(playerInventory, backpackInventory));
+		super(new ContainerBackPack(playerInventory, backpackInventory), new ResourceLocation(UsefulBackPacksMod.modid, "textures/gui/backpack/" + backpackInventory.getType().getName() + ".png"));
 		
-		this.type = backpackInventory.getType();
+		type = backpackInventory.getType();
 		
 		switch (type) {
 		case SMALL:
@@ -54,20 +51,10 @@ public class GuiBackPack extends GuiContainer {
 	
 	@Override
 	public void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
-		switch (type) {
-		case SMALL:
-			mc.getTextureManager().bindTexture(texture_small);
-			break;
-		case MEDIUM:
-			mc.getTextureManager().bindTexture(texture_medium);
-			break;
-		case LARGE:
-			mc.getTextureManager().bindTexture(texture_big);
-			break;
-		}
-		int k = (this.width - this.xSize) / 2;
-		int l = (this.height - this.ySize) / 2;
-		drawModalRectWithCustomSizedTexture(k, l, 0, 0, this.xSize, this.ySize, 512, 512);
+		GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+		mc.getTextureManager().bindTexture(background);
+		int xStart = (width - xSize) / 2;
+		int yStart = (height - ySize) / 2;
+		drawModalRectWithCustomSizedTexture(xStart, yStart, 0, 0, xSize, ySize, 512, 512);
 	}
-	
 }

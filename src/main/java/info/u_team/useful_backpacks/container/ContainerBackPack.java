@@ -1,12 +1,13 @@
 package info.u_team.useful_backpacks.container;
 
+import info.u_team.u_team_core.container.UContainer;
 import info.u_team.useful_backpacks.enums.EnumBackPacks;
 import info.u_team.useful_backpacks.inventory.InventoryBackPack;
 import net.minecraft.entity.player.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.ItemStack;
 
-public class ContainerBackPack extends Container {
+public class ContainerBackPack extends UContainer {
 	
 	private InventoryBackPack backpackInventory;
 	private EnumBackPacks type;
@@ -46,11 +47,11 @@ public class ContainerBackPack extends Container {
 			break;
 		}
 		
-		drawBackPackInventory(backpackInventory, x_backpackinv, y_backpackinv);
-		drawPlayerInventory(playerInventory, x_playerinv, y_playerinv);
+		appendBackPackInventory(backpackInventory, x_backpackinv, y_backpackinv);
+		appendPlayerInventory(playerInventory, x_playerinv, y_playerinv);
 	}
 	
-	public void drawBackPackInventory(InventoryBackPack inventory, int x_offset, int y_offset) {
+	public void appendBackPackInventory(InventoryBackPack inventory, int x_offset, int y_offset) {
 		for (int height = 0; height < type.getSizeY(); height++) {
 			for (int width = 0; width < type.getSizeX(); width++) {
 				addSlot(new SlotBackPack(inventory, width + height * type.getSizeX(), width * 18 + x_offset, height * 18 + y_offset));
@@ -58,27 +59,10 @@ public class ContainerBackPack extends Container {
 		}
 	}
 	
-	public void drawPlayerInventory(InventoryPlayer inventory, int x_offset, int y_offset) {
-		for (int height = 0; height < 4; height++) {
-			for (int width = 0; width < 9; width++) {
-				if (height == 3) {
-					addSlot(new Slot(inventory, width, width * 18 + x_offset, height * 18 + 4 + y_offset));
-					continue;
-				}
-				addSlot(new Slot(inventory, width + height * 9 + 9, width * 18 + x_offset, height * 18 + y_offset));
-			}
-		}
-	}
-	
-	@Override
-	public boolean canInteractWith(EntityPlayer player) {
-		return true;
-	}
-	
 	@Override
 	public void detectAndSendChanges() {
 		super.detectAndSendChanges();
-		backpackInventory.writeItemStack(backpackInventory.getStack());
+		backpackInventory.writeItemStack();
 	}
 	
 	@Override
