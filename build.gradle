@@ -54,14 +54,20 @@ minecraft {
     mappings channel: config.forge.mapping_channel, version: config.forge.mapping
     runs {
         client = {
-            //properties "forge.logging.markers": "SCAN,REGISTRIES,REGISTRYDUMP"
-            //properties "forge.logging.console.level": "debug"
             workingDirectory project.file("run").canonicalPath
-            source sourceSets.main
+            mods {
+                usefulbackpacks {
+                    source sourceSets.main
+				}
+			}
         }
         server = {
             workingDirectory project.file("run").canonicalPath
-            source sourceSets.main
+            mods {
+                usefulbackpacks {
+                    source sourceSets.main
+				}
+			}
         }
     }
 }

@@ -1,5 +1,6 @@
 package info.u_team.useful_backpacks;
 
+import info.u_team.u_team_core.api.IModProxy;
 import info.u_team.useful_backpacks.proxy.*;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
