@@ -11,6 +11,7 @@ public class ClientProxy extends CommonProxy implements IModProxy {
 	public void construct() {
 		super.construct();
 		UsefulBackPacksGuis.construct();
+		UsefulBackPacksColors.construct();
 	}
 	
 	@Override
@@ -21,6 +22,5 @@ public class ClientProxy extends CommonProxy implements IModProxy {
 	@Override
 	public void complete() {
 		super.complete();
-		UsefulBackPacksColors.complete();
 	}
 }
