@@ -2,7 +2,7 @@ modLoader="javafml"
 loaderVersion="[25,)"
 issueTrackerURL="https://github.com/MC-U-Team/Useful-Backpacks/issues"
 displayURL="https://u-team.info/mods/usefulbackpacks"
-#logoFile="logo.png" #We cant use the logo, cause the image will not be rescaled
+logoFile="logo.png"
 credits="Team U-Team"
 authors="HyCraftHD"
 
@@ -30,6 +30,6 @@ authors="HyCraftHD"
 	[[dependencies.uteamcore]]
 	    modId="uteamcore"
 	    mandatory=true
-	    versionRange="[2.3.0.98-SNAPSHOT,)"
+	    versionRange="[2.3.0.99-SNAPSHOT,)"
 	    ordering="NONE"
 	    side="BOTH"
