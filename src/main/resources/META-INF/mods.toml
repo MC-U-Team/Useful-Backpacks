@@ -13,23 +13,23 @@ authors="HyCraftHD"
 	updateJSONURL="https://api.u-team.info/update/usefulbackpacks.json"
 	description="This mod adds cool new backpacks to your game."
 	
-	[[dependencies.uteamcore]]
+	[[dependencies.usefulbackpacks]]
 	    modId="forge"
 	    mandatory=true
-	    versionRange="[25,)"
+	    versionRange="[25.0.59,)"
 	    ordering="NONE"
 	    side="BOTH"
 	
-	[[dependencies.uteamcore]]
+	[[dependencies.usefulbackpacks]]
 	    modId="minecraft"
 	    mandatory=true
 	    versionRange="[1.13.2]"
 	    ordering="NONE"
 	    side="BOTH"
 	    
-	[[dependencies.uteamcore]]
+	[[dependencies.usefulbackpacks]]
 	    modId="uteamcore"
 	    mandatory=true
-	    versionRange="[2.3.0.99-SNAPSHOT,)"
+	    versionRange="[2.3.1.100-SNAPSHOT,)"
 	    ordering="NONE"
 	    side="BOTH"
