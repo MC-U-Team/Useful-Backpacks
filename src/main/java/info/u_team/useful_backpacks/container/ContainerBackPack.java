@@ -15,40 +15,40 @@ public class ContainerBackPack extends UContainer {
 	public ContainerBackPack(InventoryPlayer playerInventory, InventoryBackPack backpackInventory) {
 		
 		this.backpackInventory = backpackInventory;
-		this.type = backpackInventory.getType();
+		type = backpackInventory.getType();
 		
-		int x_backpackinv = 0;
-		int y_backpackinv = 0;
+		int xBackpack = 0;
+		int yBackpack = 0;
 		
-		int x_playerinv = 0;
-		int y_playerinv = 0;
+		int xPlayer = 0;
+		int yPlayer = 0;
 		
 		switch (type) {
 		case SMALL:
-			x_backpackinv = 44;
-			y_backpackinv = 24;
+			xBackpack = 44;
+			yBackpack = 24;
 			
-			x_playerinv = 8;
-			y_playerinv = 82;
+			xPlayer = 8;
+			yPlayer = 82;
 			break;
 		case MEDIUM:
-			x_backpackinv = 8;
-			y_backpackinv = 24;
+			xBackpack = 8;
+			yBackpack = 24;
 			
-			x_playerinv = 8;
-			y_playerinv = 136;
+			xPlayer = 8;
+			yPlayer = 136;
 			break;
 		case LARGE:
-			x_backpackinv = 8;
-			y_backpackinv = 24;
+			xBackpack = 8;
+			yBackpack = 24;
 			
-			x_playerinv = 44;
-			y_playerinv = 190;
+			xPlayer = 44;
+			yPlayer = 190;
 			break;
 		}
 		
-		appendBackPackInventory(backpackInventory, x_backpackinv, y_backpackinv);
-		appendPlayerInventory(playerInventory, x_playerinv, y_playerinv);
+		appendBackPackInventory(backpackInventory, xBackpack, yBackpack);
+		appendPlayerInventory(playerInventory, xPlayer, yPlayer);
 	}
 	
 	public void appendBackPackInventory(InventoryBackPack inventory, int x_offset, int y_offset) {

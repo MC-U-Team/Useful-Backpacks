@@ -1,5 +1,6 @@
 package info.u_team.useful_backpacks.container;
 
+import info.u_team.useful_backpacks.UsefulBackPacksMod;
 import info.u_team.useful_backpacks.enums.EnumBackPacks;
 import info.u_team.useful_backpacks.inventory.InventoryBackPack;
 import net.minecraft.entity.player.*;
@@ -35,7 +36,7 @@ public class InteractionObjectBackPack implements IInteractionObject {
 	
 	@Override
 	public String getGuiID() {
-		return "usefulbackpacks:backpack";
+		return UsefulBackPacksMod.modid + ":backpack";
 	}
 	
 	@Override

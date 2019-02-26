@@ -7,7 +7,7 @@ public class UsefulBackPacksItemGroups {
 	
 	public static final UItemGroup group = new UItemGroup(UsefulBackPacksMod.modid, "group");
 	
-	public static void setup() {
+	public static void complete() {
 		group.setIcon(UsefulBackPacksItems.small);
 	}
 	

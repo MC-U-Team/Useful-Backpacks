@@ -13,11 +13,11 @@ public class CommonProxy implements IModProxy {
 	
 	@Override
 	public void setup() {
-		UsefulBackPacksItemGroups.setup();
 	}
 	
 	@Override
 	public void complete() {
+		UsefulBackPacksItemGroups.complete();
 	}
 	
 }
