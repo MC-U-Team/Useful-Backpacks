@@ -49,13 +49,13 @@ public class ItemBackPack extends UItem {
 	
 	public void removeColor(ItemStack stack) {
 		NBTTagCompound nbttagcompound = stack.getChildTag("display");
-		if (nbttagcompound != null && nbttagcompound.hasKey("color")) {
-			nbttagcompound.removeTag("color");
+		if (nbttagcompound != null && nbttagcompound.contains("color")) {
+			nbttagcompound.remove("color");
 		}
 	}
 	
 	public void setColor(ItemStack stack, int color) {
-		stack.getOrCreateChildTag("display").setInt("color", color);
+		stack.getOrCreateChildTag("display").putInt("color", color);
 	}
 	
 	// Item group
