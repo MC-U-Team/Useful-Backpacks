@@ -54,7 +54,7 @@ minecraft {
     mappings channel: config.forge.mapping_channel, version: config.forge.mapping
     runs {
         client = {
-            workingDirectory project.file("run").canonicalPath
+            workingDirectory project.file("run/client").canonicalPath
             mods {
                 usefulbackpacks {
                     source sourceSets.main
@@ -62,7 +62,7 @@ minecraft {
 			}
         }
         server = {
-            workingDirectory project.file("run").canonicalPath
+            workingDirectory project.file("run/server").canonicalPath
             mods {
                 usefulbackpacks {
                     source sourceSets.main
