@@ -1,0 +1,5 @@
+itemGroup.usefulbackpacks:tab=实用背包
+
+usefulbackpacks:item.backpack.small.name=小型背包
+usefulbackpacks:item.backpack.medium.name=中型背包
+usefulbackpacks:item.backpack.large.name=大型背包
