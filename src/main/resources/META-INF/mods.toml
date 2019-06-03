@@ -16,7 +16,7 @@ authors="HyCraftHD"
 	[[dependencies.usefulbackpacks]]
 	    modId="forge"
 	    mandatory=true
-	    versionRange="[25.0.100,)"
+	    versionRange="[25.0.219,)"
 	    ordering="NONE"
 	    side="BOTH"
 	
@@ -30,6 +30,6 @@ authors="HyCraftHD"
 	[[dependencies.usefulbackpacks]]
 	    modId="uteamcore"
 	    mandatory=true
-	    versionRange="[2.3.2.103,)"
+	    versionRange="[2.3.5.108,)"
 	    ordering="NONE"
 	    side="BOTH"
