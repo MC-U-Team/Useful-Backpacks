@@ -120,6 +120,6 @@ public class RecipesBackPackDyes extends IRecipeHidden {
 	}
 	
 	public IRecipeSerializer<?> getSerializer() {
-		return UsefulBackPacksRecipes.CRAFTING_SPECIAL_BACKPACKDYE;
+		return UsefulBackPacksRecipes.crafting_special_backpackdye;
 	}
 }

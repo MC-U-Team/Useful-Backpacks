@@ -1,5 +1,5 @@
 {
-	"type": "minecraft:crafting_shaped",
+	"type": "usefulbackpacks:crafting_small_backpack",
 	"pattern": [
 		"WLW",
 		"LSL",
