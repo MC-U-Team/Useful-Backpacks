@@ -26,7 +26,7 @@ public class RecipesSmallBackPack extends RecipesBasicBackPack {
 			ItemStack slotStack = inv.getStackInSlot(k);
 			
 			if (!slotStack.isEmpty()) {
-				final EnumDyeColor color = net.minecraft.item.EnumDyeColor.getColor(slotStack);
+				final EnumDyeColor color = getColorFromWool(slotStack);
 				if (color != null) {
 					colors.add(color);
 					float[] afloat = color.getColorComponentValues();

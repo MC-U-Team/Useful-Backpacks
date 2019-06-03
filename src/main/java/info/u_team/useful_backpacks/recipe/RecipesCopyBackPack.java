@@ -4,7 +4,7 @@ import java.util.*;
 
 import info.u_team.useful_backpacks.init.*;
 import info.u_team.useful_backpacks.item.ItemBackPack;
-import net.minecraft.inventory.*;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.*;
 import net.minecraft.item.crafting.*;
 import net.minecraft.nbt.NBTTagCompound;
@@ -16,7 +16,8 @@ public class RecipesCopyBackPack extends RecipesBasicBackPack {
 		super(idIn, groupIn, recipeWidthIn, recipeHeightIn, recipeItemsIn, recipeOutputIn);
 	}
 	
-	public ItemStack getCraftingResult(InventoryCrafting inv) {
+	@Override
+	public ItemStack getCraftingResult(IInventory inv) {
 		ItemStack backpack = getRecipeOutput().copy();
 		int[] aint = new int[3];
 		int i = 0;
@@ -29,7 +30,6 @@ public class RecipesCopyBackPack extends RecipesBasicBackPack {
 			
 			if (!slotStack.isEmpty()) {
 				if (slotStack.getItem() instanceof ItemBackPack) {
-					
 					NBTTagCompound compound = slotStack.getTag();
 					if (compound != null) {
 						backpack.setTag(compound.copy());
@@ -47,7 +47,7 @@ public class RecipesCopyBackPack extends RecipesBasicBackPack {
 						++j;
 					}
 				} else {
-					final EnumDyeColor color = net.minecraft.item.EnumDyeColor.getColor(slotStack);
+					final EnumDyeColor color = getColorFromWool(slotStack);
 					if (color != null) {
 						colors.add(color);
 						float[] afloat = color.getColorComponentValues();

@@ -7,7 +7,9 @@ import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.*;
 import com.google.gson.*;
 
-import net.minecraft.item.ItemStack;
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.*;
 import net.minecraft.item.crafting.*;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.*;
@@ -16,6 +18,46 @@ public class RecipesBasicBackPack extends ShapedRecipe {
 	
 	public RecipesBasicBackPack(ResourceLocation idIn, String groupIn, int recipeWidthIn, int recipeHeightIn, NonNullList<Ingredient> recipeItemsIn, ItemStack recipeOutputIn) {
 		super(idIn, groupIn, recipeWidthIn, recipeHeightIn, recipeItemsIn, recipeOutputIn);
+	}
+	
+	protected EnumDyeColor getColorFromWool(ItemStack stack) {
+		Block block = Block.getBlockFromItem(stack.getItem());
+		if (block != Blocks.AIR) {
+			if (block == Blocks.WHITE_WOOL) {
+				return EnumDyeColor.WHITE;
+			} else if (block == Blocks.ORANGE_WOOL) {
+				return EnumDyeColor.ORANGE;
+			} else if (block == Blocks.MAGENTA_WOOL) {
+				return EnumDyeColor.MAGENTA;
+			} else if (block == Blocks.LIGHT_BLUE_WOOL) {
+				return EnumDyeColor.LIGHT_BLUE;
+			} else if (block == Blocks.YELLOW_WOOL) {
+				return EnumDyeColor.YELLOW;
+			} else if (block == Blocks.LIME_WOOL) {
+				return EnumDyeColor.LIME;
+			} else if (block == Blocks.PINK_WOOL) {
+				return EnumDyeColor.PINK;
+			} else if (block == Blocks.GRAY_WOOL) {
+				return EnumDyeColor.GRAY;
+			} else if (block == Blocks.LIGHT_GRAY_WOOL) {
+				return EnumDyeColor.LIGHT_GRAY;
+			} else if (block == Blocks.CYAN_WOOL) {
+				return EnumDyeColor.CYAN;
+			} else if (block == Blocks.PURPLE_WOOL) {
+				return EnumDyeColor.PURPLE;
+			} else if (block == Blocks.BLUE_WOOL) {
+				return EnumDyeColor.BLUE;
+			} else if (block == Blocks.BROWN_WOOL) {
+				return EnumDyeColor.BROWN;
+			} else if (block == Blocks.GREEN_WOOL) {
+				return EnumDyeColor.GREEN;
+			} else if (block == Blocks.RED_WOOL) {
+				return EnumDyeColor.RED;
+			} else if (block == Blocks.BLACK_WOOL) {
+				return EnumDyeColor.BLACK;
+			}
+		}
+		return null;
 	}
 	
 	// Copy from shaped recipes just so serialization is working
