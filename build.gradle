@@ -192,21 +192,21 @@ uploadArchives {
 				project {
 					name project.archivesBaseName
 					packaging "jar"
-					description "Useful-Backpacks"
-						url "https://github.com/MC-U-Team/Useful-Backpacks"
+					description "${config.maven.github_name}"
+						url "https://github.com/MC-U-Team/${config.maven.github_name}"
 					scm {
-						url "https://github.com/MC-U-Team/Useful-Backpacks"
-						connection "scm:git:git://github.com/MC-U-Team/Useful-Backpacks.git"
-						developerConnection "scm:git:git@github.com:MC-U-Team/Useful-Backpacks.git"
+						url "https://github.com/MC-U-Team/${config.maven.github_name}"
+						connection "scm:git:git://github.com/MC-U-Team/${config.maven.github_name}.git"
+						developerConnection "scm:git:git@github.com:MC-U-Team/${config.maven.github_name}.git"
 					}
 					issueManagement {
 						system "github"
-						url "https://github.com/MC-U-Team/Useful-Backpacks/issues"
+						url "https://github.com/MC-U-Team/${config.maven.github_name}/issues"
 					}
 					licenses {
 						license {
 							name "Apache License 2.0"
-							url "https://github.com/MC-U-Team/Useful-Backpacks/blob/1.13.2/LICENSE"
+							url "https://github.com/MC-U-Team/${config.maven.github_name}/blob/1.13.2/LICENSE"
 							distribution "repo"
 						}
 					}
