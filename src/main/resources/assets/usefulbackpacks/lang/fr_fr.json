@@ -1,5 +1,5 @@
 {
-	"itemGroup.usefulbackpacks:group": "Sac à dos",
+	"itemGroup.usefulbackpacks.group": "Sac à dos",
 	"item.usefulbackpacks.backpack_small": "Petit sac à dos",
 	"item.usefulbackpacks.backpack_medium": "Sac à dos moyen",
 	"item.usefulbackpacks.backpack_large": "Grand sac à dos"
