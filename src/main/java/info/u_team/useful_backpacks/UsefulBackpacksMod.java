@@ -8,14 +8,14 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.*;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-@Mod(UsefulBackPacksMod.modid)
-public class UsefulBackPacksMod {
+@Mod(UsefulBackpacksMod.modid)
+public class UsefulBackpacksMod {
 	
 	public static final String modid = "usefulbackpacks";
 	
 	public static final IModProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> CommonProxy::new);
 	
-	public UsefulBackPacksMod() {
+	public UsefulBackpacksMod() {
 		FMLJavaModLoadingContext.get().getModEventBus().register(this);
 		proxy.construct();
 	}
