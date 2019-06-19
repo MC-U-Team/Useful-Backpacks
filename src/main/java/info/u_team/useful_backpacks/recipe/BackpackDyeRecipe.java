@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.google.common.collect.Lists;
 
+import info.u_team.useful_backpacks.init.UsefulBackpacksRecipes;
 import info.u_team.useful_backpacks.item.IDyeableItem;
 import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.item.*;
@@ -80,6 +81,6 @@ public class BackpackDyeRecipe extends SpecialRecipe {
 	
 	@Override
 	public IRecipeSerializer<?> getSerializer() {
-		return IRecipeSerializer.CRAFTING_SPECIAL_ARMORDYE;
+		return UsefulBackpacksRecipes.dye;
 	}
 }
