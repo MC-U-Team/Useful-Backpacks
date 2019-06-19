@@ -13,7 +13,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-public class BackpackItem extends UItem implements IDyeableArmorItem {
+public class BackpackItem extends UItem implements IDyeableItem {
 	
 	private final Backpack backpack;
 	
@@ -62,4 +62,10 @@ public class BackpackItem extends UItem implements IDyeableArmorItem {
 		}
 	}
 	
+	// Default backpack color if not present
+	
+	@Override
+	public int getDefaultColor() {
+		return 0x816040;
+	}
 }
