@@ -68,7 +68,7 @@ public class BackpackDyeRecipe extends SpecialRecipe {
 		}
 		
 		if (!dyeableItem.isEmpty() && !dyeItemList.isEmpty()) {
-			return IDyeableItem.colorStack(dyeableItem, dyeItemList);
+			return IDyeableItem.colorStackDyeItem(dyeableItem, dyeItemList);
 		} else {
 			return ItemStack.EMPTY;
 		}

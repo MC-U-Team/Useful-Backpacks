@@ -1,6 +1,7 @@
 package info.u_team.useful_backpacks.item;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
@@ -32,58 +33,69 @@ public interface IDyeableItem {
 		return 10511680;
 	}
 	
-	public static ItemStack colorStack(ItemStack stack, List<DyeItem> dyeItemList) {
-		ItemStack dyeableItem = ItemStack.EMPTY;
-		
-		int[] aint = new int[3];
-		int i = 0;
-		int j = 0;
-		IDyeableItem idyeableItem = null;
-		Item item = stack.getItem();
-		if (item instanceof IDyeableItem) {
-			idyeableItem = (IDyeableItem) item;
-			dyeableItem = stack.copy();
-			dyeableItem.setCount(1);
-			if (idyeableItem.hasColor(stack)) {
-				int k = idyeableItem.getColor(dyeableItem);
-				float f = (float) (k >> 16 & 255) / 255.0F;
-				float f1 = (float) (k >> 8 & 255) / 255.0F;
-				float f2 = (float) (k & 255) / 255.0F;
-				i = (int) ((float) i + Math.max(f, Math.max(f1, f2)) * 255.0F);
-				aint[0] = (int) ((float) aint[0] + f * 255.0F);
-				aint[1] = (int) ((float) aint[1] + f1 * 255.0F);
-				aint[2] = (int) ((float) aint[2] + f2 * 255.0F);
-				++j;
-			}
-			
-			for (DyeItem dyeitem : dyeItemList) {
-				float[] afloat = dyeitem.getDyeColor().getColorComponentValues();
-				int i2 = (int) (afloat[0] * 255.0F);
-				int l = (int) (afloat[1] * 255.0F);
-				int i1 = (int) (afloat[2] * 255.0F);
-				i += Math.max(i2, Math.max(l, i1));
-				aint[0] += i2;
-				aint[1] += l;
-				aint[2] += i1;
-				++j;
-			}
-		}
-		
-		if (idyeableItem == null) {
+	public static ItemStack colorStack(ItemStack stack, List<DyeColor> dyeList) {
+		if (!(stack.getItem() instanceof IDyeableItem)) {
 			return ItemStack.EMPTY;
-		} else {
-			int j1 = aint[0] / j;
-			int k1 = aint[1] / j;
-			int l1 = aint[2] / j;
-			float f3 = (float) i / (float) j;
-			float f4 = (float) Math.max(j1, Math.max(k1, l1));
-			j1 = (int) ((float) j1 * f3 / f4);
-			k1 = (int) ((float) k1 * f3 / f4);
-			l1 = (int) ((float) l1 * f3 / f4);
-			int j2 = (j1 << 8) + k1;
-			j2 = (j2 << 8) + l1;
-			idyeableItem.setColor(dyeableItem, j2);
-			return dyeableItem;
 		}
+		final IDyeableItem dyeableItem = (IDyeableItem) stack.getItem();
+		final ItemStack dyedStack = stack.copy();
+		dyedStack.setCount(1);
+		
+		final int[] rbgItemSum = new int[3];
+		int mostIntenseChannelSum = 0;
+		int colorItemSum = 0;
+		
+		if (dyeableItem.hasColor(dyedStack)) {
+			final int color = dyeableItem.getColor(dyedStack);
+			
+			final float red = (color >> 16 & 255) / 255.0F;
+			final float green = (color >> 8 & 255) / 255.0F;
+			final float blue = (color & 255) / 255.0F;
+			
+			mostIntenseChannelSum = (int) (mostIntenseChannelSum + Math.max(red, Math.max(green, blue)) * 255.0F);
+			
+			rbgItemSum[0] = (int) (rbgItemSum[0] + red * 255.0F);
+			rbgItemSum[1] = (int) (rbgItemSum[1] + green * 255.0F);
+			rbgItemSum[2] = (int) (rbgItemSum[2] + blue * 255.0F);
+			
+			++colorItemSum;
+		}
+		
+		for (DyeColor dye : dyeList) {
+			final float[] colorComponents = dye.getColorComponentValues();
+			
+			final int red = (int) (colorComponents[0] * 255.0F);
+			final int green = (int) (colorComponents[1] * 255.0F);
+			final int blue = (int) (colorComponents[2] * 255.0F);
+			
+			mostIntenseChannelSum += Math.max(red, Math.max(green, blue));
+			
+			rbgItemSum[0] += red;
+			rbgItemSum[1] += green;
+			rbgItemSum[2] += blue;
+			
+			++colorItemSum;
+		}
+		
+		int red = rbgItemSum[0] / colorItemSum;
+		int green = rbgItemSum[1] / colorItemSum;
+		int blue = rbgItemSum[2] / colorItemSum;
+		
+		final float averageChannel = mostIntenseChannelSum / (float) colorItemSum; // float division
+		final float mostIntenseChannel = Math.max(red, Math.max(green, blue));
+		
+		red = (int) (red * averageChannel / mostIntenseChannel);
+		green = (int) (green * averageChannel / mostIntenseChannel);
+		blue = (int) (blue * averageChannel / mostIntenseChannel);
+		
+		int finalColor = (red << 8) + green;
+		finalColor = (finalColor << 8) + blue;
+		
+		dyeableItem.setColor(dyedStack, finalColor);
+		return dyedStack;
+	}
+	
+	public static ItemStack colorStackDyeItem(ItemStack stack, List<DyeItem> dyeItemList) {
+		return colorStack(stack, dyeItemList.parallelStream().map(dyeItem -> dyeItem.getDyeColor()).collect(Collectors.toList()));
 	}
 }
