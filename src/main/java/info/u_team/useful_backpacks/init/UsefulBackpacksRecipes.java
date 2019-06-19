@@ -12,7 +12,8 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 @EventBusSubscriber(modid = UsefulBackpacksMod.modid, bus = Bus.MOD)
 public class UsefulBackpacksRecipes {
 	
-	public static final IRecipeSerializer<BackpackDyeRecipe> dye = new USpecialRecipeSerializer<>("crafting_special_backpackdye", BackpackDyeRecipe::new);
+	public static final IRecipeSerializer<BackpackDyeRecipe> backpack_dye = new USpecialRecipeSerializer<>("crafting_special_backpackdye", BackpackDyeRecipe::new);
+	public static final IRecipeSerializer<BackpackCraftingRecipe> backpack = new BackpackCraftingRecipe.Serializer("crafting_backpack");
 	
 	@SubscribeEvent
 	public static void register(Register<IRecipeSerializer<?>> event) {

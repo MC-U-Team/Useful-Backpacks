@@ -81,6 +81,6 @@ public class BackpackDyeRecipe extends SpecialRecipe {
 	
 	@Override
 	public IRecipeSerializer<?> getSerializer() {
-		return UsefulBackpacksRecipes.dye;
+		return UsefulBackpacksRecipes.backpack_dye;
 	}
 }
