@@ -5,7 +5,7 @@ import java.util.*;
 import com.google.common.collect.Lists;
 import com.google.gson.JsonObject;
 
-import info.u_team.u_team_core.api.IDyeableItem;
+import info.u_team.u_team_core.api.dye.IDyeableItem;
 import info.u_team.u_team_core.recipeserializer.UShapedRecipeSerializer;
 import info.u_team.u_team_core.util.ColorUtil;
 import info.u_team.useful_backpacks.init.UsefulBackpacksRecipes;

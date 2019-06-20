@@ -1,6 +1,6 @@
 package info.u_team.useful_backpacks.item;
 
-import info.u_team.u_team_core.api.IDyeableItem;
+import info.u_team.u_team_core.api.dye.IDyeableItem;
 import info.u_team.u_team_core.item.UItem;
 import info.u_team.useful_backpacks.container.BackpackContainer;
 import info.u_team.useful_backpacks.init.UsefulBackpacksItemGroups;
@@ -21,7 +21,7 @@ public class BackpackItem extends UItem implements IDyeableItem {
 	public BackpackItem(Backpack backpack) {
 		super("backpack_" + backpack.getName(), UsefulBackpacksItemGroups.group, new Properties().maxStackSize(1).rarity(backpack.getRarity()));
 		this.backpack = backpack;
-		addItem(this);
+		addColoredItem(this);
 	}
 	
 	@Override
