@@ -5,10 +5,11 @@ import java.util.*;
 import com.google.common.collect.Lists;
 import com.google.gson.JsonObject;
 
+import info.u_team.u_team_core.api.IDyeableItem;
 import info.u_team.u_team_core.recipeserializer.UShapedRecipeSerializer;
 import info.u_team.u_team_core.util.ColorUtil;
 import info.u_team.useful_backpacks.init.UsefulBackpacksRecipes;
-import info.u_team.useful_backpacks.item.*;
+import info.u_team.useful_backpacks.item.BackpackItem;
 import net.minecraft.block.Block;
 import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.item.*;
