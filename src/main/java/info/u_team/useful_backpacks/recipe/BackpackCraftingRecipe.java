@@ -5,9 +5,10 @@ import java.util.*;
 import com.google.common.collect.Lists;
 import com.google.gson.JsonObject;
 
-import info.u_team.useful_backpacks.init.*;
+import info.u_team.u_team_core.recipeserializer.UShapedRecipeSerializer;
+import info.u_team.useful_backpacks.init.UsefulBackpacksRecipes;
 import info.u_team.useful_backpacks.item.*;
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
 import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.item.*;
 import net.minecraft.item.crafting.*;
@@ -61,7 +62,7 @@ public class BackpackCraftingRecipe extends ShapedRecipe {
 		return UsefulBackpacksRecipes.backpack;
 	}
 	
-	public static class Serializer extends URecipeSerializer<BackpackCraftingRecipe> {
+	public static class Serializer extends UShapedRecipeSerializer<BackpackCraftingRecipe> {
 		
 		public Serializer(String name) {
 			super(name);
