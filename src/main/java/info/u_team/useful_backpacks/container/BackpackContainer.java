@@ -9,20 +9,17 @@ import net.minecraft.inventory.*;
 import net.minecraft.inventory.container.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
-import net.minecraftforge.api.distmarker.*;
 
 public class BackpackContainer extends UContainer {
 	
 	private final IInventory backpackInventory;
 	private final Backpack backpack;
 	
-	@OnlyIn(Dist.CLIENT)
 	public static BackpackContainer createClientContainer(int id, PlayerInventory playerInventory, PacketBuffer buffer) {
 		final Backpack backPack = buffer.readEnumValue(Backpack.class);
 		return new BackpackContainer(id, playerInventory, backPack);
 	}
 	
-	@OnlyIn(Dist.CLIENT)
 	private BackpackContainer(int id, PlayerInventory playerInventory, Backpack backpack) {
 		this(id, playerInventory, new Inventory(backpack.getInventorySize()), backpack);
 	}
