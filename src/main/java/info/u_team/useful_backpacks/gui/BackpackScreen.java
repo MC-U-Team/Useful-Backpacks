@@ -15,7 +15,7 @@ import net.minecraftforge.api.distmarker.*;
 public class BackpackScreen extends UContainerScreen<BackpackContainer> {
 	
 	public BackpackScreen(BackpackContainer container, PlayerInventory playerInventory, ITextComponent title) {
-		super(container, playerInventory, title, new ResourceLocation(UsefulBackpacksMod.modid, "textures/gui/backpack/" + container.getBackpack().getName() + ".png"));
+		super(container, playerInventory, title, new ResourceLocation(UsefulBackpacksMod.MODID, "textures/gui/backpack/" + container.getBackpack().getName() + ".png"));
 		final Backpack backpack = container.getBackpack();
 		xSize = backpack.getTextureSizeX();
 		ySize = backpack.getTextureSizeY();

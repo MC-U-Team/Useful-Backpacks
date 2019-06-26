@@ -5,6 +5,6 @@ import info.u_team.useful_backpacks.UsefulBackpacksMod;
 
 public class UsefulBackpacksItemGroups {
 	
-	public static final UItemGroup group = new UItemGroup(UsefulBackpacksMod.modid, "group", () -> UsefulBackpacksItems.small);
+	public static final UItemGroup GROUP = new UItemGroup(UsefulBackpacksMod.MODID, "group", () -> UsefulBackpacksItems.SMALL);
 	
 }

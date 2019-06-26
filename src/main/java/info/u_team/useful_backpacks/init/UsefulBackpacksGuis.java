@@ -8,6 +8,6 @@ import net.minecraftforge.api.distmarker.*;
 public class UsefulBackpacksGuis {
 	
 	public static void construct() {
-		ScreenManager.registerFactory(UsefulBackpacksContainers.type, BackpackScreen::new);
+		ScreenManager.registerFactory(UsefulBackpacksContainers.TYPE, BackpackScreen::new);
 	}
 }

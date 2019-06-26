@@ -10,13 +10,13 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 
-@EventBusSubscriber(modid = UsefulBackpacksMod.modid, bus = Bus.MOD)
+@EventBusSubscriber(modid = UsefulBackpacksMod.MODID, bus = Bus.MOD)
 public class UsefulBackpacksContainers {
 	
-	public static final ContainerType<BackpackContainer> type = new UContainerType<>("backpack", BackpackContainer::createClientContainer);
+	public static final ContainerType<BackpackContainer> TYPE = new UContainerType<>("backpack", BackpackContainer::createClientContainer);
 	
 	@SubscribeEvent
 	public static void register(Register<ContainerType<?>> event) {
-		BaseRegistryUtil.getAllGenericRegistryEntriesAndApplyNames(UsefulBackpacksMod.modid, ContainerType.class).forEach(event.getRegistry()::register);
+		BaseRegistryUtil.getAllGenericRegistryEntriesAndApplyNames(UsefulBackpacksMod.MODID, ContainerType.class).forEach(event.getRegistry()::register);
 	}
 }

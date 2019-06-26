@@ -61,7 +61,7 @@ public class BackpackCraftingRecipe extends ShapedRecipe {
 	
 	@Override
 	public IRecipeSerializer<?> getSerializer() {
-		return UsefulBackpacksRecipes.backpack;
+		return UsefulBackpacksRecipes.BACKPACK;
 	}
 	
 	public static class Serializer extends UShapedRecipeSerializer<BackpackCraftingRecipe> {

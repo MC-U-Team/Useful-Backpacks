@@ -19,7 +19,7 @@ public class BackpackItem extends UItem implements IDyeableItem {
 	private final Backpack backpack;
 	
 	public BackpackItem(Backpack backpack) {
-		super("backpack_" + backpack.getName(), UsefulBackpacksItemGroups.group, new Properties().maxStackSize(1).rarity(backpack.getRarity()));
+		super("backpack_" + backpack.getName(), UsefulBackpacksItemGroups.GROUP, new Properties().maxStackSize(1).rarity(backpack.getRarity()));
 		this.backpack = backpack;
 		addColoredItem(this);
 	}

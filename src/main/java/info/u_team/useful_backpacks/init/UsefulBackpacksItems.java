@@ -10,16 +10,16 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 
-@EventBusSubscriber(modid = UsefulBackpacksMod.modid, bus = Bus.MOD)
+@EventBusSubscriber(modid = UsefulBackpacksMod.MODID, bus = Bus.MOD)
 public class UsefulBackpacksItems {
 	
-	public static final BackpackItem small = new BackpackItem(Backpack.SMALL);
-	public static final BackpackItem medium = new BackpackItem(Backpack.MEDIUM);
-	public static final BackpackItem large = new BackpackItem(Backpack.LARGE);
+	public static final BackpackItem SMALL = new BackpackItem(Backpack.SMALL);
+	public static final BackpackItem MEDIUM = new BackpackItem(Backpack.MEDIUM);
+	public static final BackpackItem LARGE = new BackpackItem(Backpack.LARGE);
 	
 	@SubscribeEvent
 	public static void register(Register<Item> event) {
-		BaseRegistryUtil.getAllRegistryEntriesAndApplyNames(UsefulBackpacksMod.modid, Item.class).forEach(event.getRegistry()::register);
+		BaseRegistryUtil.getAllRegistryEntriesAndApplyNames(UsefulBackpacksMod.MODID, Item.class).forEach(event.getRegistry()::register);
 	}
 	
 }
