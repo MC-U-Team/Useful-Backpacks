@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.12.2-1.5.1.31] - 2019-07-23
+### Changed
+- Fixed inventory tweaks integration bug (Fixes [#13](https://github.com/MC-U-Team/Useful-Backpacks/issues/13))
+
 ## [1.12.2-1.5.0.23] - 2019-06-03
 ### Added
 - Added new non consuming recipes. Fixes [#4](https://github.com/MC-U-Team/Useful-Backpacks/issues/4)
