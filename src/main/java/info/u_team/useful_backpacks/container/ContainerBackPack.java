@@ -157,7 +157,7 @@ public class ContainerBackPack extends Container {
 		
 		Map<ContainerSection, List<Slot>> slots = new Object2ObjectOpenHashMap<>();
 		
-		slots.put(ContainerSection.CHEST, inventorySlots.subList(0, type.getCount() - 1));
+		slots.put(ContainerSection.CHEST, inventorySlots.subList(0, type.getCount()));
 		
 		slots.put(ContainerSection.INVENTORY, inventorySlots.subList(type.getCount(), inventorySlots.size()));
 		slots.put(ContainerSection.INVENTORY_NOT_HOTBAR, inventorySlots.subList(type.getCount(), inventorySlots.size() - 9));
