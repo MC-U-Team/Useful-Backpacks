@@ -30,6 +30,6 @@ authors="HyCraftHD"
 	[[dependencies.usefulbackpacks]]
 	    modId="uteamcore"
 	    mandatory=true
-	    versionRange="[2.5.5.200,)"
+	    versionRange="[2.5.5.120,)"
 	    ordering="NONE"
 	    side="BOTH"
