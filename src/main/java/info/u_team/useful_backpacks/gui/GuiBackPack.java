@@ -3,10 +3,10 @@ package info.u_team.useful_backpacks.gui;
 import info.u_team.useful_backpacks.UsefulBackPacksConstants;
 import info.u_team.useful_backpacks.container.ContainerBackPack;
 import info.u_team.useful_backpacks.enums.EnumBackPacks;
-import info.u_team.useful_backpacks.inventory.InventoryBackPack;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.*;
 
@@ -19,8 +19,8 @@ public class GuiBackPack extends GuiContainer {
 	
 	private EnumBackPacks type;
 	
-	public GuiBackPack(InventoryBackPack inventorybackpack, InventoryPlayer inventoryplayer, EnumBackPacks type) {
-		super(new ContainerBackPack(inventorybackpack, inventoryplayer, type));
+	public GuiBackPack(IInventory inventory, InventoryPlayer inventoryplayer, EnumBackPacks type) {
+		super(new ContainerBackPack(inventory, inventoryplayer, type));
 		this.type = type;
 		
 		switch (type) {

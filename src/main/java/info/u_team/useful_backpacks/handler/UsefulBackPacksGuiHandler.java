@@ -14,11 +14,11 @@ public class UsefulBackPacksGuiHandler implements IGuiHandler {
 	
 	@Override
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-		if (ID == 0) {
-			ItemStack stack = player.inventory.getCurrentItem();
+		if (ID == 0 || ID == 1) {
+			final ItemStack stack = ID == 0 ? player.getHeldItemMainhand() : player.getHeldItemOffhand();
 			if (stack != null && stack.getItem() instanceof ItemBackPack) {
 				EnumBackPacks type = EnumBackPacks.byMetadata(stack.getMetadata());
-				InventoryBackPack inventory = new InventoryBackPack(stack, player, type.getCount());
+				InventoryBackPack inventory = new InventoryBackPack(false, stack, type.getCount());
 				return new ContainerBackPack(inventory, player.inventory, type);
 			}
 		}
@@ -27,11 +27,17 @@ public class UsefulBackPacksGuiHandler implements IGuiHandler {
 	
 	@Override
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-		if (ID == 0) {
-			ItemStack stack = player.inventory.getCurrentItem();
+		if (ID == 0 || ID == 1) {
+			final ItemStack stack = ID == 0 ? player.getHeldItemMainhand() : player.getHeldItemOffhand();
 			if (stack != null && stack.getItem() instanceof ItemBackPack) {
 				EnumBackPacks type = EnumBackPacks.byMetadata(stack.getMetadata());
-				InventoryBackPack inventory = new InventoryBackPack(stack, player, type.getCount());
+				// We use here the inventory backpack instance because else the items are not
+				// there when you open the backpack instantly. This is a bit of a design error
+				// of this mod, but i don't have time to rewrite everything. It works but could
+				// produce ghost items if you open the backpack very very quickly and remove
+				// items from it in the same tick. This is fixed in 1.14.4 versions which is my
+				// current goal to make better, cause 1.12 is kinda outdated soon.
+				InventoryBackPack inventory = new InventoryBackPack(true, stack, type.getCount());
 				return new GuiBackPack(inventory, player.inventory, type);
 			}
 		}

@@ -10,20 +10,19 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.entity.player.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.Optional;
 
 @ChestContainer
 public class ContainerBackPack extends Container {
 	
 	public boolean updateNotification;
-	private InventoryBackPack inventory;
+	private IInventory inventory;
 	private EnumBackPacks type;
 	
-	public ContainerBackPack(InventoryBackPack inventorybackpack, InventoryPlayer inventoryplayer, EnumBackPacks type) {
+	public ContainerBackPack(IInventory inventory, InventoryPlayer inventoryplayer, EnumBackPacks type) {
 		
 		this.updateNotification = false;
-		this.inventory = inventorybackpack;
+		this.inventory = inventory;
 		this.type = type;
 		
 		int x_backpackinv = 0;
@@ -56,15 +55,15 @@ public class ContainerBackPack extends Container {
 			break;
 		}
 		
-		drawBackPackInventory(inventorybackpack, x_backpackinv, y_backpackinv);
+		drawBackPackInventory(inventory, x_backpackinv, y_backpackinv);
 		drawPlayerInventory(inventoryplayer, x_playerinv, y_playerinv);
 		
 	}
 	
-	public void drawBackPackInventory(InventoryBackPack inventory, int x_offset, int y_offset) {
+	public void drawBackPackInventory(IInventory inventory, int x_offset, int y_offset) {
 		for (int height = 0; height < type.getSizeY(); height++) {
 			for (int width = 0; width < type.getSizeX(); width++) {
-				addSlotToContainer(new SlotBackPack(inventory, width + height * type.getSizeX(), width * 18 + x_offset, height * 18 + y_offset));
+				addSlotToContainer(new Slot(inventory, width + height * type.getSizeX(), width * 18 + x_offset, height * 18 + y_offset));
 			}
 		}
 	}
@@ -86,11 +85,12 @@ public class ContainerBackPack extends Container {
 		return true;
 	}
 	
-	public void saveToNBT(ItemStack itemstack) {
-		if (!itemstack.hasTagCompound()) {
-			itemstack.setTagCompound(new NBTTagCompound());
+	@Override
+	public void detectAndSendChanges() {
+		super.detectAndSendChanges();
+		if (inventory instanceof InventoryBackPack) {
+			((InventoryBackPack) inventory).writeItemStack();
 		}
-		inventory.writeNBT(itemstack.getTagCompound());
 	}
 	
 	@Override
