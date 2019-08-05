@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [1.12.2-1.7.0.35] - 2019-08-05
+## [1.12.2-1.5.1.35] - 2019-08-05
 ### Changed
 - Fixed item dupe bug (Fixes [#15](https://github.com/MC-U-Team/Useful-Backpacks/issues/15))
 
