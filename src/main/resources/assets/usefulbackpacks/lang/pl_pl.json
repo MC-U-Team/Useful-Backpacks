@@ -1,0 +1,5 @@
+itemGroup.usefulbackpacks:tab=Useful Backpacks
+
+usefulbackpacks:item.backpack.small.name=Mały Plecak
+usefulbackpacks:item.backpack.medium.name=Średni plecak
+usefulbackpacks:item.backpack.large.name=Duży Plecak
