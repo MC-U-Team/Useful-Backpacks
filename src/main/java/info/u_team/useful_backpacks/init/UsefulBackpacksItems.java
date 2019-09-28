@@ -13,9 +13,9 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 @EventBusSubscriber(modid = UsefulBackpacksMod.MODID, bus = Bus.MOD)
 public class UsefulBackpacksItems {
 	
-	public static final BackpackItem SMALL = new BackpackItem(Backpack.SMALL);
-	public static final BackpackItem MEDIUM = new BackpackItem(Backpack.MEDIUM);
-	public static final BackpackItem LARGE = new BackpackItem(Backpack.LARGE);
+	public static final BackpackItem SMALL_BACKPACK = new BackpackItem(Backpack.SMALL);
+	public static final BackpackItem MEDIUM_BACKPACK = new BackpackItem(Backpack.MEDIUM);
+	public static final BackpackItem LARGE_BACKPACK = new BackpackItem(Backpack.LARGE);
 	
 	@SubscribeEvent
 	public static void register(Register<Item> event) {

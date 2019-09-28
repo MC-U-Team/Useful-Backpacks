@@ -2,7 +2,7 @@
 	"type": "usefulbackpacks:crafting_backpack",
 	"pattern": [
 		"WLW",
-		"LBL",
+		"LSL",
 		"WLW"
 	],
 	"key": {
@@ -12,11 +12,11 @@
 		"L": {
 			"item": "minecraft:leather"
 		},
-		"B": {
-			"item": "usefulbackpacks:backpack_small"
+		"S": {
+			"item": "minecraft:string"
 		}
 	},
 	"result": {
-		"item": "usefulbackpacks:backpack_medium"
+		"item": "usefulbackpacks:backpack_small"
 	}
 }

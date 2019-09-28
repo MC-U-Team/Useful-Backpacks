@@ -13,10 +13,10 @@
 			"item": "minecraft:leather"
 		},
 		"B": {
-			"item": "usefulbackpacks:backpack_medium"
+			"item": "usefulbackpacks:backpack_small"
 		}
 	},
 	"result": {
-		"item": "usefulbackpacks:backpack_large"
+		"item": "usefulbackpacks:backpack_medium"
 	}
 }
