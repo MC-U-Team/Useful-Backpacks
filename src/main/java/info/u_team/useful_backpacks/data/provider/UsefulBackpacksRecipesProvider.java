@@ -1,8 +1,8 @@
 package info.u_team.useful_backpacks.data.provider;
 
-import java.util.function.Consumer;
-
 import static info.u_team.useful_backpacks.init.UsefulBackpacksItems.*;
+
+import java.util.function.Consumer;
 
 import info.u_team.useful_backpacks.data.builder.BackpackCraftingRecipeBuilder;
 import net.minecraft.data.*;
