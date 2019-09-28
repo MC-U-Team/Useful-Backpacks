@@ -8,7 +8,7 @@ import com.google.gson.JsonObject;
 import info.u_team.u_team_core.api.dye.IDyeableItem;
 import info.u_team.u_team_core.recipeserializer.UShapedRecipeSerializer;
 import info.u_team.u_team_core.util.ColorUtil;
-import info.u_team.useful_backpacks.init.UsefulBackpacksRecipes;
+import info.u_team.useful_backpacks.init.UsefulBackpacksRecipeSerializers;
 import info.u_team.useful_backpacks.item.BackpackItem;
 import net.minecraft.block.Block;
 import net.minecraft.inventory.CraftingInventory;
@@ -61,7 +61,7 @@ public class BackpackCraftingRecipe extends ShapedRecipe {
 	
 	@Override
 	public IRecipeSerializer<?> getSerializer() {
-		return UsefulBackpacksRecipes.BACKPACK;
+		return UsefulBackpacksRecipeSerializers.BACKPACK;
 	}
 	
 	public static class Serializer extends UShapedRecipeSerializer<BackpackCraftingRecipe> {

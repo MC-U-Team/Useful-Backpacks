@@ -1,7 +1,7 @@
 package info.u_team.useful_backpacks.container;
 
 import info.u_team.u_team_core.container.UContainer;
-import info.u_team.useful_backpacks.init.UsefulBackpacksContainers;
+import info.u_team.useful_backpacks.init.UsefulBackpacksContainerType;
 import info.u_team.useful_backpacks.inventory.BackpackInventory;
 import info.u_team.useful_backpacks.type.Backpack;
 import net.minecraft.entity.player.*;
@@ -25,7 +25,7 @@ public class BackpackContainer extends UContainer {
 	}
 	
 	public BackpackContainer(int id, PlayerInventory playerInventory, IInventory backpackInventory, Backpack backpack) {
-		super(UsefulBackpacksContainers.TYPE, id);
+		super(UsefulBackpacksContainerType.TYPE, id);
 		this.backpackInventory = backpackInventory;
 		this.backpack = backpack;
 		appendBackpackInventory(backpack.getSlotBackpackX(), backpack.getSlotBackpackY());

@@ -11,7 +11,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 
 @EventBusSubscriber(modid = UsefulBackpacksMod.MODID, bus = Bus.MOD)
-public class UsefulBackpacksContainers {
+public class UsefulBackpacksContainerType {
 	
 	public static final ContainerType<BackpackContainer> TYPE = new UContainerType<>("backpack", BackpackContainer::createClientContainer);
 	

@@ -10,7 +10,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 
 @EventBusSubscriber(modid = UsefulBackpacksMod.MODID, bus = Bus.MOD)
-public class UsefulBackpacksRecipes {
+public class UsefulBackpacksRecipeSerializers {
 	
 	public static final IRecipeSerializer<BackpackCraftingRecipe> BACKPACK = new BackpackCraftingRecipe.Serializer("crafting_backpack");
 	
