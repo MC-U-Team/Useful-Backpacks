@@ -62,6 +62,15 @@ minecraft {
 				}
 			}
         }
+        data = {
+            workingDirectory project.file("run/data").canonicalPath
+            args "--mod", "usefulbackpacks", "--all", "--output", "\"" + file("src/generated/resources").toString() + "\""
+            mods {
+                usefulbackpacks {
+                    source sourceSets.main
+				}
+			}
+        }
     }
 }
 
@@ -83,7 +92,6 @@ jar {
 
     from "LICENSE"
     
-    exclude("info/u_team/useful_resources/data")
     exclude(".cache")    
        
    	manifest normalManifest
@@ -95,7 +103,6 @@ task deobfJar(type: Jar) {
     from sourceSets.main.output
     from "LICENSE"
     
-    exclude("info/u_team/useful_resources/data")
     exclude(".cache")    
         
     manifest normalManifest
@@ -135,6 +142,7 @@ sourceSets {
 		}
 		resources {
 			srcDirs += "src/api/resources"
+			srcDirs += "src/generated/resources"
 		}
 	}
 }
@@ -150,8 +158,24 @@ compileJava {
     options.encoding = "UTF-8"
 }
 
+def generateChangelogUrl() {
+	String url = "https://github.com/MC-U-Team/${config.github.name}/blob/${config.github.branch}/CHANGELOG.md"
+	String mcversion = "${config.forge.mcversion}".replace(".", "")
+	String version = "${project.version}".replace(".", "")
+	String date =new Date().format("yyyy-MM-dd");
+	return url + "#" + mcversion + "-" + version + "---" + date
+}
+
 curseforge {
-	apiKey = project.getProperty("token")
+	if(System.getenv("token") != null) {
+		apiKey = System.getenv("token")
+	} else {
+		if (project.hasProperty("token")) {
+			apiKey = project.getProperty("token")
+		} else {
+			apiKey = "mrTroble" //We dont have one lol ¯\_(ツ)_/¯
+		}
+	}
 	
 	tasks.curseforge.dependsOn build
 	
@@ -172,7 +196,7 @@ curseforge {
     	mainArtifact(jar) {
       		displayName = "${config.curse.display}-${config.forge.mcversion}-${project.version}"
       		changelogType = "html"
-      		changelog = "<a href=\"https://github.com/MC-U-Team/${config.github.name}/blob/${config.github.branch}/CHANGELOG.md\">Changelog of ${project.version}</a>"
+      		changelog = "<a href=\"" + generateChangelogUrl() + "\">Changelog of ${project.version}</a>"
     	}
     	
     	addArtifact(deobfJar) {
@@ -189,9 +213,13 @@ uploadArchives {
 
 	repositories {
 		mavenDeployer {
-			if (project.hasProperty("mavenpass")) {
+			String mavenPass = System.getenv("mavenpass")
+			if(mavenPass == null) {
+				mavenPass = project.getProperty("mavenpass")
+			}
+			if (mavenPass != null) {
 				repository(url: "https://repo.u-team.info") {
-					authentication(userName: "maven", password: project.getProperty("mavenpass"))
+					authentication(userName: "maven", password: mavenPass)
 				}
 			}
 			pom {
