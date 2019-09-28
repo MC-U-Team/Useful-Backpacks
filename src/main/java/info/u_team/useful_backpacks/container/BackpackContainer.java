@@ -15,15 +15,13 @@ public class BackpackContainer extends UContainer {
 	private final IInventory backpackInventory;
 	private final Backpack backpack;
 	
+	// Client
 	public static BackpackContainer createClientContainer(int id, PlayerInventory playerInventory, PacketBuffer buffer) {
-		final Backpack backPack = buffer.readEnumValue(Backpack.class);
-		return new BackpackContainer(id, playerInventory, backPack);
+		final Backpack backpack = buffer.readEnumValue(Backpack.class);
+		return new BackpackContainer(id, playerInventory, new Inventory(backpack.getInventorySize()), backpack);
 	}
 	
-	private BackpackContainer(int id, PlayerInventory playerInventory, Backpack backpack) {
-		this(id, playerInventory, new Inventory(backpack.getInventorySize()), backpack);
-	}
-	
+	// Server
 	public BackpackContainer(int id, PlayerInventory playerInventory, IInventory backpackInventory, Backpack backpack) {
 		super(UsefulBackpacksContainerType.TYPE, id);
 		this.backpackInventory = backpackInventory;
