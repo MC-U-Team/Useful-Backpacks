@@ -9,6 +9,7 @@ import info.u_team.useful_backpacks.type.Backpack;
 import net.minecraft.entity.player.*;
 import net.minecraft.inventory.container.*;
 import net.minecraft.item.*;
+import net.minecraft.nbt.*;
 import net.minecraft.util.*;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
@@ -69,5 +70,20 @@ public class BackpackItem extends UItem implements IDyeableItem {
 	@Override
 	public int getDefaultColor() {
 		return 0x816040;
+	}
+	
+	// Fix bug #22 (too large packet size with certain mod items)
+	
+	@Override
+	public CompoundNBT getShareTag(ItemStack stack) {
+		if (!stack.hasTag()) {
+			return null;
+		}
+		final CompoundNBT compound = stack.getTag().copy();
+		compound.remove("Items");
+		if (compound.isEmpty()) {
+			return null;
+		}
+		return compound;
 	}
 }
