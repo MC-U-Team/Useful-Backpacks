@@ -119,4 +119,19 @@ public class ItemBackPack extends UItem {
 		return UsefulBackPacksConstants.MODID + ":item.backpack." + type.getName();
 	}
 	
+	// Fix #22 (cause items to appear a bit later but the bug is fixed)
+	
+	@Override
+	public NBTTagCompound getNBTShareTag(ItemStack stack) {
+		if (!stack.hasTagCompound()) {
+			return null;
+		}
+		final NBTTagCompound compound = stack.getTagCompound().copy();
+		compound.removeTag("Items");
+		if (compound.isEmpty()) {
+			return null;
+		}
+		return compound;
+	}
+	
 }
