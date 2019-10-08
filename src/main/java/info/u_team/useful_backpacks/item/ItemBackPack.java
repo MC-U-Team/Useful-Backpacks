@@ -34,7 +34,9 @@ public class ItemBackPack extends UItem {
 		if (player == null || hand == null) {
 			return new ActionResult<ItemStack>(EnumActionResult.FAIL, player.getHeldItem(hand));
 		}
-		player.openGui(UsefulBackpacksMod.getInstance(), hand == EnumHand.MAIN_HAND ? 0 : 1, world, 0, 0, 0);
+		if (!world.isRemote) {
+			player.openGui(UsefulBackpacksMod.getInstance(), hand == EnumHand.MAIN_HAND ? 0 : 1, world, 0, 0, 0);
+		}
 		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
 	}
 	
