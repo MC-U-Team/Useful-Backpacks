@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.12.2-1.5.1.39] - 2019-10-08
+### Changed
+- Fix that items don't appear instantly (Fixes [#23](https://github.com/MC-U-Team/Useful-Backpacks/issues/23))
+
 ## [1.12.2-1.5.1.37] - 2019-10-07
 ### Changed
 - Fixed nbt packets are too large bug (Fixes [#22](https://github.com/MC-U-Team/Useful-Backpacks/issues/22))
