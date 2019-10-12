@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.14.4-1.7.1.41] - 2019-10-12
+### Changed
+- Config workaround for #24 (Fixes [#24](https://github.com/MC-U-Team/Useful-Backpacks/issues/24))
+
 ## [1.14.4-1.7.1.38] - 2019-10-07
 ### Changed
 - Fixed nbt packets are too large bug (Fixes [#22](https://github.com/MC-U-Team/Useful-Backpacks/issues/22))
