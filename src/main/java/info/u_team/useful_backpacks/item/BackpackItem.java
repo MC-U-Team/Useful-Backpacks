@@ -2,6 +2,7 @@ package info.u_team.useful_backpacks.item;
 
 import info.u_team.u_team_core.api.dye.IDyeableItem;
 import info.u_team.u_team_core.item.UItem;
+import info.u_team.useful_backpacks.config.ServerConfig;
 import info.u_team.useful_backpacks.container.BackpackContainer;
 import info.u_team.useful_backpacks.init.UsefulBackpacksItemGroups;
 import info.u_team.useful_backpacks.inventory.BackpackInventory;
@@ -9,7 +10,7 @@ import info.u_team.useful_backpacks.type.Backpack;
 import net.minecraft.entity.player.*;
 import net.minecraft.inventory.container.*;
 import net.minecraft.item.*;
-import net.minecraft.nbt.*;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.*;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
@@ -72,10 +73,13 @@ public class BackpackItem extends UItem implements IDyeableItem {
 		return 0x816040;
 	}
 	
-	// Fix bug #22 (too large packet size with certain mod items)
+	// Fix bug #22 (too large packet size with certain mod items) and kind of reverted (config option) with #24
 	
 	@Override
 	public CompoundNBT getShareTag(ItemStack stack) {
+		if (ServerConfig.getInstance().shareAllNBTData.get()) {
+			return super.getShareTag(stack);
+		}
 		if (!stack.hasTag()) {
 			return null;
 		}
