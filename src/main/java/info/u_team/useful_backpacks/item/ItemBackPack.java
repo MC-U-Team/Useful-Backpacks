@@ -3,6 +3,7 @@ package info.u_team.useful_backpacks.item;
 import info.u_team.u_team_core.item.UItem;
 import info.u_team.u_team_core.util.CustomResourceLocation;
 import info.u_team.useful_backpacks.*;
+import info.u_team.useful_backpacks.config.ServerConfig;
 import info.u_team.useful_backpacks.enums.EnumBackPacks;
 import info.u_team.useful_backpacks.init.UsefulBackPacksCreativeTabs;
 import net.minecraft.creativetab.CreativeTabs;
@@ -121,10 +122,13 @@ public class ItemBackPack extends UItem {
 		return UsefulBackPacksConstants.MODID + ":item.backpack." + type.getName();
 	}
 	
-	// Fix #22 (cause items to appear a bit later but the bug is fixed)
+	// Fix bug #22 (too large packet size with certain mod items) and kind of reverted (config option) with #24
 	
 	@Override
 	public NBTTagCompound getNBTShareTag(ItemStack stack) {
+		if (ServerConfig.shareAllNBTData) {
+			return super.getNBTShareTag(stack);
+		}
 		if (!stack.hasTagCompound()) {
 			return null;
 		}
