@@ -3,7 +3,7 @@ package info.u_team.useful_backpacks.type;
 import net.minecraft.item.Rarity;
 import net.minecraft.util.IStringSerializable;
 
-public enum Backpack implements IStringSerializable {
+public enum Backpack {
 	
 	SMALL("small", Rarity.COMMON, 5, 3, 44, 24, 8, 82, 176, 164),
 	MEDIUM("medium", Rarity.UNCOMMON, 9, 6, 8, 24, 8, 136, 176, 218),
