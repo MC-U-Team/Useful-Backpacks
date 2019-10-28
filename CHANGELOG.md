@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.12.2-1.5.1.42] - 2019-10-28
+- Add russian translation (thanks fantom2010)
+
 ## [1.12.2-1.5.1.40] - 2019-10-12
 - Config workaround for #24 (Fixes [#24](https://github.com/MC-U-Team/Useful-Backpacks/issues/24))
 
