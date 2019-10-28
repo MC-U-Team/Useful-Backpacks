@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.14.4-1.7.2.43] - 2019-10-28
+### Added
+- Add russian translation (thanks fantom2010)
+- Ender backpack that let you access your ender chest
+
 ## [1.14.4-1.7.1.41] - 2019-10-12
 ### Changed
 - Config workaround for #24 (Fixes [#24](https://github.com/MC-U-Team/Useful-Backpacks/issues/24))
