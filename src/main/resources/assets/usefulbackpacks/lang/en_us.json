@@ -2,5 +2,6 @@
 	"itemGroup.usefulbackpacks.group": "Useful Backpacks",
 	"item.usefulbackpacks.backpack_small": "Small Backpack",
 	"item.usefulbackpacks.backpack_medium": "Medium Backpack",
-	"item.usefulbackpacks.backpack_large": "Large Backpack"
+	"item.usefulbackpacks.backpack_large": "Large Backpack",
+	"item.usefulbackpacks.backpack_enderchest": "Ender Chest Backpack"
 }

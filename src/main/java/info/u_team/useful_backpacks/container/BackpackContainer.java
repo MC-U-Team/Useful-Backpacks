@@ -23,7 +23,7 @@ public class BackpackContainer extends UContainer {
 	
 	// Server
 	public BackpackContainer(int id, PlayerInventory playerInventory, IInventory backpackInventory, Backpack backpack) {
-		super(UsefulBackpacksContainerTypes.TYPE, id);
+		super(UsefulBackpacksContainerTypes.BACKPACK, id);
 		this.backpackInventory = backpackInventory;
 		this.backpack = backpack;
 		appendBackpackInventory(backpack.getSlotBackpackX(), backpack.getSlotBackpackY());
@@ -47,7 +47,7 @@ public class BackpackContainer extends UContainer {
 	}
 	
 	@Override
-	public ItemStack transferStackInSlot(PlayerEntity playerIn, int index) {
+	public ItemStack transferStackInSlot(PlayerEntity player, int index) {
 		ItemStack itemstack = ItemStack.EMPTY;
 		final Slot slot = inventorySlots.get(index);
 		
@@ -73,7 +73,7 @@ public class BackpackContainer extends UContainer {
 	}
 	
 	@Override
-	public ItemStack slotClick(int slotId, int dragType, ClickType clickTypeIn, PlayerEntity player) {
+	public ItemStack slotClick(int slotId, int dragType, ClickType clickType, PlayerEntity player) {
 		Slot tmpSlot;
 		if (slotId >= 0 && slotId < inventorySlots.size()) {
 			tmpSlot = inventorySlots.get(slotId);
@@ -85,13 +85,13 @@ public class BackpackContainer extends UContainer {
 				return tmpSlot.getStack();
 			}
 		}
-		if (clickTypeIn == ClickType.SWAP) {
+		if (clickType == ClickType.SWAP) {
 			ItemStack stack = player.inventory.getStackInSlot(dragType);
 			if (stack == player.inventory.getCurrentItem()) {
 				return ItemStack.EMPTY;
 			}
 		}
-		return super.slotClick(slotId, dragType, clickTypeIn, player);
+		return super.slotClick(slotId, dragType, clickType, player);
 	}
 	
 	public Backpack getBackpack() {
