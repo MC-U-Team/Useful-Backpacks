@@ -1,7 +1,6 @@
 package info.u_team.useful_backpacks.type;
 
 import net.minecraft.item.Rarity;
-import net.minecraft.util.IStringSerializable;
 
 public enum Backpack {
 	
@@ -29,7 +28,6 @@ public enum Backpack {
 		this.textureSizeY = textureSizeY;
 	}
 	
-	@Override
 	public String getName() {
 		return name;
 	}
