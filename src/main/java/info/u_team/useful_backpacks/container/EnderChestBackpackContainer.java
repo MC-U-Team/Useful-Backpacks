@@ -5,11 +5,12 @@ import net.minecraft.entity.player.*;
 import net.minecraft.inventory.*;
 import net.minecraft.inventory.container.*;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.PacketBuffer;
 
 public class EnderChestBackpackContainer extends ChestContainer {
 	
 	// Client
-	public static EnderChestBackpackContainer createEnderChestContainer(int id, PlayerInventory playerInventory) {
+	public static EnderChestBackpackContainer createEnderChestContainer(int id, PlayerInventory playerInventory, PacketBuffer buffer) {
 		return createEnderChestContainer(id, playerInventory, new Inventory(9 * 3));
 	}
 	
