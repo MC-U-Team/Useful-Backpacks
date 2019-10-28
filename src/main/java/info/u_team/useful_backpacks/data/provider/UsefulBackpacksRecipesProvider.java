@@ -47,6 +47,17 @@ public class UsefulBackpacksRecipesProvider extends CommonRecipesProvider {
 				.key('B', MEDIUM_BACKPACK) //
 				.addCriterion("has_medium_backpack", hasItem(MEDIUM_BACKPACK)) //
 				.build(consumer);
+		
+		ShapedRecipeBuilder.shapedRecipe(ENDERCHEST_BACKPACK) //
+				.patternLine("WLW") //
+				.patternLine("ESE") //
+				.patternLine("WLW") //
+				.key('W', getIngredientOfTag(ItemTags.WOOL)) //
+				.key('L', Items.LEATHER) //
+				.key('E', Items.ENDER_CHEST) //
+				.key('S', Items.STRING) //
+				.addCriterion("has_enderchest", hasItem(Items.ENDER_CHEST)) //
+				.build(consumer);
 	}
 	
 }
