@@ -14,6 +14,6 @@ public class UsefulBackpacksGuis {
 	
 	@SubscribeEvent
 	public static void register(FMLClientSetupEvent event) {
-		ScreenManager.registerFactory(UsefulBackpacksContainerType.TYPE, BackpackScreen::new);
+		ScreenManager.registerFactory(UsefulBackpacksContainerTypes.TYPE, BackpackScreen::new);
 	}
 }
