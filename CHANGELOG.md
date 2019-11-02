@@ -1,6 +1,15 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.14.4-1.7.3.44] - 2019-11-02
+### Changed
+ - Some refactoring
+ - Generate item models and some languages now
+ - Changed stack size to 1 for ender chest backpacks
+ 
+### Added
+ - Added ender chest backpack to the backpack item tag
+
 ## [1.14.4-1.7.2.43] - 2019-10-28
 ### Added
  - Add russian translation (thanks fantom2010)
@@ -23,4 +32,4 @@ All notable changes to this project will be documented in this file.
 
 ## [1.14.4-1.7.0.34] - 2019-07-23
 ### Changed
--  Update to 1.14.4
+ -  Update to 1.14.4
