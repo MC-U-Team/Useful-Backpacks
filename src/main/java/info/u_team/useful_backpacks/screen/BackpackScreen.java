@@ -1,4 +1,4 @@
-package info.u_team.useful_backpacks.gui;
+package info.u_team.useful_backpacks.screen;
 
 import info.u_team.u_team_core.gui.UContainerScreen;
 import info.u_team.useful_backpacks.UsefulBackpacksMod;

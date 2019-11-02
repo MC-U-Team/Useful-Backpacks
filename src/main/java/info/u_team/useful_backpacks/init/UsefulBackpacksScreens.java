@@ -1,7 +1,7 @@
 package info.u_team.useful_backpacks.init;
 
 import info.u_team.useful_backpacks.UsefulBackpacksMod;
-import info.u_team.useful_backpacks.gui.BackpackScreen;
+import info.u_team.useful_backpacks.screen.BackpackScreen;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.gui.screen.inventory.ChestScreen;
 import net.minecraftforge.api.distmarker.Dist;
@@ -11,7 +11,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 @EventBusSubscriber(modid = UsefulBackpacksMod.MODID, bus = Bus.MOD, value = Dist.CLIENT)
-public class UsefulBackpacksGuis {
+public class UsefulBackpacksScreens {
 	
 	@SubscribeEvent
 	public static void register(FMLClientSetupEvent event) {
