@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 public class EnderChestBackpackItem extends UItem {
 	
 	public EnderChestBackpackItem(String name) {
-		super(name, UsefulBackpacksItemGroups.GROUP, new Properties().rarity(Rarity.EPIC));
+		super(name, UsefulBackpacksItemGroups.GROUP, new Properties().maxStackSize(1).rarity(Rarity.EPIC));
 	}
 	
 	@Override
