@@ -20,6 +20,7 @@ public class UsefulBackpacksDataGenerator {
 			generator.addProvider(new UsefulBackpacksRecipesProvider(generator)); // Generate recipes
 		}
 		if (event.includeClient()) {
+			generator.addProvider(new UsefulBackpacksLanguagesProvider(generator, UsefulBackpacksMod.MODID));
 			generator.addProvider(new UsefulBackpacksItemModelsProvider(generator, UsefulBackpacksMod.MODID, event.getExistingFileHelper()));
 		}
 	}
