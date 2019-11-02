@@ -51,6 +51,12 @@ public class BackpackItem extends UItem implements IDyeableItem {
 		return !ItemStack.areItemsEqual(oldStack, newStack);
 	}
 	
+	// Getter
+	
+	public Backpack getBackpack() {
+		return backpack;
+	}
+	
 	// Item group
 	
 	@Override
