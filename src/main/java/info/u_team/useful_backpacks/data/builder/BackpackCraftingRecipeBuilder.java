@@ -2,11 +2,9 @@ package info.u_team.useful_backpacks.data.builder;
 
 import java.util.function.Consumer;
 
-import com.google.gson.JsonObject;
-
+import info.u_team.u_team_core.util.RecipeBuilderUtil;
 import info.u_team.useful_backpacks.init.UsefulBackpacksRecipeSerializers;
 import net.minecraft.data.*;
-import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.util.*;
 
 public class BackpackCraftingRecipeBuilder extends ShapedRecipeBuilder {
@@ -24,35 +22,7 @@ public class BackpackCraftingRecipeBuilder extends ShapedRecipeBuilder {
 	}
 	
 	@Override
-	public void build(Consumer<IFinishedRecipe> consumer, ResourceLocation id) {
-		super.build(recipe -> {
-			consumer.accept(new IFinishedRecipe() {
-				
-				@Override
-				public void serialize(JsonObject json) {
-					recipe.serialize(json);
-				}
-				
-				@Override
-				public IRecipeSerializer<?> getSerializer() {
-					return UsefulBackpacksRecipeSerializers.BACKPACK;
-				}
-				
-				@Override
-				public ResourceLocation getID() {
-					return recipe.getID();
-				}
-				
-				@Override
-				public JsonObject getAdvancementJson() {
-					return recipe.getAdvancementJson();
-				}
-				
-				@Override
-				public ResourceLocation getAdvancementID() {
-					return recipe.getAdvancementID();
-				}
-			});
-		}, id);
+	public void build(Consumer<IFinishedRecipe> consumer, ResourceLocation location) {
+		super.build(recipe -> consumer.accept(RecipeBuilderUtil.getRecipeWithSerializer(recipe, UsefulBackpacksRecipeSerializers.BACKPACK)), location);
 	}
 }
