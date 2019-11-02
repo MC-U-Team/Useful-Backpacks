@@ -4,6 +4,7 @@ import static info.u_team.useful_backpacks.init.UsefulBackpacksItems.*;
 
 import java.util.function.Consumer;
 
+import info.u_team.u_team_core.data.CommonRecipesProvider;
 import info.u_team.useful_backpacks.data.builder.BackpackCraftingRecipeBuilder;
 import net.minecraft.data.*;
 import net.minecraft.item.Items;
@@ -16,7 +17,7 @@ public class UsefulBackpacksRecipesProvider extends CommonRecipesProvider {
 	}
 	
 	@Override
-	protected void addRecipes(Consumer<IFinishedRecipe> consumer) {
+	protected void registerRecipes(Consumer<IFinishedRecipe> consumer) {
 		BackpackCraftingRecipeBuilder.backpackRecipe(SMALL_BACKPACK) //
 				.patternLine("WLW") //
 				.patternLine("LSL") //
@@ -59,5 +60,4 @@ public class UsefulBackpacksRecipesProvider extends CommonRecipesProvider {
 				.addCriterion("has_enderchest", hasItem(Items.ENDER_CHEST)) //
 				.build(consumer);
 	}
-	
 }
