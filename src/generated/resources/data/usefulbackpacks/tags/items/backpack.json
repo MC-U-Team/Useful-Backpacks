@@ -3,6 +3,7 @@
 	"values": [
 		"usefulbackpacks:backpack_small",
 		"usefulbackpacks:backpack_medium",
-		"usefulbackpacks:backpack_large"
+		"usefulbackpacks:backpack_large",
+		"usefulbackpacks:backpack_enderchest"
 	]
 }
