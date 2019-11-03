@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.14.4-1.7.4.46] - 2019-11-03
+### Changed
+ - Update to latest uteamcore (2.7.8.138) internally for data generation
+
 ## [1.14.4-1.7.4.45] - 2019-11-03
 ### Added
  - Add spanish (argentina) translation (thanks El-Limbo)
