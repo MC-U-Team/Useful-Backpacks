@@ -30,10 +30,13 @@ public class UsefulBackpacksLanguagesProvider extends CommonLanguagesProvider {
 		add("de_de", ENDERCHEST_BACKPACK, "Endertruhen Rucksack");
 	}
 	
+	// TODO use uteamcore methods in next release
+	@Deprecated
 	protected void add(ItemGroup key, String name) {
 		add(key.getTranslationKey(), name);
 	}
 	
+	@Deprecated
 	protected void add(String locale, ItemGroup key, String name) {
 		add(locale, key.getTranslationKey(), name);
 	}
