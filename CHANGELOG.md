@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## [1.14.4-1.7.4.45] - 2019-11-03
 ### Added
- - - Add spanish (argentina) translation (thanks El-Limbo)
+ - Add spanish (argentina) translation (thanks El-Limbo)
 
 ## [1.14.4-1.7.3.44] - 2019-11-02
 ### Changed
