@@ -4,7 +4,7 @@ import static info.u_team.useful_backpacks.init.UsefulBackpacksItems.*;
 
 import java.util.function.Consumer;
 
-import info.u_team.u_team_core.data.CommonRecipesProvider;
+import info.u_team.u_team_core.data.*;
 import info.u_team.useful_backpacks.data.builder.BackpackCraftingRecipeBuilder;
 import net.minecraft.data.*;
 import net.minecraft.item.Items;
@@ -12,8 +12,8 @@ import net.minecraft.tags.ItemTags;
 
 public class UsefulBackpacksRecipesProvider extends CommonRecipesProvider {
 	
-	public UsefulBackpacksRecipesProvider(DataGenerator generator) {
-		super(generator);
+	public UsefulBackpacksRecipesProvider(GenerationData data) {
+		super(data);
 	}
 	
 	@Override

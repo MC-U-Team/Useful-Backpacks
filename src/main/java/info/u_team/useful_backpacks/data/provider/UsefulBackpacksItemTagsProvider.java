@@ -1,15 +1,14 @@
 package info.u_team.useful_backpacks.data.provider;
 
+import static info.u_team.useful_backpacks.init.UsefulBackpacksItems.*;
 import static info.u_team.useful_backpacks.init.UsefulBackpacksTags.Items.BACKPACK;
 
-import info.u_team.u_team_core.data.CommonItemTagsProvider;
-import static info.u_team.useful_backpacks.init.UsefulBackpacksItems.*;
-import net.minecraft.data.DataGenerator;
+import info.u_team.u_team_core.data.*;
 
 public class UsefulBackpacksItemTagsProvider extends CommonItemTagsProvider {
 	
-	public UsefulBackpacksItemTagsProvider(DataGenerator generator) {
-		super(generator);
+	public UsefulBackpacksItemTagsProvider(GenerationData data) {
+		super(data);
 	}
 	
 	@Override

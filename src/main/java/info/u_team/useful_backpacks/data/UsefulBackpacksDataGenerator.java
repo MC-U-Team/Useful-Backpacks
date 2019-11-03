@@ -1,8 +1,8 @@
 package info.u_team.useful_backpacks.data;
 
+import info.u_team.u_team_core.data.GenerationData;
 import info.u_team.useful_backpacks.UsefulBackpacksMod;
 import info.u_team.useful_backpacks.data.provider.*;
-import net.minecraft.data.DataGenerator;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
@@ -13,16 +13,14 @@ public class UsefulBackpacksDataGenerator {
 	
 	@SubscribeEvent
 	public static void data(GatherDataEvent event) {
-		final DataGenerator generator = event.getGenerator();
+		final GenerationData data = new GenerationData(UsefulBackpacksMod.MODID, event);
 		if (event.includeServer()) {
-			generator.addProvider(new UsefulBackpacksItemTagsProvider(generator)); // Generate item tags
-			
-			generator.addProvider(new UsefulBackpacksRecipesProvider(generator)); // Generate recipes
+			data.addProvider(UsefulBackpacksItemTagsProvider::new);
+			data.addProvider(UsefulBackpacksRecipesProvider::new);
 		}
 		if (event.includeClient()) {
-			generator.addProvider(new UsefulBackpacksLanguagesProvider(generator, UsefulBackpacksMod.MODID));
-			generator.addProvider(new UsefulBackpacksItemModelsProvider(generator, UsefulBackpacksMod.MODID, event.getExistingFileHelper()));
+			data.addProvider(UsefulBackpacksLanguagesProvider::new);
+			data.addProvider(UsefulBackpacksItemModelsProvider::new);
 		}
 	}
-	
 }

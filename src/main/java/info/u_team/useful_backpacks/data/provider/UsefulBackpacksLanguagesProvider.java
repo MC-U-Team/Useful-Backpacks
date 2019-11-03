@@ -2,15 +2,14 @@ package info.u_team.useful_backpacks.data.provider;
 
 import static info.u_team.useful_backpacks.init.UsefulBackpacksItems.*;
 
-import info.u_team.u_team_core.data.CommonLanguagesProvider;
+import info.u_team.u_team_core.data.*;
 import info.u_team.useful_backpacks.init.UsefulBackpacksItemGroups;
-import net.minecraft.data.DataGenerator;
 import net.minecraft.item.ItemGroup;
 
 public class UsefulBackpacksLanguagesProvider extends CommonLanguagesProvider {
 	
-	public UsefulBackpacksLanguagesProvider(DataGenerator generator, String modid) {
-		super(generator, modid);
+	public UsefulBackpacksLanguagesProvider(GenerationData data) {
+		super(data);
 	}
 	
 	@Override
