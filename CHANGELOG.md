@@ -1,9 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [1.15.1-1.8.1.50] - 2019-12-31
+## [1.15.1-1.8.2.50] - 2019-12-31
 ### Changed
  - Update to forge 30.0.19
+ 
+### Added
+ - Added brazilian portuguese translation (thanks to Focamacho)
 
 ## [1.15.1-1.8.1.49] - 2019-12-18
 ### Changed
