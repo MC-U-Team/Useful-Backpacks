@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.15.1-1.8.3.51] - 2020-01-04
+### Added
+ - Added dutch translation (thanks to HeresHavi)
+
 ## [1.15.1-1.8.2.50] - 2019-12-31
 ### Changed
  - Update to forge 30.0.19
