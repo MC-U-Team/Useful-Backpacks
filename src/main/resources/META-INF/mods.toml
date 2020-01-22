@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[30,)"
+loaderVersion="[31,)"
 issueTrackerURL="https://github.com/MC-U-Team/Useful-Backpacks/issues"
 displayURL="https://u-team.info/mods/usefulbackpacks"
 logoFile="logo.png"
@@ -16,20 +16,20 @@ authors="HyCraftHD"
 	[[dependencies.usefulbackpacks]]
 	    modId="forge"
 	    mandatory=true
-	    versionRange="[30.0.19,)"
+	    versionRange="[31.0.0,)"
 	    ordering="NONE"
 	    side="BOTH"
 	
 	[[dependencies.usefulbackpacks]]
 	    modId="minecraft"
 	    mandatory=true
-	    versionRange="[1.15.1]"
+	    versionRange="[1.15.2]"
 	    ordering="NONE"
 	    side="BOTH"
 	    
 	[[dependencies.usefulbackpacks]]
 	    modId="uteamcore"
 	    mandatory=true
-	    versionRange="[2.9.3.145,)"
+	    versionRange="[2.10.0.146,)"
 	    ordering="NONE"
 	    side="BOTH"
