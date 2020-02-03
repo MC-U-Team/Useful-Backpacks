@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.14.4-1.7.5.54] - 2020-02-03
+### Changed
+ - Update to latest uteamcore (2.8.1.148) and forge (28.1.117)
+
 ## [1.14.4-1.7.4.47] - 2019-12-17
 ### Changed
  - Update to latest uteamcore (2.8.0.140) and forge (28.1.107)
