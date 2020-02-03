@@ -13,9 +13,9 @@ import net.minecraftforge.fml.relauncher.*;
 @SideOnly(Side.CLIENT)
 public class GuiBackPack extends GuiContainer {
 	
-	private ResourceLocation texture_small = new ResourceLocation(UsefulBackPacksConstants.MODID, "textures/gui/backpack/small.png");
-	private ResourceLocation texture_medium = new ResourceLocation(UsefulBackPacksConstants.MODID, "textures/gui/backpack/medium.png");
-	private ResourceLocation texture_big = new ResourceLocation(UsefulBackPacksConstants.MODID, "textures/gui/backpack/large.png");
+	private static final ResourceLocation texture_small = new ResourceLocation(UsefulBackPacksConstants.MODID, "textures/gui/backpack/small.png");
+	private static final ResourceLocation texture_medium = new ResourceLocation(UsefulBackPacksConstants.MODID, "textures/gui/backpack/medium.png");
+	private static final ResourceLocation texture_big = new ResourceLocation(UsefulBackPacksConstants.MODID, "textures/gui/backpack/large.png");
 	
 	private EnumBackPacks type;
 	
