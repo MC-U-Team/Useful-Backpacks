@@ -3,7 +3,7 @@ package info.u_team.useful_backpacks.item;
 import info.u_team.u_team_core.api.dye.IDyeableItem;
 import info.u_team.u_team_core.item.UItem;
 import info.u_team.useful_backpacks.config.ServerConfig;
-import info.u_team.useful_backpacks.container.BackpackContainer;
+import info.u_team.useful_backpacks.container.*;
 import info.u_team.useful_backpacks.init.UsefulBackpacksItemGroups;
 import info.u_team.useful_backpacks.inventory.BackpackInventory;
 import info.u_team.useful_backpacks.type.Backpack;
@@ -95,5 +95,12 @@ public class BackpackItem extends UItem implements IDyeableItem {
 			return null;
 		}
 		return compound;
+	}
+	
+	// Fix bug #30 (dupe bug when lagging server)
+	
+	@Override
+	public boolean onDroppedByPlayer(ItemStack item, PlayerEntity player) {
+		return !(player.openContainer instanceof BackpackContainer);
 	}
 }
