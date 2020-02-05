@@ -96,4 +96,11 @@ public class BackpackItem extends UItem implements IDyeableItem {
 		}
 		return compound;
 	}
+	
+	// Fix bug #30 (dupe bug when lagging server)
+	
+	@Override
+	public boolean onDroppedByPlayer(ItemStack item, PlayerEntity player) {
+		return !(player.openContainer instanceof BackpackContainer);
+	}
 }
