@@ -9,7 +9,6 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 public class UsefulBackPacksRecipes {
 	
 	public static void init() {
-		furnace();
 		crafting();
 	}
 	
@@ -18,9 +17,6 @@ public class UsefulBackPacksRecipes {
 		registerCrafting("backpack_small", new RecipesSmallBackPack());
 		registerCrafting("backpack_medium", new RecipesCopyBackPack(false));
 		registerCrafting("backpack_large", new RecipesCopyBackPack(true));
-	}
-	
-	private static void furnace() {
 	}
 	
 	private static void registerCrafting(String name, IRecipe recipe) {
