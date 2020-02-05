@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [1.14.4-1.7.6.54] - 2020-02-05
+## [1.14.4-1.7.6.57] - 2020-02-05
 ### Changed
  - Fixed dupe drop bug #30 (Fixes [#30](https://github.com/MC-U-Team/Useful-Backpacks/issues/30))
 
