@@ -51,7 +51,7 @@ public class InventoryBackPack extends InventoryBasic {
 	}
 	
 	public void readNBT(NBTTagCompound compound) {
-		NonNullList<ItemStack> list = NonNullList.<ItemStack> withSize(getSizeInventory(), ItemStack.EMPTY);
+		final NonNullList<ItemStack> list = NonNullList.<ItemStack> withSize(getSizeInventory(), ItemStack.EMPTY);
 		ItemStackHelper.loadAllItems(compound, list);
 		for (int i = 0; i < list.size(); i++) {
 			setInventorySlotContents(i, list.get(i));
@@ -59,7 +59,7 @@ public class InventoryBackPack extends InventoryBasic {
 	}
 	
 	public void writeNBT(NBTTagCompound compound) {
-		NonNullList<ItemStack> list = NonNullList.<ItemStack> withSize(getSizeInventory(), ItemStack.EMPTY);
+		final NonNullList<ItemStack> list = NonNullList.<ItemStack> withSize(getSizeInventory(), ItemStack.EMPTY);
 		for (int i = 0; i < list.size(); i++) {
 			list.set(i, getStackInSlot(i));
 		}
