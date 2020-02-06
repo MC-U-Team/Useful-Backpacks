@@ -15,13 +15,11 @@ import net.minecraftforge.fml.common.Optional;
 @ChestContainer
 public class ContainerBackPack extends Container {
 	
-	public boolean updateNotification;
-	private IInventory inventory;
-	private EnumBackPacks type;
+	private final IInventory inventory;
+	private final EnumBackPacks type;
 	
 	public ContainerBackPack(IInventory inventory, InventoryPlayer inventoryplayer, EnumBackPacks type) {
 		
-		this.updateNotification = false;
 		this.inventory = inventory;
 		this.type = type;
 		
@@ -116,7 +114,6 @@ public class ContainerBackPack extends Container {
 				slot.onSlotChanged();
 			}
 		}
-		this.updateNotification = true;
 		return itemstack;
 	}
 	
@@ -139,7 +136,6 @@ public class ContainerBackPack extends Container {
 				return ItemStack.EMPTY;
 			}
 		}
-		this.updateNotification = true;
 		return super.slotClick(slotId, dragType, clickTypeIn, player);
 	}
 	
