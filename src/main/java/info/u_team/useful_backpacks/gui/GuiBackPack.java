@@ -17,7 +17,7 @@ public class GuiBackPack extends GuiContainer {
 	private static final ResourceLocation texture_medium = new ResourceLocation(UsefulBackPacksConstants.MODID, "textures/gui/backpack/medium.png");
 	private static final ResourceLocation texture_big = new ResourceLocation(UsefulBackPacksConstants.MODID, "textures/gui/backpack/large.png");
 	
-	private EnumBackPacks type;
+	private final EnumBackPacks type;
 	
 	public GuiBackPack(IInventory inventory, InventoryPlayer inventoryplayer, EnumBackPacks type) {
 		super(new ContainerBackPack(inventory, inventoryplayer, type));
