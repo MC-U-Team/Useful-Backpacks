@@ -17,9 +17,6 @@ public class RecipesBackPackDyes extends net.minecraftforge.registries.IForgeReg
 	 * TODO Just Copied {@link RecipesArmorDyes} -> Works well, but code is ugly
 	 */
 	
-	public RecipesBackPackDyes() {
-	}
-	
 	public boolean matches(InventoryCrafting inv, World worldIn) {
 		ItemStack itemstack = ItemStack.EMPTY;
 		List<ItemStack> list = Lists.<ItemStack> newArrayList();
