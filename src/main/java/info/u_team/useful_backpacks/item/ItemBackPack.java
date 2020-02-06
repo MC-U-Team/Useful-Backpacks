@@ -53,9 +53,9 @@ public class ItemBackPack extends UItem {
 	}
 	
 	public int getColor(ItemStack stack) {
-		NBTTagCompound tag = stack.getTagCompound();
+		final NBTTagCompound tag = stack.getTagCompound();
 		if (tag != null) {
-			NBTTagCompound displaytag = tag.getCompoundTag("display");
+			final NBTTagCompound displaytag = tag.getCompoundTag("display");
 			if (displaytag != null && displaytag.hasKey("color", 3)) {
 				return displaytag.getInteger("color");
 			}
@@ -73,7 +73,7 @@ public class ItemBackPack extends UItem {
 		if (!tag.hasKey("display", 10)) {
 			tag.setTag("display", new NBTTagCompound());
 		}
-		NBTTagCompound displaytag = tag.getCompoundTag("display");
+		final NBTTagCompound displaytag = tag.getCompoundTag("display");
 		
 		displaytag.setInteger("color", color);
 		
@@ -81,7 +81,7 @@ public class ItemBackPack extends UItem {
 	}
 	
 	public void removeColor(ItemStack stack) {
-		NBTTagCompound tag = stack.getTagCompound();
+		final NBTTagCompound tag = stack.getTagCompound();
 		if (tag == null) {
 			return;
 		}
@@ -89,12 +89,12 @@ public class ItemBackPack extends UItem {
 		if (!tag.hasKey("display", 10)) {
 			return;
 		}
-		NBTTagCompound displaytag = tag.getCompoundTag("display");
+		final NBTTagCompound displaytag = tag.getCompoundTag("display");
 		displaytag.removeTag("color");
 	}
 	
 	public boolean hasColor(ItemStack stack) {
-		NBTTagCompound tag = stack.getTagCompound();
+		final NBTTagCompound tag = stack.getTagCompound();
 		return tag != null && tag.hasKey("display", 10) ? tag.getCompoundTag("display").hasKey("color", 3) : false;
 	}
 	
@@ -119,7 +119,7 @@ public class ItemBackPack extends UItem {
 	
 	@Override
 	public String getTranslationKey(ItemStack stack) {
-		EnumBackPacks type = EnumBackPacks.byMetadata(stack.getMetadata());
+		final EnumBackPacks type = EnumBackPacks.byMetadata(stack.getMetadata());
 		return UsefulBackPacksConstants.MODID + ":item.backpack." + type.getName();
 	}
 	
