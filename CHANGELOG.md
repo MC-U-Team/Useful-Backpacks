@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.15.2-1.9.3.62] - 2020-02-10
+### Added
+ - Added taiwanese mandarin (zh_tw) translation (thanks ForFunPenguin)
+
 ## [1.15.2-1.9.2.61] - 2020-02-07
 ### Changed
  - Updated uteamcore to 2.10.3.152
