@@ -7,7 +7,7 @@ buildscript {
     }
     dependencies {
         classpath group: "net.minecraftforge.gradle", name: "ForgeGradle", version: "3.+", changing: true
-		classpath "gradle.plugin.com.matthewprenger:CurseGradle:1.3.0"
+		classpath "gradle.plugin.com.matthewprenger:CurseGradle:1.4.0"
     }
 }
 
@@ -171,6 +171,8 @@ def generateChangelogUrl() {
 }
 
 curseforge {
+	tasks.curseforge.dependsOn build
+
 	if(System.getenv("token") != null) {
 		apiKey = System.getenv("token")
 	} else {
@@ -180,8 +182,6 @@ curseforge {
 			apiKey = "mrTroble" //We dont have one lol ¯\_(ツ)_/¯
 		}
 	}
-	
-	tasks.curseforge.dependsOn build
 	
   	project {
     	id = config.curse.id
@@ -212,7 +212,6 @@ curseforge {
 }
 
 uploadArchives {
-
 	tasks.uploadArchives.dependsOn build
 
 	repositories {
@@ -234,7 +233,7 @@ uploadArchives {
 					name project.archivesBaseName
 					packaging "jar"
 					description "${config.github.name}"
-						url "https://github.com/MC-U-Team/${config.github.name}"
+					url "https://github.com/MC-U-Team/${config.github.name}"
 					scm {
 						url "https://github.com/MC-U-Team/${config.github.name}"
 						connection "scm:git:git://github.com/MC-U-Team/${config.github.name}.git"
@@ -258,6 +257,7 @@ uploadArchives {
 						}
 					}
 				}
+				setConfigurations(null) // Prevent all dependencies in the pom file
 			}
 		}
 	}
@@ -270,5 +270,11 @@ task uploadBoth {
 	tasks.uploadBoth.dependsOn setBuildNumber
 	doLast {
 		println "Published both"
+	}
+}
+
+gradle.taskGraph.whenReady {
+	if (gradle.taskGraph.hasTask(":curseforge${config.curse.id}") || gradle.taskGraph.hasTask(":uploadArchives")) {
+		validateBuild()
 	}
 }
