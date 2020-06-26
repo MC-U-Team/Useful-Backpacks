@@ -14,10 +14,10 @@ public class UsefulBackpacksItemModelsProvider extends CommonItemModelsProvider 
 	
 	@Override
 	protected void registerModels() {
-		simpleBackpackGenerated(SMALL_BACKPACK);
-		simpleBackpackGenerated(MEDIUM_BACKPACK);
-		simpleBackpackGenerated(LARGE_BACKPACK);
-		simpleGenerated(ENDERCHEST_BACKPACK);
+		simpleBackpackGenerated(SMALL_BACKPACK.get());
+		simpleBackpackGenerated(MEDIUM_BACKPACK.get());
+		simpleBackpackGenerated(LARGE_BACKPACK.get());
+		simpleGenerated(ENDERCHEST_BACKPACK.get());
 	}
 	
 	protected void simpleBackpackGenerated(BackpackItem item) {

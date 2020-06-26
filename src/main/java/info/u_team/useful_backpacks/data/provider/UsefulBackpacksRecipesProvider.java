@@ -18,7 +18,7 @@ public class UsefulBackpacksRecipesProvider extends CommonRecipesProvider {
 	
 	@Override
 	protected void registerRecipes(Consumer<IFinishedRecipe> consumer) {
-		BackpackCraftingRecipeBuilder.backpackRecipe(SMALL_BACKPACK) //
+		BackpackCraftingRecipeBuilder.backpackRecipe(SMALL_BACKPACK.get()) //
 				.patternLine("WLW") //
 				.patternLine("LSL") //
 				.patternLine("WLW") //
@@ -29,27 +29,27 @@ public class UsefulBackpacksRecipesProvider extends CommonRecipesProvider {
 				.addCriterion("has_leather", hasItem(Items.LEATHER)) //
 				.build(consumer);
 		
-		BackpackCraftingRecipeBuilder.backpackRecipe(MEDIUM_BACKPACK) //
+		BackpackCraftingRecipeBuilder.backpackRecipe(MEDIUM_BACKPACK.get()) //
 				.patternLine("WLW") //
 				.patternLine("LBL") //
 				.patternLine("WLW") //
 				.key('W', getIngredientOfTag(ItemTags.WOOL)) //
 				.key('L', Items.LEATHER) //
-				.key('B', SMALL_BACKPACK) //
-				.addCriterion("has_small_backpack", hasItem(SMALL_BACKPACK)) //
+				.key('B', SMALL_BACKPACK.get()) //
+				.addCriterion("has_small_backpack", hasItem(SMALL_BACKPACK.get())) //
 				.build(consumer);
 		
-		BackpackCraftingRecipeBuilder.backpackRecipe(LARGE_BACKPACK) //
+		BackpackCraftingRecipeBuilder.backpackRecipe(LARGE_BACKPACK.get()) //
 				.patternLine("WLW") //
 				.patternLine("LBL") //
 				.patternLine("WLW") //
 				.key('W', getIngredientOfTag(ItemTags.WOOL)) //
 				.key('L', Items.LEATHER) //
-				.key('B', MEDIUM_BACKPACK) //
-				.addCriterion("has_medium_backpack", hasItem(MEDIUM_BACKPACK)) //
+				.key('B', MEDIUM_BACKPACK.get()) //
+				.addCriterion("has_medium_backpack", hasItem(MEDIUM_BACKPACK.get())) //
 				.build(consumer);
 		
-		ShapedRecipeBuilder.shapedRecipe(ENDERCHEST_BACKPACK) //
+		ShapedRecipeBuilder.shapedRecipe(ENDERCHEST_BACKPACK.get()) //
 				.patternLine("WLW") //
 				.patternLine("ESE") //
 				.patternLine("WLW") //
