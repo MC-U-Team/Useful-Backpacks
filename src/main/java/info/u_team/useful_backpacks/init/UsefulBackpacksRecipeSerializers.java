@@ -1,22 +1,21 @@
 package info.u_team.useful_backpacks.init;
 
-import info.u_team.u_team_core.util.registry.BaseRegistryUtil;
+import info.u_team.u_team_core.util.registry.CommonDeferredRegister;
 import info.u_team.useful_backpacks.UsefulBackpacksMod;
 import info.u_team.useful_backpacks.recipe.BackpackCraftingRecipe;
 import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraftforge.event.RegistryEvent.Register;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.ForgeRegistries;
 
-@EventBusSubscriber(modid = UsefulBackpacksMod.MODID, bus = Bus.MOD)
 public class UsefulBackpacksRecipeSerializers {
 	
-	public static final IRecipeSerializer<BackpackCraftingRecipe> BACKPACK = new BackpackCraftingRecipe.Serializer("crafting_backpack");
+	public static final CommonDeferredRegister<IRecipeSerializer<?>> RECIPE_SERIALIZERS = CommonDeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, UsefulBackpacksMod.MODID);
 	
-	@SubscribeEvent
-	public static void register(Register<IRecipeSerializer<?>> event) {
-		BaseRegistryUtil.getAllGenericRegistryEntriesAndApplyNames(UsefulBackpacksMod.MODID, IRecipeSerializer.class).forEach(event.getRegistry()::register);
+	public static final RegistryObject<IRecipeSerializer<BackpackCraftingRecipe>> BACKPACK = RECIPE_SERIALIZERS.register("crafting_backpack", () -> new BackpackCraftingRecipe.Serializer("crafting_backpack"));
+	
+	public static void register(IEventBus bus) {
+		RECIPE_SERIALIZERS.register(bus);
 	}
 	
 }

@@ -22,6 +22,7 @@ public class UsefulBackpacksMod {
 	private void register() {
 		BusRegister.registerMod(UsefulBackpacksContainerTypes::register);
 		BusRegister.registerMod(UsefulBackpacksItems::register);
+		BusRegister.registerMod(UsefulBackpacksRecipeSerializers::register);
 	}
 	
 }
