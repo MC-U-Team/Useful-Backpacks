@@ -12,7 +12,7 @@ public class UsefulBackpacksRecipeSerializers {
 	
 	public static final CommonDeferredRegister<IRecipeSerializer<?>> RECIPE_SERIALIZERS = CommonDeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, UsefulBackpacksMod.MODID);
 	
-	public static final RegistryObject<IRecipeSerializer<BackpackCraftingRecipe>> BACKPACK = RECIPE_SERIALIZERS.register("crafting_backpack", () -> new BackpackCraftingRecipe.Serializer("crafting_backpack"));
+	public static final RegistryObject<IRecipeSerializer<BackpackCraftingRecipe>> BACKPACK = RECIPE_SERIALIZERS.register("crafting_backpack", BackpackCraftingRecipe.Serializer::new);
 	
 	public static void register(IEventBus bus) {
 		RECIPE_SERIALIZERS.register(bus);
