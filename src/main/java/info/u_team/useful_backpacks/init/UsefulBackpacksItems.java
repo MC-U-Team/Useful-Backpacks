@@ -13,13 +13,12 @@ public class UsefulBackpacksItems {
 	
 	public static final CommonDeferredRegister<Item> ITEMS = CommonDeferredRegister.create(ForgeRegistries.ITEMS, UsefulBackpacksMod.MODID);
 	
-	public static final RegistryObject<BackpackItem> SMALL_BACKPACK = ITEMS.register("backpack", () -> new BackpackItem(Backpack.SMALL));
-	public static final RegistryObject<BackpackItem> MEDIUM_BACKPACK = ITEMS.register("backpack", () -> new BackpackItem(Backpack.MEDIUM));
-	public static final RegistryObject<BackpackItem> LARGE_BACKPACK = ITEMS.register("backpack", () -> new BackpackItem(Backpack.LARGE));
+	public static final RegistryObject<BackpackItem> SMALL_BACKPACK = ITEMS.register("backpack_" + Backpack.SMALL.getName(), () -> new BackpackItem(Backpack.SMALL));
+	public static final RegistryObject<BackpackItem> MEDIUM_BACKPACK = ITEMS.register("backpack_" + Backpack.MEDIUM.getName(), () -> new BackpackItem(Backpack.MEDIUM));
+	public static final RegistryObject<BackpackItem> LARGE_BACKPACK = ITEMS.register("backpack_" + Backpack.LARGE.getName(), () -> new BackpackItem(Backpack.LARGE));
 	
 	public static final RegistryObject<EnderChestBackpackItem> ENDERCHEST_BACKPACK = ITEMS.register("backpack_enderchest", EnderChestBackpackItem::new);
 	
-
 	public static void register(IEventBus bus) {
 		ITEMS.register(bus);
 	}
