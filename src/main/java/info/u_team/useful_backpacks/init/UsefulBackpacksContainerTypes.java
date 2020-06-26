@@ -1,24 +1,23 @@
 package info.u_team.useful_backpacks.init;
 
 import info.u_team.u_team_core.containertype.UContainerType;
-import info.u_team.u_team_core.util.registry.BaseRegistryUtil;
+import info.u_team.u_team_core.util.registry.CommonDeferredRegister;
 import info.u_team.useful_backpacks.UsefulBackpacksMod;
 import info.u_team.useful_backpacks.container.*;
 import net.minecraft.inventory.container.ContainerType;
-import net.minecraftforge.event.RegistryEvent.Register;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.ForgeRegistries;
 
-@EventBusSubscriber(modid = UsefulBackpacksMod.MODID, bus = Bus.MOD)
 public class UsefulBackpacksContainerTypes {
 	
-	public static final ContainerType<BackpackContainer> BACKPACK = new UContainerType<>("backpack", BackpackContainer::createClientContainer);
+	public static final CommonDeferredRegister<ContainerType<?>> CONTAINER_TYPES = CommonDeferredRegister.create(ForgeRegistries.CONTAINERS, UsefulBackpacksMod.MODID);
 	
-	public static final ContainerType<EnderChestBackpackContainer> ENDERCHEST_BACKPACK = new UContainerType<>("backpack_enderchest", EnderChestBackpackContainer::createEnderChestContainer);
+	public static final RegistryObject<ContainerType<BackpackContainer>> BACKPACK = CONTAINER_TYPES.register("backpack", () -> new UContainerType<>(BackpackContainer::createClientContainer));
 	
-	@SubscribeEvent
-	public static void register(Register<ContainerType<?>> event) {
-		BaseRegistryUtil.getAllGenericRegistryEntriesAndApplyNames(UsefulBackpacksMod.MODID, ContainerType.class).forEach(event.getRegistry()::register);
+	public static final RegistryObject<ContainerType<EnderChestBackpackContainer>> ENDERCHEST_BACKPACK = CONTAINER_TYPES.register("backpack_enderchest", () -> new UContainerType<>(EnderChestBackpackContainer::createEnderChestContainer));
+	
+	public static void register(IEventBus bus) {
+		CONTAINER_TYPES.register(bus);
 	}
 }
