@@ -23,7 +23,7 @@ public class BackpackContainer extends UContainer {
 	
 	// Server
 	public BackpackContainer(int id, PlayerInventory playerInventory, IInventory backpackInventory, Backpack backpack) {
-		super(UsefulBackpacksContainerTypes.BACKPACK, id);
+		super(UsefulBackpacksContainerTypes.BACKPACK.get(), id);
 		this.backpackInventory = backpackInventory;
 		this.backpack = backpack;
 		appendBackpackInventory(backpack.getSlotBackpackX(), backpack.getSlotBackpackY());

@@ -16,7 +16,7 @@ public class EnderChestBackpackContainer extends ChestContainer {
 	
 	// Server
 	public static EnderChestBackpackContainer createEnderChestContainer(int id, PlayerInventory playerInventory, IInventory inventory) {
-		return new EnderChestBackpackContainer(UsefulBackpacksContainerTypes.ENDERCHEST_BACKPACK, id, playerInventory, inventory, 3);
+		return new EnderChestBackpackContainer(UsefulBackpacksContainerTypes.ENDERCHEST_BACKPACK.get(), id, playerInventory, inventory, 3);
 	}
 	
 	public EnderChestBackpackContainer(ContainerType<?> type, int id, PlayerInventory playerInventory, IInventory inventory, int rows) {
