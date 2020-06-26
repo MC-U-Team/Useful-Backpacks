@@ -1,8 +1,8 @@
 package info.u_team.useful_backpacks.init;
 
+import info.u_team.u_team_core.util.registry.*;
 import info.u_team.useful_backpacks.UsefulBackpacksMod;
 import info.u_team.useful_backpacks.screen.BackpackScreen;
-import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.gui.screen.inventory.ChestScreen;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -15,7 +15,9 @@ public class UsefulBackpacksScreens {
 	
 	@SubscribeEvent
 	public static void register(FMLClientSetupEvent event) {
-		ScreenManager.registerFactory(UsefulBackpacksContainerTypes.BACKPACK, BackpackScreen::new);
-		ScreenManager.registerFactory(UsefulBackpacksContainerTypes.ENDERCHEST_BACKPACK, ChestScreen::new);
+		MainThreadWorker.run(() -> {
+			ClientRegistry.registryScreen(UsefulBackpacksContainerTypes.BACKPACK, BackpackScreen::new);
+			ClientRegistry.registryScreen(UsefulBackpacksContainerTypes.ENDERCHEST_BACKPACK, ChestScreen::new);
+		});
 	}
 }
