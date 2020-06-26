@@ -1,7 +1,9 @@
 package info.u_team.useful_backpacks;
 
+import info.u_team.u_team_core.util.registry.BusRegister;
 import info.u_team.u_team_core.util.verify.JarSignVerifier;
 import info.u_team.useful_backpacks.config.ServerConfig;
+import info.u_team.useful_backpacks.init.UsefulBackpacksContainerTypes;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig.Type;
@@ -14,6 +16,11 @@ public class UsefulBackpacksMod {
 	public UsefulBackpacksMod() {
 		JarSignVerifier.checkSigned(MODID);
 		ModLoadingContext.get().registerConfig(Type.SERVER, ServerConfig.CONFIG);
+		register();
+	}
+	
+	private void register() {
+		BusRegister.registerMod(UsefulBackpacksContainerTypes::register);
 	}
 	
 }
