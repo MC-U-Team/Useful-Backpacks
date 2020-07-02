@@ -16,8 +16,8 @@ public class UsefulBackpacksScreens {
 	@SubscribeEvent
 	public static void register(FMLClientSetupEvent event) {
 		MainThreadWorker.run(() -> {
-			ClientRegistry.registryScreen(UsefulBackpacksContainerTypes.BACKPACK, BackpackScreen::new);
-			ClientRegistry.registryScreen(UsefulBackpacksContainerTypes.ENDERCHEST_BACKPACK, ChestScreen::new);
+			ClientRegistry.registerScreen(UsefulBackpacksContainerTypes.BACKPACK, BackpackScreen::new);
+			ClientRegistry.registerScreen(UsefulBackpacksContainerTypes.ENDERCHEST_BACKPACK, ChestScreen::new);
 		});
 	}
 }
