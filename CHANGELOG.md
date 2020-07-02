@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 ## [1.15.2-1.10.0.64-SNAPSHOT] - 2020-07-02
 ### Changed
  - Update to uteamcore 3.0.0
+ - Make the logo file smaller
 
 ## [1.15.2-1.9.4.63] - 2020-02-17
 ### Changed
