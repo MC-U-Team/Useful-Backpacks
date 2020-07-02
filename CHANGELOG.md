@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.15.2-1.10.0.65] - 2020-07-02
+### Changed
+ - Updated to forge 31.2.30
+ - Updated mappings to 20200702-1.15.1
+ - Release after uteamcore 3.0.0 update
+
 ## [1.15.2-1.10.0.64-SNAPSHOT] - 2020-07-02
 ### Changed
  - Update to uteamcore 3.0.0
