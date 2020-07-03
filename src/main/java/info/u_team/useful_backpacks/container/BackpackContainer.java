@@ -14,18 +14,21 @@ public class BackpackContainer extends UContainer {
 	
 	private final IInventory backpackInventory;
 	private final Backpack backpack;
+	private final int selectedSlot;
 	
 	// Client
 	public static BackpackContainer createClientContainer(int id, PlayerInventory playerInventory, PacketBuffer buffer) {
 		final Backpack backpack = buffer.readEnumValue(Backpack.class);
-		return new BackpackContainer(id, playerInventory, new Inventory(backpack.getInventorySize()), backpack);
+		final int selectedSlot = buffer.readVarInt();
+		return new BackpackContainer(id, playerInventory, new Inventory(backpack.getInventorySize()), backpack, selectedSlot);
 	}
 	
 	// Server
-	public BackpackContainer(int id, PlayerInventory playerInventory, IInventory backpackInventory, Backpack backpack) {
+	public BackpackContainer(int id, PlayerInventory playerInventory, IInventory backpackInventory, Backpack backpack, int selectedSlot) {
 		super(UsefulBackpacksContainerTypes.BACKPACK.get(), id);
 		this.backpackInventory = backpackInventory;
 		this.backpack = backpack;
+		this.selectedSlot = selectedSlot;
 		appendBackpackInventory(backpack.getSlotBackpackX(), backpack.getSlotBackpackY());
 		appendPlayerInventory(playerInventory, backpack.getSlotPlayerX(), backpack.getSlotPlayerY());
 	}
@@ -81,13 +84,15 @@ public class BackpackContainer extends UContainer {
 			tmpSlot = null;
 		}
 		if (tmpSlot != null) {
-			if (tmpSlot.inventory == player.inventory && tmpSlot.getSlotIndex() == player.inventory.currentItem) {
+			if (tmpSlot.inventory == player.inventory && tmpSlot.getSlotIndex() == selectedSlot) {
 				return tmpSlot.getStack();
 			}
 		}
 		if (clickType == ClickType.SWAP) {
-			ItemStack stack = player.inventory.getStackInSlot(dragType);
-			if (stack == player.inventory.getCurrentItem()) {
+			final ItemStack stack = player.inventory.getStackInSlot(dragType);
+			final ItemStack currentItem = PlayerInventory.isHotbar(selectedSlot) ? player.inventory.mainInventory.get(selectedSlot) : ItemStack.EMPTY;
+
+			if (!currentItem.isEmpty() && stack == currentItem) {
 				return ItemStack.EMPTY;
 			}
 		}

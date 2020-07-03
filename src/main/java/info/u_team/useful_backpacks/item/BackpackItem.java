@@ -29,19 +29,23 @@ public class BackpackItem extends UItem implements IDyeableItem {
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
 		final ItemStack stack = player.getHeldItem(hand);
+		final int selectedSlot = hand == Hand.MAIN_HAND ? player.inventory.currentItem : -1;
 		if (!world.isRemote && player instanceof ServerPlayerEntity) {
 			NetworkHooks.openGui((ServerPlayerEntity) player, new INamedContainerProvider() {
 				
 				@Override
 				public Container createMenu(int id, PlayerInventory playerInventory, PlayerEntity player) {
-					return new BackpackContainer(id, playerInventory, new BackpackInventory(stack, backpack.getInventorySize()), backpack);
+					return new BackpackContainer(id, playerInventory, new BackpackInventory(stack, backpack.getInventorySize()), backpack, selectedSlot);
 				}
 				
 				@Override
 				public ITextComponent getDisplayName() {
 					return stack.getDisplayName();
 				}
-			}, buffer -> buffer.writeEnumValue(backpack));
+			}, buffer -> {
+				buffer.writeEnumValue(backpack);
+				buffer.writeVarInt(selectedSlot);
+			});
 		}
 		return new ActionResult<>(ActionResultType.SUCCESS, stack);
 	}
