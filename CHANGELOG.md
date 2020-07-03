@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.15.2-1.10.1.66] - 2020-07-03
+### Changed
+ - Fixed dupe bug #35 (Fixes [#35](https://github.com/MC-U-Team/Useful-Backpacks/issues/35))
+
 ## [1.15.2-1.10.0.65] - 2020-07-02
 ### Changed
  - Updated to forge 31.2.30
