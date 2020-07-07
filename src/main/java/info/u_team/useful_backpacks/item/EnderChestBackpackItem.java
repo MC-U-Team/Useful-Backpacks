@@ -22,7 +22,7 @@ public class EnderChestBackpackItem extends UItem {
 		final int selectedSlot = hand == Hand.MAIN_HAND ? player.inventory.currentItem : -1;
 		if (!world.isRemote && player instanceof ServerPlayerEntity) {
 			NetworkHooks.openGui((ServerPlayerEntity) player, new SimpleNamedContainerProvider((id, playerInventory, openPlayer) -> {
-				return EnderChestBackpackContainer.createEnderChestContainer(id, playerInventory, openPlayer.getInventoryEnderChest());
+				return EnderChestBackpackContainer.createEnderChestContainer(id, playerInventory, openPlayer.getInventoryEnderChest(), selectedSlot);
 			}, stack.getDisplayName()), buffer -> {
 				buffer.writeVarInt(selectedSlot);
 			});
