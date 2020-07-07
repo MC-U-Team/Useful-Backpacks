@@ -36,13 +36,15 @@ public class EnderChestBackpackContainer extends ChestContainer {
 			tmpSlot = null;
 		}
 		if (tmpSlot != null) {
-			if (tmpSlot.inventory == player.inventory && tmpSlot.getSlotIndex() == player.inventory.currentItem) {
+			if (tmpSlot.inventory == player.inventory && tmpSlot.getSlotIndex() == selectedSlot) {
 				return tmpSlot.getStack();
 			}
 		}
 		if (clickType == ClickType.SWAP) {
-			ItemStack stack = player.inventory.getStackInSlot(dragType);
-			if (stack == player.inventory.getCurrentItem()) {
+			final ItemStack stack = player.inventory.getStackInSlot(dragType);
+			final ItemStack currentItem = PlayerInventory.isHotbar(selectedSlot) ? player.inventory.mainInventory.get(selectedSlot) : selectedSlot == -1 ? player.inventory.offHandInventory.get(0) : ItemStack.EMPTY;
+			
+			if (!currentItem.isEmpty() && stack == currentItem) {
 				return ItemStack.EMPTY;
 			}
 		}
