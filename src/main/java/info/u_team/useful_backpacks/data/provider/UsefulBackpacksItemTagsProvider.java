@@ -7,13 +7,13 @@ import info.u_team.u_team_core.data.*;
 
 public class UsefulBackpacksItemTagsProvider extends CommonItemTagsProvider {
 	
-	public UsefulBackpacksItemTagsProvider(GenerationData data) {
-		super(data);
+	public UsefulBackpacksItemTagsProvider(GenerationData data, UsefulBackpacksBlockTagsProvider blockTags) {
+		super(data, blockTags);
 	}
 	
 	@Override
 	protected void registerTags() {
-		getBuilder(BACKPACK).add(SMALL_BACKPACK.get(), MEDIUM_BACKPACK.get(), LARGE_BACKPACK.get(), ENDERCHEST_BACKPACK.get());
+		getBuilder(BACKPACK).func_240534_a_(SMALL_BACKPACK.get(), MEDIUM_BACKPACK.get(), LARGE_BACKPACK.get(), ENDERCHEST_BACKPACK.get());
 	}
 	
 }
