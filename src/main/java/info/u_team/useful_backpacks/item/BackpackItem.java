@@ -3,16 +3,15 @@ package info.u_team.useful_backpacks.item;
 import info.u_team.u_team_core.api.dye.IDyeableItem;
 import info.u_team.u_team_core.item.UItem;
 import info.u_team.useful_backpacks.config.ServerConfig;
-import info.u_team.useful_backpacks.container.*;
+import info.u_team.useful_backpacks.container.BackpackContainer;
 import info.u_team.useful_backpacks.init.UsefulBackpacksItemGroups;
 import info.u_team.useful_backpacks.inventory.BackpackInventory;
 import info.u_team.useful_backpacks.type.Backpack;
 import net.minecraft.entity.player.*;
-import net.minecraft.inventory.container.*;
+import net.minecraft.inventory.container.SimpleNamedContainerProvider;
 import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.*;
-import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
