@@ -3,7 +3,7 @@ package info.u_team.useful_backpacks.item;
 import info.u_team.u_team_core.api.dye.IDyeableItem;
 import info.u_team.u_team_core.item.UItem;
 import info.u_team.useful_backpacks.config.ServerConfig;
-import info.u_team.useful_backpacks.container.BackpackContainer;
+import info.u_team.useful_backpacks.container.*;
 import info.u_team.useful_backpacks.init.UsefulBackpacksItemGroups;
 import info.u_team.useful_backpacks.inventory.BackpackInventory;
 import info.u_team.useful_backpacks.type.Backpack;
@@ -31,18 +31,9 @@ public class BackpackItem extends UItem implements IDyeableItem {
 		final ItemStack stack = player.getHeldItem(hand);
 		final int selectedSlot = hand == Hand.MAIN_HAND ? player.inventory.currentItem : -1;
 		if (!world.isRemote && player instanceof ServerPlayerEntity) {
-			NetworkHooks.openGui((ServerPlayerEntity) player, new INamedContainerProvider() {
-				
-				@Override
-				public Container createMenu(int id, PlayerInventory playerInventory, PlayerEntity player) {
-					return new BackpackContainer(id, playerInventory, new BackpackInventory(stack, backpack.getInventorySize()), backpack, selectedSlot);
-				}
-				
-				@Override
-				public ITextComponent getDisplayName() {
-					return stack.getDisplayName();
-				}
-			}, buffer -> {
+			NetworkHooks.openGui((ServerPlayerEntity) player, new SimpleNamedContainerProvider((id, playerInventory, openPlayer) -> {
+				return new BackpackContainer(id, playerInventory, new BackpackInventory(stack, backpack.getInventorySize()), backpack, selectedSlot);
+			}, stack.getDisplayName()), buffer -> {
 				buffer.writeEnumValue(backpack);
 				buffer.writeVarInt(selectedSlot);
 			});
