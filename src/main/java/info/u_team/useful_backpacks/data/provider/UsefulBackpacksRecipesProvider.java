@@ -7,7 +7,6 @@ import java.util.function.Consumer;
 import java.util.stream.Stream;
 
 import info.u_team.u_team_core.data.*;
-import info.u_team.u_team_core.util.TagUtil;
 import info.u_team.useful_backpacks.data.builder.BackpackCraftingRecipeBuilder;
 import net.minecraft.advancements.criterion.*;
 import net.minecraft.advancements.criterion.MinMaxBounds.IntBound;
