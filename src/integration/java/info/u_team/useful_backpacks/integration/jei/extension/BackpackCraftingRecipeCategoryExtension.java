@@ -4,6 +4,7 @@ import info.u_team.useful_backpacks.recipe.BackpackCraftingRecipe;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.category.extensions.vanilla.crafting.ICustomCraftingCategoryExtension;
+import net.minecraft.util.ResourceLocation;
 
 public class BackpackCraftingRecipeCategoryExtension implements ICustomCraftingCategoryExtension {
 	
@@ -20,6 +21,11 @@ public class BackpackCraftingRecipeCategoryExtension implements ICustomCraftingC
 	
 	@Override
 	public void setRecipe(IRecipeLayout recipeLayout, IIngredients ingredients) {
+	}
+	
+	@Override
+	public ResourceLocation getRegistryName() {
+		return recipe.getId();
 	}
 	
 }
