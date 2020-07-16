@@ -44,7 +44,7 @@ public class BackpackCraftingRecipe extends ShapedRecipe {
 						backpackItem.setTag(slotStack.getTag().copy()); // Copy tag from existing one including color and inventory if exist
 					}
 				} else {
-					if (ItemTags.WOOL.func_230235_a_(item)) {
+					if (ItemTags.WOOL.contains(item)) {
 						final DyeColor color = ColorUtil.getColorFromWool(Block.getBlockFromItem(item));
 						if (color != null) {
 							dyeList.add(color);
