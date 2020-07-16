@@ -107,7 +107,9 @@ signAllJars()
 
 sourceSets {
 	main {
-		java
+		java {
+			srcDirs += "src/integration/java"
+		}
 		resources {
 			srcDirs += "src/generated/resources"
 		}
