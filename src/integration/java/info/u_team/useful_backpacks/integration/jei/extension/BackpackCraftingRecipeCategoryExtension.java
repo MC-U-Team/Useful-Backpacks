@@ -2,13 +2,12 @@ package info.u_team.useful_backpacks.integration.jei.extension;
 
 import info.u_team.useful_backpacks.recipe.BackpackCraftingRecipe;
 import mezz.jei.api.constants.VanillaTypes;
-import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
-import mezz.jei.api.recipe.category.extensions.vanilla.crafting.ICustomCraftingCategoryExtension;
+import mezz.jei.api.recipe.category.extensions.vanilla.crafting.ICraftingCategoryExtension;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.Size2i;
 
-public class BackpackCraftingRecipeCategoryExtension implements ICustomCraftingCategoryExtension {
+public class BackpackCraftingRecipeCategoryExtension implements ICraftingCategoryExtension {
 	
 	private final BackpackCraftingRecipe recipe;
 	
@@ -20,10 +19,6 @@ public class BackpackCraftingRecipeCategoryExtension implements ICustomCraftingC
 	public void setIngredients(IIngredients ingredients) {
 		ingredients.setInputIngredients(recipe.getIngredients());
 		ingredients.setOutput(VanillaTypes.ITEM, recipe.getRecipeOutput());
-	}
-	
-	@Override
-	public void setRecipe(IRecipeLayout recipeLayout, IIngredients ingredients) {
 	}
 	
 	@Override
