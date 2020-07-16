@@ -21,7 +21,7 @@ public class UsefulBackpacksJeiPlugin implements IModPlugin {
 	@Override
 	public void registerItemSubtypes(ISubtypeRegistration registration) {
 		final ISubtypeInterpreter interpreter = stack -> {
-			if (stack.getItem() instanceof IDyeableItem) {
+			if (stack.hasTag() && stack.getItem() instanceof IDyeableItem) {
 				final IDyeableItem item = (IDyeableItem) stack.getItem();
 				return Integer.toString(item.getColor(stack));
 			}
