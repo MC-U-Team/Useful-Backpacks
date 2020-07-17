@@ -1,16 +1,20 @@
 package info.u_team.useful_backpacks.integration.jei;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import info.u_team.u_team_core.api.dye.IDyeableItem;
 import info.u_team.useful_backpacks.UsefulBackpacksMod;
 import info.u_team.useful_backpacks.init.UsefulBackpacksItems;
 import info.u_team.useful_backpacks.integration.jei.extension.BackpackCraftingRecipeCategoryExtension;
-import info.u_team.useful_backpacks.integration.jei.recipe.BackpackDyeRecipeMaker;
 import info.u_team.useful_backpacks.recipe.BackpackCraftingRecipe;
 import mezz.jei.api.*;
-import mezz.jei.api.constants.VanillaRecipeCategoryUid;
+import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.ingredients.subtypes.ISubtypeInterpreter;
 import mezz.jei.api.registration.*;
+import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.registries.ForgeRegistries;
 
 @JeiPlugin
 public class UsefulBackpacksJeiPlugin implements IModPlugin {
@@ -40,5 +44,11 @@ public class UsefulBackpacksJeiPlugin implements IModPlugin {
 	@Override
 	public void registerVanillaCategoryExtensions(IVanillaCategoryExtensionRegistration registration) {
 		registration.getCraftingCategory().addCategoryExtension(BackpackCraftingRecipe.class, BackpackCraftingRecipeCategoryExtension::new);
+	}
+	
+	@Override
+	public void registerRecipes(IRecipeRegistration registration) {
+		final List<ItemStack> items = ForgeRegistries.ITEMS.getValues().stream().filter(item -> item instanceof IDyeableItem || item instanceof IDyeableArmorItem).map(ItemStack::new).collect(Collectors.toList());
+		registration.addIngredientInfo(items, VanillaTypes.ITEM, "This item can be colored with dyes", "YET IJGOSDGjkf jklödfgjk");
 	}
 }
