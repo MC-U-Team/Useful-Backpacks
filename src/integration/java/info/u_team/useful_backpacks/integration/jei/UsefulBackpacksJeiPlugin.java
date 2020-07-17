@@ -4,8 +4,10 @@ import info.u_team.u_team_core.api.dye.IDyeableItem;
 import info.u_team.useful_backpacks.UsefulBackpacksMod;
 import info.u_team.useful_backpacks.init.UsefulBackpacksItems;
 import info.u_team.useful_backpacks.integration.jei.extension.BackpackCraftingRecipeCategoryExtension;
+import info.u_team.useful_backpacks.integration.jei.recipe.BackpackDyeRecipeMaker;
 import info.u_team.useful_backpacks.recipe.BackpackCraftingRecipe;
 import mezz.jei.api.*;
+import mezz.jei.api.constants.VanillaRecipeCategoryUid;
 import mezz.jei.api.ingredients.subtypes.ISubtypeInterpreter;
 import mezz.jei.api.registration.*;
 import net.minecraft.util.ResourceLocation;
@@ -38,6 +40,11 @@ public class UsefulBackpacksJeiPlugin implements IModPlugin {
 	@Override
 	public void registerVanillaCategoryExtensions(IVanillaCategoryExtensionRegistration registration) {
 		registration.getCraftingCategory().addCategoryExtension(BackpackCraftingRecipe.class, BackpackCraftingRecipeCategoryExtension::new);
+	}
+	
+	@Override
+	public void registerRecipes(IRecipeRegistration registration) {
+		registration.addRecipes(BackpackDyeRecipeMaker.createBackpackDyeRecipes(), VanillaRecipeCategoryUid.CRAFTING);
 	}
 	
 }
