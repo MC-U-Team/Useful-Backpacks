@@ -78,7 +78,7 @@ public class BackpackCraftingRecipeCategoryExtension implements ICustomCraftingC
 				
 				if (dyeableItem.hasColor(focusStack)) {
 					final int focusColor = dyeableItem.getColor(focusStack);
-					final Optional<DyeColor> colorMatch = Stream.of(DyeColor.values()).filter(dyeColor -> dyeColor.getMapColor().colorValue == focusColor).findAny();
+					final Optional<DyeColor> colorMatch = Stream.of(DyeColor.values()).filter(dyeColor -> dyeColor.getColorValue() == focusColor).findAny();
 					if (colorMatch.isPresent()) {
 						final DyeColor color = colorMatch.get();
 						final Block wool = ColorUtil.getWoolFromColor(color);
