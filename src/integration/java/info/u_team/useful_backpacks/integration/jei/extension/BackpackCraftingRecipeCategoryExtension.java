@@ -56,11 +56,12 @@ public class BackpackCraftingRecipeCategoryExtension implements ICustomCraftingC
 		
 		final ItemStack outputStack = outputs.get(0).get(0);
 		
-		// Handle when focused on wool to display only that color
+		// Handle when focused on wool to display only that color and focus on backpack to display the right wool
 		
 		final IFocus<?> focus = recipeLayout.getFocus();
 		if (focus != null && focus.getValue() instanceof ItemStack) {
 			final ItemStack focusStack = (ItemStack) focus.getValue();
+			
 			final DyeColor color = ColorUtil.getColorFromWool(Block.getBlockFromItem(focusStack.getItem()));
 			if (color != null && outputStack.getItem() instanceof IDyeableItem) {
 				if (color == DyeColor.WHITE) {
@@ -69,6 +70,23 @@ public class BackpackCraftingRecipeCategoryExtension implements ICustomCraftingC
 					guiItemStacks.set(0, IDyeableItem.colorStack(outputStack, Arrays.asList(color)));
 				}
 				return;
+			}
+			
+			if (focusStack.getItem() instanceof IDyeableItem) {
+				System.out.println("ITEM");
+				System.out.println(outputs);
+				final int c = ((IDyeableItem) focusStack.getItem()).getColor(focusStack);
+				final Optional<DyeColor> colorMatch = Stream.of(DyeColor.values()).filter(dyeColor -> dyeColor.getMapColor().colorValue == c).findAny();
+				if (colorMatch.isPresent()) {
+					final Block wool = ColorUtil.getWoolFromColor(colorMatch.get());
+					for (int i = 0; i < inputs.size(); i++) {
+						final List<ItemStack> list = inputs.get(i);
+						
+						if (list.stream().anyMatch(stack -> stack.getItem() == Blocks.WHITE_WOOL.asItem())) {
+							inputs.set(i, Arrays.asList(new ItemStack(wool)));
+						}
+					}
+				}
 			}
 		}
 		
