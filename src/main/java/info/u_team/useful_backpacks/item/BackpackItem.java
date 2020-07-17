@@ -1,5 +1,7 @@
 package info.u_team.useful_backpacks.item;
 
+import java.util.Arrays;
+
 import info.u_team.u_team_core.api.dye.IDyeableItem;
 import info.u_team.u_team_core.item.UItem;
 import info.u_team.useful_backpacks.config.ServerConfig;
@@ -60,9 +62,7 @@ public class BackpackItem extends UItem implements IDyeableItem {
 		}
 		items.add(new ItemStack(this));
 		for (final DyeColor color : DyeColor.values()) {
-			final ItemStack dyedStack = new ItemStack(this, 1);
-			setColor(dyedStack, color.getMapColor().colorValue);
-			items.add(dyedStack);
+			items.add(IDyeableItem.colorStack(new ItemStack(this, 1), Arrays.asList(color)));
 		}
 	}
 	
