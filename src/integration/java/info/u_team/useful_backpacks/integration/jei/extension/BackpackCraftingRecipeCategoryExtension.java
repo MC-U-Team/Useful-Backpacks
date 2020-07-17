@@ -1,7 +1,7 @@
 package info.u_team.useful_backpacks.integration.jei.extension;
 
 import java.util.*;
-import java.util.stream.*;
+import java.util.stream.Stream;
 
 import info.u_team.u_team_core.api.dye.IDyeableItem;
 import info.u_team.u_team_core.util.ColorUtil;
@@ -10,11 +10,11 @@ import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.gui.ingredient.*;
 import mezz.jei.api.ingredients.IIngredients;
-import mezz.jei.api.recipe.IFocus;
+import mezz.jei.api.recipe.IFocus.Mode;
 import mezz.jei.api.recipe.category.extensions.vanilla.crafting.ICustomCraftingCategoryExtension;
 import net.minecraft.block.*;
 import net.minecraft.item.*;
-import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.Size2i;
 
@@ -49,61 +49,65 @@ public class BackpackCraftingRecipeCategoryExtension implements ICustomCraftingC
 	public void setRecipe(IRecipeLayout recipeLayout, IIngredients ingredients) {
 		final IGuiItemStackGroup guiItemStacks = recipeLayout.getItemStacks();
 		
-		final List<List<ItemStack>> inputs = ingredients.getInputs(VanillaTypes.ITEM);
-		final List<List<ItemStack>> outputs = ingredients.getOutputs(VanillaTypes.ITEM);
+		final List<List<ItemStack>> providedInputs = ingredients.getInputs(VanillaTypes.ITEM);
+		final List<List<ItemStack>> providedOutputs = ingredients.getOutputs(VanillaTypes.ITEM);
 		
-		craftingGridHelper.setInputs(guiItemStacks, inputs, recipe.getWidth(), recipe.getHeight());
+		final List<List<ItemStack>> inputs = new ArrayList<>();
+		final List<List<ItemStack>> outputs = new ArrayList<>();
 		
-		final ItemStack outputStack = outputs.get(0).get(0);
+		for (int index = 0; index < providedInputs.size(); index++) {
+			inputs.add(index, new ArrayList<>(providedInputs.get(index)));
+		}
 		
-		// Handle when focused on wool to display only that color and focus on backpack to display the right wool
+		for (int index = 0; index < providedOutputs.size(); index++) {
+			outputs.add(index, new ArrayList<>(providedOutputs.get(index)));
+		}
 		
-		final IFocus<?> focus = recipeLayout.getFocus();
-		if (focus != null && focus.getValue() instanceof ItemStack) {
-			final ItemStack focusStack = (ItemStack) focus.getValue();
+		if (recipeLayout.getFocus() != null && recipeLayout.getFocus().getValue() instanceof ItemStack && outputs.get(0).get(0).getItem() instanceof IDyeableItem) {
+			final ItemStack focusStack = (ItemStack) recipeLayout.getFocus().getValue();
+			final Item focusItem = focusStack.getItem();
+			final Mode mode = recipeLayout.getFocus().getMode();
 			
-			final DyeColor color = ColorUtil.getColorFromWool(Block.getBlockFromItem(focusStack.getItem()));
-			if (color != null && outputStack.getItem() instanceof IDyeableItem) {
-				if (color == DyeColor.WHITE) {
-					guiItemStacks.set(0, outputStack);
-				} else {
-					guiItemStacks.set(0, IDyeableItem.colorStack(outputStack, Arrays.asList(color)));
+			if (mode == Mode.INPUT && ItemTags.WOOL.contains(focusItem)) {
+				final DyeColor color = ColorUtil.getColorFromWool(Block.getBlockFromItem(focusItem));
+				if (color != null && color != DyeColor.WHITE) {
+					outputs.get(0).set(0, IDyeableItem.colorStack(outputs.get(0).get(0), Arrays.asList(color)));
 				}
-				return;
-			}
-			
-			if (focusStack.getItem() instanceof IDyeableItem) {
-				System.out.println("ITEM");
-				System.out.println(outputs);
-				final int c = ((IDyeableItem) focusStack.getItem()).getColor(focusStack);
-				final Optional<DyeColor> colorMatch = Stream.of(DyeColor.values()).filter(dyeColor -> dyeColor.getMapColor().colorValue == c).findAny();
-				if (colorMatch.isPresent()) {
-					final Block wool = ColorUtil.getWoolFromColor(colorMatch.get());
-					for (int i = 0; i < inputs.size(); i++) {
-						final List<ItemStack> list = inputs.get(i);
+			} else if (mode == Mode.OUTPUT && focusItem instanceof IDyeableItem) {
+				final IDyeableItem dyeableItem = (IDyeableItem) focusItem;
+				
+				if (dyeableItem.hasColor(focusStack)) {
+					final int focusColor = dyeableItem.getColor(focusStack);
+					final Optional<DyeColor> colorMatch = Stream.of(DyeColor.values()).filter(dyeColor -> dyeColor.getMapColor().colorValue == focusColor).findAny();
+					if (colorMatch.isPresent()) {
+						final DyeColor color = colorMatch.get();
+						final Block wool = ColorUtil.getWoolFromColor(color);
 						
-						if (list.stream().anyMatch(stack -> stack.getItem() == Blocks.WHITE_WOOL.asItem())) {
-							inputs.set(i, Arrays.asList(new ItemStack(wool)));
+						for (int index = 0; index < inputs.size(); index++) {
+							final List<ItemStack> list = inputs.get(index);
+							
+							if (list.stream().allMatch(stack -> ItemTags.WOOL.contains(stack.getItem()))) {
+								inputs.set(index, Arrays.asList(new ItemStack(wool)));
+							}
+						}
+						
+						if (color != DyeColor.WHITE) {
+							outputs.get(0).set(0, IDyeableItem.colorStack(outputs.get(0).get(0), Arrays.asList(color)));
+						}
+					}
+				} else {
+					for (int index = 0; index < inputs.size(); index++) {
+						final List<ItemStack> list = inputs.get(index);
+						
+						if (list.stream().allMatch(stack -> ItemTags.WOOL.contains(stack.getItem()))) {
+							inputs.set(index, Arrays.asList(new ItemStack(Blocks.WHITE_WOOL)));
 						}
 					}
 				}
 			}
 		}
 		
-		// Handle the color rotation
-		
-		final Optional<Ingredient> oneWoolIngredient = recipe.getIngredients().stream().filter(ingredient -> ingredient.test(new ItemStack(Blocks.WHITE_WOOL))).findAny();
-		if (oneWoolIngredient.isPresent()) {
-			final List<ItemStack> outputStacks = Stream.of(oneWoolIngredient.get().getMatchingStacks()).map(stack -> {
-				final DyeColor color = ColorUtil.getColorFromWool(Block.getBlockFromItem(stack.getItem()));
-				if (color != null && outputStack.getItem() instanceof IDyeableItem && color != DyeColor.WHITE) {
-					return IDyeableItem.colorStack(outputStack, Arrays.asList(color));
-				}
-				return outputStack;
-			}).collect(Collectors.toList());
-			guiItemStacks.set(0, outputStacks);
-		} else {
-			guiItemStacks.set(0, outputStack);
-		}
+		craftingGridHelper.setInputs(guiItemStacks, inputs, getSize().width, getSize().height);
+		guiItemStacks.set(0, outputs.get(0));
 	}
 }
