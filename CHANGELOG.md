@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [1.15.2-1.10.2.70] - 2020-07-03
+## [1.15.2-1.10.1.70] - 2020-07-03
 ### Added
  - Added jei integration to display the right colors
 
