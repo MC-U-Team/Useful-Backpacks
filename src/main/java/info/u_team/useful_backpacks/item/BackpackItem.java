@@ -8,11 +8,10 @@ import info.u_team.useful_backpacks.init.UsefulBackpacksItemGroups;
 import info.u_team.useful_backpacks.inventory.BackpackInventory;
 import info.u_team.useful_backpacks.type.Backpack;
 import net.minecraft.entity.player.*;
-import net.minecraft.inventory.container.*;
+import net.minecraft.inventory.container.SimpleNamedContainerProvider;
 import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.*;
-import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
@@ -31,18 +30,9 @@ public class BackpackItem extends UItem implements IDyeableItem {
 		final ItemStack stack = player.getHeldItem(hand);
 		final int selectedSlot = hand == Hand.MAIN_HAND ? player.inventory.currentItem : -1;
 		if (!world.isRemote && player instanceof ServerPlayerEntity) {
-			NetworkHooks.openGui((ServerPlayerEntity) player, new INamedContainerProvider() {
-				
-				@Override
-				public Container createMenu(int id, PlayerInventory playerInventory, PlayerEntity player) {
-					return new BackpackContainer(id, playerInventory, new BackpackInventory(stack, backpack.getInventorySize()), backpack, selectedSlot);
-				}
-				
-				@Override
-				public ITextComponent getDisplayName() {
-					return stack.getDisplayName();
-				}
-			}, buffer -> {
+			NetworkHooks.openGui((ServerPlayerEntity) player, new SimpleNamedContainerProvider((id, playerInventory, openPlayer) -> {
+				return new BackpackContainer(id, playerInventory, new BackpackInventory(stack, backpack.getInventorySize()), backpack, selectedSlot);
+			}, stack.getDisplayName()), buffer -> {
 				buffer.writeEnumValue(backpack);
 				buffer.writeVarInt(selectedSlot);
 			});
