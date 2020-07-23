@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.15.2-1.10.2.70] - 2020-07-03
+### Added
+ - Added jei integration to display the right colors
+
+### Changed
+ - Fixed the same bug as [#35](https://github.com/MC-U-Team/Useful-Backpacks/issues/35) for ender backpacks
+
 ## [1.15.2-1.10.1.66] - 2020-07-03
 ### Changed
  - Fixed dupe bug #35 (Fixes [#35](https://github.com/MC-U-Team/Useful-Backpacks/issues/35))
