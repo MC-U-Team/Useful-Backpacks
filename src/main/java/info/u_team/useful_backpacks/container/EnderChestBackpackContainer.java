@@ -9,18 +9,22 @@ import net.minecraft.network.PacketBuffer;
 
 public class EnderChestBackpackContainer extends ChestContainer {
 	
+	private final int selectedSlot;
+	
 	// Client
 	public static EnderChestBackpackContainer createEnderChestContainer(int id, PlayerInventory playerInventory, PacketBuffer buffer) {
-		return createEnderChestContainer(id, playerInventory, new Inventory(9 * 3));
+		final int selectedSlot = buffer.readVarInt();
+		return createEnderChestContainer(id, playerInventory, new Inventory(9 * 3), selectedSlot);
 	}
 	
 	// Server
-	public static EnderChestBackpackContainer createEnderChestContainer(int id, PlayerInventory playerInventory, IInventory inventory) {
-		return new EnderChestBackpackContainer(UsefulBackpacksContainerTypes.ENDERCHEST_BACKPACK.get(), id, playerInventory, inventory, 3);
+	public static EnderChestBackpackContainer createEnderChestContainer(int id, PlayerInventory playerInventory, IInventory inventory, int selectedSlot) {
+		return new EnderChestBackpackContainer(UsefulBackpacksContainerTypes.ENDERCHEST_BACKPACK.get(), id, playerInventory, inventory, 3, selectedSlot);
 	}
 	
-	public EnderChestBackpackContainer(ContainerType<?> type, int id, PlayerInventory playerInventory, IInventory inventory, int rows) {
+	public EnderChestBackpackContainer(ContainerType<?> type, int id, PlayerInventory playerInventory, IInventory inventory, int rows, int selectedSlot) {
 		super(type, id, playerInventory, inventory, rows);
+		this.selectedSlot = selectedSlot;
 	}
 	
 	@Override
@@ -32,13 +36,15 @@ public class EnderChestBackpackContainer extends ChestContainer {
 			tmpSlot = null;
 		}
 		if (tmpSlot != null) {
-			if (tmpSlot.inventory == player.inventory && tmpSlot.getSlotIndex() == player.inventory.currentItem) {
+			if (tmpSlot.inventory == player.inventory && tmpSlot.getSlotIndex() == selectedSlot) {
 				return tmpSlot.getStack();
 			}
 		}
 		if (clickType == ClickType.SWAP) {
-			ItemStack stack = player.inventory.getStackInSlot(dragType);
-			if (stack == player.inventory.getCurrentItem()) {
+			final ItemStack stack = player.inventory.getStackInSlot(dragType);
+			final ItemStack currentItem = PlayerInventory.isHotbar(selectedSlot) ? player.inventory.mainInventory.get(selectedSlot) : ItemStack.EMPTY;
+			
+			if (!currentItem.isEmpty() && stack == currentItem) {
 				return ItemStack.EMPTY;
 			}
 		}
