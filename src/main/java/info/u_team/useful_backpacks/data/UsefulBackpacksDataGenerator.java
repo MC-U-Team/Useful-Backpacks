@@ -15,9 +15,7 @@ public class UsefulBackpacksDataGenerator {
 	public static void data(GatherDataEvent event) {
 		final GenerationData data = new GenerationData(UsefulBackpacksMod.MODID, event);
 		if (event.includeServer()) {
-			final UsefulBackpacksBlockTagsProvider blockTags = new UsefulBackpacksBlockTagsProvider(data);
-			data.addProvider($ -> blockTags);
-			data.addProvider($ -> new UsefulBackpacksItemTagsProvider(data, blockTags));
+			data.addProvider(UsefulBackpacksItemTagsProvider::new);
 			data.addProvider(UsefulBackpacksRecipesProvider::new);
 		}
 		if (event.includeClient()) {
