@@ -7,8 +7,8 @@ import info.u_team.u_team_core.data.*;
 
 public class UsefulBackpacksItemTagsProvider extends CommonItemTagsProvider {
 	
-	public UsefulBackpacksItemTagsProvider(GenerationData data, UsefulBackpacksBlockTagsProvider blockTags) {
-		super(data, blockTags);
+	public UsefulBackpacksItemTagsProvider(GenerationData data) {
+		super(data);
 	}
 	
 	@Override
