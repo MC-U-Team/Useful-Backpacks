@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 ### Changed
  - Updated to forge 32.0.97
  - Include the license info in the mods.toml now
- - Run data gen to regenerate the files
+ - Run datagen to regenerate the files
 
 ## [1.16.1-1.11.1.69-SNAPSHOT] - 2020-07-17
 ### Added
