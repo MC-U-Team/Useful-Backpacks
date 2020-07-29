@@ -13,7 +13,7 @@ public class UsefulBackpacksItemTagsProvider extends CommonItemTagsProvider {
 	
 	@Override
 	protected void registerTags() {
-		getBuilder(BACKPACK).func_240534_a_(SMALL_BACKPACK.get(), MEDIUM_BACKPACK.get(), LARGE_BACKPACK.get(), ENDERCHEST_BACKPACK.get());
+		getBuilder(BACKPACK).add(SMALL_BACKPACK.get(), MEDIUM_BACKPACK.get(), LARGE_BACKPACK.get(), ENDERCHEST_BACKPACK.get());
 	}
 	
 }
