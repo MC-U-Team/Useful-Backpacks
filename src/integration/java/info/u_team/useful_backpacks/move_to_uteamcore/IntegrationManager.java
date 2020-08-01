@@ -10,7 +10,7 @@ import net.minecraftforge.forgespi.language.ModFileScanData.AnnotationData;
 
 public class IntegrationManager {
 	
-	public static void execute(String modid) {
+	public static void initIntegrations(String modid) {
 		final Type type = Type.getType(IIntegration.class);
 		
 		final List<AnnotationData> annotations = ModList.get() //
@@ -23,11 +23,7 @@ public class IntegrationManager {
 				.collect(Collectors.toList());
 		
 		annotations.forEach(data -> {
-			System.out.println(data.getAnnotationType());
-			System.out.println(data.getTargetType());
-			System.out.println(data.getClassType());
-			System.out.println(data.getMemberName());
-			System.out.println(data.getAnnotationData());
+//			data.getClassType().
 		});
 	}
 }
