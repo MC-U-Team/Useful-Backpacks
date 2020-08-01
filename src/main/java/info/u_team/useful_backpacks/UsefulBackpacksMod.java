@@ -18,7 +18,7 @@ public class UsefulBackpacksMod {
 		JarSignVerifier.checkSigned(MODID);
 		ModLoadingContext.get().registerConfig(Type.SERVER, ServerConfig.CONFIG);
 		register();
-		IntegrationManager.execute(MODID);
+		IntegrationManager.constructIntegrations(MODID);
 	}
 	
 	private void register() {

@@ -13,7 +13,7 @@ public class IntegrationManager {
 	
 	private static final Logger LOGGER = LogManager.getLogger();
 	
-	public static void callIntegrations(String modid) {
+	public static void constructIntegrations(String modid) {
 		final Type type = Type.getType(IIntegration.class);
 		
 		final List<AnnotationData> annotations = ModList.get() //
