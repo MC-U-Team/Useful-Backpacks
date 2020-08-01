@@ -11,7 +11,7 @@ import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 @EventBusSubscriber(modid = UsefulBackpacksMod.MODID, bus = Bus.MOD)
 public class CuriosIntegrationDataGenerator {
 	
-	@SubscribeEvent(priority = EventPriority.LOWEST)
+	@SubscribeEvent
 	public static void data(GatherDataEvent event) {
 		final GenerationData data = new GenerationData(UsefulBackpacksMod.MODID, event);
 		if (event.includeServer()) {
