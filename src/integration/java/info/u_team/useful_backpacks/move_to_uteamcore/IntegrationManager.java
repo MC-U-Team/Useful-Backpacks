@@ -10,7 +10,7 @@ import net.minecraftforge.forgespi.language.ModFileScanData.AnnotationData;
 
 public class IntegrationManager {
 	
-	public static void initIntegrations(String modid) {
+	public static void callIntegrations(String modid) {
 		final Type type = Type.getType(IIntegration.class);
 		
 		final List<AnnotationData> annotations = ModList.get() //
