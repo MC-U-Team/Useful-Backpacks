@@ -26,10 +26,12 @@ public class IntegrationManager {
 				.collect(Collectors.toList());
 		
 		for (AnnotationData data : annotations) {
-			try {
-				Class.forName(data.getMemberName()).asSubclass(IModIntegration.class).newInstance().construct();
-			} catch (Exception ex) {
-				LOGGER.error("Failed to load and construct integration : {}", data.getMemberName(), ex);
+			if (ModList.get().isLoaded((String) data.getAnnotationData().get("value"))) {
+				try {
+					Class.forName(data.getMemberName()).asSubclass(IModIntegration.class).newInstance().construct();
+				} catch (Exception ex) {
+					LOGGER.error("Failed to load and construct integration : {}", data.getMemberName(), ex);
+				}
 			}
 		}
 	}
