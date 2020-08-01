@@ -1,6 +1,13 @@
 package info.u_team.useful_backpacks.move_to_uteamcore;
 
+import java.lang.annotation.*;
 
-public interface IIntegration {
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.TYPE)
+public @interface IIntegration {
+	
+	String baseMod();
+	
+	String integrationMod();
 	
 }
