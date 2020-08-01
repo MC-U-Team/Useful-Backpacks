@@ -6,7 +6,7 @@ import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
-import top.theillusivec4.curios.api.*;
+import top.theillusivec4.curios.api.SlotTypePreset;
 
 @EventBusSubscriber(modid = UsefulBackpacksMod.MODID, bus = Bus.MOD)
 public class CuriosIntegration {
