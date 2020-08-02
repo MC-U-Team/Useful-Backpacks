@@ -1,6 +1,6 @@
 package info.u_team.useful_backpacks.move_to_uteamcore;
 
-@IIntegration("curios")
+@Integration("curios")
 public class Test implements IModIntegration {
 	
 	static {

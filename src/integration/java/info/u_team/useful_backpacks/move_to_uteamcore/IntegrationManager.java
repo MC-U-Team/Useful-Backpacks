@@ -14,7 +14,7 @@ public class IntegrationManager {
 	private static final Logger LOGGER = LogManager.getLogger();
 	
 	public static void constructIntegrations(String modid) {
-		final Type type = Type.getType(IIntegration.class);
+		final Type type = Type.getType(Integration.class);
 		
 		final List<AnnotationData> annotations = ModList.get() //
 				.getModFileById(modid) //
