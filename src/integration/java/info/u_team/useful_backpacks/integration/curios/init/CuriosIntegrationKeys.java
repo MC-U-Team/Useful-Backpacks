@@ -18,6 +18,7 @@ import net.minecraftforge.event.TickEvent.*;
 import net.minecraftforge.eventbus.api.*;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import top.theillusivec4.curios.api.CuriosApi;
 
 public class CuriosIntegrationKeys {
@@ -43,8 +44,12 @@ public class CuriosIntegrationKeys {
 		return CuriosApi.getCuriosHelper().findEquippedCurio(stack -> stack.getItem() instanceof BackpackItem || stack.getItem() instanceof EnderChestBackpackItem, livingEntity);
 	}
 	
-	public static void register(IEventBus bus) {
+	private static void setup(FMLClientSetupEvent event) {
 		ClientRegistry.registerKeybinding(OPEN_BACKPACK);
+	}
+	
+	public static void register(IEventBus bus) {
+		bus.addListener(CuriosIntegrationKeys::setup);
 	}
 	
 	@EventBusSubscriber(modid = UsefulBackpacksMod.MODID, bus = Bus.FORGE, value = Dist.CLIENT)
