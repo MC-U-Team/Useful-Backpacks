@@ -1,14 +1,12 @@
 package info.u_team.useful_backpacks.integration.curios;
 
-import info.u_team.useful_backpacks.UsefulBackpacksMod;
+import info.u_team.u_team_core.api.integration.Integration;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import top.theillusivec4.curios.api.SlotTypePreset;
 
-@EventBusSubscriber(modid = UsefulBackpacksMod.MODID, bus = Bus.MOD)
+@Integration("curios")
 public class CuriosIntegration {
 	
 	@SubscribeEvent
