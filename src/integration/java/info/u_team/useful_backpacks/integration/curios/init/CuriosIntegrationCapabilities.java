@@ -19,18 +19,14 @@ public class CuriosIntegrationCapabilities {
 			return;
 		}
 		
-		final LazyOptional<ICurio> curioCapability = LazyOptional.of(() -> new CuriosBackpackCapability(stack));
-		
 		event.addCapability(CuriosCapability.ID_ITEM, new ICapabilityProvider() {
+			
+			final LazyOptional<ICurio> curioCapability = LazyOptional.of(() -> new CuriosBackpackCapability(stack));
 			
 			@Override
 			public <T> LazyOptional<T> getCapability(Capability<T> capability, Direction side) {
 				return CuriosCapability.ITEM.orEmpty(capability, curioCapability);
 			}
-		});
-		
-		event.addListener(() -> {
-			System.out.println("SHUOLD CALL WHEN ITEM IS INVALIDETED: " + stack);
 		});
 	}
 	
