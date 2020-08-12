@@ -8,8 +8,8 @@ import net.minecraft.client.renderer.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.*;
-import net.minecraft.util.math.vector.*;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.vector.Vector3f;
 import top.theillusivec4.curios.api.type.capability.ICurio;
 
 public class CuriosBackpackCapability implements ICurio {
