@@ -31,9 +31,8 @@ public class BackpackItem extends UItem implements IBackpack, IDyeableItem {
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
 		final ItemStack stack = player.getHeldItem(hand);
-		final int selectedSlot = hand == Hand.MAIN_HAND ? player.inventory.currentItem : -1;
 		if (!world.isRemote && player instanceof ServerPlayerEntity) {
-			open((ServerPlayerEntity) player, stack, selectedSlot);
+			open((ServerPlayerEntity) player, stack, hand == Hand.MAIN_HAND ? player.inventory.currentItem : -1);
 		}
 		return new ActionResult<>(ActionResultType.SUCCESS, stack);
 	}
