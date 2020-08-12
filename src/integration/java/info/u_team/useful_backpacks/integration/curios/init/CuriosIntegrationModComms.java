@@ -11,7 +11,7 @@ public class CuriosIntegrationModComms {
 		InterModComms.sendTo(CuriosApi.MODID, SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.BACK.getMessageBuilder().build());
 	}
 	
-	public static void register(IEventBus bus) {
+	public static void registerMod(IEventBus bus) {
 		bus.addListener(CuriosIntegrationModComms::enqueue);
 	}
 	
