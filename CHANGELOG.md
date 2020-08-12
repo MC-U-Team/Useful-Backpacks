@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.15.2-1.10.2.73] - 2020-08-12
+### Added
+ - Added curios integration (backport). There is now a key to open the backpack in a slot + the backpack will be rendered on the back
+
+### Changed
+ - Fix shadow on large backpack texture (Thanks to HauntedCorpse)
+
 ## [1.15.2-1.10.1.70] - 2020-07-23
 ### Added
  - Added jei integration to display the right colors
