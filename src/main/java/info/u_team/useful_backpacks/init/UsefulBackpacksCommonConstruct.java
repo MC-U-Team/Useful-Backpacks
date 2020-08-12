@@ -18,5 +18,4 @@ public class UsefulBackpacksCommonConstruct implements IModConstruct {
 		BusRegister.registerMod(UsefulBackpacksItems::register);
 		BusRegister.registerMod(UsefulBackpacksRecipeSerializers::register);
 	}
-	
 }
