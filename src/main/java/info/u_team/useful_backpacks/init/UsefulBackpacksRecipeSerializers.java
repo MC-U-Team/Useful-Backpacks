@@ -14,7 +14,7 @@ public class UsefulBackpacksRecipeSerializers {
 	
 	public static final RegistryObject<IRecipeSerializer<BackpackCraftingRecipe>> BACKPACK = RECIPE_SERIALIZERS.register("crafting_backpack", BackpackCraftingRecipe.Serializer::new);
 	
-	public static void register(IEventBus bus) {
+	public static void registerMod(IEventBus bus) {
 		RECIPE_SERIALIZERS.register(bus);
 	}
 	
