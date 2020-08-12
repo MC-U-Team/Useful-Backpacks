@@ -10,6 +10,7 @@ public class CuriosIntegrationCommonConstruct implements IModIntegration {
 	@Override
 	public void construct() {
 		BusRegister.registerMod(CuriosIntegrationModComms::registerMod);
+		BusRegister.registerMod(CuriosIntegrationNetwork::registerMod);
 	}
 	
 }
