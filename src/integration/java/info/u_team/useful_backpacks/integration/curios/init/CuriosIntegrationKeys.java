@@ -6,18 +6,14 @@ import org.apache.commons.lang3.tuple.ImmutableTriple;
 import org.lwjgl.glfw.GLFW;
 
 import info.u_team.u_team_core.util.registry.ClientRegistry;
-import info.u_team.useful_backpacks.UsefulBackpacksMod;
 import info.u_team.useful_backpacks.item.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.settings.IKeyConflictContext;
 import net.minecraftforge.event.TickEvent.*;
-import net.minecraftforge.eventbus.api.*;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import top.theillusivec4.curios.api.CuriosApi;
 
@@ -45,22 +41,20 @@ public class CuriosIntegrationKeys {
 		ClientRegistry.registerKeybinding(OPEN_BACKPACK);
 	}
 	
+	public static void onClientTick(ClientTickEvent event) {
+		if (event.phase != Phase.END) {
+			return;
+		}
+		if (Minecraft.getInstance().isGameFocused() && OPEN_BACKPACK.isKeyDown()) {
+			System.out.println("PRESS | TICK");
+		}
+	}
+	
 	public static void registerMod(IEventBus bus) {
 		bus.addListener(CuriosIntegrationKeys::setup);
 	}
 	
-	@EventBusSubscriber(modid = UsefulBackpacksMod.MODID, bus = Bus.FORGE, value = Dist.CLIENT)
-	public static class Handler {
-		
-		@SubscribeEvent
-		public static void onKeyPress(ClientTickEvent event) {
-			if (event.phase != Phase.END) {
-				return;
-			}
-			if (Minecraft.getInstance().isGameFocused() && OPEN_BACKPACK.isKeyDown()) {
-				System.out.println("PRESS | TICK");
-			}
-		}
+	public static void registerForge(IEventBus bus) {
+		bus.addListener(CuriosIntegrationKeys::onClientTick);
 	}
-	
 }
