@@ -17,7 +17,7 @@ public class UsefulBackpacksContainerTypes {
 	
 	public static final RegistryObject<ContainerType<EnderChestBackpackContainer>> ENDERCHEST_BACKPACK = CONTAINER_TYPES.register("backpack_enderchest", () -> new UContainerType<>(EnderChestBackpackContainer::createEnderChestContainer));
 	
-	public static void register(IEventBus bus) {
+	public static void registerMod(IEventBus bus) {
 		CONTAINER_TYPES.register(bus);
 	}
 }
