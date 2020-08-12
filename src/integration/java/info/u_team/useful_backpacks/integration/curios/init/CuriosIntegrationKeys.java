@@ -1,36 +1,26 @@
 package info.u_team.useful_backpacks.integration.curios.init;
 
-import java.util.Optional;
-
-import org.apache.commons.lang3.tuple.ImmutableTriple;
 import org.lwjgl.glfw.GLFW;
 
 import info.u_team.u_team_core.util.registry.ClientRegistry;
-import info.u_team.useful_backpacks.item.*;
+import info.u_team.useful_backpacks.integration.curios.util.BackpackUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.settings.IKeyConflictContext;
 import net.minecraftforge.event.TickEvent.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import top.theillusivec4.curios.api.CuriosApi;
 
 public class CuriosIntegrationKeys {
 	
 	public static final KeyBinding OPEN_BACKPACK = new KeyBinding("key.usefulbackpacks.curiosintegration.description", GLFW.GLFW_KEY_V, "key.usefulbackpacks.curiosintegration.category");
-	
-	public static Optional<ImmutableTriple<String, Integer, ItemStack>> getBackpack(LivingEntity livingEntity) {
-		return CuriosApi.getCuriosHelper().findEquippedCurio(stack -> stack.getItem() instanceof BackpackItem || stack.getItem() instanceof EnderChestBackpackItem, livingEntity);
-	}
 	
 	private static void setup(FMLClientSetupEvent event) {
 		OPEN_BACKPACK.setKeyConflictContext(new IKeyConflictContext() {
 			
 			@Override
 			public boolean isActive() {
-				return getBackpack(Minecraft.getInstance().player).isPresent();
+				return BackpackUtil.getBackpack(Minecraft.getInstance().player).isPresent();
 			}
 			
 			@Override
