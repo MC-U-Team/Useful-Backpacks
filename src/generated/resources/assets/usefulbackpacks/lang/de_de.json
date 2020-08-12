@@ -3,5 +3,7 @@
 	"item.usefulbackpacks.backpack_large": "Großer Rucksack",
 	"item.usefulbackpacks.backpack_medium": "Mittlerer Rucksack",
 	"item.usefulbackpacks.backpack_small": "Kleiner Rucksack",
-	"itemGroup.usefulbackpacks.group": "Nützliche Rucksäcke"
+	"itemGroup.usefulbackpacks.group": "Nützliche Rucksäcke",
+	"key.usefulbackpacks.curiosintegration.category": "Nützliche Rucksäcke : Curios Integration",
+	"key.usefulbackpacks.curiosintegration.description": "Öffne Rucksack"
 }
