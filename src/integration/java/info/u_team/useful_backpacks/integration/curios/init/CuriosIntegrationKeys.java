@@ -36,7 +36,8 @@ public class CuriosIntegrationKeys {
 		if (event.phase != Phase.END) {
 			return;
 		}
-		if (Minecraft.getInstance().isGameFocused() && OPEN_BACKPACK.isKeyDown()) {
+		final Minecraft minecraft = Minecraft.getInstance();
+		if (minecraft.isGameFocused() && minecraft.currentScreen == null && OPEN_BACKPACK.isKeyDown()) {
 			CuriosIntegrationNetwork.NETWORK.sendToServer(new OpenBackpackMessage());
 		}
 	}
