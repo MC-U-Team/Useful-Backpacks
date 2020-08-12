@@ -26,6 +26,17 @@ public class UsefulBackpacksLanguagesProvider extends CommonLanguagesProvider {
 		addItem("de_de", MEDIUM_BACKPACK, "Mittlerer Rucksack");
 		addItem("de_de", LARGE_BACKPACK, "Großer Rucksack");
 		addItem("de_de", ENDERCHEST_BACKPACK, "Endertruhen Rucksack");
+		
+		// Integration
+		// Curious
+		
+		// English
+		add("key.usefulbackpacks.curiosintegration.description", "Open backpack");
+		add("key.usefulbackpacks.curiosintegration.category", "Useful Backpacks : Curios Integration");
+		
+		// German
+		add("de_de", "key.usefulbackpacks.curiosintegration.description", "Öffne Rucksack");
+		add("de_de", "key.usefulbackpacks.curiosintegration.category", "Nützliche Rucksäcke : Curios Integration");
 	}
 	
 }
