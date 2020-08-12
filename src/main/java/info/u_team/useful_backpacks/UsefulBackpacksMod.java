@@ -1,5 +1,6 @@
 package info.u_team.useful_backpacks;
 
+import info.u_team.u_team_core.util.annotation.AnnotationManager;
 import info.u_team.u_team_core.util.registry.BusRegister;
 import info.u_team.u_team_core.util.verify.JarSignVerifier;
 import info.u_team.useful_backpacks.config.ServerConfig;
@@ -17,6 +18,8 @@ public class UsefulBackpacksMod {
 		JarSignVerifier.checkSigned(MODID);
 		ModLoadingContext.get().registerConfig(Type.SERVER, ServerConfig.CONFIG);
 		register();
+		
+		AnnotationManager.callIntegrations(MODID);
 	}
 	
 	private void register() {
