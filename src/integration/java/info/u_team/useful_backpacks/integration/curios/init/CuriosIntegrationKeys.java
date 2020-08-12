@@ -3,6 +3,7 @@ package info.u_team.useful_backpacks.integration.curios.init;
 import org.lwjgl.glfw.GLFW;
 
 import info.u_team.u_team_core.util.registry.ClientRegistry;
+import info.u_team.useful_backpacks.integration.curios.network.OpenBackpackMessage;
 import info.u_team.useful_backpacks.integration.curios.util.BackpackUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
@@ -36,7 +37,7 @@ public class CuriosIntegrationKeys {
 			return;
 		}
 		if (Minecraft.getInstance().isGameFocused() && OPEN_BACKPACK.isKeyDown()) {
-			System.out.println("PRESS | TICK");
+			CuriosIntegrationNetwork.NETWORK.sendToServer(new OpenBackpackMessage());
 		}
 	}
 	
