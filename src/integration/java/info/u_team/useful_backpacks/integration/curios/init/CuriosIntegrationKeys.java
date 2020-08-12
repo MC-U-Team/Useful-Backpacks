@@ -25,7 +25,11 @@ public class CuriosIntegrationKeys {
 	
 	public static final KeyBinding OPEN_BACKPACK = new KeyBinding("key.usefulbackpacks.curiosintegration.description", GLFW.GLFW_KEY_V, "key.usefulbackpacks.curiosintegration.category");
 	
-	static {
+	public static Optional<ImmutableTriple<String, Integer, ItemStack>> getBackpack(LivingEntity livingEntity) {
+		return CuriosApi.getCuriosHelper().findEquippedCurio(stack -> stack.getItem() instanceof BackpackItem || stack.getItem() instanceof EnderChestBackpackItem, livingEntity);
+	}
+	
+	private static void setup(FMLClientSetupEvent event) {
 		OPEN_BACKPACK.setKeyConflictContext(new IKeyConflictContext() {
 			
 			@Override
@@ -38,13 +42,6 @@ public class CuriosIntegrationKeys {
 				return false;
 			}
 		});
-	}
-	
-	public static Optional<ImmutableTriple<String, Integer, ItemStack>> getBackpack(LivingEntity livingEntity) {
-		return CuriosApi.getCuriosHelper().findEquippedCurio(stack -> stack.getItem() instanceof BackpackItem || stack.getItem() instanceof EnderChestBackpackItem, livingEntity);
-	}
-	
-	private static void setup(FMLClientSetupEvent event) {
 		ClientRegistry.registerKeybinding(OPEN_BACKPACK);
 	}
 	
