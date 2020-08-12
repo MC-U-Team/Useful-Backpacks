@@ -48,7 +48,7 @@ public class CuriosIntegrationKeys {
 		ClientRegistry.registerKeybinding(OPEN_BACKPACK);
 	}
 	
-	public static void register(IEventBus bus) {
+	public static void registerMod(IEventBus bus) {
 		bus.addListener(CuriosIntegrationKeys::setup);
 	}
 	
