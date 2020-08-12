@@ -10,6 +10,8 @@ public class CuriosIntegrationClientConstruct implements IModIntegration {
 	@Override
 	public void construct() {
 		BusRegister.registerMod(CuriosIntegrationKeys::registerMod);
+		
+		BusRegister.registerForge(CuriosIntegrationKeys::registerForge);
 	}
 	
 }
