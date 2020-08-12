@@ -11,6 +11,8 @@ public class CuriosIntegrationCommonConstruct implements IModIntegration {
 	public void construct() {
 		BusRegister.registerMod(CuriosIntegrationModComms::registerMod);
 		BusRegister.registerMod(CuriosIntegrationNetwork::registerMod);
+		
+		BusRegister.registerForge(CuriosIntegrationCapabilities::registerForge);
 	}
 	
 }
