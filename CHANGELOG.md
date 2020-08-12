@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
  - Fix shadow on large backpack texture (Thanks to HauntedCorpse)
+ - Update to the new annotation system in uteamcore
 
 ## [1.16.1-1.11.1.71] - 2020-07-29
 ### Changed
