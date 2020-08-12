@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.16.1-1.11.2.72] - 2020-08-
+### Added
+ - Added curios integration. There is now a key to open the backpack in a slot + the backpack will be rendered on the back
+
+### Changed
+ - Fix shadow on large backpack texture (Thanks to HauntedCorpse)
+
 ## [1.16.1-1.11.1.71] - 2020-07-29
 ### Changed
  - Updated to forge 32.0.97
