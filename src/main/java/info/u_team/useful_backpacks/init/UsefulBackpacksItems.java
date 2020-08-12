@@ -19,7 +19,7 @@ public class UsefulBackpacksItems {
 	
 	public static final RegistryObject<EnderChestBackpackItem> ENDERCHEST_BACKPACK = ITEMS.register("backpack_enderchest", EnderChestBackpackItem::new);
 	
-	public static void register(IEventBus bus) {
+	public static void registerMod(IEventBus bus) {
 		ITEMS.register(bus);
 	}
 	
