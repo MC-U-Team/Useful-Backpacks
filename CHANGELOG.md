@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.16.1-1.11.2.74] - 2020-08-13
+### Changed
+ - Update to forge 32.0.108
+
 ## [1.16.1-1.11.2.72] - 2020-08-12
 ### Added
  - Added curios integration. There is now a key to open the backpack in a slot + the backpack will be rendered on the back
