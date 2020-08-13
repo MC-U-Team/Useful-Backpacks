@@ -125,10 +125,10 @@ repositories {
 dependencies {
     minecraft getForgeDependency()
     compile getUTeamCoreDependency()
-    compile fg.deobf(getJeiApiDependency())
-    runtime fg.deobf(getJeiDependency())
-    compile fg.deobf("top.theillusivec4.curios:curios:FORGE-1.16.1-3.0:api")
-    runtime fg.deobf("top.theillusivec4.curios:curios:FORGE-1.16.1-3.0")
+    //compile fg.deobf(getJeiApiDependency())
+    //runtime fg.deobf(getJeiDependency())
+    //compile fg.deobf("top.theillusivec4.curios:curios:FORGE-1.16.1-3.0:api")
+    //runtime fg.deobf("top.theillusivec4.curios:curios:FORGE-1.16.1-3.0")
 }
 
 curseforge {
