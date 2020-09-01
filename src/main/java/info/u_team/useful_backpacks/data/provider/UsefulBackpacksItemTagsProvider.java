@@ -15,7 +15,7 @@ public class UsefulBackpacksItemTagsProvider extends CommonItemTagsProvider {
 	@Override
 	protected void registerTags() {
 		getBuilder(BACKPACK).add(SMALL_BACKPACK.get(), MEDIUM_BACKPACK.get(), LARGE_BACKPACK.get(), ENDERCHEST_BACKPACK.get());
-		getBuilder(TagUtil.createItemTag("curios", "back")).addTag(BACKPACK);
+		getBuilder(TagUtil.createItemTag("curios", "back")).add(BACKPACK);
 	}
 	
 }
