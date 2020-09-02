@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.15.2-1.10.3.77] - 2020-09-02
+### Changed
+ - Fixed dupes [#41](https://github.com/MC-U-Team/Useful-Backpacks/issues/41) and [#42](https://github.com/MC-U-Team/Useful-Backpacks/issues/42)
+
 ## [1.15.2-1.10.2.73] - 2020-08-12
 ### Added
  - Added curios integration (backport). There is now a key to open the backpack in a slot + the backpack will be rendered on the back
