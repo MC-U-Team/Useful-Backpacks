@@ -120,6 +120,9 @@ repositories {
     maven {
         url = "https://maven.theillusivec4.top"
     }
+    maven {
+        url = "https://www.cursemaven.com"
+    }
 }
 
 dependencies {
@@ -129,6 +132,7 @@ dependencies {
     runtime fg.deobf(getJeiDependency())
     compile fg.deobf("top.theillusivec4.curios:curios:FORGE-1.16.1-3.0:api")
     runtime fg.deobf("top.theillusivec4.curios:curios:FORGE-1.16.1-3.0")
+    compile fg.deobf("curse.maven:modular-routers:3030113")
 }
 
 curseforge {
