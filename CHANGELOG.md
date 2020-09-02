@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.16.1-1.11.3.78] - 2020-09-02
+### Changed
+ - Fixed dupes [#41](https://github.com/MC-U-Team/Useful-Backpacks/issues/41) and [#42](https://github.com/MC-U-Team/Useful-Backpacks/issues/42)
+ 
 ## [1.16.1-1.11.2.74] - 2020-08-13
 ### Changed
  - Update to forge 32.0.108
