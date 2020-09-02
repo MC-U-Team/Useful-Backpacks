@@ -1,6 +1,7 @@
 package info.u_team.useful_backpacks.container;
 
 import info.u_team.u_team_core.container.UContainer;
+import info.u_team.useful_backpacks.api.IBackpack;
 import info.u_team.useful_backpacks.init.UsefulBackpacksContainerTypes;
 import info.u_team.useful_backpacks.inventory.BackpackInventory;
 import info.u_team.useful_backpacks.type.Backpack;
@@ -91,12 +92,21 @@ public class BackpackContainer extends UContainer {
 		if (clickType == ClickType.SWAP) {
 			final ItemStack stack = player.inventory.getStackInSlot(dragType);
 			final ItemStack currentItem = PlayerInventory.isHotbar(selectedSlot) ? player.inventory.mainInventory.get(selectedSlot) : ItemStack.EMPTY;
-
+			
 			if (!currentItem.isEmpty() && stack == currentItem) {
 				return ItemStack.EMPTY;
 			}
 		}
 		return super.slotClick(slotId, dragType, clickType, player);
+	}
+	
+	@Override
+	public boolean canInteractWith(PlayerEntity player) {
+		if (backpackInventory instanceof BackpackInventory) {
+			final ItemStack stack = ((BackpackInventory) backpackInventory).getStack();
+			return !stack.isEmpty() && stack.getItem() instanceof IBackpack;
+		}
+		return true;
 	}
 	
 	public Backpack getBackpack() {
