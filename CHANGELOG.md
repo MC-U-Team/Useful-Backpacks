@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.16.2-1.11.5.81] - 2020-09-11
+### Changed
+ - Update to forge 33.0.61
+ 
+### Added
+ - Added config option to disable stacking of backpacks in backpacks. Addresses [#45](https://github.com/MC-U-Team/Useful-Backpacks/issues/45)
+
 ## [1.16.2-1.11.4.80] - 2020-09-04
 ### Changed
  - Update to forge 33.0.37
