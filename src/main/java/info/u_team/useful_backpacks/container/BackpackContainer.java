@@ -37,7 +37,7 @@ public class BackpackContainer extends UContainer {
 	public void appendBackpackInventory(int x, int y) {
 		for (int height = 0; height < backpack.getInventoryHeight(); height++) {
 			for (int width = 0; width < backpack.getInventoryWidth(); width++) {
-				addSlot(new Slot(backpackInventory, width + height * backpack.getInventoryWidth(), width * 18 + x, height * 18 + y));
+				addSlot(new BackpackSlot(backpackInventory, width + height * backpack.getInventoryWidth(), width * 18 + x, height * 18 + y));
 			}
 		}
 	}
