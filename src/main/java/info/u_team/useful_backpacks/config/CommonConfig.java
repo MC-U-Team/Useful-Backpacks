@@ -20,7 +20,12 @@ public class CommonConfig {
 		return INSTANCE;
 	}
 	
+	public final BooleanValue allowStackingBackpacks;
+	
 	private CommonConfig(Builder builder) {
+		builder.comment("Common configuration settings").push("common");
+		allowStackingBackpacks = builder.comment("This option controlls if backpacks in backpacks are allowed.", "If set to true you can put backpacks in existing backpacks and stack them together.", "If set to false you cannot put backpacks in backpacks").define("allowStackingBackpacks", true);
+		builder.pop();
 	}
 	
 }
