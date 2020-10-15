@@ -1,14 +1,14 @@
 buildscript {
-    repositories {
-        maven { url = "https://files.minecraftforge.net/maven" }
+	repositories {
+		maven { url = "https://files.minecraftforge.net/maven" }
 		maven { url = "https://plugins.gradle.org/m2/" }
-        jcenter()
-        mavenCentral()
-    }
-    dependencies {
-        classpath group: "net.minecraftforge.gradle", name: "ForgeGradle", version: "3.+", changing: true
+		jcenter()
+		mavenCentral()
+	}
+	dependencies {
+		classpath group: "net.minecraftforge.gradle", name: "ForgeGradle", version: "3.+", changing: true
 		classpath "gradle.plugin.com.matthewprenger:CurseGradle:1.4.0"
-    }
+	}
 }
 
 apply from: "https://gradle-files.u-team.info/default-project.gradle"
@@ -25,81 +25,81 @@ version = generateVersion()
 sourceCompatibility = targetCompatibility = "1.8"
 
 minecraft {
-    mappings channel: config.forge.mapping_channel, version: config.forge.mapping
-    runs {
-        client = {
-            workingDirectory project.file("run/client").canonicalPath
-            mods {
-                "${config.mod.modid}" {
-                    source sourceSets.main
+	mappings channel: config.forge.mapping_channel, version: config.forge.mapping
+	runs {
+		client = {
+			workingDirectory project.file("run/client").canonicalPath
+			mods {
+				"${config.mod.modid}" {
+					source sourceSets.main
 				}
 			}
-        }
-        client_first = {
-       		parents runs.getByName("client")
-            workingDirectory project.file("run/client/one").canonicalPath
-            args "--username", "HyCraftHD", "--uuid", "d9202ce0-f6c1-4dc1-9341-2d9091764808"
-        }
-        client_second = {
-       	 	parents runs.getByName("client")
-            workingDirectory project.file("run/client/second").canonicalPath
-            args "--username", "UTeam", "--uuid", "08e0d9d9-e948-40de-b68d-d5101571acf1"
-        }
-        server = {
-            workingDirectory project.file("run/server").canonicalPath
-            mods {
-                "${config.mod.modid}" {
-                    source sourceSets.main
+		}
+		client_first = {
+			parents runs.getByName("client")
+			workingDirectory project.file("run/client/one").canonicalPath
+			args "--username", "HyCraftHD", "--uuid", "d9202ce0-f6c1-4dc1-9341-2d9091764808"
+		}
+		client_second = {
+			parents runs.getByName("client")
+			workingDirectory project.file("run/client/second").canonicalPath
+			args "--username", "UTeam", "--uuid", "08e0d9d9-e948-40de-b68d-d5101571acf1"
+		}
+		server = {
+			workingDirectory project.file("run/server").canonicalPath
+			mods {
+				"${config.mod.modid}" {
+					source sourceSets.main
 				}
 			}
-        }
-        data = {
-            workingDirectory project.file("run/data").canonicalPath
-            args "--mod", config.mod.modid, "--all", "--output", "\"" + file("src/generated/resources").toString() + "\"", "--validate", "--existing", "\"" + sourceSets.main.resources.srcDirs[0] + "\""
-            mods {
-                "${config.mod.modid}" {
-                    source sourceSets.main
+		}
+		data = {
+			workingDirectory project.file("run/data").canonicalPath
+			args "--mod", config.mod.modid, "--all", "--output", "\"" + file("src/generated/resources").toString() + "\"", "--validate", "--existing", "\"" + sourceSets.main.resources.srcDirs[0] + "\""
+			mods {
+				"${config.mod.modid}" {
+					source sourceSets.main
 				}
 			}
-        }
-    }
+		}
+	}
 }
 
 jar {
 	classifier = ""
-
-    from "LICENSE"
-    
-    exclude(".cache")    
-       
-   	manifest normalManifest
+	
+	from "LICENSE"
+	
+	exclude(".cache")
+	
+	manifest normalManifest
 }
 
 task deobfJar(type: Jar) {
 	classifier = "dev"
-
-    from sourceSets.main.output
-    from "LICENSE"
-    
-    exclude(".cache")    
-        
-    manifest normalManifest
+	
+	from sourceSets.main.output
+	from "LICENSE"
+	
+	exclude(".cache")
+	
+	manifest normalManifest
 }
 
 task sourcesJar(type: Jar) {
-    classifier = "sources"
-    
-    from sourceSets.main.allJava
-    from "LICENSE"
+	classifier = "sources"
+	
+	from sourceSets.main.allJava
+	from "LICENSE"
 }
 
 task docJar(type: Jar) {
-    classifier = "javadoc"
-    
-    from javadoc
-    from "LICENSE"
-    
-    tasks.withType(Javadoc) {
+	classifier = "javadoc"
+	
+	from javadoc
+	from "LICENSE"
+	
+	tasks.withType(Javadoc) {
 		options.addStringOption('Xdoclint:none', '-quiet')
 		options.addStringOption('encoding', 'UTF-8')
 		options.addStringOption('charSet', 'UTF-8')
@@ -107,10 +107,10 @@ task docJar(type: Jar) {
 }
 
 artifacts {
-    archives deobfJar
-    archives sourcesJar
-    archives docJar
-    archives jar
+	archives deobfJar
+	archives sourcesJar
+	archives docJar
+	archives jar
 }
 
 signAllJars()
@@ -127,12 +127,12 @@ sourceSets {
 }
 
 dependencies {
-    minecraft getForgeDependency()
-    compile getUTeamCoreDependency()
-    compile fg.deobf(getJeiApiDependency())
-    runtime fg.deobf(getJeiDependency())
-    compile fg.deobf(getCuriosApiDependency())
-    runtime fg.deobf(getCuriosDependency())
+	minecraft getForgeDependency()
+	compile getUTeamCoreDependency()
+	compile fg.deobf(getJeiApiDependency())
+	runtime fg.deobf(getJeiDependency())
+	compile fg.deobf(getCuriosApiDependency())
+	runtime fg.deobf(getCuriosDependency())
 }
 
 curseforge {
@@ -146,43 +146,43 @@ curseforge {
 	
 	apiKey = getValueDefault("token")
 	
-  	project {
-    	id = config.curse.id
-    	releaseType = config.curse.type
-
+	project {
+		id = config.curse.id
+		releaseType = config.curse.type
+		
 		addGameVersion config.forge.mcversion
 		
 		options {
-		    forgeGradleIntegration = false
+			forgeGradleIntegration = false
 		}
 		
 		relations {
-      		requiredDependency "u-team-core"
-      		optionalDependency "jei"
-      		optionalDependency "curios"
-    	}
-
-    	mainArtifact(jar) {
-      		displayName = "${config.curse.display}-${config.forge.mcversion}-${project.version}"
-      		changelogType = "html"
-      		changelog = "<a href=\"" + generateChangelogUrl() + "\">Changelog of ${project.version}</a>"
-    	}
-    	
-    	addArtifact(deobfJar) {
-    		displayName = "${config.curse.display}-${config.forge.mcversion}-${project.version}-dev"
-    		changelogType = "text"
-    		changelog = "Mappings: ${config.forge.mapping_channel}_${config.forge.mapping}"
-    	}
-  	}
+			requiredDependency "u-team-core"
+			optionalDependency "jei"
+			optionalDependency "curios"
+		}
+		
+		mainArtifact(jar) {
+			displayName = "${config.curse.display}-${config.forge.mcversion}-${project.version}"
+			changelogType = "html"
+			changelog = "<a href=\"" + generateChangelogUrl() + "\">Changelog of ${project.version}</a>"
+		}
+		
+		addArtifact(deobfJar) {
+			displayName = "${config.curse.display}-${config.forge.mcversion}-${project.version}-dev"
+			changelogType = "text"
+			changelog = "Mappings: ${config.forge.mapping_channel}_${config.forge.mapping}"
+		}
+	}
 }
 
 uploadArchives {
 	onlyIf {
 		getValue("mavenpass") != null
 	}
-
+	
 	tasks.uploadArchives.dependsOn build
-
+	
 	repositories {
 		mavenDeployer {
 			repository(url: "https://repo.u-team.info") {
@@ -213,7 +213,7 @@ uploadArchives {
 							distribution "repo"
 						}
 					}
-
+					
 					developers {
 						developer {
 							name "HyCraftHD"
