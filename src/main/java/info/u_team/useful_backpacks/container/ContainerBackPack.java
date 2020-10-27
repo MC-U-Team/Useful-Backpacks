@@ -4,11 +4,13 @@ import java.util.*;
 
 import info.u_team.useful_backpacks.enums.EnumBackPacks;
 import info.u_team.useful_backpacks.inventory.InventoryBackPack;
+import info.u_team.useful_backpacks.item.ItemBackPack;
 import invtweaks.api.container.*;
 import invtweaks.api.container.ChestContainer.RowSizeCallback;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.entity.player.*;
 import net.minecraft.inventory.*;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Optional;
 
@@ -17,12 +19,14 @@ public class ContainerBackPack extends Container {
 	
 	private final IInventory inventory;
 	private final EnumBackPacks type;
+	private final boolean offhand;
 	
-	public ContainerBackPack(IInventory inventory, InventoryPlayer inventoryplayer, EnumBackPacks type) {
+	public ContainerBackPack(IInventory inventory, InventoryPlayer inventoryplayer, EnumBackPacks type, boolean offhand) {
 		
 		this.inventory = inventory;
 		this.type = type;
-		
+		this.offhand = offhand;
+
 		int x_backpackinv = 0;
 		int y_backpackinv = 0;
 		
@@ -80,7 +84,8 @@ public class ContainerBackPack extends Container {
 	
 	@Override
 	public boolean canInteractWith(EntityPlayer player) {
-		return true;
+		Item item = this.offhand ? player.getHeldItemOffhand().getItem() : player.getHeldItemMainhand().getItem();
+		return item instanceof ItemBackPack;
 	}
 	
 	@Override
