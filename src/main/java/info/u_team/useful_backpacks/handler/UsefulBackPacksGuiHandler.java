@@ -19,7 +19,7 @@ public class UsefulBackPacksGuiHandler implements IGuiHandler {
 			final ItemStack stack = ID == 0 ? player.getHeldItemMainhand() : player.getHeldItemOffhand();
 			if (stack != null && stack.getItem() instanceof ItemBackPack) {
 				EnumBackPacks type = EnumBackPacks.byMetadata(stack.getMetadata());
-				return new ContainerBackPack(new InventoryBackPack(false, stack, type.getCount()), player.inventory, type);
+				return new ContainerBackPack(new InventoryBackPack(false, stack, type.getCount()), player.inventory, type, ID == 1);
 			}
 		}
 		return null;
@@ -31,7 +31,7 @@ public class UsefulBackPacksGuiHandler implements IGuiHandler {
 			final ItemStack stack = ID == 0 ? player.getHeldItemMainhand() : player.getHeldItemOffhand();
 			if (stack != null && stack.getItem() instanceof ItemBackPack) {
 				EnumBackPacks type = EnumBackPacks.byMetadata(stack.getMetadata());
-				return new GuiBackPack(new InventoryBasic("backpack", false, type.getCount()), player.inventory, type);
+				return new GuiBackPack(new InventoryBasic("backpack", false, type.getCount()), player.inventory, type, ID == 1);
 			}
 		}
 		return null;

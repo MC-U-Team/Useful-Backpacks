@@ -19,8 +19,8 @@ public class GuiBackPack extends GuiContainer {
 	
 	private final EnumBackPacks type;
 	
-	public GuiBackPack(IInventory inventory, InventoryPlayer inventoryplayer, EnumBackPacks type) {
-		super(new ContainerBackPack(inventory, inventoryplayer, type));
+	public GuiBackPack(IInventory inventory, InventoryPlayer inventoryplayer, EnumBackPacks type, boolean offhand) {
+		super(new ContainerBackPack(inventory, inventoryplayer, type, offhand));
 		this.type = type;
 		
 		switch (type) {
