@@ -9,7 +9,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import top.theillusivec4.curios.api.CuriosApi;
 
-public class BackpackUtil {
+public class BackpackCuriosUtil {
 	
 	public static Optional<ImmutableTriple<String, Integer, ItemStack>> getBackpack(LivingEntity livingEntity) {
 		return CuriosApi.getCuriosHelper().findEquippedCurio(stack -> stack.getItem() instanceof IBackpack, livingEntity);

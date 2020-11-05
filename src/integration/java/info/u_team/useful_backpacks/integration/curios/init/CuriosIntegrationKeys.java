@@ -4,7 +4,7 @@ import org.lwjgl.glfw.GLFW;
 
 import info.u_team.u_team_core.util.registry.ClientRegistry;
 import info.u_team.useful_backpacks.integration.curios.network.OpenBackpackMessage;
-import info.u_team.useful_backpacks.integration.curios.util.BackpackUtil;
+import info.u_team.useful_backpacks.integration.curios.util.BackpackCuriosUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.client.settings.IKeyConflictContext;
@@ -21,7 +21,7 @@ public class CuriosIntegrationKeys {
 			
 			@Override
 			public boolean isActive() {
-				return BackpackUtil.getBackpack(Minecraft.getInstance().player).isPresent();
+				return BackpackCuriosUtil.getBackpack(Minecraft.getInstance().player).isPresent();
 			}
 			
 			@Override

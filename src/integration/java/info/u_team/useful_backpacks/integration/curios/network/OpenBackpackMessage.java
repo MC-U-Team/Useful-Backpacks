@@ -6,7 +6,7 @@ import java.util.function.Supplier;
 import org.apache.commons.lang3.tuple.ImmutableTriple;
 
 import info.u_team.useful_backpacks.api.IBackpack;
-import info.u_team.useful_backpacks.integration.curios.util.BackpackUtil;
+import info.u_team.useful_backpacks.integration.curios.util.BackpackCuriosUtil;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
@@ -27,7 +27,7 @@ public class OpenBackpackMessage {
 			final Context context = contextSupplier.get();
 			context.enqueueWork(() -> {
 				final ServerPlayerEntity player = context.getSender();
-				final Optional<ItemStack> curioBackpack = BackpackUtil.getBackpack(player).map(ImmutableTriple::getRight).filter(stack -> stack.getItem() instanceof IBackpack);
+				final Optional<ItemStack> curioBackpack = BackpackCuriosUtil.getBackpack(player).map(ImmutableTriple::getRight).filter(stack -> stack.getItem() instanceof IBackpack);
 				if (curioBackpack.isPresent()) {
 					final ItemStack stack = curioBackpack.get();
 					final IBackpack backpack = (IBackpack) stack.getItem();
