@@ -6,9 +6,7 @@ import info.u_team.useful_backpacks.container.BackpackContainer;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraftforge.api.distmarker.*;
 
-@OnlyIn(Dist.CLIENT)
 public class BackpackScreen extends UBasicContainerScreen<BackpackContainer> {
 	
 	public BackpackScreen(BackpackContainer container, PlayerInventory playerInventory, ITextComponent title) {
