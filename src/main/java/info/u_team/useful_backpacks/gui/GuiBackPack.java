@@ -64,8 +64,8 @@ public class GuiBackPack extends GuiContainer {
 			mc.getTextureManager().bindTexture(texture_big);
 			break;
 		}
-		int k = (this.width - this.xSize) / 2;
-		int l = (this.height - this.ySize) / 2;
+		final int k = (this.width - this.xSize) / 2;
+		final int l = (this.height - this.ySize) / 2;
 		drawModalRectWithCustomSizedTexture(k, l, 0, 0, this.xSize, this.ySize, 512, 512);
 	}
 	

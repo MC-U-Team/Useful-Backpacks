@@ -102,10 +102,10 @@ public class ContainerBackPack extends Container {
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer playerIn, int index) {
 		ItemStack itemstack = ItemStack.EMPTY;
-		Slot slot = (Slot) this.inventorySlots.get(index);
+		final Slot slot = this.inventorySlots.get(index);
 		
 		if (slot != null && slot.getHasStack()) {
-			ItemStack itemstack1 = slot.getStack();
+			final ItemStack itemstack1 = slot.getStack();
 			itemstack = itemstack1.copy();
 			
 			if (index < type.getCount()) {
@@ -129,7 +129,7 @@ public class ContainerBackPack extends Container {
 	public ItemStack slotClick(int slotId, int dragType, ClickType clickTypeIn, EntityPlayer player) {
 		Slot tmpSlot;
 		if (slotId >= 0 && slotId < inventorySlots.size()) {
-			tmpSlot = (Slot) inventorySlots.get(slotId);
+			tmpSlot = inventorySlots.get(slotId);
 		} else {
 			tmpSlot = null;
 		}
@@ -161,7 +161,7 @@ public class ContainerBackPack extends Container {
 	@Optional.Method(modid = "inventorytweaks")
 	public Map<ContainerSection, List<Slot>> getContainerSections() {
 		
-		Map<ContainerSection, List<Slot>> slots = new Object2ObjectOpenHashMap<>();
+		final Map<ContainerSection, List<Slot>> slots = new Object2ObjectOpenHashMap<>();
 		
 		slots.put(ContainerSection.CHEST, inventorySlots.subList(0, type.getCount()));
 		

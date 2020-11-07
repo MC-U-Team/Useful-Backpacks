@@ -38,7 +38,7 @@ public enum EnumBackPacks {
 	
 	private static final EnumBackPacks[] all = new EnumBackPacks[values().length];
 	static {
-		for (EnumBackPacks type : values()) {
+		for (final EnumBackPacks type : values()) {
 			all[type.getMetadata()] = type;
 		}
 	}

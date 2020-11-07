@@ -21,25 +21,26 @@ public class RecipesSmallBackPack extends ShapedRecipes {
 		super("", primer.width, primer.height, primer.input, new ItemStack(UsefulBackPacksItems.backpack, 1, EnumBackPacks.SMALL.getMetadata()));
 	}
 	
+	@Override
 	public ItemStack getCraftingResult(InventoryCrafting inv) {
-		int[] aint = new int[3];
+		final int[] aint = new int[3];
 		int i = 0;
 		int j = 0;
 		
 		final List<EnumDyeColor> colors = new ArrayList<>();
 		
 		for (int k = 0; k < inv.getSizeInventory(); ++k) {
-			ItemStack slotStack = inv.getStackInSlot(k);
+			final ItemStack slotStack = inv.getStackInSlot(k);
 			
 			if (!slotStack.isEmpty()) {
 				if (Block.getBlockFromItem(slotStack.getItem()) == Blocks.WOOL) {
 					
-					EnumDyeColor color = EnumDyeColor.byMetadata(slotStack.getMetadata());
+					final EnumDyeColor color = EnumDyeColor.byMetadata(slotStack.getMetadata());
 					colors.add(color);
-					float[] afloat = color.getColorComponentValues();
-					int l1 = (int) (afloat[0] * 255.0F);
-					int i2 = (int) (afloat[1] * 255.0F);
-					int j2 = (int) (afloat[2] * 255.0F);
+					final float[] afloat = color.getColorComponentValues();
+					final int l1 = (int) (afloat[0] * 255.0F);
+					final int i2 = (int) (afloat[1] * 255.0F);
+					final int j2 = (int) (afloat[2] * 255.0F);
 					i += Math.max(l1, Math.max(i2, j2));
 					aint[0] += l1;
 					aint[1] += i2;
@@ -52,11 +53,11 @@ public class RecipesSmallBackPack extends ShapedRecipes {
 		int i1 = aint[0] / j;
 		int j1 = aint[1] / j;
 		int k1 = aint[2] / j;
-		float f3 = (float) i / (float) j;
-		float f4 = (float) Math.max(i1, Math.max(j1, k1));
-		i1 = (int) ((float) i1 * f3 / f4);
-		j1 = (int) ((float) j1 * f3 / f4);
-		k1 = (int) ((float) k1 * f3 / f4);
+		final float f3 = (float) i / (float) j;
+		final float f4 = Math.max(i1, Math.max(j1, k1));
+		i1 = (int) (i1 * f3 / f4);
+		j1 = (int) (j1 * f3 / f4);
+		k1 = (int) (k1 * f3 / f4);
 		int k2 = (i1 << 8) + j1;
 		k2 = (k2 << 8) + k1;
 		

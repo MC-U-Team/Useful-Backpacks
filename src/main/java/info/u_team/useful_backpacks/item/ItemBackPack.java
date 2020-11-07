@@ -105,12 +105,12 @@ public class ItemBackPack extends UItem {
 			return;
 		}
 		for (int i = 0; i < EnumBackPacks.values().length; i++) {
-			ItemStack normalstack = new ItemStack(this, 1, i);
+			final ItemStack normalstack = new ItemStack(this, 1, i);
 			items.add(normalstack);
 		}
-		for (EnumDyeColor color : EnumDyeColor.values()) {
+		for (final EnumDyeColor color : EnumDyeColor.values()) {
 			for (int i = 0; i < EnumBackPacks.values().length; i++) {
-				ItemStack dyedstack = new ItemStack(this, 1, i);
+				final ItemStack dyedstack = new ItemStack(this, 1, i);
 				setColor(dyedstack, color.getColorValue());
 				items.add(dyedstack);
 			}
