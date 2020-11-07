@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.12.2-1.5.4.85] - 2020-11-07
+### Changed
+ - Fix many dupe bugs
+ - Add config to disable stacking in backpacks
+ - Many thanks to [Focamacho](https://github.com/Focamacho) for the backport of these [bug fixes and features](https://github.com/MC-U-Team/Useful-Backpacks/pull/47)!
+
 ## [1.12.2-1.5.3.59] - 2020-02-07
 ### Changed
  - Refactor some code
