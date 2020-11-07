@@ -2,8 +2,7 @@ package info.u_team.useful_backpacks.config;
 
 import info.u_team.useful_backpacks.UsefulBackPacksConstants;
 import net.minecraftforge.common.config.Config;
-import net.minecraftforge.common.config.Config.Comment;
-import net.minecraftforge.common.config.Config.Name;
+import net.minecraftforge.common.config.Config.*;
 
 @Config(modid = UsefulBackPacksConstants.MODID, category = "server")
 public class ServerConfig {

@@ -1,20 +1,17 @@
 package info.u_team.useful_backpacks.crafting;
 
+import java.util.*;
+
 import info.u_team.useful_backpacks.enums.EnumBackPacks;
 import info.u_team.useful_backpacks.init.UsefulBackPacksItems;
 import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
+import net.minecraft.init.*;
 import net.minecraft.inventory.InventoryCrafting;
-import net.minecraft.item.EnumDyeColor;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.common.crafting.CraftingHelper.ShapedPrimer;
 import net.minecraftforge.oredict.OreDictionary;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class RecipesSmallBackPack extends ShapedRecipes {
 	

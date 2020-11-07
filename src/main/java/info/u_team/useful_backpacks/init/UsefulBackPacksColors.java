@@ -3,8 +3,7 @@ package info.u_team.useful_backpacks.init;
 import info.u_team.useful_backpacks.item.ItemBackPack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.color.ItemColors;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.*;
 
 @SideOnly(Side.CLIENT)
 public class UsefulBackPacksColors {

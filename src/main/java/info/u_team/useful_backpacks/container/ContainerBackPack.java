@@ -1,24 +1,17 @@
 package info.u_team.useful_backpacks.container;
 
+import java.util.*;
+
 import info.u_team.useful_backpacks.enums.EnumBackPacks;
 import info.u_team.useful_backpacks.inventory.InventoryBackPack;
 import info.u_team.useful_backpacks.item.ItemBackPack;
-import invtweaks.api.container.ChestContainer;
+import invtweaks.api.container.*;
 import invtweaks.api.container.ChestContainer.RowSizeCallback;
-import invtweaks.api.container.ContainerSection;
-import invtweaks.api.container.ContainerSectionCallback;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.ClickType;
-import net.minecraft.inventory.Container;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Slot;
+import net.minecraft.entity.player.*;
+import net.minecraft.inventory.*;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Optional;
-
-import java.util.List;
-import java.util.Map;
 
 @ChestContainer
 public class ContainerBackPack extends Container {
@@ -32,7 +25,7 @@ public class ContainerBackPack extends Container {
 		this.inventory = inventory;
 		this.type = type;
 		this.offhand = offhand;
-
+		
 		int x_backpackinv = 0;
 		int y_backpackinv = 0;
 		
@@ -97,7 +90,7 @@ public class ContainerBackPack extends Container {
 		}
 		return currentItem.getItem() instanceof ItemBackPack;
 	}
-
+	
 	@Override
 	public void detectAndSendChanges() {
 		super.detectAndSendChanges();
@@ -105,16 +98,16 @@ public class ContainerBackPack extends Container {
 			((InventoryBackPack) inventory).writeItemStack();
 		}
 	}
-
+	
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer playerIn, int index) {
 		ItemStack itemstack = ItemStack.EMPTY;
 		Slot slot = (Slot) this.inventorySlots.get(index);
-
+		
 		if (slot != null && slot.getHasStack()) {
 			ItemStack itemstack1 = slot.getStack();
 			itemstack = itemstack1.copy();
-
+			
 			if (index < type.getCount()) {
 				if (!this.mergeItemStack(itemstack1, type.getCount(), this.inventorySlots.size(), true)) {
 					return ItemStack.EMPTY;
@@ -122,7 +115,7 @@ public class ContainerBackPack extends Container {
 			} else if (!this.mergeItemStack(itemstack1, 0, type.getCount(), false)) {
 				return ItemStack.EMPTY;
 			}
-
+			
 			if (itemstack1.isEmpty()) {
 				slot.putStack(ItemStack.EMPTY);
 			} else {
@@ -131,7 +124,7 @@ public class ContainerBackPack extends Container {
 		}
 		return itemstack;
 	}
-
+	
 	@Override
 	public ItemStack slotClick(int slotId, int dragType, ClickType clickTypeIn, EntityPlayer player) {
 		Slot tmpSlot;
@@ -148,7 +141,7 @@ public class ContainerBackPack extends Container {
 		if (clickTypeIn == ClickType.SWAP) {
 			final ItemStack stack = player.inventory.getStackInSlot(dragType);
 			final ItemStack currentItem = this.offhand ? player.getHeldItemOffhand() : player.getHeldItemMainhand();
-
+			
 			if (!currentItem.isEmpty() && stack == currentItem) {
 				return ItemStack.EMPTY;
 			}

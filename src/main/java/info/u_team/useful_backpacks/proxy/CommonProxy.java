@@ -3,12 +3,8 @@ package info.u_team.useful_backpacks.proxy;
 import info.u_team.u_team_core.registry.CommonRegistry;
 import info.u_team.useful_backpacks.UsefulBackpacksMod;
 import info.u_team.useful_backpacks.handler.UsefulBackPacksGuiHandler;
-import info.u_team.useful_backpacks.init.UsefulBackPacksCreativeTabs;
-import info.u_team.useful_backpacks.init.UsefulBackPacksItems;
-import info.u_team.useful_backpacks.init.UsefulBackPacksRecipes;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import info.u_team.useful_backpacks.init.*;
+import net.minecraftforge.fml.common.event.*;
 
 public class CommonProxy {
 	
