@@ -2,18 +2,24 @@ package info.u_team.useful_backpacks.item;
 
 import info.u_team.u_team_core.item.UItem;
 import info.u_team.u_team_core.util.CustomResourceLocation;
-import info.u_team.useful_backpacks.*;
+import info.u_team.useful_backpacks.UsefulBackPacksConstants;
+import info.u_team.useful_backpacks.UsefulBackpacksMod;
 import info.u_team.useful_backpacks.config.ServerConfig;
 import info.u_team.useful_backpacks.container.ContainerBackPack;
 import info.u_team.useful_backpacks.enums.EnumBackPacks;
 import info.u_team.useful_backpacks.init.UsefulBackPacksCreativeTabs;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.*;
+import net.minecraft.item.EnumDyeColor;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.*;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.*;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemBackPack extends UItem {
 	

@@ -1,7 +1,9 @@
 package info.u_team.useful_backpacks.init;
 
 import info.u_team.useful_backpacks.UsefulBackPacksConstants;
-import info.u_team.useful_backpacks.crafting.*;
+import info.u_team.useful_backpacks.crafting.RecipesBackPackDyes;
+import info.u_team.useful_backpacks.crafting.RecipesCopyBackPack;
+import info.u_team.useful_backpacks.crafting.RecipesSmallBackPack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;

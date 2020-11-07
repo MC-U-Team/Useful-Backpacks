@@ -1,6 +1,7 @@
 package info.u_team.useful_backpacks.inventory;
 
-import net.minecraft.inventory.*;
+import net.minecraft.inventory.InventoryBasic;
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.NonNullList;
