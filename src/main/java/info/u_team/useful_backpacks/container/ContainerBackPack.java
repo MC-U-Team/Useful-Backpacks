@@ -65,7 +65,7 @@ public class ContainerBackPack extends Container {
 	public void drawBackPackInventory(IInventory inventory, int x_offset, int y_offset) {
 		for (int height = 0; height < type.getSizeY(); height++) {
 			for (int width = 0; width < type.getSizeX(); width++) {
-				addSlotToContainer(new Slot(inventory, width + height * type.getSizeX(), width * 18 + x_offset, height * 18 + y_offset));
+				addSlotToContainer(new SlotBackpack(inventory, width + height * type.getSizeX(), width * 18 + x_offset, height * 18 + y_offset));
 			}
 		}
 	}
@@ -74,10 +74,10 @@ public class ContainerBackPack extends Container {
 		for (int height = 0; height < 4; height++) {
 			for (int width = 0; width < 9; width++) {
 				if (height == 3) {
-					addSlotToContainer(new Slot(inventory, width, width * 18 + x_offset, height * 18 + 4 + y_offset));
+					addSlotToContainer(new SlotBackpack(inventory, width, width * 18 + x_offset, height * 18 + 4 + y_offset));
 					continue;
 				}
-				addSlotToContainer(new Slot(inventory, width + height * 9 + 9, width * 18 + x_offset, height * 18 + y_offset));
+				addSlotToContainer(new SlotBackpack(inventory, width + height * 9 + 9, width * 18 + x_offset, height * 18 + y_offset));
 			}
 		}
 	}
