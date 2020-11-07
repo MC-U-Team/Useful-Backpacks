@@ -80,10 +80,10 @@ public class ContainerBackPack extends Container {
 		for (int height = 0; height < 4; height++) {
 			for (int width = 0; width < 9; width++) {
 				if (height == 3) {
-					addSlotToContainer(new SlotBackpack(inventory, width, width * 18 + x_offset, height * 18 + 4 + y_offset));
+					addSlotToContainer(new Slot(inventory, width, width * 18 + x_offset, height * 18 + 4 + y_offset));
 					continue;
 				}
-				addSlotToContainer(new SlotBackpack(inventory, width + height * 9 + 9, width * 18 + x_offset, height * 18 + y_offset));
+				addSlotToContainer(new Slot(inventory, width + height * 9 + 9, width * 18 + x_offset, height * 18 + y_offset));
 			}
 		}
 	}
