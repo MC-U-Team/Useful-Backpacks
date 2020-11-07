@@ -1,15 +1,15 @@
 package info.u_team.useful_backpacks.crafting;
 
-import java.util.List;
-
 import com.google.common.collect.Lists;
-
 import info.u_team.useful_backpacks.item.ItemBackPack;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.*;
+import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.item.crafting.RecipesArmorDyes;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
+
+import java.util.List;
 
 public class RecipesBackPackDyes extends net.minecraftforge.registries.IForgeRegistryEntry.Impl<IRecipe> implements IRecipe {
 	
