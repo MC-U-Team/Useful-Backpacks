@@ -84,10 +84,14 @@ public class ContainerBackPack extends Container {
 	
 	@Override
 	public boolean canInteractWith(EntityPlayer player) {
-		Item item = this.offhand ? player.getHeldItemOffhand().getItem() : player.getHeldItemMainhand().getItem();
-		return item instanceof ItemBackPack;
+		final ItemStack currentItem = this.offhand ? player.getHeldItemOffhand() : player.getHeldItemMainhand();
+		if (inventory instanceof InventoryBackPack) {
+			final ItemStack stack = ((InventoryBackPack) inventory).getStack();
+			return !stack.isEmpty() && stack.getItem() instanceof ItemBackPack && currentItem == stack;
+		}
+		return currentItem.getItem() instanceof ItemBackPack;
 	}
-	
+
 	@Override
 	public void detectAndSendChanges() {
 		super.detectAndSendChanges();
@@ -95,16 +99,16 @@ public class ContainerBackPack extends Container {
 			((InventoryBackPack) inventory).writeItemStack();
 		}
 	}
-	
+
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer playerIn, int index) {
 		ItemStack itemstack = ItemStack.EMPTY;
 		Slot slot = (Slot) this.inventorySlots.get(index);
-		
+
 		if (slot != null && slot.getHasStack()) {
 			ItemStack itemstack1 = slot.getStack();
 			itemstack = itemstack1.copy();
-			
+
 			if (index < type.getCount()) {
 				if (!this.mergeItemStack(itemstack1, type.getCount(), this.inventorySlots.size(), true)) {
 					return ItemStack.EMPTY;
@@ -112,7 +116,7 @@ public class ContainerBackPack extends Container {
 			} else if (!this.mergeItemStack(itemstack1, 0, type.getCount(), false)) {
 				return ItemStack.EMPTY;
 			}
-			
+
 			if (itemstack1.isEmpty()) {
 				slot.putStack(ItemStack.EMPTY);
 			} else {
@@ -121,7 +125,7 @@ public class ContainerBackPack extends Container {
 		}
 		return itemstack;
 	}
-	
+
 	@Override
 	public ItemStack slotClick(int slotId, int dragType, ClickType clickTypeIn, EntityPlayer player) {
 		Slot tmpSlot;
@@ -136,8 +140,10 @@ public class ContainerBackPack extends Container {
 			}
 		}
 		if (clickTypeIn == ClickType.SWAP) {
-			ItemStack stack = player.inventory.getStackInSlot(dragType);
-			if (stack == player.inventory.getCurrentItem()) {
+			final ItemStack stack = player.inventory.getStackInSlot(dragType);
+			final ItemStack currentItem = this.offhand ? player.getHeldItemOffhand() : player.getHeldItemMainhand();
+
+			if (!currentItem.isEmpty() && stack == currentItem) {
 				return ItemStack.EMPTY;
 			}
 		}
