@@ -56,7 +56,7 @@ public class BackpackContainer extends UContainer {
 		final Slot slot = inventorySlots.get(index);
 		
 		if (slot != null && slot.getHasStack()) {
-			ItemStack itemstack1 = slot.getStack();
+			final ItemStack itemstack1 = slot.getStack();
 			itemstack = itemstack1.copy();
 			
 			if (index < backpack.getInventorySize()) {

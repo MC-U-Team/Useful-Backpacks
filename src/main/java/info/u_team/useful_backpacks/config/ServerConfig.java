@@ -11,7 +11,7 @@ public class ServerConfig {
 	private static final ServerConfig INSTANCE;
 	
 	static {
-		Pair<ServerConfig, ForgeConfigSpec> pair = new Builder().configure(ServerConfig::new);
+		final Pair<ServerConfig, ForgeConfigSpec> pair = new Builder().configure(ServerConfig::new);
 		CONFIG = pair.getRight();
 		INSTANCE = pair.getLeft();
 	}

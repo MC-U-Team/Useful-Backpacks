@@ -52,8 +52,8 @@ public class CraftingGridHelper implements ICraftingGridHelper {
 	@Override
 	public <T> void setInputs(IGuiIngredientGroup<T> ingredientGroup, List<List<T>> inputs, int width, int height) {
 		for (int i = 0; i < inputs.size(); i++) {
-			List<T> recipeItem = inputs.get(i);
-			int index = getCraftingIndex(i, width, height);
+			final List<T> recipeItem = inputs.get(i);
+			final int index = getCraftingIndex(i, width, height);
 			
 			setInput(ingredientGroup, index, recipeItem);
 		}

@@ -11,7 +11,7 @@ public class CommonConfig {
 	private static final CommonConfig INSTANCE;
 	
 	static {
-		Pair<CommonConfig, ForgeConfigSpec> pair = new Builder().configure(CommonConfig::new);
+		final Pair<CommonConfig, ForgeConfigSpec> pair = new Builder().configure(CommonConfig::new);
 		CONFIG = pair.getRight();
 		INSTANCE = pair.getLeft();
 	}
