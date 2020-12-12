@@ -54,6 +54,13 @@ public class BackpackItem extends UItem implements IBackpack, IDyeableItem {
 	}
 	
 	@Override
+	public void saveInventory(IInventory inventory) {
+		if (inventory instanceof BackpackInventory) {
+			((BackpackInventory) inventory).writeItemStack();
+		}
+	}
+	
+	@Override
 	public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
 		return !ItemStack.areItemsEqual(oldStack, newStack);
 	}
