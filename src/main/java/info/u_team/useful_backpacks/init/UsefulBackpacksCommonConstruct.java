@@ -4,6 +4,7 @@ import info.u_team.u_team_core.api.construct.*;
 import info.u_team.u_team_core.util.registry.BusRegister;
 import info.u_team.useful_backpacks.UsefulBackpacksMod;
 import info.u_team.useful_backpacks.config.*;
+import info.u_team.useful_backpacks.event.ItemPickupEventHandler;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.config.ModConfig.Type;
 
@@ -18,5 +19,7 @@ public class UsefulBackpacksCommonConstruct implements IModConstruct {
 		BusRegister.registerMod(UsefulBackpacksContainerTypes::registerMod);
 		BusRegister.registerMod(UsefulBackpacksItems::registerMod);
 		BusRegister.registerMod(UsefulBackpacksRecipeSerializers::registerMod);
+		
+		BusRegister.registerForge(ItemPickupEventHandler::registerForge);
 	}
 }
