@@ -12,4 +12,8 @@ public interface IBackpack {
 	
 	default void saveInventory(IInventory inventory) {
 	}
+	
+	default boolean canAutoPickup(ItemStack stack) {
+		return false;
+	}
 }
