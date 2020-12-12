@@ -19,6 +19,7 @@ public class UsefulBackpacksLanguagesProvider extends CommonLanguagesProvider {
 		addItem(MEDIUM_BACKPACK, "Medium Backpack");
 		addItem(LARGE_BACKPACK, "Large Backpack");
 		addItem(ENDERCHEST_BACKPACK, "Ender Chest Backpack");
+		addItem(FILTER, "Auto Pickup Filter");
 		
 		// German
 		add("de_de", UsefulBackpacksItemGroups.GROUP, "Nützliche Rucksäcke");
@@ -26,6 +27,7 @@ public class UsefulBackpacksLanguagesProvider extends CommonLanguagesProvider {
 		addItem("de_de", MEDIUM_BACKPACK, "Mittlerer Rucksack");
 		addItem("de_de", LARGE_BACKPACK, "Großer Rucksack");
 		addItem("de_de", ENDERCHEST_BACKPACK, "Endertruhen Rucksack");
+		addItem("de_de", FILTER, "Automatischer Aufhebe Filter");
 		
 		// Integration
 		// Curious
