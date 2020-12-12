@@ -11,6 +11,7 @@ import info.u_team.useful_backpacks.init.UsefulBackpacksItemGroups;
 import info.u_team.useful_backpacks.inventory.BackpackInventory;
 import info.u_team.useful_backpacks.type.Backpack;
 import net.minecraft.entity.player.*;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.SimpleNamedContainerProvider;
 import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
@@ -39,12 +40,17 @@ public class BackpackItem extends UItem implements IBackpack, IDyeableItem {
 	
 	@Override
 	public void open(ServerPlayerEntity player, ItemStack stack, int selectedSlot) {
-		NetworkHooks.openGui(player, new SimpleNamedContainerProvider((id, playerInventory, openPlayer) -> {
-			return new BackpackContainer(id, playerInventory, new BackpackInventory(stack, backpack.getInventorySize()), backpack, selectedSlot);
+		NetworkHooks.openGui(player, new SimpleNamedContainerProvider((id, playerInventory, unused) -> {
+			return new BackpackContainer(id, playerInventory, getInventory(player, stack), backpack, selectedSlot);
 		}, stack.getDisplayName()), buffer -> {
 			buffer.writeEnumValue(backpack);
 			buffer.writeVarInt(selectedSlot);
 		});
+	}
+	
+	@Override
+	public IInventory getInventory(ServerPlayerEntity player, ItemStack stack) {
+		return new BackpackInventory(stack, backpack.getInventorySize());
 	}
 	
 	@Override

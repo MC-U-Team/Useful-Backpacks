@@ -5,6 +5,7 @@ import info.u_team.useful_backpacks.api.IBackpack;
 import info.u_team.useful_backpacks.container.EnderChestBackpackContainer;
 import info.u_team.useful_backpacks.init.UsefulBackpacksItemGroups;
 import net.minecraft.entity.player.*;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.SimpleNamedContainerProvider;
 import net.minecraft.item.*;
 import net.minecraft.util.*;
@@ -28,10 +29,15 @@ public class EnderChestBackpackItem extends UItem implements IBackpack {
 	
 	@Override
 	public void open(ServerPlayerEntity player, ItemStack stack, int selectedSlot) {
-		NetworkHooks.openGui(player, new SimpleNamedContainerProvider((id, playerInventory, openPlayer) -> {
-			return EnderChestBackpackContainer.createEnderChestContainer(id, playerInventory, openPlayer.getInventoryEnderChest(), selectedSlot);
+		NetworkHooks.openGui(player, new SimpleNamedContainerProvider((id, playerInventory, unused) -> {
+			return EnderChestBackpackContainer.createEnderChestContainer(id, playerInventory, getInventory(player, stack), selectedSlot);
 		}, stack.getDisplayName()), buffer -> {
 			buffer.writeVarInt(selectedSlot);
 		});
+	}
+	
+	@Override
+	public IInventory getInventory(ServerPlayerEntity player, ItemStack stack) {
+		return player.getInventoryEnderChest();
 	}
 }
