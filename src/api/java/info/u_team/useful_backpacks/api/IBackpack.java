@@ -9,4 +9,7 @@ public interface IBackpack {
 	void open(ServerPlayerEntity player, ItemStack stack, int selectedSlot);
 	
 	IInventory getInventory(ServerPlayerEntity player, ItemStack stack);
+	
+	default void saveInventory(IInventory inventory) {
+	}
 }
