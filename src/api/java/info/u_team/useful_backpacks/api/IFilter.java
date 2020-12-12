@@ -4,6 +4,6 @@ import net.minecraft.item.ItemStack;
 
 public interface IFilter {
 	
-	boolean matchItem(ItemStack stack);
+	boolean matchItem(ItemStack filterStack, ItemStack stack);
 	
 }
