@@ -5,9 +5,9 @@ import info.u_team.useful_backpacks.init.UsefulBackpacksItemGroups;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.common.ToolType;
 
-public class BackpackFilterConfiguratorBlock extends UBlock {
+public class FilterConfiguratorBlock extends UBlock {
 	
-	public BackpackFilterConfiguratorBlock() {
+	public FilterConfiguratorBlock() {
 		super(UsefulBackpacksItemGroups.GROUP, Properties.create(Material.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(2));
 	}
 	
