@@ -1,12 +1,16 @@
 package info.u_team.useful_backpacks.container.slot;
 
+import info.u_team.useful_backpacks.UsefulBackpacksMod;
 import info.u_team.useful_backpacks.api.*;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.*;
 
 public class FilterSlot extends Slot {
+	
+	public static final ResourceLocation BACKGROUND = new ResourceLocation(UsefulBackpacksMod.MODID, "item/empty_filter_slot");
 	
 	private final IInventory backpackSlotInventory;
 	
@@ -23,7 +27,8 @@ public class FilterSlot extends Slot {
 	@OnlyIn(Dist.CLIENT)
 	@Override
 	public boolean isEnabled() {
-		return !backpackSlotInventory.isEmpty();
+		// return !backpackSlotInventory.isEmpty();
+		return true;
 	}
 	
 }

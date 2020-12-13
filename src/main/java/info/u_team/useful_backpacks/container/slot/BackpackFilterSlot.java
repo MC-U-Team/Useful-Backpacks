@@ -1,12 +1,16 @@
 package info.u_team.useful_backpacks.container.slot;
 
+import info.u_team.useful_backpacks.UsefulBackpacksMod;
 import info.u_team.useful_backpacks.api.IBackpack;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 
 public class BackpackFilterSlot extends Slot {
+	
+	public static final ResourceLocation BACKGROUND = new ResourceLocation(UsefulBackpacksMod.MODID, "item/empty_backpack_filter_slot");
 	
 	private final IInventory filterSlotInventory;
 	
