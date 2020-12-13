@@ -1,6 +1,7 @@
 package info.u_team.useful_backpacks.data.provider;
 
 import static info.u_team.useful_backpacks.init.UsefulBackpacksItems.*;
+import static info.u_team.useful_backpacks.init.UsefulBackpacksBlocks.*;
 
 import info.u_team.u_team_core.data.*;
 import info.u_team.useful_backpacks.item.*;
@@ -19,6 +20,8 @@ public class UsefulBackpacksItemModelsProvider extends CommonItemModelsProvider 
 		simpleBackpackGenerated(LARGE_BACKPACK.get());
 		simpleGenerated(ENDERCHEST_BACKPACK.get());
 		simpleGenerated(FILTER.get());
+		
+		simpleBlock(FILTER_CONFIGURATOR.get());
 	}
 	
 	protected void simpleBackpackGenerated(BackpackItem item) {
