@@ -6,13 +6,23 @@ import info.u_team.useful_backpacks.init.*;
 import info.u_team.useful_backpacks.inventory.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.inventory.*;
+import net.minecraft.inventory.container.IContainerListener;
+import net.minecraft.item.ItemStack;
+import net.minecraft.network.play.server.SSetSlotPacket;
 import net.minecraft.util.IWorldPosCallable;
 
 public class FilterConfiguratorContainer extends UContainer {
 	
 	private final IWorldPosCallable worldPos;
 	
-	private final IInventory backpackSlotInventory = new Inventory(1);
+	private final IInventory backpackSlotInventory = new Inventory(1) {
+		
+		@Override
+		public void markDirty() {
+			super.markDirty();
+			onCraftMatrixChanged(this);
+		}
+	};
 	private final DelegateInventory filterSlotInventory = new DelegateInventory(new Inventory(9));
 	
 	private IInventory filterInventory;
@@ -41,6 +51,7 @@ public class FilterConfiguratorContainer extends UContainer {
 	@Override
 	public void onContainerClosed(PlayerEntity player) {
 		super.onContainerClosed(player);
+		saveFilterInventory();
 		worldPos.consume((world, pos) -> clearContainer(player, world, backpackSlotInventory));
 	}
 	
@@ -56,9 +67,23 @@ public class FilterConfiguratorContainer extends UContainer {
 			filterSlotInventory.setInventory(null);
 		}
 		
-		if (filterInventory instanceof FilterInventory) {
-			((FilterInventory) filterInventory).writeItemStack();
-		}
+		saveFilterInventory();
 		super.detectAndSendChanges();
+	}
+	
+	private void saveFilterInventory() {
+		if (filterInventory instanceof FilterInventory) {
+			final FilterInventory inventory = (FilterInventory) filterInventory;
+			final ItemStack copy = inventory.getStack().copy();
+			inventory.writeItemStack();
+			if (!ItemStack.areItemStacksEqual(copy, inventory.getStack())) {
+				for (IContainerListener listener : listeners) {
+					if (listener instanceof ServerPlayerEntity) {
+						ServerPlayerEntity player = (ServerPlayerEntity) listener;
+						player.connection.netManager.sendPacket(new SSetSlotPacket(windowId, 0, inventory.getStack()));
+					}
+				}
+			}
+		}
 	}
 }
