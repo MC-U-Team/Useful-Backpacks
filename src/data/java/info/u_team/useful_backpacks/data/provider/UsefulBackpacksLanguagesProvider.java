@@ -1,6 +1,7 @@
 package info.u_team.useful_backpacks.data.provider;
 
 import static info.u_team.useful_backpacks.init.UsefulBackpacksItems.*;
+import static info.u_team.useful_backpacks.init.UsefulBackpacksBlocks.*;
 
 import info.u_team.u_team_core.data.*;
 import info.u_team.useful_backpacks.init.UsefulBackpacksItemGroups;
@@ -20,6 +21,7 @@ public class UsefulBackpacksLanguagesProvider extends CommonLanguagesProvider {
 		addItem(LARGE_BACKPACK, "Large Backpack");
 		addItem(ENDERCHEST_BACKPACK, "Ender Chest Backpack");
 		addItem(FILTER, "Auto Pickup Filter");
+		addBlock(FILTER_CONFIGURATOR, "Backpack Filter Configurator");
 		
 		// German
 		add("de_de", UsefulBackpacksItemGroups.GROUP, "Nützliche Rucksäcke");
@@ -28,6 +30,7 @@ public class UsefulBackpacksLanguagesProvider extends CommonLanguagesProvider {
 		addItem("de_de", LARGE_BACKPACK, "Großer Rucksack");
 		addItem("de_de", ENDERCHEST_BACKPACK, "Endertruhen Rucksack");
 		addItem("de_de", FILTER, "Automatischer Aufhebe Filter");
+		addBlock("de_de", FILTER_CONFIGURATOR, "Rucksack Filter Konfigurator");
 		
 		// Integration
 		// Curious
