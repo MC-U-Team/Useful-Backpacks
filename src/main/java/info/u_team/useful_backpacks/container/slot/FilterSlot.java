@@ -28,8 +28,7 @@ public class FilterSlot extends Slot {
 	@OnlyIn(Dist.CLIENT)
 	@Override
 	public boolean isEnabled() {
-		// return !backpackSlotInventory.isEmpty();
-		return true;
+		return !backpackSlotInventory.isEmpty();
 	}
 	
 }
