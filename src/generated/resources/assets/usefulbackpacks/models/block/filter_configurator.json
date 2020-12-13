@@ -1,0 +1,8 @@
+{
+	"parent": "minecraft:block/cube_bottom_top",
+	"textures": {
+		"side": "usefulbackpacks:block/filter_configurator_side",
+		"bottom": "usefulbackpacks:block/filter_configurator_bottom",
+		"top": "usefulbackpacks:block/filter_configurator_top"
+	}
+}
