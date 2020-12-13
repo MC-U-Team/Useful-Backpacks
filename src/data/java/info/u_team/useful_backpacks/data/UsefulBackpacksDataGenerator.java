@@ -19,8 +19,9 @@ public class UsefulBackpacksDataGenerator {
 			data.addProvider(UsefulBackpacksRecipesProvider::new);
 		}
 		if (event.includeClient()) {
-			data.addProvider(UsefulBackpacksLanguagesProvider::new);
+			data.addProvider(UsefulBackpacksBlockStatesProvider::new);
 			data.addProvider(UsefulBackpacksItemModelsProvider::new);
+			data.addProvider(UsefulBackpacksLanguagesProvider::new);
 		}
 	}
 }
