@@ -1,4 +1,4 @@
-package info.u_team.useful_backpacks.container;
+package info.u_team.useful_backpacks.container.slot;
 
 import info.u_team.useful_backpacks.config.CommonConfig;
 import info.u_team.useful_backpacks.item.BackpackItem;
