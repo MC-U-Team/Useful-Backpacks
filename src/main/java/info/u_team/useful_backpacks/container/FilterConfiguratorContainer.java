@@ -18,6 +18,8 @@ public class FilterConfiguratorContainer extends UContainer {
 	public FilterConfiguratorContainer(int id, PlayerInventory playerInventory, IWorldPosCallable worldPos) {
 		super(UsefulBackpacksContainerTypes.FILTER_CONFIGURATOR.get(), id);
 		this.worldPos = worldPos;
+		
+		appendPlayerInventory(playerInventory, 8, 111);
 	}
 	
 	@Override
