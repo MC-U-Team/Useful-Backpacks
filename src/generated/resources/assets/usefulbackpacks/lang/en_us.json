@@ -1,5 +1,6 @@
 {
 	"block.usefulbackpacks.filter_configurator": "Backpack Filter Configurator",
+	"container.usefulbackpacks.filter_configurator": "Backpack Filter Configurator",
 	"item.usefulbackpacks.backpack_enderchest": "Ender Chest Backpack",
 	"item.usefulbackpacks.backpack_large": "Large Backpack",
 	"item.usefulbackpacks.backpack_medium": "Medium Backpack",
