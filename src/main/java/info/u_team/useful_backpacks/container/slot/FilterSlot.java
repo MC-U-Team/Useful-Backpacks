@@ -1,9 +1,9 @@
 package info.u_team.useful_backpacks.container.slot;
 
 import info.u_team.useful_backpacks.UsefulBackpacksMod;
-import info.u_team.useful_backpacks.api.*;
+import info.u_team.useful_backpacks.api.IFilter;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.container.Slot;
+import net.minecraft.inventory.container.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.*;
@@ -17,6 +17,7 @@ public class FilterSlot extends Slot {
 	public FilterSlot(IInventory backpackSlotInventory, IInventory inventory, int index, int xPosition, int yPosition) {
 		super(inventory, index, xPosition, yPosition);
 		this.backpackSlotInventory = backpackSlotInventory;
+		setBackground(PlayerContainer.LOCATION_BLOCKS_TEXTURE, BACKGROUND);
 	}
 	
 	@Override
