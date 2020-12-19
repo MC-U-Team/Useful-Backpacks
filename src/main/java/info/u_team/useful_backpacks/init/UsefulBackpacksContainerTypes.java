@@ -16,7 +16,7 @@ public class UsefulBackpacksContainerTypes {
 	public static final RegistryObject<ContainerType<BackpackContainer>> BACKPACK = CONTAINER_TYPES.register("backpack", () -> new UContainerType<>(BackpackContainer::createClientContainer));
 	public static final RegistryObject<ContainerType<EnderChestBackpackContainer>> ENDERCHEST_BACKPACK = CONTAINER_TYPES.register("backpack_enderchest", () -> new UContainerType<>(EnderChestBackpackContainer::createEnderChestContainer));
 	
-	public static final RegistryObject<ContainerType<FilterConfiguratorContainer>> FILTER_CONFIGURATOR = CONTAINER_TYPES.register("filter_configurator", () -> new UContainerType<>(FilterConfiguratorContainer::new));
+	public static final RegistryObject<ContainerType<FilterConfiguratorContainer>> FILTER_CONFIGURATOR = CONTAINER_TYPES.register("filter_configurator", () -> new UContainerType<>((id, playerInventory) -> new FilterConfiguratorContainer(id, playerInventory)));
 	
 	public static void registerMod(IEventBus bus) {
 		CONTAINER_TYPES.register(bus);
