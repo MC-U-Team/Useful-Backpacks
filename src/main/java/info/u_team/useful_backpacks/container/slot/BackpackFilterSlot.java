@@ -11,8 +11,8 @@ public class BackpackFilterSlot extends Slot {
 	
 	public static final ResourceLocation BACKGROUND = new ResourceLocation(UsefulBackpacksMod.MODID, "item/empty_backpack_filter_slot");
 	
-	public BackpackFilterSlot(IInventory inventoryIn, int index, int xPosition, int yPosition) {
-		super(inventoryIn, index, xPosition, yPosition);
+	public BackpackFilterSlot(IInventory inventory, int index, int xPosition, int yPosition) {
+		super(inventory, index, xPosition, yPosition);
 		setBackground(PlayerContainer.LOCATION_BLOCKS_TEXTURE, BACKGROUND);
 	}
 	
