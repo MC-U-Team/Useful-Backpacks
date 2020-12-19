@@ -1,6 +1,7 @@
 package info.u_team.useful_backpacks.container;
 
 import info.u_team.u_team_core.container.UContainer;
+import info.u_team.useful_backpacks.api.IBackpack;
 import info.u_team.useful_backpacks.container.slot.*;
 import info.u_team.useful_backpacks.init.*;
 import info.u_team.useful_backpacks.inventory.*;
@@ -38,7 +39,7 @@ public class FilterConfiguratorContainer extends UContainer {
 		super(UsefulBackpacksContainerTypes.FILTER_CONFIGURATOR.get(), id);
 		this.worldPos = worldPos;
 		
-		appendInventory(backpackSlotInventory, (inventory, index, xPosition, yPosition) -> new BackpackFilterSlot(filterSlotInventory, inventory, index, xPosition, yPosition), 1, 1, 80, 17);
+		appendInventory(backpackSlotInventory, (inventory, index, xPosition, yPosition) -> new BackpackFilterSlot(inventory, index, xPosition, yPosition), 1, 1, 80, 17);
 		appendInventory(filterSlotInventory, (inventory, index, xPosition, yPosition) -> new FilterSlot(backpackSlotInventory, inventory, index, xPosition, yPosition), 3, 3, 62, 44);
 		appendPlayerInventory(playerInventory, 8, 111);
 	}
@@ -57,14 +58,22 @@ public class FilterConfiguratorContainer extends UContainer {
 	
 	@Override
 	public void detectAndSendChanges() {
-		final boolean hasBackpack = !backpackSlotInventory.isEmpty();
-		if (hasBackpack && filterInventory == null) {
-			filterInventory = new FilterInventory(backpackSlotInventory.getStackInSlot(0));
-			filterSlotInventory.setInventory(filterInventory);
-		}
-		if (!hasBackpack && filterInventory instanceof FilterInventory) {
-			filterInventory = null;
-			filterSlotInventory.setInventory(null);
+		final ItemStack oldStack = getInventoryItemStacks().get(0);
+		final ItemStack newStack = backpackSlotInventory.getStackInSlot(0);
+		
+		final boolean stackChanged = !ItemStack.areItemStacksEqual(oldStack, newStack);
+		
+		if (stackChanged) {
+			if (newStack.getItem() instanceof IBackpack) {
+				if (filterInventory instanceof FilterInventory) {
+					((FilterInventory) filterInventory).writeItemStack();
+				}
+				filterInventory = new FilterInventory(backpackSlotInventory.getStackInSlot(0));
+				filterSlotInventory.setInventory(filterInventory);
+			} else if (newStack.isEmpty() && filterInventory instanceof FilterInventory) {
+				filterInventory = null;
+				filterSlotInventory.setInventory(null);
+			}
 		}
 		
 		saveFilterInventory();
