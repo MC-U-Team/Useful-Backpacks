@@ -1,22 +1,20 @@
 package info.u_team.useful_backpacks.init;
 
+import info.u_team.u_team_core.util.ModelUtil;
 import info.u_team.useful_backpacks.container.slot.*;
-import net.minecraft.client.renderer.model.ModelBakery;
 import net.minecraftforge.client.ForgeHooksClient;
+import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 public class UsefulBackpacksModels {
 	
-	private static void setup(FMLClientSetupEvent event) {
-		event.enqueueWork(() -> {
-			ModelBakery.LOCATIONS_BUILTIN_TEXTURES.add(ForgeHooksClient.getBlockMaterial(BackpackFilterSlot.BACKGROUND));
-			ModelBakery.LOCATIONS_BUILTIN_TEXTURES.add(ForgeHooksClient.getBlockMaterial(FilterSlot.BACKGROUND));
-		});
+	private static void modelRegistry(ModelRegistryEvent event) {
+		ModelUtil.addTexture(ForgeHooksClient.getBlockMaterial(BackpackFilterSlot.BACKGROUND));
+		ModelUtil.addTexture(ForgeHooksClient.getBlockMaterial(FilterSlot.BACKGROUND));
 	}
 	
 	public static void registerMod(IEventBus bus) {
-		bus.addListener(UsefulBackpacksModels::setup);
+		bus.addListener(UsefulBackpacksModels::modelRegistry);
 	}
 	
 }
