@@ -1,6 +1,7 @@
 package info.u_team.useful_backpacks.container;
 
 import info.u_team.u_team_core.container.UContainer;
+import info.u_team.useful_backpacks.container.slot.ItemFilterSlot;
 import info.u_team.useful_backpacks.init.UsefulBackpacksContainerTypes;
 import net.minecraft.entity.player.*;
 import net.minecraft.inventory.*;
@@ -31,7 +32,7 @@ public class ItemFilterContainer extends UContainer {
 		this.stack = stack;
 		this.selectedSlot = selectedSlot;
 		
-		appendInventory(filterItemSlotInventory, 1, 1, 10, 10);
+		appendInventory(filterItemSlotInventory, ItemFilterSlot::new, 1, 1, 10, 10);
 		appendPlayerInventory(playerInventory, 8, 84);
 	}
 	
