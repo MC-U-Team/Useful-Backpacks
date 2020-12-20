@@ -1,7 +1,7 @@
 package info.u_team.useful_backpacks.data.provider;
 
+import static info.u_team.useful_backpacks.init.UsefulBackpacksBlocks.FILTER_CONFIGURATOR;
 import static info.u_team.useful_backpacks.init.UsefulBackpacksItems.*;
-import static info.u_team.useful_backpacks.init.UsefulBackpacksBlocks.*;
 
 import info.u_team.u_team_core.data.*;
 import info.u_team.useful_backpacks.init.UsefulBackpacksItemGroups;
@@ -20,7 +20,8 @@ public class UsefulBackpacksLanguagesProvider extends CommonLanguagesProvider {
 		addItem(MEDIUM_BACKPACK, "Medium Backpack");
 		addItem(LARGE_BACKPACK, "Large Backpack");
 		addItem(ENDERCHEST_BACKPACK, "Ender Chest Backpack");
-		addItem(FILTER, "Auto Pickup Filter");
+		addItem(ITEM_FILTER, "Auto Pickup Filter (Item)");
+		addItem(TAG_FILTER, "Auto Pickup Filter (Tag)");
 		addBlock(FILTER_CONFIGURATOR, "Backpack Filter Configurator");
 		add("container.usefulbackpacks.filter_configurator", "Backpack Filter Configurator");
 		
@@ -30,7 +31,8 @@ public class UsefulBackpacksLanguagesProvider extends CommonLanguagesProvider {
 		addItem("de_de", MEDIUM_BACKPACK, "Mittlerer Rucksack");
 		addItem("de_de", LARGE_BACKPACK, "Großer Rucksack");
 		addItem("de_de", ENDERCHEST_BACKPACK, "Endertruhen Rucksack");
-		addItem("de_de", FILTER, "Automatischer Aufhebe Filter");
+		addItem("de_de", ITEM_FILTER, "Automatischer Aufhebe Filter (Gegenstand)");
+		addItem("de_de", TAG_FILTER, "Automatischer Aufhebe Filter (Aliasdaten)");
 		addBlock("de_de", FILTER_CONFIGURATOR, "Rucksack Filter Konfigurator");
 		add("de_de", "container.usefulbackpacks.filter_configurator", "Rucksack Filter Konfigurator");
 		
