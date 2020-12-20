@@ -21,4 +21,9 @@ public class ItemFilterItem extends FilterItem {
 			return false;
 		}
 	}
+	
+	@Override
+	public boolean isSetuped(ItemStack filterStack) {
+		return filterStack.hasTag() && filterStack.getTag().contains("stack");
+	}
 }
