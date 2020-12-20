@@ -5,8 +5,8 @@
 	"item.usefulbackpacks.backpack_large": "Großer Rucksack",
 	"item.usefulbackpacks.backpack_medium": "Mittlerer Rucksack",
 	"item.usefulbackpacks.backpack_small": "Kleiner Rucksack",
-	"item.usefulbackpacks.item_filter": "Automatischer Aufhebe Filter (Gegenstand)",
-	"item.usefulbackpacks.tag_filter": "Automatischer Aufhebe Filter (Aliasdaten)",
+	"item.usefulbackpacks.filter_item": "Automatischer Aufhebe Filter (Gegenstand)",
+	"item.usefulbackpacks.filter_tag": "Automatischer Aufhebe Filter (Aliasdaten)",
 	"itemGroup.usefulbackpacks.group": "Nützliche Rucksäcke",
 	"key.usefulbackpacks.curiosintegration.category": "Nützliche Rucksäcke : Curios Integration",
 	"key.usefulbackpacks.curiosintegration.description": "Öffne Rucksack"
