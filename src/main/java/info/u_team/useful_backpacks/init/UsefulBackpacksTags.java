@@ -10,6 +10,8 @@ public class UsefulBackpacksTags {
 	public static class Items {
 		
 		public static final INamedTag<Item> BACKPACK = TagUtil.createItemTag(UsefulBackpacksMod.MODID, "backpack");
+		
+		public static final INamedTag<Item> FILTER = TagUtil.createItemTag(UsefulBackpacksMod.MODID, "filter");
 	}
 	
 }
