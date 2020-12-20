@@ -5,7 +5,8 @@
 	"item.usefulbackpacks.backpack_large": "Large Backpack",
 	"item.usefulbackpacks.backpack_medium": "Medium Backpack",
 	"item.usefulbackpacks.backpack_small": "Small Backpack",
-	"item.usefulbackpacks.filter": "Auto Pickup Filter",
+	"item.usefulbackpacks.item_filter": "Auto Pickup Filter (Item)",
+	"item.usefulbackpacks.tag_filter": "Auto Pickup Filter (Tag)",
 	"itemGroup.usefulbackpacks.group": "Useful Backpacks",
 	"key.usefulbackpacks.curiosintegration.category": "Useful Backpacks : Curios Integration",
 	"key.usefulbackpacks.curiosintegration.description": "Open backpack"

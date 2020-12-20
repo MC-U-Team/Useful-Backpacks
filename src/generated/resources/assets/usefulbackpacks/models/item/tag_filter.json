@@ -1,6 +1,6 @@
 {
 	"parent": "minecraft:item/generated",
 	"textures": {
-		"layer0": "usefulbackpacks:item/filter"
+		"layer0": "usefulbackpacks:item/tag_filter"
 	}
 }
