@@ -1,6 +1,8 @@
 package info.u_team.useful_backpacks.event;
 
 import info.u_team.useful_backpacks.api.IBackpack;
+import info.u_team.useful_backpacks.config.CommonConfig;
+import info.u_team.useful_backpacks.item.BackpackItem;
 import net.minecraft.entity.player.*;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.*;
@@ -20,6 +22,9 @@ public class ItemPickupEventHandler {
 		}
 		
 		final ItemStack stackToPickup = event.getItem().getItem();
+		if (stackToPickup.getItem() instanceof BackpackItem && !CommonConfig.getInstance().allowStackingBackpacks.get()) {
+			return;
+		}
 		final ItemStack resultStack = insertInBackpacks((ServerPlayerEntity) player, stackToPickup);
 		stackToPickup.setCount(resultStack.getCount());
 		
