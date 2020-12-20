@@ -39,9 +39,9 @@ public class FilterConfiguratorContainer extends UContainer {
 		super(UsefulBackpacksContainerTypes.FILTER_CONFIGURATOR.get(), id);
 		this.worldPos = worldPos;
 		
-		appendInventory(backpackSlotInventory, (inventory, index, xPosition, yPosition) -> new BackpackFilterSlot(inventory, index, xPosition, yPosition), 1, 1, 80, 17);
-		appendInventory(filterSlotInventory, (inventory, index, xPosition, yPosition) -> new FilterSlot(backpackSlotInventory, inventory, index, xPosition, yPosition), 3, 3, 62, 44);
-		appendPlayerInventory(playerInventory, 8, 111);
+		appendInventory(backpackSlotInventory, (inventory, index, xPosition, yPosition) -> new BackpackFilterSlot(inventory, index, xPosition, yPosition), 1, 1, 35, 35);
+		appendInventory(filterSlotInventory, (inventory, index, xPosition, yPosition) -> new FilterSlot(backpackSlotInventory, inventory, index, xPosition, yPosition), 3, 3, 89, 17);
+		appendPlayerInventory(playerInventory, 8, 84);
 	}
 	
 	@Override
