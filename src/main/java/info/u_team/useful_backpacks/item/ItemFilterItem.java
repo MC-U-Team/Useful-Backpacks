@@ -1,10 +1,36 @@
 package info.u_team.useful_backpacks.item;
 
+import info.u_team.useful_backpacks.container.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.inventory.container.SimpleNamedContainerProvider;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.*;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.network.NetworkHooks;
 import net.minecraftforge.items.ItemHandlerHelper;
 
 public class ItemFilterItem extends FilterItem {
+	
+	@Override
+	public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
+		final ItemStack stack = player.getHeldItem(hand);
+		if (!world.isRemote && player instanceof ServerPlayerEntity) {
+			final int selectedSlot = hand == Hand.MAIN_HAND ? player.inventory.currentItem : -1;
+			NetworkHooks.openGui((ServerPlayerEntity) player, new SimpleNamedContainerProvider((id, playerInventory, unused) -> {
+				return new ItemFilterContainer(id, playerInventory, stack, selectedSlot);
+			}, stack.getDisplayName()), buffer -> {
+				buffer.writeVarInt(selectedSlot);
+			});
+			
+		}
+		return new ActionResult<>(ActionResultType.SUCCESS, stack);
+	}
+	
+	@Override
+	public boolean onDroppedByPlayer(ItemStack item, PlayerEntity player) {
+		return !(player.openContainer instanceof ItemFilterContainer);
+	}
 	
 	@Override
 	protected boolean matchItem(ItemStack filterStack, ItemStack matchStack, CompoundNBT compound) {
@@ -19,7 +45,7 @@ public class ItemFilterItem extends FilterItem {
 	}
 	
 	@Override
-	public boolean isUsable(ItemStack filterStack, CompoundNBT compound) {
+	protected boolean isUsable(ItemStack filterStack, CompoundNBT compound) {
 		return filterStack.getItem() instanceof ItemFilterItem && compound.contains("stack");
 	}
 }
