@@ -6,6 +6,6 @@ public interface IFilter {
 	
 	boolean matchItem(ItemStack filterStack, ItemStack matchStack);
 	
-	boolean isSetuped(ItemStack filterStack);
+	boolean isUsable(ItemStack filterStack);
 	
 }

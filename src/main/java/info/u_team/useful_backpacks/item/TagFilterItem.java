@@ -22,7 +22,7 @@ public class TagFilterItem extends FilterItem {
 	}
 	
 	@Override
-	public boolean isSetuped(ItemStack filterStack) {
+	public boolean isUsable(ItemStack filterStack) {
 		return filterStack.hasTag() && filterStack.getTag().contains("id");
 	}
 	
