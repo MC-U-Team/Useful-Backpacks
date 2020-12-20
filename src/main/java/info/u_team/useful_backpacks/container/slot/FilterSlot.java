@@ -22,7 +22,7 @@ public class FilterSlot extends Slot {
 	
 	@Override
 	public boolean isItemValid(ItemStack stack) {
-		return stack.getItem() instanceof IFilter;
+		return stack.getItem() instanceof IFilter && ((IFilter) stack.getItem()).isUsable(stack);
 	}
 	
 	@OnlyIn(Dist.CLIENT)
