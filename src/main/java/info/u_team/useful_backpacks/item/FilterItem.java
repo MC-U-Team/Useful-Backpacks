@@ -14,13 +14,20 @@ public abstract class FilterItem extends UItem implements IFilter {
 	
 	@Override
 	public boolean matchItem(ItemStack filterStack, ItemStack matchStack) {
-		if (filterStack.getItem() == this && filterStack.hasTag()) {
+		if (isUsable(filterStack)) {
 			return matchItem(filterStack, matchStack, filterStack.getTag());
 		} else {
 			return false;
 		}
 	}
 	
+	@Override
+	public boolean isUsable(ItemStack filterStack) {
+		return filterStack.hasTag() && isUsable(filterStack, filterStack.getTag());
+	}
+	
 	protected abstract boolean matchItem(ItemStack filterStack, ItemStack matchStack, CompoundNBT compound);
+	
+	protected abstract boolean isUsable(ItemStack filterStack, CompoundNBT compound);
 	
 }

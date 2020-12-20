@@ -8,22 +8,18 @@ public class TagFilterItem extends FilterItem {
 	
 	@Override
 	protected boolean matchItem(ItemStack filterStack, ItemStack matchStack, CompoundNBT compound) {
-		if (compound.contains("id")) {
-			final ResourceLocation id = ResourceLocation.tryCreate(compound.getString("id"));
-			
-			if (id != null) {
-				return matchStack.getItem().getTags().contains(id);
-			} else {
-				return false;
-			}
+		final ResourceLocation id = ResourceLocation.tryCreate(compound.getString("id"));
+		
+		if (id != null) {
+			return matchStack.getItem().getTags().contains(id);
 		} else {
 			return false;
 		}
 	}
 	
 	@Override
-	public boolean isUsable(ItemStack filterStack) {
-		return filterStack.hasTag() && filterStack.getTag().contains("id");
+	public boolean isUsable(ItemStack filterStack, CompoundNBT compound) {
+		return filterStack.getItem() instanceof TagFilterItem && compound.contains("id");
 	}
 	
 }

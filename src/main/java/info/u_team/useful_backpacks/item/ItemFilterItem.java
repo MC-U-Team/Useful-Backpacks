@@ -8,22 +8,18 @@ public class ItemFilterItem extends FilterItem {
 	
 	@Override
 	protected boolean matchItem(ItemStack filterStack, ItemStack matchStack, CompoundNBT compound) {
-		if (compound.contains("stack")) {
-			final boolean strict = compound.getBoolean("strict");
-			final ItemStack stack = ItemStack.read(compound.getCompound("stack"));
-			
-			if (strict) {
-				return ItemHandlerHelper.canItemStacksStack(stack, matchStack);
-			} else {
-				return stack.isItemEqual(matchStack);
-			}
+		final boolean strict = compound.getBoolean("strict");
+		final ItemStack stack = ItemStack.read(compound.getCompound("stack"));
+		
+		if (strict) {
+			return ItemHandlerHelper.canItemStacksStack(stack, matchStack);
 		} else {
-			return false;
+			return stack.isItemEqual(matchStack);
 		}
 	}
 	
 	@Override
-	public boolean isUsable(ItemStack filterStack) {
-		return filterStack.hasTag() && filterStack.getTag().contains("stack");
+	public boolean isUsable(ItemStack filterStack, CompoundNBT compound) {
+		return filterStack.getItem() instanceof ItemFilterItem && compound.contains("stack");
 	}
 }
