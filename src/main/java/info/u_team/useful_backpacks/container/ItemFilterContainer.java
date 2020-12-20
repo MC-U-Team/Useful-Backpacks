@@ -3,21 +3,49 @@ package info.u_team.useful_backpacks.container;
 import info.u_team.u_team_core.container.UContainer;
 import info.u_team.useful_backpacks.init.UsefulBackpacksContainerTypes;
 import net.minecraft.entity.player.*;
+import net.minecraft.inventory.*;
 import net.minecraft.inventory.container.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 
 public class ItemFilterContainer extends UContainer {
 	
+	private final ItemStack stack;
 	private final int selectedSlot;
 	
+	private final IInventory filterItemSlotInventory = new Inventory(1) {
+		
+		@Override
+		public void markDirty() {
+			super.markDirty();
+			onCraftMatrixChanged(this);
+		}
+	};
+	
 	public ItemFilterContainer(int id, PlayerInventory playerInventory, PacketBuffer buffer) {
-		this(id, playerInventory, null, buffer.readVarInt());
+		this(id, playerInventory, ItemStack.EMPTY, buffer.readVarInt());
 	}
 	
-	public ItemFilterContainer(int id, PlayerInventory inventory, ItemStack stack, int selectedSlot) {
+	public ItemFilterContainer(int id, PlayerInventory playerInventory, ItemStack stack, int selectedSlot) {
 		super(UsefulBackpacksContainerTypes.ITEM_FILTER.get(), id);
+		this.stack = stack;
 		this.selectedSlot = selectedSlot;
+		
+		appendInventory(filterItemSlotInventory, 1, 1, 10, 10);
+		appendPlayerInventory(playerInventory, 8, 84);
+	}
+	
+	@Override
+	public void detectAndSendChanges() {
+		if (!stack.isEmpty()) {
+			final ItemStack stackToFilter = filterItemSlotInventory.getStackInSlot(0);
+			if (stackToFilter.isEmpty()) {
+				stack.removeChildTag("stack");
+			} else {
+				stackToFilter.write(stack.getOrCreateChildTag("stack"));
+			}
+		}
+		super.detectAndSendChanges();
 	}
 	
 	@Override
