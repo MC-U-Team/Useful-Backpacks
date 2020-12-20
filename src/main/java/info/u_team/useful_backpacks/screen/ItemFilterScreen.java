@@ -12,6 +12,6 @@ public class ItemFilterScreen extends UBasicContainerScreen<ItemFilterContainer>
 	private static final ResourceLocation BACKGROUND = new ResourceLocation(UsefulBackpacksMod.MODID, "textures/gui/item_filter.png");
 	
 	public ItemFilterScreen(ItemFilterContainer container, PlayerInventory playerInventory, ITextComponent title) {
-		super(container, playerInventory, title, BACKGROUND, 130, 176);
+		super(container, playerInventory, title, BACKGROUND, 176, 130);
 	}
 }
