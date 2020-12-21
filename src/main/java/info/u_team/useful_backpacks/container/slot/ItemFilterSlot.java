@@ -27,10 +27,6 @@ public class ItemFilterSlot extends Slot {
 	}
 	
 	@Override
-	public void putStack(ItemStack is) {
-	}
-	
-	@Override
 	public boolean canTakeStack(PlayerEntity player) {
 		return false;
 	}
