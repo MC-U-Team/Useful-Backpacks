@@ -1,5 +1,6 @@
 package info.u_team.useful_backpacks.container;
 
+import info.u_team.u_team_core.api.sync.MessageHolder;
 import info.u_team.u_team_core.container.UContainer;
 import info.u_team.useful_backpacks.container.slot.ItemFilterSlot;
 import info.u_team.useful_backpacks.init.UsefulBackpacksContainerTypes;
@@ -17,6 +18,8 @@ public class ItemFilterContainer extends UContainer {
 	
 	private final IInventory filterItemSlotInventory = new Inventory(1);
 	
+	private final MessageHolder strictMessage;
+	
 	public ItemFilterContainer(int id, PlayerInventory playerInventory, PacketBuffer buffer) {
 		this(id, playerInventory, ItemStack.EMPTY, buffer.readVarInt());
 	}
@@ -33,6 +36,17 @@ public class ItemFilterContainer extends UContainer {
 		
 		appendInventory(filterItemSlotInventory, ItemFilterSlot::new, 1, 1, 10, 10);
 		appendPlayerInventory(playerInventory, 8, 48);
+		
+		strictMessage = addClientToServerTracker(new MessageHolder(buffer -> {
+			final boolean strict = buffer.readBoolean();
+			if (!filterStack.isEmpty()) {
+				if (!strict) {
+					filterStack.removeChildTag("strict");
+				} else {
+					filterStack.getOrCreateTag().putBoolean("strict", strict);
+				}
+			}
+		}));
 	}
 	
 	@Override
@@ -90,5 +104,9 @@ public class ItemFilterContainer extends UContainer {
 			}
 		}
 		return stack;
+	}
+	
+	public MessageHolder getStrictMessage() {
+		return strictMessage;
 	}
 }
