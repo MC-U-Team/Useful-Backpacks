@@ -45,10 +45,10 @@ public class BackpackContainer extends UContainer {
 	
 	@Override
 	public void detectAndSendChanges() {
+		super.detectAndSendChanges();
 		if (backpackInventory instanceof BackpackInventory) {
 			((BackpackInventory) backpackInventory).writeItemStack();
 		}
-		super.detectAndSendChanges();
 	}
 	
 	@Override
