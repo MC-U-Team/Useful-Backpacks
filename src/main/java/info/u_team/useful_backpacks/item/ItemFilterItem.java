@@ -17,10 +17,17 @@ public class ItemFilterItem extends FilterItem {
 		final ItemStack stack = player.getHeldItem(hand);
 		if (!world.isRemote && player instanceof ServerPlayerEntity) {
 			final int selectedSlot = hand == Hand.MAIN_HAND ? player.inventory.currentItem : -1;
+			final boolean isStrict;
+			if (stack.hasTag()) {
+				isStrict = stack.getTag().getBoolean("strict");
+			} else {
+				isStrict = false;
+			}
 			NetworkHooks.openGui((ServerPlayerEntity) player, new SimpleNamedContainerProvider((id, playerInventory, unused) -> {
-				return new ItemFilterContainer(id, playerInventory, stack, selectedSlot);
+				return new ItemFilterContainer(id, playerInventory, stack, selectedSlot, isStrict);
 			}, stack.getDisplayName()), buffer -> {
 				buffer.writeVarInt(selectedSlot);
+				buffer.writeBoolean(isStrict);
 			});
 			
 		}

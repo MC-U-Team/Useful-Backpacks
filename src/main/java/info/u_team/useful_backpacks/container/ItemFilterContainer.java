@@ -15,19 +15,21 @@ public class ItemFilterContainer extends UContainer {
 	
 	private final ItemStack filterStack;
 	private final int selectedSlot;
+	private final boolean isStrictInitial;
 	
 	private final IInventory filterItemSlotInventory = new Inventory(1);
 	
 	private final MessageHolder strictMessage;
 	
 	public ItemFilterContainer(int id, PlayerInventory playerInventory, PacketBuffer buffer) {
-		this(id, playerInventory, ItemStack.EMPTY, buffer.readVarInt());
+		this(id, playerInventory, ItemStack.EMPTY, buffer.readVarInt(), buffer.readBoolean());
 	}
 	
-	public ItemFilterContainer(int id, PlayerInventory playerInventory, ItemStack filterStack, int selectedSlot) {
+	public ItemFilterContainer(int id, PlayerInventory playerInventory, ItemStack filterStack, int selectedSlot, boolean isStrict) {
 		super(UsefulBackpacksContainerTypes.ITEM_FILTER.get(), id);
 		this.filterStack = filterStack;
 		this.selectedSlot = selectedSlot;
+		this.isStrictInitial = isStrict;
 		
 		final CompoundNBT compound = filterStack.getChildTag("stack");
 		if (compound != null) {
@@ -104,6 +106,10 @@ public class ItemFilterContainer extends UContainer {
 			}
 		}
 		return stack;
+	}
+	
+	public boolean isStrictInitial() {
+		return isStrictInitial;
 	}
 	
 	public MessageHolder getStrictMessage() {
