@@ -15,14 +15,7 @@ public class ItemFilterContainer extends UContainer {
 	private final ItemStack filterStack;
 	private final int selectedSlot;
 	
-	private final IInventory filterItemSlotInventory = new Inventory(1) {
-		
-		@Override
-		public void markDirty() {
-			super.markDirty();
-			onCraftMatrixChanged(this);
-		}
-	};
+	private final IInventory filterItemSlotInventory = new Inventory(1);
 	
 	public ItemFilterContainer(int id, PlayerInventory playerInventory, PacketBuffer buffer) {
 		this(id, playerInventory, ItemStack.EMPTY, buffer.readVarInt());
@@ -40,12 +33,6 @@ public class ItemFilterContainer extends UContainer {
 		
 		appendInventory(filterItemSlotInventory, ItemFilterSlot::new, 1, 1, 10, 10);
 		appendPlayerInventory(playerInventory, 8, 48);
-	}
-	
-	@Override
-	public void detectAndSendChanges() {
-		
-		super.detectAndSendChanges();
 	}
 	
 	@Override
