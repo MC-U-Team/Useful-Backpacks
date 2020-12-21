@@ -52,6 +52,19 @@ public class ItemFilterContainer extends UContainer {
 	}
 	
 	@Override
+	public void detectAndSendChanges() {
+		if (!filterStack.isEmpty()) {
+			final ItemStack stackToFilter = filterItemSlotInventory.getStackInSlot(0);
+			if (stackToFilter.isEmpty()) {
+				filterStack.removeChildTag("stack");
+			} else {
+				stackToFilter.write(filterStack.getOrCreateChildTag("stack"));
+			}
+		}
+		super.detectAndSendChanges();
+	}
+	
+	@Override
 	public ItemStack slotClick(int slotId, int dragType, ClickType clickType, PlayerEntity player) {
 		if (slotId == 0) {
 			return filterSlotClick(dragType, clickType, player);
@@ -95,15 +108,6 @@ public class ItemFilterContainer extends UContainer {
 			filterItemSlotInventory.setInventorySlotContents(0, stack);
 		} else {
 			stack = ItemStack.EMPTY;
-		}
-		
-		if (!filterStack.isEmpty() && !player.world.isRemote()) {
-			final ItemStack stackToFilter = filterItemSlotInventory.getStackInSlot(0);
-			if (stackToFilter.isEmpty()) {
-				stack.removeChildTag("stack");
-			} else {
-				stackToFilter.write(stack.getOrCreateChildTag("stack"));
-			}
 		}
 		return stack;
 	}
