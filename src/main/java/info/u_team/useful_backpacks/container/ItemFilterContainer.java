@@ -53,6 +53,7 @@ public class ItemFilterContainer extends UContainer {
 	
 	@Override
 	public void detectAndSendChanges() {
+		super.detectAndSendChanges();
 		if (!filterStack.isEmpty()) {
 			final ItemStack stackToFilter = filterItemSlotInventory.getStackInSlot(0);
 			if (stackToFilter.isEmpty()) {
@@ -61,7 +62,6 @@ public class ItemFilterContainer extends UContainer {
 				stackToFilter.write(filterStack.getOrCreateChildTag("stack"));
 			}
 		}
-		super.detectAndSendChanges();
 	}
 	
 	@Override
