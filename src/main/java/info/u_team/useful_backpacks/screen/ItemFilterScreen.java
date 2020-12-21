@@ -22,7 +22,7 @@ public class ItemFilterScreen extends UBasicContainerScreen<ItemFilterContainer>
 	protected void init() {
 		super.init();
 		
-		addButton(new CheckboxButton(50, 50, 20, 20, ITextComponent.getTextComponentOrEmpty("Strict"), container.isStrictInitial()) {
+		addButton(new CheckboxButton(guiLeft + 50, guiTop + 15, 15, 15, ITextComponent.getTextComponentOrEmpty("Strict"), container.isStrictInitial()) {
 			
 			@Override
 			public void onPress() {
