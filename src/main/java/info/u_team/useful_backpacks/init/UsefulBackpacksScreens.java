@@ -14,6 +14,7 @@ public class UsefulBackpacksScreens {
 			ClientRegistry.registerScreen(UsefulBackpacksContainerTypes.ENDERCHEST_BACKPACK, ChestScreen::new);
 			ClientRegistry.registerScreen(UsefulBackpacksContainerTypes.FILTER_CONFIGURATOR, FilterConfiguratorScreen::new);
 			ClientRegistry.registerScreen(UsefulBackpacksContainerTypes.ITEM_FILTER, ItemFilterScreen::new);
+			ClientRegistry.registerScreen(UsefulBackpacksContainerTypes.TAG_FILTER, TagFilterScreen::new);
 		});
 	}
 	
