@@ -36,7 +36,7 @@ public class ItemFilterContainer extends UContainer {
 			filterItemSlotInventory.setInventorySlotContents(0, ItemStack.read(compound));
 		}
 		
-		appendInventory(filterItemSlotInventory, ItemFilterSlot::new, 1, 1, 26, 17);
+		appendInventory(filterItemSlotInventory, ItemFilterSlot::new, 1, 1, 17, 17);
 		appendPlayerInventory(playerInventory, 8, 48);
 		
 		strictMessage = addClientToServerTracker(new MessageHolder(buffer -> {
