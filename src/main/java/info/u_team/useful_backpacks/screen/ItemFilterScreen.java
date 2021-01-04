@@ -8,23 +8,37 @@ import io.netty.buffer.Unpooled;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.*;
 
 public class ItemFilterScreen extends UBasicContainerScreen<ItemFilterContainer> {
 	
 	private static final ResourceLocation BACKGROUND = new ResourceLocation(UsefulBackpacksMod.MODID, "textures/gui/item_filter.png");
 	
+	private final ITextComponent strictTextComponent;
+	private final ITextComponent strictTooltipTextComponent;
+	
 	public ItemFilterScreen(ItemFilterContainer container, PlayerInventory playerInventory, ITextComponent title) {
 		super(container, playerInventory, title, BACKGROUND, 176, 130);
+		
+		final String langKey = "container.usefulbackpacks.item_filter.";
+		
+		strictTextComponent = new TranslationTextComponent(langKey + "strict");
+		strictTooltipTextComponent = new TranslationTextComponent(langKey + "strict.tooltip");
 	}
 	
 	@Override
 	protected void init() {
 		super.init();
 		
-		final CheckboxButton isStrictCheckbox = addButton(new CheckboxButton(guiLeft + xSize - (17 + 16), guiTop + 17, 16, 16, ITextComponent.getTextComponentOrEmpty("Strict"), container.isStrictInitial(), false));
+		final CheckboxButton isStrictCheckbox = addButton(new CheckboxButton(guiLeft + xSize - (17 + 16), guiTop + 17, 16, 16, strictTextComponent, container.isStrictInitial(), false));
+		isStrictCheckbox.setLeftSideText(true);
 		isStrictCheckbox.setPressable(() -> {
 			container.getStrictMessage().triggerMessage(() -> new PacketBuffer(Unpooled.copyBoolean(isStrictCheckbox.isChecked())));
+		});
+		isStrictCheckbox.setTooltip((button, matrixStack, mouseX, mouseY) -> {
+			if (button.isHovered()) {
+				renderTooltip(matrixStack, strictTooltipTextComponent, mouseX, mouseY);
+			}
 		});
 	}
 }
