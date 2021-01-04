@@ -1,10 +1,10 @@
 package info.u_team.useful_backpacks.screen;
 
+import info.u_team.u_team_core.gui.elements.CheckboxButton;
 import info.u_team.u_team_core.screen.UBasicContainerScreen;
 import info.u_team.useful_backpacks.UsefulBackpacksMod;
 import info.u_team.useful_backpacks.container.ItemFilterContainer;
 import io.netty.buffer.Unpooled;
-import net.minecraft.client.gui.widget.button.CheckboxButton;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
@@ -22,13 +22,9 @@ public class ItemFilterScreen extends UBasicContainerScreen<ItemFilterContainer>
 	protected void init() {
 		super.init();
 		
-		addButton(new CheckboxButton(guiLeft + 50, guiTop + 15, 15, 15, ITextComponent.getTextComponentOrEmpty("Strict"), container.isStrictInitial()) {
-			
-			@Override
-			public void onPress() {
-				super.onPress();
-				container.getStrictMessage().triggerMessage(() -> new PacketBuffer(Unpooled.buffer(1).writeBoolean(isChecked())));
-			}
+		final CheckboxButton isStrictCheckbox = addButton(new CheckboxButton(guiLeft + xSize - (17 + 16), guiTop + 17, 16, 16, ITextComponent.getTextComponentOrEmpty("Strict"), container.isStrictInitial(), false));
+		isStrictCheckbox.setPressable(() -> {
+			container.getStrictMessage().triggerMessage(() -> new PacketBuffer(Unpooled.copyBoolean(isStrictCheckbox.isChecked())));
 		});
 	}
 }
