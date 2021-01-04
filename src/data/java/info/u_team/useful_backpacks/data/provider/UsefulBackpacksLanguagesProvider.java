@@ -37,8 +37,8 @@ public class UsefulBackpacksLanguagesProvider extends CommonLanguagesProvider {
 		addItem("de_de", TAG_FILTER, "Automatischer Aufhebe Filter (Aliasdaten)");
 		addBlock("de_de", FILTER_CONFIGURATOR, "Rucksack Filter Konfigurator");
 		add("de_de", "container.usefulbackpacks.filter_configurator", "Rucksack Filter Konfigurator");
-		add("container.usefulbackpacks.item_filter.strict", "Strenge Übereinstimmung: ");
-		add("container.usefulbackpacks.item_filter.strict.tooltip", "Wenn diese Option aktiviert ist, muss das Item NBT mit dem konfigurierten Item übereinstimmen");
+		add("de_de", "container.usefulbackpacks.item_filter.strict", "Strenge Übereinstimmung: ");
+		add("de_de", "container.usefulbackpacks.item_filter.strict.tooltip", "Wenn diese Option aktiviert ist, muss das Item NBT mit dem konfigurierten Item übereinstimmen");
 		
 		// Integration
 		// Curious
