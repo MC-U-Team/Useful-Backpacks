@@ -24,6 +24,8 @@ public class UsefulBackpacksLanguagesProvider extends CommonLanguagesProvider {
 		addItem(TAG_FILTER, "Auto Pickup Filter (Tag)");
 		addBlock(FILTER_CONFIGURATOR, "Backpack Filter Configurator");
 		add("container.usefulbackpacks.filter_configurator", "Backpack Filter Configurator");
+		add("container.usefulbackpacks.item_filter.strict", "Strict match: ");
+		add("container.usefulbackpacks.item_filter.strict.tooltip", "If checked the item NBT must match the configured item");
 		
 		// German
 		add("de_de", UsefulBackpacksItemGroups.GROUP, "Nützliche Rucksäcke");
@@ -35,6 +37,8 @@ public class UsefulBackpacksLanguagesProvider extends CommonLanguagesProvider {
 		addItem("de_de", TAG_FILTER, "Automatischer Aufhebe Filter (Aliasdaten)");
 		addBlock("de_de", FILTER_CONFIGURATOR, "Rucksack Filter Konfigurator");
 		add("de_de", "container.usefulbackpacks.filter_configurator", "Rucksack Filter Konfigurator");
+		add("container.usefulbackpacks.item_filter.strict", "Strenge Übereinstimmung: ");
+		add("container.usefulbackpacks.item_filter.strict.tooltip", "Wenn diese Option aktiviert ist, muss das Item NBT mit dem konfigurierten Item übereinstimmen");
 		
 		// Integration
 		// Curious
