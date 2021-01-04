@@ -2,6 +2,7 @@ package info.u_team.useful_backpacks.screen;
 
 import info.u_team.u_team_core.gui.elements.CheckboxButton;
 import info.u_team.u_team_core.screen.UBasicContainerScreen;
+import info.u_team.u_team_core.util.RGBA;
 import info.u_team.useful_backpacks.UsefulBackpacksMod;
 import info.u_team.useful_backpacks.container.ItemFilterContainer;
 import io.netty.buffer.Unpooled;
@@ -30,7 +31,8 @@ public class ItemFilterScreen extends UBasicContainerScreen<ItemFilterContainer>
 	protected void init() {
 		super.init();
 		
-		final CheckboxButton isStrictCheckbox = addButton(new CheckboxButton(guiLeft + xSize - (17 + 16), guiTop + 17, 16, 16, strictTextComponent, container.isStrictInitial(), false));
+		final CheckboxButton isStrictCheckbox = addButton(new CheckboxButton(guiLeft + xSize - (17 + 16), guiTop + 17, 16, 16, strictTextComponent, container.isStrictInitial(), true));
+		isStrictCheckbox.setTextColor(new RGBA(0x404040FF));
 		isStrictCheckbox.setLeftSideText(true);
 		isStrictCheckbox.setPressable(() -> {
 			container.getStrictMessage().triggerMessage(() -> new PacketBuffer(Unpooled.copyBoolean(isStrictCheckbox.isChecked())));
