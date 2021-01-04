@@ -1,6 +1,8 @@
 {
 	"block.usefulbackpacks.filter_configurator": "Rucksack Filter Konfigurator",
 	"container.usefulbackpacks.filter_configurator": "Rucksack Filter Konfigurator",
+	"container.usefulbackpacks.item_filter.strict": "Strenge Übereinstimmung: ",
+	"container.usefulbackpacks.item_filter.strict.tooltip": "Wenn diese Option aktiviert ist, muss das Item NBT mit dem konfigurierten Item übereinstimmen",
 	"item.usefulbackpacks.backpack_enderchest": "Endertruhen Rucksack",
 	"item.usefulbackpacks.backpack_large": "Großer Rucksack",
 	"item.usefulbackpacks.backpack_medium": "Mittlerer Rucksack",
