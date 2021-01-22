@@ -21,7 +21,7 @@ public class TagFilterContainer extends UContainer {
 		this.filterStack = filterStack;
 		this.selectedSlot = selectedSlot;
 		
-		appendPlayerInventory(playerInventory, 8, 48);
+		appendPlayerInventory(playerInventory, 8, 108);
 	}
 	
 	@Override
