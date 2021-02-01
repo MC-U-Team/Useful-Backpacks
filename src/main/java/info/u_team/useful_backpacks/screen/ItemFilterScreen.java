@@ -31,11 +31,12 @@ public class ItemFilterScreen extends UBasicContainerScreen<ItemFilterContainer>
 	protected void init() {
 		super.init();
 		
-		final CheckboxButton isStrictCheckbox = addButton(new CheckboxButton(guiLeft + xSize - (17 + 16), guiTop + 17, 16, 16, strictTextComponent, container.isStrictInitial(), true));
+		final CheckboxButton isStrictCheckbox = addButton(new CheckboxButton(guiLeft + xSize - (17 + 16), guiTop + 17, 16, 16, strictTextComponent, container.isStrict(), true));
 		isStrictCheckbox.setTextColor(new RGBA(0x404040FF));
 		isStrictCheckbox.setLeftSideText(true);
 		isStrictCheckbox.setPressable(() -> {
 			container.getStrictMessage().triggerMessage(() -> new PacketBuffer(Unpooled.copyBoolean(isStrictCheckbox.isChecked())));
+			container.setStrict(isStrictCheckbox.isChecked());
 		});
 		isStrictCheckbox.setTooltip((button, matrixStack, mouseX, mouseY) -> {
 			if (button.isHovered()) {

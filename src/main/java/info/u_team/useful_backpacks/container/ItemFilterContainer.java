@@ -15,7 +15,7 @@ public class ItemFilterContainer extends UContainer {
 	
 	private final ItemStack filterStack;
 	private final int selectedSlot;
-	private final boolean isStrictInitial;
+	private boolean isStrict;
 	
 	private final IInventory filterItemSlotInventory = new Inventory(1);
 	
@@ -25,11 +25,11 @@ public class ItemFilterContainer extends UContainer {
 		this(id, playerInventory, ItemStack.EMPTY, buffer.readVarInt(), buffer.readBoolean());
 	}
 	
-	public ItemFilterContainer(int id, PlayerInventory playerInventory, ItemStack filterStack, int selectedSlot, boolean isStrictInitial) {
+	public ItemFilterContainer(int id, PlayerInventory playerInventory, ItemStack filterStack, int selectedSlot, boolean isStrict) {
 		super(UsefulBackpacksContainerTypes.ITEM_FILTER.get(), id);
 		this.filterStack = filterStack;
 		this.selectedSlot = selectedSlot;
-		this.isStrictInitial = isStrictInitial;
+		this.isStrict = isStrict;
 		
 		final CompoundNBT compound = filterStack.getChildTag("stack");
 		if (compound != null) {
@@ -112,8 +112,12 @@ public class ItemFilterContainer extends UContainer {
 		return stack;
 	}
 	
-	public boolean isStrictInitial() {
-		return isStrictInitial;
+	public boolean isStrict() {
+		return isStrict;
+	}
+	
+	public void setStrict(boolean isStrict) {
+		this.isStrict = isStrict;
 	}
 	
 	public MessageHolder getStrictMessage() {
