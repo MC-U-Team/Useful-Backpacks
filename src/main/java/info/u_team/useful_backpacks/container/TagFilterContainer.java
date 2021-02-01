@@ -10,22 +10,26 @@ import net.minecraft.network.PacketBuffer;
 
 public class TagFilterContainer extends UContainer {
 	
+	private static final int MAX_TAG_LENGTH = 32767;
+	
 	private final int selectedSlot;
+	private final String tagInitial;
 	
 	private final MessageHolder tagMessage;
 	
 	public TagFilterContainer(int id, PlayerInventory playerInventory, PacketBuffer buffer) {
-		this(id, playerInventory, ItemStack.EMPTY, buffer.readVarInt());
+		this(id, playerInventory, ItemStack.EMPTY, buffer.readVarInt(), buffer.readString(MAX_TAG_LENGTH));
 	}
 	
-	public TagFilterContainer(int id, PlayerInventory playerInventory, ItemStack filterStack, int selectedSlot) {
+	public TagFilterContainer(int id, PlayerInventory playerInventory, ItemStack filterStack, int selectedSlot, String tagInitial) {
 		super(UsefulBackpacksContainerTypes.TAG_FILTER.get(), id);
 		this.selectedSlot = selectedSlot;
+		this.tagInitial = tagInitial;
 		
 		appendPlayerInventory(playerInventory, 8, 108);
 		
 		tagMessage = addClientToServerTracker(new MessageHolder(buffer -> {
-			final String tag = buffer.readString(32767);
+			final String tag = buffer.readString(MAX_TAG_LENGTH);
 			if (!filterStack.isEmpty()) {
 				if (tag.isEmpty()) {
 					filterStack.removeChildTag("id");
@@ -58,6 +62,10 @@ public class TagFilterContainer extends UContainer {
 			}
 		}
 		return super.slotClick(slotId, dragType, clickType, player);
+	}
+	
+	public String getTagInitial() {
+		return tagInitial;
 	}
 	
 	public MessageHolder getTagMessage() {
