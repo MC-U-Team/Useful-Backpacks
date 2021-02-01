@@ -12,10 +12,9 @@ public class TagFilterTagList extends ScrollableList<TagFilterTagListEntry> {
 	
 	public TagFilterTagList(int x, int y, int width, int height) {
 		super(x, y, width, height, 10, 15);
-		// func_244605_b(false);
 		func_244606_c(false);
 		shouldUseScissor = true;
-		
+		updateEntries(tag -> true);
 	}
 	
 	public void updateSearch(String search) {
