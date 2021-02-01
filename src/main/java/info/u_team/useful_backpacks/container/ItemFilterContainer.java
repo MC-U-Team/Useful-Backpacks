@@ -25,11 +25,11 @@ public class ItemFilterContainer extends UContainer {
 		this(id, playerInventory, ItemStack.EMPTY, buffer.readVarInt(), buffer.readBoolean());
 	}
 	
-	public ItemFilterContainer(int id, PlayerInventory playerInventory, ItemStack filterStack, int selectedSlot, boolean isStrict) {
+	public ItemFilterContainer(int id, PlayerInventory playerInventory, ItemStack filterStack, int selectedSlot, boolean isStrictInitial) {
 		super(UsefulBackpacksContainerTypes.ITEM_FILTER.get(), id);
 		this.filterStack = filterStack;
 		this.selectedSlot = selectedSlot;
-		this.isStrictInitial = isStrict;
+		this.isStrictInitial = isStrictInitial;
 		
 		final CompoundNBT compound = filterStack.getChildTag("stack");
 		if (compound != null) {
