@@ -39,6 +39,7 @@ public class TagFilterScreen extends UBasicContainerScreen<TagFilterContainer> {
 		tagTextField.setResponder(search -> {
 			tagList.updateSearch(search);
 		});
+		setFocusedDefault(tagTextField);
 		
 		tagList = new TagFilterTagList(container, guiLeft + 7, guiTop + 40, 161, 52, container.getTag());
 		children.add(tagList);
