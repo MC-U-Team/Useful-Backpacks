@@ -16,10 +16,17 @@ public class TagFilterItem extends FilterItem {
 		final ItemStack stack = player.getHeldItem(hand);
 		if (!world.isRemote && player instanceof ServerPlayerEntity) {
 			final int selectedSlot = hand == Hand.MAIN_HAND ? player.inventory.currentItem : -1;
+			final String tag;
+			if (stack.hasTag()) {
+				tag = stack.getTag().getString("id");
+			} else {
+				tag = "";
+			}
 			NetworkHooks.openGui((ServerPlayerEntity) player, new SimpleNamedContainerProvider((id, playerInventory, unused) -> {
-				return new TagFilterContainer(id, playerInventory, stack, selectedSlot);
+				return new TagFilterContainer(id, playerInventory, stack, selectedSlot, tag);
 			}, stack.getDisplayName()), buffer -> {
 				buffer.writeVarInt(selectedSlot);
+				buffer.writeString(tag);
 			});
 			
 		}
