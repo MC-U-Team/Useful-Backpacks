@@ -69,9 +69,13 @@ public class TagFilterTagList extends ScrollableList<TagFilterTagListEntry> {
 			addEntry(entry);
 			
 			if (selected != null && selected.getTag().equals(tag)) {
-				setSelected(entry);
+				super.setSelected(entry);
 			}
 		});
+		
+		if (getSelected() != null) {
+			centerScrollOn(getSelected());
+		}
 	}
 	
 }
