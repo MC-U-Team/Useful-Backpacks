@@ -27,6 +27,8 @@ public class TagFilterScreen extends UBasicContainerScreen<TagFilterContainer> {
 	protected void init() {
 		super.init();
 		
+		minecraft.keyboardListener.enableRepeatEvents(true);
+		
 		tagTextField = addButton(new ScalableTextField(font, guiLeft + 8, guiTop + 20, 160, 15, tagTextField, ITextComponent.getTextComponentOrEmpty("Scalable Text Field"), 0.75F));
 		tagTextField.setMaxStringLength(300);
 		tagTextField.setTooltip((textField, matrixStack, mouseX, mouseY) -> {
@@ -46,6 +48,11 @@ public class TagFilterScreen extends UBasicContainerScreen<TagFilterContainer> {
 	public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
 		super.render(matrixStack, mouseX, mouseY, partialTicks);
 		tagList.render(matrixStack, mouseX, mouseY, partialTicks);
+	}
+	
+	@Override
+	public void onClose() {
+		minecraft.keyboardListener.enableRepeatEvents(false);
 	}
 	
 	@Override
