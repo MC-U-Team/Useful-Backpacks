@@ -13,7 +13,7 @@ public class TagFilterContainer extends UContainer {
 	private static final int MAX_TAG_LENGTH = 32767;
 	
 	private final int selectedSlot;
-	private final String tagInitial;
+	private String tag;
 	
 	private final MessageHolder tagMessage;
 	
@@ -21,20 +21,20 @@ public class TagFilterContainer extends UContainer {
 		this(id, playerInventory, ItemStack.EMPTY, buffer.readVarInt(), buffer.readString(MAX_TAG_LENGTH));
 	}
 	
-	public TagFilterContainer(int id, PlayerInventory playerInventory, ItemStack filterStack, int selectedSlot, String tagInitial) {
+	public TagFilterContainer(int id, PlayerInventory playerInventory, ItemStack filterStack, int selectedSlot, String tag) {
 		super(UsefulBackpacksContainerTypes.TAG_FILTER.get(), id);
 		this.selectedSlot = selectedSlot;
-		this.tagInitial = tagInitial;
+		this.tag = tag;
 		
 		appendPlayerInventory(playerInventory, 8, 108);
 		
 		tagMessage = addClientToServerTracker(new MessageHolder(buffer -> {
-			final String tag = buffer.readString(MAX_TAG_LENGTH);
+			final String newTag = buffer.readString(MAX_TAG_LENGTH);
 			if (!filterStack.isEmpty()) {
-				if (tag.isEmpty()) {
+				if (newTag.isEmpty()) {
 					filterStack.removeChildTag("id");
 				} else {
-					filterStack.getOrCreateTag().putString("id", tag);
+					filterStack.getOrCreateTag().putString("id", newTag);
 				}
 			}
 		}));
@@ -64,8 +64,12 @@ public class TagFilterContainer extends UContainer {
 		return super.slotClick(slotId, dragType, clickType, player);
 	}
 	
-	public String getTagInitial() {
-		return tagInitial;
+	public String getTag() {
+		return tag;
+	}
+	
+	public void setTag(String tag) {
+		this.tag = tag;
 	}
 	
 	public MessageHolder getTagMessage() {

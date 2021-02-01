@@ -28,17 +28,17 @@ public class TagFilterScreen extends UBasicContainerScreen<TagFilterContainer> {
 		super.init();
 		
 		tagTextField = addButton(new ScalableTextField(font, guiLeft + 8, guiTop + 20, 160, 15, tagTextField, ITextComponent.getTextComponentOrEmpty("Scalable Text Field"), 0.75F));
-		tagTextField.setMaxStringLength(50);
+		tagTextField.setMaxStringLength(300);
 		tagTextField.setTooltip((textField, matrixStack, mouseX, mouseY) -> {
 			if (WidgetUtil.isHovered(textField)) {
-				renderTooltip(matrixStack, ITextComponent.getTextComponentOrEmpty("Scalable Text Field Tooltip"), mouseX, mouseY);
+				renderTooltip(matrixStack, ITextComponent.getTextComponentOrEmpty("Search for tags"), mouseX, mouseY);
 			}
 		});
 		tagTextField.setResponder(search -> {
-				tagList.updateSearch(search);
+			tagList.updateSearch(search);
 		});
 		
-		tagList = new TagFilterTagList(guiLeft + 7, guiTop + 40, 161, 52);
+		tagList = new TagFilterTagList(container, guiLeft + 7, guiTop + 40, 161, 52, container.getTag());
 		children.add(tagList);
 	}
 	

@@ -5,16 +5,37 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import info.u_team.u_team_core.gui.elements.ScrollableList;
+import info.u_team.useful_backpacks.container.TagFilterContainer;
+import io.netty.buffer.Unpooled;
+import net.minecraft.network.PacketBuffer;
 import net.minecraft.tags.TagCollectionManager;
 import net.minecraft.util.ResourceLocation;
 
 public class TagFilterTagList extends ScrollableList<TagFilterTagListEntry> {
 	
-	public TagFilterTagList(int x, int y, int width, int height) {
+	private final TagFilterContainer container;
+	
+	public TagFilterTagList(TagFilterContainer container, int x, int y, int width, int height, String tag) {
 		super(x, y, width, height, 10, 15);
+		this.container = container;
+		
 		func_244606_c(false);
 		shouldUseScissor = true;
-		updateEntries(tag -> true);
+		
+		updateEntries(unused -> true);
+		
+		if (!tag.isEmpty()) {
+			getEventListeners().stream().filter(entry -> entry.getTag().toString().equals(tag)).findAny().ifPresent(entry -> {
+				super.setSelected(entry);
+			});
+		}
+	}
+	
+	@Override
+	public void setSelected(TagFilterTagListEntry entry) {
+		super.setSelected(entry);
+		container.getTagMessage().triggerMessage(() -> new PacketBuffer(Unpooled.buffer(100)).writeString(entry.getTag().toString()));
+		container.setTag(entry.getTag().toString());
 	}
 	
 	public void updateSearch(String search) {
