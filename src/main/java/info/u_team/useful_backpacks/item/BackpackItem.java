@@ -39,25 +39,30 @@ public class BackpackItem extends UItem implements IBackpack, IDyeableItem {
 	}
 	
 	@Override
-	public void open(ServerPlayerEntity player, ItemStack stack, int selectedSlot) {
+	public void open(ServerPlayerEntity player, ItemStack backpackStack, int selectedSlot) {
 		NetworkHooks.openGui(player, new SimpleNamedContainerProvider((id, playerInventory, unused) -> {
-			return new BackpackContainer(id, playerInventory, getInventory(player, stack), backpack, selectedSlot);
-		}, stack.getDisplayName()), buffer -> {
+			return new BackpackContainer(id, playerInventory, getInventory(player, backpackStack), backpack, selectedSlot);
+		}, backpackStack.getDisplayName()), buffer -> {
 			buffer.writeEnumValue(backpack);
 			buffer.writeVarInt(selectedSlot);
 		});
 	}
 	
 	@Override
-	public IInventory getInventory(ServerPlayerEntity player, ItemStack stack) {
-		return new BackpackInventory(stack, backpack.getInventorySize());
+	public IInventory getInventory(ServerPlayerEntity player, ItemStack backpackStack) {
+		return new BackpackInventory(backpackStack, backpack.getInventorySize());
 	}
 	
 	@Override
-	public void saveInventory(IInventory inventory) {
+	public void saveInventory(IInventory inventory, ItemStack backpackStack) {
 		if (inventory instanceof BackpackInventory) {
 			((BackpackInventory) inventory).writeItemStack();
 		}
+	}
+	
+	@Override
+	public boolean canAutoPickup(ItemStack stack, ItemStack backpackStack) {
+		return false;
 	}
 	
 	@Override

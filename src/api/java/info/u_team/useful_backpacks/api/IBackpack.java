@@ -6,14 +6,14 @@ import net.minecraft.item.ItemStack;
 
 public interface IBackpack {
 	
-	void open(ServerPlayerEntity player, ItemStack stack, int selectedSlot);
+	void open(ServerPlayerEntity player, ItemStack backpackStack, int selectedSlot);
 	
-	IInventory getInventory(ServerPlayerEntity player, ItemStack stack);
+	IInventory getInventory(ServerPlayerEntity player, ItemStack backpackStack);
 	
-	default void saveInventory(IInventory inventory) {
+	default void saveInventory(IInventory inventory, ItemStack backpackStack) {
 	}
 	
-	default boolean canAutoPickup(ItemStack stack) {
+	default boolean canAutoPickup(ItemStack stack, ItemStack backpackStack) {
 		return false;
 	}
 }

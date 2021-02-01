@@ -43,12 +43,12 @@ public class ItemPickupEventHandler {
 			if (item instanceof IBackpack) {
 				final IBackpack backpack = (IBackpack) item;
 				
-				if (backpack.canAutoPickup(stackToPickup)) {
+				if (backpack.canAutoPickup(stackToPickup, stack)) {
 					final IInventory inventory = backpack.getInventory(player, stack);
 					final IItemHandler itemHandler = new InvWrapper(inventory);
 					final ItemStack result = ItemHandlerHelper.insertItemStacked(itemHandler, stackToPickup, false);
 					if (result.getCount() != stackToPickup.getCount()) {
-						backpack.saveInventory(inventory);
+						backpack.saveInventory(inventory, stack);
 					}
 					stackToPickup = result;
 					if (stackToPickup.isEmpty()) {

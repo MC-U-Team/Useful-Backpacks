@@ -28,16 +28,16 @@ public class EnderChestBackpackItem extends UItem implements IBackpack {
 	}
 	
 	@Override
-	public void open(ServerPlayerEntity player, ItemStack stack, int selectedSlot) {
+	public void open(ServerPlayerEntity player, ItemStack backpackStack, int selectedSlot) {
 		NetworkHooks.openGui(player, new SimpleNamedContainerProvider((id, playerInventory, unused) -> {
-			return EnderChestBackpackContainer.createEnderChestContainer(id, playerInventory, getInventory(player, stack), selectedSlot);
-		}, stack.getDisplayName()), buffer -> {
+			return EnderChestBackpackContainer.createEnderChestContainer(id, playerInventory, getInventory(player, backpackStack), selectedSlot);
+		}, backpackStack.getDisplayName()), buffer -> {
 			buffer.writeVarInt(selectedSlot);
 		});
 	}
 	
 	@Override
-	public IInventory getInventory(ServerPlayerEntity player, ItemStack stack) {
+	public IInventory getInventory(ServerPlayerEntity player, ItemStack backpackStack) {
 		return player.getInventoryEnderChest();
 	}
 }
