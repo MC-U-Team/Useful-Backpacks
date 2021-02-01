@@ -27,6 +27,7 @@ public class TagFilterTagList extends ScrollableList<TagFilterTagListEntry> {
 		if (!tag.isEmpty()) {
 			getEventListeners().stream().filter(entry -> entry.getTag().toString().equals(tag)).findAny().ifPresent(entry -> {
 				super.setSelected(entry);
+				centerScrollOn(entry);
 			});
 		}
 	}
@@ -62,6 +63,7 @@ public class TagFilterTagList extends ScrollableList<TagFilterTagListEntry> {
 		});
 		final TagFilterTagListEntry selected = getSelected();
 		clearEntries();
+		setScrollAmount(0);
 		list.forEach(tag -> {
 			final TagFilterTagListEntry entry = new TagFilterTagListEntry(tag);
 			addEntry(entry);
