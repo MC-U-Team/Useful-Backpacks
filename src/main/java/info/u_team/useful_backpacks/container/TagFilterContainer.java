@@ -1,5 +1,6 @@
 package info.u_team.useful_backpacks.container;
 
+import info.u_team.u_team_core.api.sync.MessageHolder;
 import info.u_team.u_team_core.container.UContainer;
 import info.u_team.useful_backpacks.init.UsefulBackpacksContainerTypes;
 import net.minecraft.entity.player.*;
@@ -9,8 +10,9 @@ import net.minecraft.network.PacketBuffer;
 
 public class TagFilterContainer extends UContainer {
 	
-	private final ItemStack filterStack;
 	private final int selectedSlot;
+	
+	private final MessageHolder tagMessage;
 	
 	public TagFilterContainer(int id, PlayerInventory playerInventory, PacketBuffer buffer) {
 		this(id, playerInventory, ItemStack.EMPTY, buffer.readVarInt());
@@ -18,10 +20,20 @@ public class TagFilterContainer extends UContainer {
 	
 	public TagFilterContainer(int id, PlayerInventory playerInventory, ItemStack filterStack, int selectedSlot) {
 		super(UsefulBackpacksContainerTypes.TAG_FILTER.get(), id);
-		this.filterStack = filterStack;
 		this.selectedSlot = selectedSlot;
 		
 		appendPlayerInventory(playerInventory, 8, 108);
+		
+		tagMessage = addClientToServerTracker(new MessageHolder(buffer -> {
+			final String tag = buffer.readString(32767);
+			if (!filterStack.isEmpty()) {
+				if (tag.isEmpty()) {
+					filterStack.removeChildTag("id");
+				} else {
+					filterStack.getOrCreateTag().putString("id", tag);
+				}
+			}
+		}));
 	}
 	
 	@Override
@@ -46,5 +58,9 @@ public class TagFilterContainer extends UContainer {
 			}
 		}
 		return super.slotClick(slotId, dragType, clickType, player);
+	}
+	
+	public MessageHolder getTagMessage() {
+		return tagMessage;
 	}
 }
