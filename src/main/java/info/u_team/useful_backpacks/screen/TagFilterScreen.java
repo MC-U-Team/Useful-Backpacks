@@ -58,6 +58,10 @@ public class TagFilterScreen extends UBasicContainerScreen<TagFilterContainer> {
 	
 	@Override
 	public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
+		if (keyCode == 256 && shouldCloseOnEsc()) {
+			closeScreen();
+			return true;
+		}
 		return !tagTextField.keyPressed(keyCode, scanCode, modifiers) && !tagTextField.canWrite() ? super.keyPressed(keyCode, scanCode, modifiers) : true;
 	}
 	
