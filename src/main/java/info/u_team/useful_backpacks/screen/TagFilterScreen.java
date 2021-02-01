@@ -56,6 +56,11 @@ public class TagFilterScreen extends UBasicContainerScreen<TagFilterContainer> {
 	}
 	
 	@Override
+	public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
+		return !tagTextField.keyPressed(keyCode, scanCode, modifiers) && !tagTextField.canWrite() ? super.keyPressed(keyCode, scanCode, modifiers) : true;
+	}
+	
+	@Override
 	public boolean mouseDragged(double mouseX, double mouseY, int button, double dragX, double dragY) {
 		final boolean dragged = getListener() != null && isDragging() && button == 0 ? getListener().mouseDragged(mouseX, mouseY, button, dragX, dragY) : false;
 		if (!dragged) {
