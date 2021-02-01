@@ -40,12 +40,12 @@ public class ItemFilterContainer extends UContainer {
 		appendPlayerInventory(playerInventory, 8, 48);
 		
 		strictMessage = addClientToServerTracker(new MessageHolder(buffer -> {
-			final boolean strict = buffer.readBoolean();
+			final boolean newIsStrict = buffer.readBoolean();
 			if (!filterStack.isEmpty()) {
-				if (!strict) {
+				if (!newIsStrict) {
 					filterStack.removeChildTag("strict");
 				} else {
-					filterStack.getOrCreateTag().putBoolean("strict", strict);
+					filterStack.getOrCreateTag().putBoolean("strict", newIsStrict);
 				}
 			}
 		}));
