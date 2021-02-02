@@ -1,7 +1,6 @@
 package info.u_team.useful_backpacks.item;
 
 import info.u_team.u_team_core.item.UItem;
-import info.u_team.useful_backpacks.api.IBackpack;
 import info.u_team.useful_backpacks.container.EnderChestBackpackContainer;
 import info.u_team.useful_backpacks.init.UsefulBackpacksItemGroups;
 import net.minecraft.entity.player.*;
@@ -12,7 +11,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-public class EnderChestBackpackItem extends UItem implements IBackpack {
+public class EnderChestBackpackItem extends UItem implements INBTBackpack {
 	
 	public EnderChestBackpackItem() {
 		super(UsefulBackpacksItemGroups.GROUP, new Properties().maxStackSize(1).rarity(Rarity.EPIC));

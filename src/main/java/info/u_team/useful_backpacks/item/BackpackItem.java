@@ -4,11 +4,10 @@ import java.util.Arrays;
 
 import info.u_team.u_team_core.api.dye.IDyeableItem;
 import info.u_team.u_team_core.item.UItem;
-import info.u_team.useful_backpacks.api.*;
 import info.u_team.useful_backpacks.config.ServerConfig;
 import info.u_team.useful_backpacks.container.BackpackContainer;
 import info.u_team.useful_backpacks.init.UsefulBackpacksItemGroups;
-import info.u_team.useful_backpacks.inventory.*;
+import info.u_team.useful_backpacks.inventory.BackpackInventory;
 import info.u_team.useful_backpacks.type.Backpack;
 import net.minecraft.entity.player.*;
 import net.minecraft.inventory.IInventory;
@@ -19,7 +18,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-public class BackpackItem extends UItem implements IBackpack, IDyeableItem {
+public class BackpackItem extends UItem implements INBTBackpack, IDyeableItem {
 	
 	private final Backpack backpack;
 	
@@ -58,24 +57,6 @@ public class BackpackItem extends UItem implements IBackpack, IDyeableItem {
 		if (inventory instanceof BackpackInventory) {
 			((BackpackInventory) inventory).writeItemStack();
 		}
-	}
-	
-	@Override
-	public boolean canAutoPickup(ItemStack stack, ItemStack backpackStack) {
-		final FilterInventory filterInventory = new FilterInventory(backpackStack);
-		
-		for (int index = 0; index < filterInventory.getSizeInventory(); index++) {
-			final ItemStack filterStack = filterInventory.getStackInSlot(index);
-			final Item filterItem = filterStack.getItem();
-			if (filterItem instanceof IFilter) {
-				final IFilter filter = (IFilter) filterItem;
-				
-				if (filter.matchItem(filterStack, stack)) {
-					return true;
-				}
-			}
-		}
-		return false;
 	}
 	
 	@Override

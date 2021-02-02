@@ -31,6 +31,7 @@ public class ItemPickupEventHandler {
 		if (resultStack.isEmpty()) {
 			event.setResult(Result.ALLOW);
 		}
+		
 	}
 	
 	private static ItemStack insertInBackpacks(ServerPlayerEntity player, ItemStack stackToPickup) {
