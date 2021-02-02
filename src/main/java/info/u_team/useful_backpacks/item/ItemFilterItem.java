@@ -31,7 +31,7 @@ public class ItemFilterItem extends FilterItem {
 			});
 			
 		}
-		return new ActionResult<>(ActionResultType.SUCCESS, stack);
+		return ActionResult.resultSuccess(stack);
 	}
 	
 	@Override

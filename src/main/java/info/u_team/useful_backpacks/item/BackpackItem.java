@@ -34,7 +34,7 @@ public class BackpackItem extends UItem implements INBTBackpack, IDyeableItem {
 		if (!world.isRemote && player instanceof ServerPlayerEntity) {
 			open((ServerPlayerEntity) player, stack, hand == Hand.MAIN_HAND ? player.inventory.currentItem : -1);
 		}
-		return new ActionResult<>(ActionResultType.SUCCESS, stack);
+		return ActionResult.resultSuccess(stack);
 	}
 	
 	@Override
