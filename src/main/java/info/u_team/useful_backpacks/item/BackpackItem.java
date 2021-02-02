@@ -4,11 +4,11 @@ import java.util.Arrays;
 
 import info.u_team.u_team_core.api.dye.IDyeableItem;
 import info.u_team.u_team_core.item.UItem;
-import info.u_team.useful_backpacks.api.IBackpack;
+import info.u_team.useful_backpacks.api.*;
 import info.u_team.useful_backpacks.config.ServerConfig;
 import info.u_team.useful_backpacks.container.BackpackContainer;
 import info.u_team.useful_backpacks.init.UsefulBackpacksItemGroups;
-import info.u_team.useful_backpacks.inventory.BackpackInventory;
+import info.u_team.useful_backpacks.inventory.*;
 import info.u_team.useful_backpacks.type.Backpack;
 import net.minecraft.entity.player.*;
 import net.minecraft.inventory.IInventory;
@@ -62,6 +62,19 @@ public class BackpackItem extends UItem implements IBackpack, IDyeableItem {
 	
 	@Override
 	public boolean canAutoPickup(ItemStack stack, ItemStack backpackStack) {
+		final FilterInventory filterInventory = new FilterInventory(backpackStack);
+		
+		for (int index = 0; index < filterInventory.getSizeInventory(); index++) {
+			final ItemStack filterStack = filterInventory.getStackInSlot(index);
+			final Item filterItem = filterStack.getItem();
+			if (filterItem instanceof IFilter) {
+				final IFilter filter = (IFilter) filterItem;
+				
+				if (filter.matchItem(filterStack, stack)) {
+					return true;
+				}
+			}
+		}
 		return false;
 	}
 	
