@@ -9,11 +9,13 @@ import info.u_team.useful_backpacks.UsefulBackpacksMod;
 import info.u_team.useful_backpacks.container.TagFilterContainer;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.*;
 
 public class TagFilterScreen extends UBasicContainerScreen<TagFilterContainer> {
 	
 	private static final ResourceLocation BACKGROUND = new ResourceLocation(UsefulBackpacksMod.MODID, "textures/gui/tag_filter.png");
+	
+	private final ITextComponent tagSearchTextComponent;
 	
 	private ScalableTextField tagTextField;
 	
@@ -21,6 +23,8 @@ public class TagFilterScreen extends UBasicContainerScreen<TagFilterContainer> {
 	
 	public TagFilterScreen(TagFilterContainer container, PlayerInventory playerInventory, ITextComponent title) {
 		super(container, playerInventory, title, BACKGROUND, 176, 190);
+		
+		tagSearchTextComponent = new TranslationTextComponent("container.usefulbackpacks.tag_filter.search");
 	}
 	
 	@Override
@@ -29,11 +33,11 @@ public class TagFilterScreen extends UBasicContainerScreen<TagFilterContainer> {
 		
 		minecraft.keyboardListener.enableRepeatEvents(true);
 		
-		tagTextField = addButton(new ScalableTextField(font, guiLeft + 8, guiTop + 20, 160, 15, tagTextField, ITextComponent.getTextComponentOrEmpty("Scalable Text Field"), 0.75F));
+		tagTextField = addButton(new ScalableTextField(font, guiLeft + 8, guiTop + 20, 160, 15, tagTextField, tagSearchTextComponent, 0.75F));
 		tagTextField.setMaxStringLength(300);
 		tagTextField.setTooltip((textField, matrixStack, mouseX, mouseY) -> {
 			if (WidgetUtil.isHovered(textField)) {
-				renderTooltip(matrixStack, ITextComponent.getTextComponentOrEmpty("Search for tags"), mouseX, mouseY);
+				renderTooltip(matrixStack, tagSearchTextComponent, mouseX, mouseY);
 			}
 		});
 		tagTextField.setResponder(search -> {
