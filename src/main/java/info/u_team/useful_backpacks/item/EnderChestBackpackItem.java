@@ -11,7 +11,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-public class EnderChestBackpackItem extends UItem implements INBTBackpack {
+public class EnderChestBackpackItem extends UItem implements AutoPickupBackpack {
 	
 	public EnderChestBackpackItem() {
 		super(UsefulBackpacksItemGroups.GROUP, new Properties().maxStackSize(1).rarity(Rarity.EPIC));

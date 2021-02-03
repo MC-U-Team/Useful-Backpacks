@@ -4,7 +4,7 @@ import info.u_team.useful_backpacks.api.*;
 import info.u_team.useful_backpacks.inventory.FilterInventory;
 import net.minecraft.item.*;
 
-public interface INBTBackpack extends IBackpack {
+public interface AutoPickupBackpack extends IBackpack {
 	
 	@Override
 	default boolean canAutoPickup(ItemStack stack, ItemStack backpackStack) {

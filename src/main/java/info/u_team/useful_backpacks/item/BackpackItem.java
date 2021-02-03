@@ -18,7 +18,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-public class BackpackItem extends UItem implements INBTBackpack, IDyeableItem {
+public class BackpackItem extends UItem implements AutoPickupBackpack, IDyeableItem {
 	
 	private final Backpack backpack;
 	
