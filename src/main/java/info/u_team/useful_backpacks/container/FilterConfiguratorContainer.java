@@ -86,9 +86,9 @@ public class FilterConfiguratorContainer extends UContainer {
 			final ItemStack copy = inventory.getStack().copy();
 			inventory.writeItemStack();
 			if (!ItemStack.areItemStacksEqual(copy, inventory.getStack())) {
-				for (IContainerListener listener : getListeners()) {
+				for (final IContainerListener listener : getListeners()) {
 					if (listener instanceof ServerPlayerEntity) {
-						ServerPlayerEntity player = (ServerPlayerEntity) listener;
+						final ServerPlayerEntity player = (ServerPlayerEntity) listener;
 						player.connection.netManager.sendPacket(new SSetSlotPacket(windowId, 0, inventory.getStack()));
 					}
 				}

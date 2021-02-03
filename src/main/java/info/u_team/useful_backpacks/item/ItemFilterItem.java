@@ -1,6 +1,6 @@
 package info.u_team.useful_backpacks.item;
 
-import info.u_team.useful_backpacks.container.*;
+import info.u_team.useful_backpacks.container.ItemFilterContainer;
 import net.minecraft.entity.player.*;
 import net.minecraft.inventory.container.SimpleNamedContainerProvider;
 import net.minecraft.item.ItemStack;
