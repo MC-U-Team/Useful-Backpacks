@@ -9,8 +9,13 @@
 	"item.usefulbackpacks.backpack_medium": "Medium Backpack",
 	"item.usefulbackpacks.backpack_small": "Small Backpack",
 	"item.usefulbackpacks.filter_item": "Auto Pickup Filter (Item)",
+	"item.usefulbackpacks.filter_item.tooltip.0": "This filter is not configured",
+	"item.usefulbackpacks.filter_item.tooltip.1": "%s to configure the item filter",
 	"item.usefulbackpacks.filter_tag": "Auto Pickup Filter (Tag)",
+	"item.usefulbackpacks.filter_tag.tooltip.0": "This filter is not configured",
+	"item.usefulbackpacks.filter_tag.tooltip.1": "%s to configure the tag filter",
 	"itemGroup.usefulbackpacks.group": "Useful Backpacks",
 	"key.usefulbackpacks.curiosintegration.category": "Useful Backpacks : Curios Integration",
-	"key.usefulbackpacks.curiosintegration.description": "Open backpack"
+	"key.usefulbackpacks.curiosintegration.description": "Open backpack",
+	"usefulbackpacks.tooltip.right_click": "Right click"
 }

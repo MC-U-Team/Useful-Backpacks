@@ -9,8 +9,13 @@
 	"item.usefulbackpacks.backpack_medium": "Mittlerer Rucksack",
 	"item.usefulbackpacks.backpack_small": "Kleiner Rucksack",
 	"item.usefulbackpacks.filter_item": "Automatischer Aufhebe Filter (Gegenstand)",
+	"item.usefulbackpacks.filter_item.tooltip.0": "Dieser Filter ist nicht konfiguriert",
+	"item.usefulbackpacks.filter_item.tooltip.1": "%s um den Gegenstandsfilter zu konfigurieren",
 	"item.usefulbackpacks.filter_tag": "Automatischer Aufhebe Filter (Aliasdaten)",
+	"item.usefulbackpacks.filter_tag.tooltip.0": "Dieser Filter ist nicht konfiguriert",
+	"item.usefulbackpacks.filter_tag.tooltip.1": "%s um den Aliasdatenfilter zu konfigurieren",
 	"itemGroup.usefulbackpacks.group": "Nützliche Rucksäcke",
 	"key.usefulbackpacks.curiosintegration.category": "Nützliche Rucksäcke : Curios Integration",
-	"key.usefulbackpacks.curiosintegration.description": "Öffne Rucksack"
+	"key.usefulbackpacks.curiosintegration.description": "Öffne Rucksack",
+	"usefulbackpacks.tooltip.right_click": "Rechtsklick"
 }
