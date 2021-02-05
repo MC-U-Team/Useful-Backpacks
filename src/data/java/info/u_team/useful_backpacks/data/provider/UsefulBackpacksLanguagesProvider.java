@@ -47,6 +47,10 @@ public class UsefulBackpacksLanguagesProvider extends CommonLanguagesProvider {
 		add("de_de", "container.usefulbackpacks.item_filter.strict", "Strenge Übereinstimmung: ");
 		add("de_de", "container.usefulbackpacks.item_filter.strict.tooltip", "Wenn diese Option aktiviert ist, muss das Item NBT mit dem konfigurierten Item übereinstimmen");
 		add("de_de", "container.usefulbackpacks.tag_filter.search", "Suche nach Aliasdaten (Tags)");
+		addItemTooltip("de_de", ITEM_FILTER, 0, "Dieser Filter ist nicht konfiguriert");
+		addItemTooltip("de_de", ITEM_FILTER, 1, "%s um den Gegenstandsfilter zu konfigurieren");
+		addItemTooltip("de_de", TAG_FILTER, 0, "Dieser Filter ist nicht konfiguriert");
+		addItemTooltip("de_de", TAG_FILTER, 1, "%s um den Aliasdatenfilter zu konfigurieren");
 		
 		add("de_de", "usefulbackpacks.tooltip.right_click", "Rechtsklick");
 		
