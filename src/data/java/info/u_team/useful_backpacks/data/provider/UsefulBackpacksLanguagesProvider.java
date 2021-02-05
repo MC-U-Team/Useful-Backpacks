@@ -33,6 +33,7 @@ public class UsefulBackpacksLanguagesProvider extends CommonLanguagesProvider {
 		addItemTooltip(TAG_FILTER, 1, "%s to configure the tag filter");
 		
 		add("usefulbackpacks.tooltip.right_click", "Right click");
+		add("usefulbackpacks.tooltip.shift_right_click", "Shift + Right click");
 		
 		// German
 		add("de_de", UsefulBackpacksItemGroups.GROUP, "Nützliche Rucksäcke");
@@ -53,6 +54,7 @@ public class UsefulBackpacksLanguagesProvider extends CommonLanguagesProvider {
 		addItemTooltip("de_de", TAG_FILTER, 1, "%s um den Aliasdatenfilter zu konfigurieren");
 		
 		add("de_de", "usefulbackpacks.tooltip.right_click", "Rechtsklick");
+		add("de_de", "usefulbackpacks.tooltip.shift_right_click", "Umschalttaste + Rechtsklick");
 		
 		// Integration
 		// Curious
