@@ -32,12 +32,12 @@ public class UsefulBackpacksLanguagesProvider extends CommonLanguagesProvider {
 		addItemTooltip(ITEM_FILTER, 2, "This filter is configured");
 		addItemTooltip(ITEM_FILTER, 3, "Stack: %s");
 		addItemTooltip(ITEM_FILTER, 4, "Strict match: %s");
-		addItemTooltip(ITEM_FILTER, 5, "%s to remove configuration");
+		addItemTooltip(ITEM_FILTER, 5, "%s to remove current configuration");
 		addItemTooltip(TAG_FILTER, 0, "This filter is not configured");
 		addItemTooltip(TAG_FILTER, 1, "%s to configure the tag filter");
 		addItemTooltip(TAG_FILTER, 2, "This filter is configured");
 		addItemTooltip(TAG_FILTER, 3, "Tag: %s");
-		addItemTooltip(TAG_FILTER, 4, "%s to remove configuration");
+		addItemTooltip(TAG_FILTER, 4, "%s to remove current configuration");
 		
 		add("usefulbackpacks.tooltip.right_click", "Right click");
 		add("usefulbackpacks.tooltip.shift_right_click", "Shift + Right click");
@@ -57,8 +57,15 @@ public class UsefulBackpacksLanguagesProvider extends CommonLanguagesProvider {
 		add("de_de", "container.usefulbackpacks.tag_filter.search", "Suche nach Aliasdaten (Tags)");
 		addItemTooltip("de_de", ITEM_FILTER, 0, "Dieser Filter ist nicht konfiguriert");
 		addItemTooltip("de_de", ITEM_FILTER, 1, "%s um den Gegenstandsfilter zu konfigurieren");
+		addItemTooltip("de_de", ITEM_FILTER, 2, "Dieser Filter ist konfiguriert");
+		addItemTooltip("de_de", ITEM_FILTER, 3, "Gegenstand: %s");
+		addItemTooltip("de_de", ITEM_FILTER, 4, "Strenge Übereinstimmung: %s");
+		addItemTooltip("de_de", ITEM_FILTER, 5, "%s um die aktuelle Konfiguration zu entfernen");
 		addItemTooltip("de_de", TAG_FILTER, 0, "Dieser Filter ist nicht konfiguriert");
 		addItemTooltip("de_de", TAG_FILTER, 1, "%s um den Aliasdatenfilter zu konfigurieren");
+		addItemTooltip("de_de", TAG_FILTER, 2, "Dieser Filter ist konfiguriert");
+		addItemTooltip("de_de", TAG_FILTER, 3, "Aliasdaten: %s");
+		addItemTooltip("de_de", TAG_FILTER, 4, "%s um die aktuelle Konfiguration zu entfernen");
 		
 		add("de_de", "usefulbackpacks.tooltip.right_click", "Rechtsklick");
 		add("de_de", "usefulbackpacks.tooltip.shift_right_click", "Umschalttaste + Rechtsklick");
