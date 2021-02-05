@@ -6,7 +6,7 @@ import info.u_team.useful_backpacks.container.ItemFilterContainer;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.*;
 import net.minecraft.inventory.container.SimpleNamedContainerProvider;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.*;
 import net.minecraft.util.text.*;
@@ -21,20 +21,24 @@ public class ItemFilterItem extends FilterItem {
 	public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
 		final ItemStack stack = player.getHeldItem(hand);
 		if (!world.isRemote && player instanceof ServerPlayerEntity) {
-			final int selectedSlot = hand == Hand.MAIN_HAND ? player.inventory.currentItem : -1;
-			final boolean isStrict;
-			if (stack.hasTag()) {
-				isStrict = stack.getTag().getBoolean("strict");
+			if (player.isSneaking()) {
+				stack.removeChildTag("strict");
+				stack.removeChildTag("stack");
 			} else {
-				isStrict = false;
+				final int selectedSlot = hand == Hand.MAIN_HAND ? player.inventory.currentItem : -1;
+				final boolean isStrict;
+				if (stack.hasTag()) {
+					isStrict = stack.getTag().getBoolean("strict");
+				} else {
+					isStrict = false;
+				}
+				NetworkHooks.openGui((ServerPlayerEntity) player, new SimpleNamedContainerProvider((id, playerInventory, unused) -> {
+					return new ItemFilterContainer(id, playerInventory, stack, selectedSlot, isStrict);
+				}, stack.getDisplayName()), buffer -> {
+					buffer.writeVarInt(selectedSlot);
+					buffer.writeBoolean(isStrict);
+				});
 			}
-			NetworkHooks.openGui((ServerPlayerEntity) player, new SimpleNamedContainerProvider((id, playerInventory, unused) -> {
-				return new ItemFilterContainer(id, playerInventory, stack, selectedSlot, isStrict);
-			}, stack.getDisplayName()), buffer -> {
-				buffer.writeVarInt(selectedSlot);
-				buffer.writeBoolean(isStrict);
-			});
-			
 		}
 		return ActionResult.resultSuccess(stack);
 	}

@@ -20,20 +20,23 @@ public class TagFilterItem extends FilterItem {
 	public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
 		final ItemStack stack = player.getHeldItem(hand);
 		if (!world.isRemote && player instanceof ServerPlayerEntity) {
-			final int selectedSlot = hand == Hand.MAIN_HAND ? player.inventory.currentItem : -1;
-			final String tag;
-			if (stack.hasTag()) {
-				tag = stack.getTag().getString("id");
+			if (player.isSneaking()) {
+				stack.removeChildTag("id");
 			} else {
-				tag = "";
+				final int selectedSlot = hand == Hand.MAIN_HAND ? player.inventory.currentItem : -1;
+				final String tag;
+				if (stack.hasTag()) {
+					tag = stack.getTag().getString("id");
+				} else {
+					tag = "";
+				}
+				NetworkHooks.openGui((ServerPlayerEntity) player, new SimpleNamedContainerProvider((id, playerInventory, unused) -> {
+					return new TagFilterContainer(id, playerInventory, stack, selectedSlot, tag);
+				}, stack.getDisplayName()), buffer -> {
+					buffer.writeVarInt(selectedSlot);
+					buffer.writeString(tag);
+				});
 			}
-			NetworkHooks.openGui((ServerPlayerEntity) player, new SimpleNamedContainerProvider((id, playerInventory, unused) -> {
-				return new TagFilterContainer(id, playerInventory, stack, selectedSlot, tag);
-			}, stack.getDisplayName()), buffer -> {
-				buffer.writeVarInt(selectedSlot);
-				buffer.writeString(tag);
-			});
-			
 		}
 		return ActionResult.resultSuccess(stack);
 	}
