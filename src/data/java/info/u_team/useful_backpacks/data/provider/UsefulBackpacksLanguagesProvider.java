@@ -29,8 +29,15 @@ public class UsefulBackpacksLanguagesProvider extends CommonLanguagesProvider {
 		add("container.usefulbackpacks.tag_filter.search", "Search for tags");
 		addItemTooltip(ITEM_FILTER, 0, "This filter is not configured");
 		addItemTooltip(ITEM_FILTER, 1, "%s to configure the item filter");
+		addItemTooltip(ITEM_FILTER, 2, "This filter is configured");
+		addItemTooltip(ITEM_FILTER, 3, "Stack: %s");
+		addItemTooltip(ITEM_FILTER, 4, "Strict match: %s");
+		addItemTooltip(ITEM_FILTER, 5, "%s to remove configuration");
 		addItemTooltip(TAG_FILTER, 0, "This filter is not configured");
 		addItemTooltip(TAG_FILTER, 1, "%s to configure the tag filter");
+		addItemTooltip(TAG_FILTER, 2, "This filter is configured");
+		addItemTooltip(TAG_FILTER, 3, "Tag: %s");
+		addItemTooltip(TAG_FILTER, 4, "%s to remove configuration");
 		
 		add("usefulbackpacks.tooltip.right_click", "Right click");
 		add("usefulbackpacks.tooltip.shift_right_click", "Shift + Right click");

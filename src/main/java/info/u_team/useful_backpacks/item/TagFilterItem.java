@@ -68,7 +68,10 @@ public class TagFilterItem extends FilterItem {
 		if (!isUsable(stack)) {
 			tooltip.add(new TranslationTextComponent(getTranslationKey() + ".tooltip.0").mergeStyle(TextFormatting.RED, TextFormatting.ITALIC));
 			tooltip.add(new TranslationTextComponent(getTranslationKey() + ".tooltip.1", new TranslationTextComponent("usefulbackpacks.tooltip.right_click").mergeStyle(TextFormatting.ITALIC, TextFormatting.GOLD)).mergeStyle(TextFormatting.GRAY));
+		} else {
+			tooltip.add(new TranslationTextComponent(getTranslationKey() + ".tooltip.2").mergeStyle(TextFormatting.GREEN, TextFormatting.ITALIC));
+			tooltip.add(new TranslationTextComponent(getTranslationKey() + ".tooltip.3", new StringTextComponent(stack.getTag().getString("id")).mergeStyle(TextFormatting.YELLOW)).mergeStyle(TextFormatting.GRAY));
+			tooltip.add(new TranslationTextComponent(getTranslationKey() + ".tooltip.4", new TranslationTextComponent("usefulbackpacks.tooltip.shift_right_click").mergeStyle(TextFormatting.ITALIC, TextFormatting.GOLD)).mergeStyle(TextFormatting.GRAY));
 		}
 	}
-	
 }
