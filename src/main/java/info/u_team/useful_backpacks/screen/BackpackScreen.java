@@ -11,8 +11,8 @@ public class BackpackScreen extends UBasicContainerScreen<BackpackContainer> {
 	
 	public BackpackScreen(BackpackContainer container, PlayerInventory playerInventory, ITextComponent title) {
 		super(container, playerInventory, title, new ResourceLocation(UsefulBackpacksMod.MODID, "textures/gui/backpack/" + container.getBackpack().getName() + ".png"), container.getBackpack().getTextureSizeX(), container.getBackpack().getTextureSizeY());
-		backgroundWidth = backgroundHeight = 512;
-		drawInventoryText = false;
+		setBackgroundDimensions(512);
+		setDrawText(true, false);
 		setTextLocation(8, 9, 0, 0);
 	}
 }
