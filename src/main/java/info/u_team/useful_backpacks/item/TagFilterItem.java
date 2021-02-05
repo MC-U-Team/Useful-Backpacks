@@ -1,12 +1,17 @@
 package info.u_team.useful_backpacks.item;
 
+import java.util.List;
+
 import info.u_team.useful_backpacks.container.TagFilterContainer;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.*;
 import net.minecraft.inventory.container.SimpleNamedContainerProvider;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.*;
+import net.minecraft.util.text.*;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.*;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 public class TagFilterItem extends FilterItem {
@@ -52,6 +57,15 @@ public class TagFilterItem extends FilterItem {
 	@Override
 	public boolean isUsable(ItemStack filterStack, CompoundNBT compound) {
 		return filterStack.getItem() instanceof TagFilterItem && compound.contains("id");
+	}
+	
+	@OnlyIn(Dist.CLIENT)
+	@Override
+	public void addInformation(ItemStack stack, World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
+		if (!isUsable(stack)) {
+			tooltip.add(new TranslationTextComponent(getTranslationKey() + ".tooltip.0").mergeStyle(TextFormatting.RED, TextFormatting.ITALIC));
+			tooltip.add(new TranslationTextComponent(getTranslationKey() + ".tooltip.1", new TranslationTextComponent("usefulbackpacks.tooltip.right_click").mergeStyle(TextFormatting.ITALIC, TextFormatting.GOLD)).mergeStyle(TextFormatting.GRAY));
+		}
 	}
 	
 }

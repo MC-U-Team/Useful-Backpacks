@@ -27,6 +27,12 @@ public class UsefulBackpacksLanguagesProvider extends CommonLanguagesProvider {
 		add("container.usefulbackpacks.item_filter.strict", "Strict match: ");
 		add("container.usefulbackpacks.item_filter.strict.tooltip", "If checked the item NBT must match the configured item");
 		add("container.usefulbackpacks.tag_filter.search", "Search for tags");
+		addItemTooltip(ITEM_FILTER, 0, "This filter is not configured");
+		addItemTooltip(ITEM_FILTER, 1, "%s to configure the item filter");
+		addItemTooltip(TAG_FILTER, 0, "This filter is not configured");
+		addItemTooltip(TAG_FILTER, 1, "%s to configure the tag filter");
+		
+		add("usefulbackpacks.tooltip.right_click", "Right click");
 		
 		// German
 		add("de_de", UsefulBackpacksItemGroups.GROUP, "Nützliche Rucksäcke");
@@ -41,6 +47,8 @@ public class UsefulBackpacksLanguagesProvider extends CommonLanguagesProvider {
 		add("de_de", "container.usefulbackpacks.item_filter.strict", "Strenge Übereinstimmung: ");
 		add("de_de", "container.usefulbackpacks.item_filter.strict.tooltip", "Wenn diese Option aktiviert ist, muss das Item NBT mit dem konfigurierten Item übereinstimmen");
 		add("de_de", "container.usefulbackpacks.tag_filter.search", "Suche nach Aliasdaten (Tags)");
+		
+		add("de_de", "usefulbackpacks.tooltip.right_click", "Rechtsklick");
 		
 		// Integration
 		// Curious
