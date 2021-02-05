@@ -11,11 +11,19 @@
 	"item.usefulbackpacks.filter_item": "Automatischer Aufhebe Filter (Gegenstand)",
 	"item.usefulbackpacks.filter_item.tooltip.0": "Dieser Filter ist nicht konfiguriert",
 	"item.usefulbackpacks.filter_item.tooltip.1": "%s um den Gegenstandsfilter zu konfigurieren",
+	"item.usefulbackpacks.filter_item.tooltip.2": "Dieser Filter ist konfiguriert",
+	"item.usefulbackpacks.filter_item.tooltip.3": "Gegenstand: %s",
+	"item.usefulbackpacks.filter_item.tooltip.4": "Strenge Übereinstimmung: %s",
+	"item.usefulbackpacks.filter_item.tooltip.5": "%s um die aktuelle Konfiguration zu entfernen",
 	"item.usefulbackpacks.filter_tag": "Automatischer Aufhebe Filter (Aliasdaten)",
 	"item.usefulbackpacks.filter_tag.tooltip.0": "Dieser Filter ist nicht konfiguriert",
 	"item.usefulbackpacks.filter_tag.tooltip.1": "%s um den Aliasdatenfilter zu konfigurieren",
+	"item.usefulbackpacks.filter_tag.tooltip.2": "Dieser Filter ist konfiguriert",
+	"item.usefulbackpacks.filter_tag.tooltip.3": "Aliasdaten: %s",
+	"item.usefulbackpacks.filter_tag.tooltip.4": "%s um die aktuelle Konfiguration zu entfernen",
 	"itemGroup.usefulbackpacks.group": "Nützliche Rucksäcke",
 	"key.usefulbackpacks.curiosintegration.category": "Nützliche Rucksäcke : Curios Integration",
 	"key.usefulbackpacks.curiosintegration.description": "Öffne Rucksack",
-	"usefulbackpacks.tooltip.right_click": "Rechtsklick"
+	"usefulbackpacks.tooltip.right_click": "Rechtsklick",
+	"usefulbackpacks.tooltip.shift_right_click": "Umschalttaste + Rechtsklick"
 }

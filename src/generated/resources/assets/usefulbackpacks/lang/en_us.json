@@ -11,11 +11,19 @@
 	"item.usefulbackpacks.filter_item": "Auto Pickup Filter (Item)",
 	"item.usefulbackpacks.filter_item.tooltip.0": "This filter is not configured",
 	"item.usefulbackpacks.filter_item.tooltip.1": "%s to configure the item filter",
+	"item.usefulbackpacks.filter_item.tooltip.2": "This filter is configured",
+	"item.usefulbackpacks.filter_item.tooltip.3": "Stack: %s",
+	"item.usefulbackpacks.filter_item.tooltip.4": "Strict match: %s",
+	"item.usefulbackpacks.filter_item.tooltip.5": "%s to remove current configuration",
 	"item.usefulbackpacks.filter_tag": "Auto Pickup Filter (Tag)",
 	"item.usefulbackpacks.filter_tag.tooltip.0": "This filter is not configured",
 	"item.usefulbackpacks.filter_tag.tooltip.1": "%s to configure the tag filter",
+	"item.usefulbackpacks.filter_tag.tooltip.2": "This filter is configured",
+	"item.usefulbackpacks.filter_tag.tooltip.3": "Tag: %s",
+	"item.usefulbackpacks.filter_tag.tooltip.4": "%s to remove current configuration",
 	"itemGroup.usefulbackpacks.group": "Useful Backpacks",
 	"key.usefulbackpacks.curiosintegration.category": "Useful Backpacks : Curios Integration",
 	"key.usefulbackpacks.curiosintegration.description": "Open backpack",
-	"usefulbackpacks.tooltip.right_click": "Right click"
+	"usefulbackpacks.tooltip.right_click": "Right click",
+	"usefulbackpacks.tooltip.shift_right_click": "Shift + Right click"
 }
