@@ -1,14 +1,19 @@
 package info.u_team.useful_backpacks.item;
 
+import java.util.List;
+
 import info.u_team.u_team_core.item.UItem;
 import info.u_team.useful_backpacks.container.EnderChestBackpackContainer;
 import info.u_team.useful_backpacks.init.UsefulBackpacksItemGroups;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.*;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.SimpleNamedContainerProvider;
 import net.minecraft.item.*;
 import net.minecraft.util.*;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.*;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 public class EnderChestBackpackItem extends UItem implements AutoPickupBackpack {
@@ -38,5 +43,11 @@ public class EnderChestBackpackItem extends UItem implements AutoPickupBackpack 
 	@Override
 	public IInventory getInventory(ServerPlayerEntity player, ItemStack backpackStack) {
 		return player.getInventoryEnderChest();
+	}
+	
+	@OnlyIn(Dist.CLIENT)
+	@Override
+	public void addInformation(ItemStack stack, World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
+		addTooltip(stack, world, tooltip, flag);
 	}
 }

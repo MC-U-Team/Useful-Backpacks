@@ -1,6 +1,6 @@
 package info.u_team.useful_backpacks.item;
 
-import java.util.Arrays;
+import java.util.*;
 
 import info.u_team.u_team_core.api.dye.IDyeableItem;
 import info.u_team.u_team_core.item.UItem;
@@ -9,13 +9,16 @@ import info.u_team.useful_backpacks.container.BackpackContainer;
 import info.u_team.useful_backpacks.init.UsefulBackpacksItemGroups;
 import info.u_team.useful_backpacks.inventory.BackpackInventory;
 import info.u_team.useful_backpacks.type.Backpack;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.*;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.SimpleNamedContainerProvider;
 import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.*;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.*;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 public class BackpackItem extends UItem implements AutoPickupBackpack, IDyeableItem {
@@ -57,6 +60,12 @@ public class BackpackItem extends UItem implements AutoPickupBackpack, IDyeableI
 		if (inventory instanceof BackpackInventory) {
 			((BackpackInventory) inventory).writeItemStack();
 		}
+	}
+	
+	@OnlyIn(Dist.CLIENT)
+	@Override
+	public void addInformation(ItemStack stack, World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
+		addTooltip(stack, world, tooltip, flag);
 	}
 	
 	@Override
