@@ -27,20 +27,20 @@ public class UsefulBackpacksLanguagesProvider extends CommonLanguagesProvider {
 		add("container.usefulbackpacks.item_filter.strict", "Strict match: ");
 		add("container.usefulbackpacks.item_filter.strict.tooltip", "If checked the item NBT must match the configured item");
 		add("container.usefulbackpacks.tag_filter.search", "Search for tags");
-		addItemTooltip(ITEM_FILTER, 0, "This filter is not configured");
-		addItemTooltip(ITEM_FILTER, 1, "%s to configure the item filter");
-		addItemTooltip(ITEM_FILTER, 2, "This filter is configured");
-		addItemTooltip(ITEM_FILTER, 3, "Stack: %s");
-		addItemTooltip(ITEM_FILTER, 4, "Strict match: %s");
-		addItemTooltip(ITEM_FILTER, 5, "%s to remove current configuration");
-		addItemTooltip(TAG_FILTER, 0, "This filter is not configured");
-		addItemTooltip(TAG_FILTER, 1, "%s to configure the tag filter");
-		addItemTooltip(TAG_FILTER, 2, "This filter is configured");
-		addItemTooltip(TAG_FILTER, 3, "Tag: %s");
-		addItemTooltip(TAG_FILTER, 4, "%s to remove current configuration");
+		addItemTooltip(ITEM_FILTER, "not_configured", 0, "This filter is not configured");
+		addItemTooltip(ITEM_FILTER, "not_configured", 1, "%s to configure the item filter");
+		addItemTooltip(ITEM_FILTER, "configured", 0, "This filter is configured");
+		addItemTooltip(ITEM_FILTER, "configured", 1, "Stack: %s");
+		addItemTooltip(ITEM_FILTER, "configured", 2, "Strict match: %s");
+		addItemTooltip(ITEM_FILTER, "configured", 3, "%s to remove current configuration");
+		addItemTooltip(TAG_FILTER, "not_configured", 0, "This filter is not configured");
+		addItemTooltip(TAG_FILTER, "not_configured", 1, "%s to configure the tag filter");
+		addItemTooltip(TAG_FILTER, "configured", 0, "This filter is configured");
+		addItemTooltip(TAG_FILTER, "configured", 1, "Tag: %s");
+		addItemTooltip(TAG_FILTER, "configured", 2, "%s to remove current configuration");
 		
-		add("usefulbackpacks.tooltip.right_click", "Right click");
-		add("usefulbackpacks.tooltip.shift_right_click", "Shift + Right click");
+		addTooltip("click", "right_click", 0, "Right click");
+		addTooltip("click", "shift_right_click", 0, "Shift + Right click");
 		
 		// German
 		add("de_de", UsefulBackpacksItemGroups.GROUP, "Nützliche Rucksäcke");
@@ -55,20 +55,20 @@ public class UsefulBackpacksLanguagesProvider extends CommonLanguagesProvider {
 		add("de_de", "container.usefulbackpacks.item_filter.strict", "Strenge Übereinstimmung: ");
 		add("de_de", "container.usefulbackpacks.item_filter.strict.tooltip", "Wenn diese Option aktiviert ist, muss das Item NBT mit dem konfigurierten Item übereinstimmen");
 		add("de_de", "container.usefulbackpacks.tag_filter.search", "Suche nach Aliasdaten (Tags)");
-		addItemTooltip("de_de", ITEM_FILTER, 0, "Dieser Filter ist nicht konfiguriert");
-		addItemTooltip("de_de", ITEM_FILTER, 1, "%s um den Gegenstandsfilter zu konfigurieren");
-		addItemTooltip("de_de", ITEM_FILTER, 2, "Dieser Filter ist konfiguriert");
-		addItemTooltip("de_de", ITEM_FILTER, 3, "Gegenstand: %s");
-		addItemTooltip("de_de", ITEM_FILTER, 4, "Strenge Übereinstimmung: %s");
-		addItemTooltip("de_de", ITEM_FILTER, 5, "%s um die aktuelle Konfiguration zu entfernen");
-		addItemTooltip("de_de", TAG_FILTER, 0, "Dieser Filter ist nicht konfiguriert");
-		addItemTooltip("de_de", TAG_FILTER, 1, "%s um den Aliasdatenfilter zu konfigurieren");
-		addItemTooltip("de_de", TAG_FILTER, 2, "Dieser Filter ist konfiguriert");
-		addItemTooltip("de_de", TAG_FILTER, 3, "Aliasdaten: %s");
-		addItemTooltip("de_de", TAG_FILTER, 4, "%s um die aktuelle Konfiguration zu entfernen");
+		addItemTooltip("de_de", ITEM_FILTER, "not_configured", 0, "Dieser Filter ist nicht konfiguriert");
+		addItemTooltip("de_de", ITEM_FILTER, "not_configured", 1, "%s um den Gegenstandsfilter zu konfigurieren");
+		addItemTooltip("de_de", ITEM_FILTER, "configured", 0, "Dieser Filter ist konfiguriert");
+		addItemTooltip("de_de", ITEM_FILTER, "configured", 1, "Gegenstand: %s");
+		addItemTooltip("de_de", ITEM_FILTER, "configured", 2, "Strenge Übereinstimmung: %s");
+		addItemTooltip("de_de", ITEM_FILTER, "configured", 3, "%s um die aktuelle Konfiguration zu entfernen");
+		addItemTooltip("de_de", TAG_FILTER, "not_configured", 0, "Dieser Filter ist nicht konfiguriert");
+		addItemTooltip("de_de", TAG_FILTER, "not_configured", 1, "%s um den Aliasdatenfilter zu konfigurieren");
+		addItemTooltip("de_de", TAG_FILTER, "configured", 0, "Dieser Filter ist konfiguriert");
+		addItemTooltip("de_de", TAG_FILTER, "configured", 1, "Aliasdaten: %s");
+		addItemTooltip("de_de", TAG_FILTER, "configured", 2, "%s um die aktuelle Konfiguration zu entfernen");
 		
-		add("de_de", "usefulbackpacks.tooltip.right_click", "Rechtsklick");
-		add("de_de", "usefulbackpacks.tooltip.shift_right_click", "Umschalttaste + Rechtsklick");
+		addTooltip("click", "right_click", 0, "Rechtsklick");
+		addTooltip("click", "shift_right_click", 0, "Umschalttaste + Rechtsklick");
 		
 		// Integration
 		// Curious
