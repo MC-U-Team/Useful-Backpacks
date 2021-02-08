@@ -67,8 +67,8 @@ public class UsefulBackpacksLanguagesProvider extends CommonLanguagesProvider {
 		addItemTooltip("de_de", TAG_FILTER, "configured", 1, "Aliasdaten: %s");
 		addItemTooltip("de_de", TAG_FILTER, "configured", 2, "%s um die aktuelle Konfiguration zu entfernen");
 		
-		addTooltip("click", "right_click", 0, "Rechtsklick");
-		addTooltip("click", "shift_right_click", 0, "Umschalttaste + Rechtsklick");
+		addTooltip("de_de", "click", "right_click", 0, "Rechtsklick");
+		addTooltip("de_de", "click", "shift_right_click", 0, "Umschalttaste + Rechtsklick");
 		
 		// Integration
 		// Curious
