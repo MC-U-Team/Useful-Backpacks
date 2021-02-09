@@ -8,33 +8,33 @@ public class TooltipCreator {
 	
 	private static final Object[] EMPTY = new Object[0];
 	
-	public static TranslationTextComponent getTooltip(Item item, String category, int line) {
-		return getTooltip(item, category, line, EMPTY);
+	public static TranslationTextComponent create(Item item, String category, int line) {
+		return create(item, category, line, EMPTY);
 	}
 	
-	public static TranslationTextComponent getTooltip(Item item, String category, int line, Object... args) {
+	public static TranslationTextComponent create(Item item, String category, int line, Object... args) {
 		if (!category.isEmpty()) {
 			category += ".";
 		}
 		return new TranslationTextComponent(item.getTranslationKey() + ".tooltip." + category + line, args);
 	}
 	
-	public static TranslationTextComponent getTooltip(Block block, String category, int line) {
-		return getTooltip(block, category, line, EMPTY);
+	public static TranslationTextComponent create(Block block, String category, int line) {
+		return create(block, category, line, EMPTY);
 	}
 	
-	public static TranslationTextComponent getTooltip(Block block, String category, int line, Object... args) {
+	public static TranslationTextComponent create(Block block, String category, int line, Object... args) {
 		if (!category.isEmpty()) {
 			category += ".";
 		}
 		return new TranslationTextComponent(block.getTranslationKey() + ".tooltip." + category + line, args);
 	}
 	
-	public static TranslationTextComponent getTooltip(String modid, String key, String category, int line) {
-		return getTooltip(modid, key, category, line, EMPTY);
+	public static TranslationTextComponent create(String modid, String key, String category, int line) {
+		return create(modid, key, category, line, EMPTY);
 	}
 	
-	public static TranslationTextComponent getTooltip(String modid, String key, String category, int line, Object... args) {
+	public static TranslationTextComponent create(String modid, String key, String category, int line, Object... args) {
 		if (!category.isEmpty()) {
 			category += ".";
 		}
