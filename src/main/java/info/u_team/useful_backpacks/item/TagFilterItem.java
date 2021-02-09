@@ -2,6 +2,8 @@ package info.u_team.useful_backpacks.item;
 
 import java.util.List;
 
+import info.u_team.to_tea_core.TooltipCreator;
+import info.u_team.useful_backpacks.UsefulBackpacksMod;
 import info.u_team.useful_backpacks.container.TagFilterContainer;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.*;
@@ -66,12 +68,12 @@ public class TagFilterItem extends FilterItem {
 	@Override
 	public void addInformation(ItemStack stack, World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
 		if (!isUsable(stack)) {
-			tooltip.add(new TranslationTextComponent(getTranslationKey() + ".tooltip.0").mergeStyle(TextFormatting.RED, TextFormatting.ITALIC));
-			tooltip.add(new TranslationTextComponent(getTranslationKey() + ".tooltip.1", new TranslationTextComponent("usefulbackpacks.tooltip.right_click").mergeStyle(TextFormatting.ITALIC, TextFormatting.GOLD)).mergeStyle(TextFormatting.GRAY));
+			tooltip.add(TooltipCreator.create(this, "not_configured", 0).mergeStyle(TextFormatting.RED, TextFormatting.ITALIC));
+			tooltip.add(TooltipCreator.create(this, "not_configured", 1, TooltipCreator.create(UsefulBackpacksMod.MODID, "click", "right_click", 0).mergeStyle(TextFormatting.ITALIC, TextFormatting.GOLD)).mergeStyle(TextFormatting.GRAY));
 		} else {
-			tooltip.add(new TranslationTextComponent(getTranslationKey() + ".tooltip.2").mergeStyle(TextFormatting.GREEN, TextFormatting.ITALIC));
-			tooltip.add(new TranslationTextComponent(getTranslationKey() + ".tooltip.3", new StringTextComponent(stack.getTag().getString("id")).mergeStyle(TextFormatting.YELLOW)).mergeStyle(TextFormatting.GRAY));
-			tooltip.add(new TranslationTextComponent(getTranslationKey() + ".tooltip.4", new TranslationTextComponent("usefulbackpacks.tooltip.shift_right_click").mergeStyle(TextFormatting.ITALIC, TextFormatting.GOLD)).mergeStyle(TextFormatting.GRAY));
+			tooltip.add(TooltipCreator.create(this, "configured", 0).mergeStyle(TextFormatting.GREEN, TextFormatting.ITALIC));
+			tooltip.add(TooltipCreator.create(this, "configured", 1, new StringTextComponent(stack.getTag().getString("id")).mergeStyle(TextFormatting.YELLOW)).mergeStyle(TextFormatting.GRAY));
+			tooltip.add(TooltipCreator.create(this, "configured", 2, TooltipCreator.create(UsefulBackpacksMod.MODID, "click", "shift_right_click", 0).mergeStyle(TextFormatting.ITALIC, TextFormatting.GOLD)).mergeStyle(TextFormatting.GRAY));
 		}
 	}
 }
