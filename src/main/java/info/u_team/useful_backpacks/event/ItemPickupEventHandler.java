@@ -39,23 +39,29 @@ public class ItemPickupEventHandler {
 		
 		for (int index = 0; index < playerInventory.getSizeInventory(); index++) {
 			final ItemStack stack = playerInventory.getStackInSlot(index);
-			final Item item = stack.getItem();
 			
-			if (item instanceof IBackpack) {
-				final IBackpack backpack = (IBackpack) item;
-				
-				if (backpack.canAutoPickup(stackToPickup, stack)) {
-					final IInventory inventory = backpack.getInventory(player, stack);
-					final IItemHandler itemHandler = new InvWrapper(inventory);
-					final ItemStack result = ItemHandlerHelper.insertItemStacked(itemHandler, stackToPickup, false);
-					if (result.getCount() != stackToPickup.getCount()) {
-						backpack.saveInventory(inventory, stack);
-					}
-					stackToPickup = result;
-					if (stackToPickup.isEmpty()) {
-						break;
-					}
+			stackToPickup = insertInBackpack(player, stack, stackToPickup);
+			if (stackToPickup.isEmpty()) {
+				break;
+			}
+		}
+		return stackToPickup;
+	}
+	
+	private static ItemStack insertInBackpack(ServerPlayerEntity player, ItemStack stack, ItemStack stackToPickup) {
+		final Item item = stack.getItem();
+		
+		if (item instanceof IBackpack) {
+			final IBackpack backpack = (IBackpack) item;
+			
+			if (backpack.canAutoPickup(stackToPickup, stack)) {
+				final IInventory inventory = backpack.getInventory(player, stack);
+				final IItemHandler itemHandler = new InvWrapper(inventory);
+				final ItemStack result = ItemHandlerHelper.insertItemStacked(itemHandler, stackToPickup, false);
+				if (result.getCount() != stackToPickup.getCount()) {
+					backpack.saveInventory(inventory, stack);
 				}
+				stackToPickup = result;
 			}
 		}
 		return stackToPickup;
