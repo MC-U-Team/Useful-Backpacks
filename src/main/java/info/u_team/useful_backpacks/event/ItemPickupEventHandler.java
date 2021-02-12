@@ -1,5 +1,8 @@
 package info.u_team.useful_backpacks.event;
 
+import java.util.*;
+import java.util.function.Supplier;
+
 import info.u_team.useful_backpacks.api.IBackpack;
 import info.u_team.useful_backpacks.config.CommonConfig;
 import info.u_team.useful_backpacks.item.BackpackItem;
@@ -13,6 +16,8 @@ import net.minecraftforge.items.*;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
 public class ItemPickupEventHandler {
+	
+	public static final List<Supplier<ItemStack>> INTEGRATION_BACKPACKS = new ArrayList<>();
 	
 	private static void onEntityItemPickup(EntityItemPickupEvent event) {
 		final PlayerEntity player = event.getPlayer();
@@ -37,12 +42,22 @@ public class ItemPickupEventHandler {
 	private static ItemStack insertInBackpacks(ServerPlayerEntity player, ItemStack stackToPickup) {
 		final PlayerInventory playerInventory = player.inventory;
 		
+		for (Supplier<ItemStack> supplier : INTEGRATION_BACKPACKS) {
+			final ItemStack stack = supplier.get();
+			if (!stack.isEmpty()) {
+				stackToPickup = insertInBackpack(player, stack, stackToPickup);
+				if (stackToPickup.isEmpty()) {
+					return stackToPickup;
+				}
+			}
+		}
+		
 		for (int index = 0; index < playerInventory.getSizeInventory(); index++) {
 			final ItemStack stack = playerInventory.getStackInSlot(index);
 			
 			stackToPickup = insertInBackpack(player, stack, stackToPickup);
 			if (stackToPickup.isEmpty()) {
-				break;
+				return stackToPickup;
 			}
 		}
 		return stackToPickup;
