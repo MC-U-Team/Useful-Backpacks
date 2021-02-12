@@ -16,7 +16,7 @@
 			"tag": "forge:dusts/redstone"
 		},
 		"A": {
-			"tag": "forge:ores/netherite_scrap"
+			"tag": "forge:ingots/nether_brick"
 		},
 		"S": {
 			"item": "minecraft:string"
