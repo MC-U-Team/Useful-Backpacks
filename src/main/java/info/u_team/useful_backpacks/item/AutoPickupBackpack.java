@@ -54,16 +54,17 @@ public interface AutoPickupBackpack extends IBackpack {
 				tooltip.add(TooltipCreator.create(UsefulBackpacksMod.MODID, "backpack", "filter_applied", 0).mergeStyle(TextFormatting.AQUA));
 				
 				filters.stream().filter(filterStack -> filterStack.getItem() instanceof ItemFilterItem).forEach(filterStack -> {
-					final IFormattableTextComponent component = TooltipCreator.create(UsefulBackpacksMod.MODID, "backpack", "filter_applied_item", 0, new TranslationTextComponent(ItemStack.read(stack.getTag().getCompound("stack")).getTranslationKey()).mergeStyle(TextFormatting.YELLOW));
-					if (stack.getTag().getBoolean("strict")) {
-						component.append(TooltipCreator.create(UsefulBackpacksMod.MODID, "backpack", "filter_applied_item", 1));
+					final IFormattableTextComponent component = TooltipCreator.create(UsefulBackpacksMod.MODID, "backpack", "filter_applied_item", 0, new TranslationTextComponent(ItemStack.read(filterStack.getTag().getCompound("stack")).getTranslationKey()).mergeStyle(TextFormatting.YELLOW));
+					if (filterStack.getTag().getBoolean("strict")) {
+						component.appendString(" ").append(TooltipCreator.create(UsefulBackpacksMod.MODID, "backpack", "filter_applied_item", 1));
 					}
 					component.mergeStyle(TextFormatting.GRAY);
-					tooltip.add(component);
+					tooltip.add(new StringTextComponent("").append(component));
 				});
 				
 				filters.stream().filter(filterStack -> filterStack.getItem() instanceof TagFilterItem).forEach(filterStack -> {
-					tooltip.add(TooltipCreator.create(UsefulBackpacksMod.MODID, "backpack", "filter_applied_item", 0, new StringTextComponent(stack.getTag().getString("id")).mergeStyle(TextFormatting.YELLOW)).mergeStyle(TextFormatting.GRAY));
+					final IFormattableTextComponent component = TooltipCreator.create(UsefulBackpacksMod.MODID, "backpack", "filter_applied_tag", 0, new StringTextComponent(filterStack.getTag().getString("id")).mergeStyle(TextFormatting.YELLOW)).mergeStyle(TextFormatting.GRAY);
+					tooltip.add(new StringTextComponent("").append(component));
 				});
 			}
 		}
