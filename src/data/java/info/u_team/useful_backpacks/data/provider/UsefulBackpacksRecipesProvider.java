@@ -77,26 +77,28 @@ public class UsefulBackpacksRecipesProvider extends CommonRecipesProvider {
 		ShapedRecipeBuilder.shapedRecipe(ITEM_FILTER.get()) //
 				.patternLine("WLW") //
 				.patternLine("RDS") //
-				.patternLine("ILI") //
+				.patternLine("IEI") //
 				.key('W', getIngredientOfTag(ItemTags.WOOL)) //
 				.key('L', Items.LEATHER) //
 				.key('R', getIngredientOfTag(Tags.Items.DUSTS_REDSTONE)) //
 				.key('D', getIngredientOfTag(Tags.Items.GEMS_DIAMOND)) //
 				.key('S', Items.STRING) //
 				.key('D', getIngredientOfTag(Tags.Items.INGOTS_IRON)) //
+				.key('E', getIngredientOfTag(Tags.Items.END_STONES)) //
 				.addCriterion("has_small_backpack", hasItem(SMALL_BACKPACK.get())) //
 				.build(consumer);
 		
 		ShapedRecipeBuilder.shapedRecipe(TAG_FILTER.get()) //
 				.patternLine("WLW") //
 				.patternLine("RAS") //
-				.patternLine("ILI") //
+				.patternLine("IEI") //
 				.key('W', getIngredientOfTag(ItemTags.WOOL)) //
 				.key('L', Items.LEATHER) //
 				.key('R', getIngredientOfTag(Tags.Items.DUSTS_REDSTONE)) //
 				.key('A', getIngredientOfTag(Tags.Items.ORES_NETHERITE_SCRAP)) //
 				.key('S', Items.STRING) //
 				.key('D', getIngredientOfTag(Tags.Items.INGOTS_IRON)) //
+				.key('E', getIngredientOfTag(Tags.Items.END_STONES)) //
 				.addCriterion("has_small_backpack", hasItem(SMALL_BACKPACK.get())) //
 				.build(consumer);
 	}
