@@ -83,7 +83,7 @@ public class UsefulBackpacksRecipesProvider extends CommonRecipesProvider {
 				.key('R', getIngredientOfTag(Tags.Items.DUSTS_REDSTONE)) //
 				.key('D', getIngredientOfTag(Tags.Items.GEMS_DIAMOND)) //
 				.key('S', Items.STRING) //
-				.key('D', getIngredientOfTag(Tags.Items.INGOTS_IRON)) //
+				.key('I', getIngredientOfTag(Tags.Items.INGOTS_IRON)) //
 				.key('E', getIngredientOfTag(Tags.Items.END_STONES)) //
 				.addCriterion("has_small_backpack", hasItem(SMALL_BACKPACK.get())) //
 				.build(consumer);
@@ -97,7 +97,7 @@ public class UsefulBackpacksRecipesProvider extends CommonRecipesProvider {
 				.key('R', getIngredientOfTag(Tags.Items.DUSTS_REDSTONE)) //
 				.key('A', getIngredientOfTag(Tags.Items.ORES_NETHERITE_SCRAP)) //
 				.key('S', Items.STRING) //
-				.key('D', getIngredientOfTag(Tags.Items.INGOTS_IRON)) //
+				.key('I', getIngredientOfTag(Tags.Items.INGOTS_IRON)) //
 				.key('E', getIngredientOfTag(Tags.Items.END_STONES)) //
 				.addCriterion("has_small_backpack", hasItem(SMALL_BACKPACK.get())) //
 				.build(consumer);
