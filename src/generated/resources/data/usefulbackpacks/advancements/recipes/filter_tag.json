@@ -1,0 +1,32 @@
+{
+	"parent": "minecraft:recipes/root",
+	"rewards": {
+		"recipes": [
+			"usefulbackpacks:filter_tag"
+		]
+	},
+	"criteria": {
+		"has_small_backpack": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"item": "usefulbackpacks:backpack_small"
+					}
+				]
+			}
+		},
+		"has_the_recipe": {
+			"trigger": "minecraft:recipe_unlocked",
+			"conditions": {
+				"recipe": "usefulbackpacks:filter_tag"
+			}
+		}
+	},
+	"requirements": [
+		[
+			"has_small_backpack",
+			"has_the_recipe"
+		]
+	]
+}

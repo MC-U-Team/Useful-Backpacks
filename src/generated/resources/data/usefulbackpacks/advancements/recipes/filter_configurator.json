@@ -1,0 +1,43 @@
+{
+	"parent": "minecraft:recipes/root",
+	"rewards": {
+		"recipes": [
+			"usefulbackpacks:filter_configurator"
+		]
+	},
+	"criteria": {
+		"has_wool": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"tag": "minecraft:wool"
+					}
+				]
+			}
+		},
+		"has_leather": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"item": "minecraft:leather"
+					}
+				]
+			}
+		},
+		"has_the_recipe": {
+			"trigger": "minecraft:recipe_unlocked",
+			"conditions": {
+				"recipe": "usefulbackpacks:filter_configurator"
+			}
+		}
+	},
+	"requirements": [
+		[
+			"has_wool",
+			"has_leather",
+			"has_the_recipe"
+		]
+	]
+}

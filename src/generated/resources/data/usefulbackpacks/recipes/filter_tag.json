@@ -1,0 +1,34 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"WLW",
+		"RAS",
+		"IEI"
+	],
+	"key": {
+		"W": {
+			"tag": "minecraft:wool"
+		},
+		"L": {
+			"item": "minecraft:leather"
+		},
+		"R": {
+			"tag": "forge:dusts/redstone"
+		},
+		"A": {
+			"tag": "forge:ores/netherite_scrap"
+		},
+		"S": {
+			"item": "minecraft:string"
+		},
+		"I": {
+			"tag": "forge:ingots/iron"
+		},
+		"E": {
+			"tag": "forge:end_stones"
+		}
+	},
+	"result": {
+		"item": "usefulbackpacks:filter_tag"
+	}
+}
