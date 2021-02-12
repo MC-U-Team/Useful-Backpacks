@@ -38,6 +38,12 @@ public class UsefulBackpacksLanguagesProvider extends CommonLanguagesProvider {
 		addItemTooltip(TAG_FILTER, "configured", 0, "This filter is configured");
 		addItemTooltip(TAG_FILTER, "configured", 1, "Tag: %s");
 		addItemTooltip(TAG_FILTER, "configured", 2, "%s to remove current configuration");
+		addTooltip("backpack", "filter", 0, "This backpack is configured with auto pickup filters");
+		addTooltip("backpack", "filter_not_advanced", 0, "Enable advanced tooltips to see what filters are configured");
+		addTooltip("backpack", "filter_applied", 0, "The following auto pickup filters are applied:");
+		addTooltip("backpack", "filter_applied_item", 0, "- Item: %s");
+		addTooltip("backpack", "filter_applied_item", 1, "(strict)");
+		addTooltip("backpack", "filter_applied_tag", 0, "- Tag: %s");
 		
 		addTooltip("click", "right_click", 0, "Right click");
 		addTooltip("click", "shift_right_click", 0, "Shift + Right click");
@@ -66,6 +72,12 @@ public class UsefulBackpacksLanguagesProvider extends CommonLanguagesProvider {
 		addItemTooltip("de_de", TAG_FILTER, "configured", 0, "Dieser Filter ist konfiguriert");
 		addItemTooltip("de_de", TAG_FILTER, "configured", 1, "Aliasdaten: %s");
 		addItemTooltip("de_de", TAG_FILTER, "configured", 2, "%s um die aktuelle Konfiguration zu entfernen");
+		addTooltip("de_de", "backpack", "filter", 0, "Dieser Rucksack ist mit automatischen Aufhebefilter konfiguriert");
+		addTooltip("de_de", "backpack", "filter_not_advanced", 0, "Aktiviere die erweiterten Schnellinfos um zu sehen, welche Filter konfiguriert sind");
+		addTooltip("de_de", "backpack", "filter_applied", 0, "Die folgenden automatischen Aufhebefilter werden angewendet:");
+		addTooltip("de_de", "backpack", "filter_applied_item", 0, "- Gegenstand: %s");
+		addTooltip("de_de", "backpack", "filter_applied_item", 1, "(streng)");
+		addTooltip("de_de", "backpack", "filter_applied_tag", 0, "- Aliasdaten: %s");
 		
 		addTooltip("de_de", "click", "right_click", 0, "Rechtsklick");
 		addTooltip("de_de", "click", "shift_right_click", 0, "Umschalttaste + Rechtsklick");
