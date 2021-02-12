@@ -1,5 +1,6 @@
 package info.u_team.useful_backpacks.data.provider;
 
+import static info.u_team.useful_backpacks.init.UsefulBackpacksBlocks.FILTER_CONFIGURATOR;
 import static info.u_team.useful_backpacks.init.UsefulBackpacksItems.*;
 
 import java.util.function.Consumer;
@@ -9,6 +10,7 @@ import info.u_team.useful_backpacks.data.builder.BackpackCraftingRecipeBuilder;
 import net.minecraft.data.*;
 import net.minecraft.item.Items;
 import net.minecraft.tags.ItemTags;
+import net.minecraftforge.common.Tags;
 
 public class UsefulBackpacksRecipesProvider extends CommonRecipesProvider {
 	
@@ -58,6 +60,44 @@ public class UsefulBackpacksRecipesProvider extends CommonRecipesProvider {
 				.key('E', Items.ENDER_CHEST) //
 				.key('S', Items.STRING) //
 				.addCriterion("has_enderchest", hasItem(Items.ENDER_CHEST)) //
+				.build(consumer);
+		
+		ShapedRecipeBuilder.shapedRecipe(FILTER_CONFIGURATOR.get()) //
+				.patternLine("WLW") //
+				.patternLine("PCP") //
+				.patternLine("WLW") //
+				.key('W', getIngredientOfTag(ItemTags.WOOL)) //
+				.key('L', Items.LEATHER) //
+				.key('P', getIngredientOfTag(ItemTags.PLANKS)) //
+				.key('C', Items.CRAFTING_TABLE) //
+				.addCriterion("has_wool", hasItem(ItemTags.WOOL)) //
+				.addCriterion("has_leather", hasItem(Items.LEATHER)) //
+				.build(consumer);
+		
+		ShapedRecipeBuilder.shapedRecipe(ITEM_FILTER.get()) //
+				.patternLine("WLW") //
+				.patternLine("RDS") //
+				.patternLine("ILI") //
+				.key('W', getIngredientOfTag(ItemTags.WOOL)) //
+				.key('L', Items.LEATHER) //
+				.key('R', getIngredientOfTag(Tags.Items.DUSTS_REDSTONE)) //
+				.key('D', getIngredientOfTag(Tags.Items.GEMS_DIAMOND)) //
+				.key('S', Items.STRING) //
+				.key('D', getIngredientOfTag(Tags.Items.INGOTS_IRON)) //
+				.addCriterion("has_small_backpack", hasItem(SMALL_BACKPACK.get())) //
+				.build(consumer);
+		
+		ShapedRecipeBuilder.shapedRecipe(TAG_FILTER.get()) //
+				.patternLine("WLW") //
+				.patternLine("RAS") //
+				.patternLine("ILI") //
+				.key('W', getIngredientOfTag(ItemTags.WOOL)) //
+				.key('L', Items.LEATHER) //
+				.key('R', getIngredientOfTag(Tags.Items.DUSTS_REDSTONE)) //
+				.key('A', getIngredientOfTag(Tags.Items.ORES_NETHERITE_SCRAP)) //
+				.key('S', Items.STRING) //
+				.key('D', getIngredientOfTag(Tags.Items.INGOTS_IRON)) //
+				.addCriterion("has_small_backpack", hasItem(SMALL_BACKPACK.get())) //
 				.build(consumer);
 	}
 }
