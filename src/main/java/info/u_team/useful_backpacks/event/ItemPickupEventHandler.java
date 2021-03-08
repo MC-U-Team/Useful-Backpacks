@@ -1,7 +1,7 @@
 package info.u_team.useful_backpacks.event;
 
 import java.util.*;
-import java.util.function.*;
+import java.util.function.Function;
 
 import info.u_team.useful_backpacks.api.IBackpack;
 import info.u_team.useful_backpacks.config.CommonConfig;
