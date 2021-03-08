@@ -42,7 +42,7 @@ public class ItemPickupEventHandler {
 	private static ItemStack insertInBackpacks(ServerPlayerEntity player, ItemStack stackToPickup) {
 		final PlayerInventory playerInventory = player.inventory;
 		
-		for (Function<ServerPlayerEntity, ItemStack> function : INTEGRATION_BACKPACKS) {
+		for (final Function<ServerPlayerEntity, ItemStack> function : INTEGRATION_BACKPACKS) {
 			final ItemStack stack = function.apply(player);
 			if (!stack.isEmpty()) {
 				stackToPickup = insertInBackpack(player, stack, stackToPickup);
