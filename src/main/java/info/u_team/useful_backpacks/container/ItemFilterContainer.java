@@ -123,4 +123,25 @@ public class ItemFilterContainer extends UContainer {
 	public MessageHolder getStrictMessage() {
 		return strictMessage;
 	}
+	
+	@Override
+	public ItemStack transferStackInSlot(PlayerEntity player, int index) {
+		ItemStack itemstack = ItemStack.EMPTY;
+		final Slot slot = inventorySlots.get(index);
+		
+		if (slot != null && slot.getHasStack()) {
+			final ItemStack itemstack1 = slot.getStack();
+			itemstack = itemstack1.copy();
+			
+			if (index < 1) {
+				return ItemStack.EMPTY;
+			} else {
+				final ItemStack stack = itemstack1.copy();
+				stack.setCount(1);
+				filterItemSlotInventory.setInventorySlotContents(0, stack);
+				return ItemStack.EMPTY;
+			}
+		}
+		return itemstack;
+	}
 }
