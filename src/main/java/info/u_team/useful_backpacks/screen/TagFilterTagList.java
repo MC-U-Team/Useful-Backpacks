@@ -20,7 +20,8 @@ public class TagFilterTagList extends ScrollableList<TagFilterTagListEntry> {
 		this.container = container;
 		
 		func_244606_c(false);
-		shouldUseScissor = true;
+		setShouldUseScissor(true);
+		setShouldRenderTransparentBorder(true);
 		
 		updateEntries(unused -> true);
 		
