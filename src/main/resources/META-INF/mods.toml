@@ -17,7 +17,7 @@ authors="HyCraftHD"
 	[[dependencies.usefulbackpacks]]
 	    modId="forge"
 	    mandatory=true
-	    versionRange="[36.0.13,)"
+	    versionRange="[36.0.46,)"
 	    ordering="NONE"
 	    side="BOTH"
 	
