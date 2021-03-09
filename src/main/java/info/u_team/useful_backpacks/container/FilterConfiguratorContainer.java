@@ -7,7 +7,7 @@ import info.u_team.useful_backpacks.init.*;
 import info.u_team.useful_backpacks.inventory.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.inventory.*;
-import net.minecraft.inventory.container.IContainerListener;
+import net.minecraft.inventory.container.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.play.server.SSetSlotPacket;
 import net.minecraft.util.IWorldPosCallable;
@@ -94,5 +94,31 @@ public class FilterConfiguratorContainer extends UContainer {
 				}
 			}
 		}
+	}
+	
+	@Override
+	public ItemStack transferStackInSlot(PlayerEntity playerIn, int index) {
+		ItemStack itemstack = ItemStack.EMPTY;
+		final Slot slot = inventorySlots.get(index);
+		
+		if (slot != null && slot.getHasStack()) {
+			final ItemStack itemstack1 = slot.getStack();
+			itemstack = itemstack1.copy();
+			
+			if (index < 10) {
+				if (!this.mergeItemStack(itemstack1, 10, this.inventorySlots.size(), true)) {
+					return ItemStack.EMPTY;
+				}
+			} else if (!this.mergeItemStack(itemstack1, 0, 10, false)) {
+				return ItemStack.EMPTY;
+			}
+			
+			if (itemstack1.isEmpty()) {
+				slot.putStack(ItemStack.EMPTY);
+			} else {
+				slot.onSlotChanged();
+			}
+		}
+		return itemstack;
 	}
 }
