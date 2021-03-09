@@ -1,6 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [1.16.4-1.11.6.86] - 2020-11-09
+## [1.16.4-1.12.0.88] - 2021-03-09
 ### Changed
- - Port to 1.16.4
+ - Update to 1.16.5
+ - Add auto pickup filters for backpacks
