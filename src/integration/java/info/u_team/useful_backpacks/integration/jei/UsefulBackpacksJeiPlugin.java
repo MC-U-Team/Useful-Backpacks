@@ -6,8 +6,9 @@ import info.u_team.useful_backpacks.init.UsefulBackpacksItems;
 import info.u_team.useful_backpacks.integration.jei.extension.BackpackCraftingRecipeCategoryExtension;
 import info.u_team.useful_backpacks.recipe.BackpackCraftingRecipe;
 import mezz.jei.api.*;
-import mezz.jei.api.ingredients.subtypes.ISubtypeInterpreter;
+import mezz.jei.api.ingredients.subtypes.*;
 import mezz.jei.api.registration.*;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 @JeiPlugin
@@ -22,12 +23,12 @@ public class UsefulBackpacksJeiPlugin implements IModPlugin {
 	
 	@Override
 	public void registerItemSubtypes(ISubtypeRegistration registration) {
-		final ISubtypeInterpreter interpreter = stack -> {
+		final IIngredientSubtypeInterpreter<ItemStack> interpreter = (stack, context) -> {
 			if (stack.hasTag() && stack.getItem() instanceof IDyeableItem) {
 				final IDyeableItem item = (IDyeableItem) stack.getItem();
 				return Integer.toString(item.getColor(stack));
 			}
-			return ISubtypeInterpreter.NONE;
+			return IIngredientSubtypeInterpreter.NONE;
 		};
 		
 		registration.registerSubtypeInterpreter(UsefulBackpacksItems.SMALL_BACKPACK.get(), interpreter);
