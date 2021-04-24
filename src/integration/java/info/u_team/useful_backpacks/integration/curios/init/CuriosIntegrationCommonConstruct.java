@@ -4,7 +4,8 @@ import java.util.Optional;
 
 import org.apache.commons.lang3.tuple.ImmutableTriple;
 
-import info.u_team.u_team_core.api.integration.*;
+import info.u_team.u_team_core.api.integration.IModIntegration;
+import info.u_team.u_team_core.api.integration.Integration;
 import info.u_team.u_team_core.util.registry.BusRegister;
 import info.u_team.useful_backpacks.UsefulBackpacksMod;
 import info.u_team.useful_backpacks.event.ItemPickupEventHandler;

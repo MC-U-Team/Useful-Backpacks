@@ -4,8 +4,10 @@ import java.util.function.Consumer;
 
 import info.u_team.u_team_core.util.RecipeBuilderUtil;
 import info.u_team.useful_backpacks.init.UsefulBackpacksRecipeSerializers;
-import net.minecraft.data.*;
-import net.minecraft.util.*;
+import net.minecraft.data.IFinishedRecipe;
+import net.minecraft.data.ShapedRecipeBuilder;
+import net.minecraft.util.IItemProvider;
+import net.minecraft.util.ResourceLocation;
 
 public class BackpackCraftingRecipeBuilder extends ShapedRecipeBuilder {
 	

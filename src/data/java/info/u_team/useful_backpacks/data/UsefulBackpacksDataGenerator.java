@@ -2,7 +2,11 @@ package info.u_team.useful_backpacks.data;
 
 import info.u_team.u_team_core.data.GenerationData;
 import info.u_team.useful_backpacks.UsefulBackpacksMod;
-import info.u_team.useful_backpacks.data.provider.*;
+import info.u_team.useful_backpacks.data.provider.UsefulBackpacksBlockStatesProvider;
+import info.u_team.useful_backpacks.data.provider.UsefulBackpacksItemModelsProvider;
+import info.u_team.useful_backpacks.data.provider.UsefulBackpacksItemTagsProvider;
+import info.u_team.useful_backpacks.data.provider.UsefulBackpacksLanguagesProvider;
+import info.u_team.useful_backpacks.data.provider.UsefulBackpacksRecipesProvider;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;

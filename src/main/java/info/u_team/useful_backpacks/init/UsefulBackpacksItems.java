@@ -2,7 +2,10 @@ package info.u_team.useful_backpacks.init;
 
 import info.u_team.u_team_core.util.registry.CommonDeferredRegister;
 import info.u_team.useful_backpacks.UsefulBackpacksMod;
-import info.u_team.useful_backpacks.item.*;
+import info.u_team.useful_backpacks.item.BackpackItem;
+import info.u_team.useful_backpacks.item.EnderChestBackpackItem;
+import info.u_team.useful_backpacks.item.ItemFilterItem;
+import info.u_team.useful_backpacks.item.TagFilterItem;
 import info.u_team.useful_backpacks.type.Backpack;
 import net.minecraft.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;

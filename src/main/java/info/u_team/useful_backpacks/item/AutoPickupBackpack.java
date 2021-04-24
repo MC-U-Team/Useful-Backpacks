@@ -1,16 +1,24 @@
 package info.u_team.useful_backpacks.item;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import info.u_team.u_team_core.util.TooltipCreator;
 import info.u_team.useful_backpacks.UsefulBackpacksMod;
-import info.u_team.useful_backpacks.api.*;
+import info.u_team.useful_backpacks.api.IBackpack;
+import info.u_team.useful_backpacks.api.IFilter;
 import info.u_team.useful_backpacks.inventory.FilterInventory;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.item.*;
-import net.minecraft.util.text.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.IFormattableTextComponent;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.*;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 public interface AutoPickupBackpack extends IBackpack {
 	

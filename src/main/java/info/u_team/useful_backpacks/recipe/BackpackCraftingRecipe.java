@@ -1,6 +1,7 @@
 package info.u_team.useful_backpacks.recipe;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
 
 import com.google.common.collect.Lists;
 import com.google.gson.JsonObject;
@@ -12,11 +13,17 @@ import info.u_team.useful_backpacks.init.UsefulBackpacksRecipeSerializers;
 import info.u_team.useful_backpacks.item.BackpackItem;
 import net.minecraft.block.Block;
 import net.minecraft.inventory.CraftingInventory;
-import net.minecraft.item.*;
-import net.minecraft.item.crafting.*;
+import net.minecraft.item.DyeColor;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipeSerializer;
+import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.item.crafting.ShapedRecipe;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.util.*;
+import net.minecraft.util.JSONUtils;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
 
 public class BackpackCraftingRecipe extends ShapedRecipe {
 	

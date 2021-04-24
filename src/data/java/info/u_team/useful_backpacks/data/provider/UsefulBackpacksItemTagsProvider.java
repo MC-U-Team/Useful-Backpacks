@@ -1,9 +1,16 @@
 package info.u_team.useful_backpacks.data.provider;
 
-import static info.u_team.useful_backpacks.init.UsefulBackpacksItems.*;
-import static info.u_team.useful_backpacks.init.UsefulBackpacksTags.Items.*;
+import static info.u_team.useful_backpacks.init.UsefulBackpacksItems.ENDERCHEST_BACKPACK;
+import static info.u_team.useful_backpacks.init.UsefulBackpacksItems.ITEM_FILTER;
+import static info.u_team.useful_backpacks.init.UsefulBackpacksItems.LARGE_BACKPACK;
+import static info.u_team.useful_backpacks.init.UsefulBackpacksItems.MEDIUM_BACKPACK;
+import static info.u_team.useful_backpacks.init.UsefulBackpacksItems.SMALL_BACKPACK;
+import static info.u_team.useful_backpacks.init.UsefulBackpacksItems.TAG_FILTER;
+import static info.u_team.useful_backpacks.init.UsefulBackpacksTags.Items.BACKPACK;
+import static info.u_team.useful_backpacks.init.UsefulBackpacksTags.Items.FILTER;
 
-import info.u_team.u_team_core.data.*;
+import info.u_team.u_team_core.data.CommonItemTagsProvider;
+import info.u_team.u_team_core.data.GenerationData;
 import info.u_team.u_team_core.util.TagUtil;
 
 public class UsefulBackpacksItemTagsProvider extends CommonItemTagsProvider {

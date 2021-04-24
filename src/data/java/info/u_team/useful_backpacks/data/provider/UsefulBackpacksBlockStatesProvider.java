@@ -2,7 +2,8 @@ package info.u_team.useful_backpacks.data.provider;
 
 import static info.u_team.useful_backpacks.init.UsefulBackpacksBlocks.FILTER_CONFIGURATOR;
 
-import info.u_team.u_team_core.data.*;
+import info.u_team.u_team_core.data.CommonBlockStatesProvider;
+import info.u_team.u_team_core.data.GenerationData;
 import net.minecraft.block.Block;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.ModelFile;

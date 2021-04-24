@@ -1,7 +1,8 @@
 package info.u_team.useful_backpacks.init;
 
 import info.u_team.u_team_core.util.ModelUtil;
-import info.u_team.useful_backpacks.container.slot.*;
+import info.u_team.useful_backpacks.container.slot.BackpackFilterSlot;
+import info.u_team.useful_backpacks.container.slot.FilterSlot;
 import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;

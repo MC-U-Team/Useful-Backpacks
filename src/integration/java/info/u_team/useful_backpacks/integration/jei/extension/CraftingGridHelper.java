@@ -21,7 +21,8 @@ package info.u_team.useful_backpacks.integration.jei.extension;
 
 import java.util.List;
 
-import mezz.jei.api.gui.ingredient.*;
+import mezz.jei.api.gui.ingredient.ICraftingGridHelper;
+import mezz.jei.api.gui.ingredient.IGuiIngredientGroup;
 
 /**
  * This class is from jei by mezz licensed under MIT. Find it here on <a href=

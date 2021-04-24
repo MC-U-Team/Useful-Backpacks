@@ -1,7 +1,10 @@
 package info.u_team.useful_backpacks.init;
 
 import info.u_team.u_team_core.util.registry.ClientRegistry;
-import info.u_team.useful_backpacks.screen.*;
+import info.u_team.useful_backpacks.screen.BackpackScreen;
+import info.u_team.useful_backpacks.screen.FilterConfiguratorScreen;
+import info.u_team.useful_backpacks.screen.ItemFilterScreen;
+import info.u_team.useful_backpacks.screen.TagFilterScreen;
 import net.minecraft.client.gui.screen.inventory.ChestScreen;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;

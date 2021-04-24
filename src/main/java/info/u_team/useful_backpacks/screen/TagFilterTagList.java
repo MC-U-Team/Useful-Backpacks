@@ -1,6 +1,7 @@
 package info.u_team.useful_backpacks.screen;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
