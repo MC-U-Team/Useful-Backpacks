@@ -6,7 +6,7 @@ import info.u_team.useful_backpacks.init.UsefulBackpacksItems;
 import info.u_team.useful_backpacks.integration.jei.extension.BackpackCraftingRecipeCategoryExtension;
 import info.u_team.useful_backpacks.recipe.BackpackCraftingRecipe;
 import mezz.jei.api.*;
-import mezz.jei.api.ingredients.subtypes.*;
+import mezz.jei.api.ingredients.subtypes.IIngredientSubtypeInterpreter;
 import mezz.jei.api.registration.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
