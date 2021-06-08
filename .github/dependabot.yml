@@ -6,8 +6,3 @@ updates:
     interval: daily
     time: "04:00"
   open-pull-requests-limit: 10
-  ignore:
-  - dependency-name: net.minecraftforge.gradle:ForgeGradle
-    versions:
-    - 4.1.3
-    - 4.1.4
