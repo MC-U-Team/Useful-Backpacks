@@ -6,6 +6,7 @@ import info.u_team.useful_backpacks.data.provider.UsefulBackpacksBlockStatesProv
 import info.u_team.useful_backpacks.data.provider.UsefulBackpacksItemModelsProvider;
 import info.u_team.useful_backpacks.data.provider.UsefulBackpacksItemTagsProvider;
 import info.u_team.useful_backpacks.data.provider.UsefulBackpacksLanguagesProvider;
+import info.u_team.useful_backpacks.data.provider.UsefulBackpacksLootTablesProvider;
 import info.u_team.useful_backpacks.data.provider.UsefulBackpacksRecipesProvider;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -20,6 +21,7 @@ public class UsefulBackpacksDataGenerator {
 		final GenerationData data = new GenerationData(UsefulBackpacksMod.MODID, event);
 		if (event.includeServer()) {
 			data.addProvider(UsefulBackpacksItemTagsProvider::new);
+			data.addProvider(UsefulBackpacksLootTablesProvider::new);
 			data.addProvider(UsefulBackpacksRecipesProvider::new);
 		}
 		if (event.includeClient()) {
