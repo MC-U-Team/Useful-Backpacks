@@ -4,19 +4,24 @@ buildscript {
 			url = "https://maven.minecraftforge.net"
 		}
 		maven {
+			url = "https://maven.parchmentmc.org"
+		}
+		maven {
 			url = "https://repo.u-team.info"
 		}
 		mavenCentral()
 	}
 	dependencies {
-		classpath group: "net.minecraftforge.gradle", name: "ForgeGradle", version: "4.1.+", changing: true
+		classpath group: "net.minecraftforge.gradle", name: "ForgeGradle", version: "5.1.+", changing: true
+		classpath group: "org.parchmentmc", name: "librarian", version: "1.+", changing: true
 		classpath group: "info.u-team.curse_gradle_uploader", name: "curse_gradle_uploader", version: "1.4.1"
 	}
 }
 
-apply from: "https://gradle-files.u-team.info/default-project.gradle"
+apply from: "gradle_files/default-project-fg-5.groovy"
 
 apply plugin: "net.minecraftforge.gradle"
+apply plugin: "org.parchmentmc.librarian.forgegradle"
 apply plugin: "eclipse"
 apply plugin: "info.u_team.curse_gradle_uploader"
 apply plugin: "maven-publish"
@@ -27,7 +32,7 @@ version = generateVersion()
 
 java {
 	toolchain {
-		languageVersion = JavaLanguageVersion.of(8)
+		languageVersion = JavaLanguageVersion.of(16)
 	}
 }
 
@@ -36,27 +41,15 @@ minecraft {
 	
 	runs {
 		client = {
-			workingDirectory project.file("run/client").canonicalPath
-			property "mixin.env.disableRefMap", "true"
+			workingDirectory file("run/client")
 			mods {
 				"${config.mod.modid}" {
 					source sourceSets.main
 				}
 			}
 		}
-		client_first = {
-			parents runs.getByName("client")
-			workingDirectory project.file("run/client/one").canonicalPath
-			args "--username", "HyCraftHD", "--uuid", "d9202ce0-f6c1-4dc1-9341-2d9091764808"
-		}
-		client_second = {
-			parents runs.getByName("client")
-			workingDirectory project.file("run/client/second").canonicalPath
-			args "--username", "UTeam", "--uuid", "08e0d9d9-e948-40de-b68d-d5101571acf1"
-		}
 		server = {
-			workingDirectory project.file("run/server").canonicalPath
-			property "mixin.env.disableRefMap", "true"
+			workingDirectory file("run/server")
 			mods {
 				"${config.mod.modid}" {
 					source sourceSets.main
@@ -64,9 +57,12 @@ minecraft {
 			}
 		}
 		data = {
-			workingDirectory project.file("run/data").canonicalPath
-			property "mixin.env.disableRefMap", "true"
-			args "--mod", config.mod.modid, "--all", "--output", "\"" + file("src/generated/resources").toString() + "\"", "--validate", "--existing", "\"" + sourceSets.main.resources.srcDirs[0] + "\""
+			workingDirectory file("run/data")
+			args "--mod", config.mod.modid
+			args "--all"
+			args "--output", file("src/generated/resources")
+			args "--validate"
+			args "--existing", file("src/main/resources")
 			mods {
 				"${config.mod.modid}" {
 					source sourceSets.main
@@ -77,43 +73,43 @@ minecraft {
 }
 
 jar {
-	classifier = ""
+	archiveClassifier = ""
 	
 	from "LICENSE"
 	
-	exclude(".cache")
+	exclude ".cache"
 	
 	manifest normalManifest
 }
 
 task deobfJar(type: Jar) {
-	classifier = "dev"
+	archiveClassifier = "dev"
 	
 	from sourceSets.main.output
 	from "LICENSE"
 	
-	exclude(".cache")
+	exclude ".cache"
 	
 	manifest normalManifest
 }
 
 task sourcesJar(type: Jar) {
-	classifier = "sources"
+	archiveClassifier = "sources"
 	
 	from sourceSets.main.allJava
 	from "LICENSE"
 }
 
 task docJar(type: Jar) {
-	classifier = "javadoc"
+	archiveClassifier = "javadoc"
 	
 	from javadoc
 	from "LICENSE"
 	
 	tasks.withType(Javadoc) {
-		options.addStringOption('Xdoclint:none', '-quiet')
-		options.addStringOption('encoding', 'UTF-8')
-		options.addStringOption('charSet', 'UTF-8')
+		options.addStringOption("Xdoclint:none", "-quiet")
+		options.addStringOption("encoding", "UTF-8")
+		options.addStringOption("charSet", "UTF-8")
 	}
 }
 
@@ -139,13 +135,21 @@ sourceSets {
 	}
 }
 
+repositories {
+	maven {
+		url = "https://dvs1.progwml6.com/files/maven"
+	}
+	maven {
+        url = "https://maven.theillusivec4.top/"
+    }
+}
+
 dependencies {
-	minecraft getForgeDependency()
-	compileOnly getUTeamCoreDependency()
-	compileOnly fg.deobf(getJeiApiDependency())
-	runtimeOnly fg.deobf(getJeiDependency())
-	compileOnly fg.deobf(getCuriosApiDependency())
-	runtimeOnly fg.deobf(getCuriosDependency())
+	minecraft "net.minecraftforge:forge:1.17.1-37.0.103"
+	compileOnly fg.deobf("mezz.jei:jei-1.17.1:8.1.0.31:api")
+	runtimeOnly fg.deobf("mezz.jei:jei-1.17.1:8.1.0.31")
+	compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.17.1-5.0.1.0:api")
+	runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.17.1-5.0.1.0")
 }
 
 curseforge {
@@ -165,9 +169,7 @@ curseforge {
 		
 		addGameVersion config.forge.mcversion
 		addGameVersion "Forge"
-		addGameVersion "Java 8"
-		addGameVersion "Java 9"
-		addGameVersion "Java 10"
+		addGameVersion "Java 16"
 		
 		relations {
 			requiredDependency "u-team-core"
@@ -178,7 +180,7 @@ curseforge {
 		mainArtifact(jar) {
 			displayName = "${config.curse.display}-${config.forge.mcversion}-${project.version}"
 			changelogType = "html"
-			changelog = "<a href=\"" + generateChangelogUrl() + "\">Changelog of ${project.version}</a>"
+			changelog = "<a href=\"${generateChangelogUrl()}\">Changelog of ${project.version}</a>"
 		}
 		
 		addArtifact(deobfJar) {
@@ -227,7 +229,6 @@ publishing {
 					connection = "scm:git:git://github.com/MC-U-Team/${config.github.name}.git"
 					developerConnection = "scm:git:git@github.com:MC-U-Team/${config.github.name}.git"
 				}
-				
 				issueManagement {
 					system = "github"
 					url = "https://github.com/MC-U-Team/${config.github.name}/issues"
