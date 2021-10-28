@@ -5,19 +5,19 @@ import java.util.List;
 import info.u_team.u_team_core.util.TooltipCreator;
 import info.u_team.useful_backpacks.UsefulBackpacksMod;
 import info.u_team.useful_backpacks.container.ItemFilterContainer;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.container.SimpleNamedContainerProvider;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.SimpleMenuProvider;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
@@ -26,64 +26,64 @@ import net.minecraftforge.items.ItemHandlerHelper;
 public class ItemFilterItem extends FilterItem {
 	
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
-		final ItemStack stack = player.getHeldItem(hand);
-		if (!world.isRemote && player instanceof ServerPlayerEntity) {
-			if (player.isSneaking()) {
-				stack.removeChildTag("strict");
-				stack.removeChildTag("stack");
+	public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
+		final ItemStack stack = player.getItemInHand(hand);
+		if (!world.isClientSide && player instanceof ServerPlayer) {
+			if (player.isShiftKeyDown()) {
+				stack.removeTagKey("strict");
+				stack.removeTagKey("stack");
 			} else {
-				final int selectedSlot = hand == Hand.MAIN_HAND ? player.inventory.currentItem : -1;
+				final int selectedSlot = hand == InteractionHand.MAIN_HAND ? player.inventory.selected : -1;
 				final boolean isStrict;
 				if (stack.hasTag()) {
 					isStrict = stack.getTag().getBoolean("strict");
 				} else {
 					isStrict = false;
 				}
-				NetworkHooks.openGui((ServerPlayerEntity) player, new SimpleNamedContainerProvider((id, playerInventory, unused) -> {
+				NetworkHooks.openGui((ServerPlayer) player, new SimpleMenuProvider((id, playerInventory, unused) -> {
 					return new ItemFilterContainer(id, playerInventory, stack, selectedSlot, isStrict);
-				}, stack.getDisplayName()), buffer -> {
+				}, stack.getHoverName()), buffer -> {
 					buffer.writeVarInt(selectedSlot);
 					buffer.writeBoolean(isStrict);
 				});
 			}
 		}
-		return ActionResult.resultSuccess(stack);
+		return InteractionResultHolder.success(stack);
 	}
 	
 	@Override
-	public boolean onDroppedByPlayer(ItemStack item, PlayerEntity player) {
-		return !(player.openContainer instanceof ItemFilterContainer);
+	public boolean onDroppedByPlayer(ItemStack item, Player player) {
+		return !(player.containerMenu instanceof ItemFilterContainer);
 	}
 	
 	@Override
-	protected boolean matchItem(ItemStack filterStack, ItemStack matchStack, CompoundNBT compound) {
+	protected boolean matchItem(ItemStack filterStack, ItemStack matchStack, CompoundTag compound) {
 		final boolean strict = compound.getBoolean("strict");
-		final ItemStack stack = ItemStack.read(compound.getCompound("stack"));
+		final ItemStack stack = ItemStack.of(compound.getCompound("stack"));
 		
 		if (strict) {
 			return ItemHandlerHelper.canItemStacksStack(stack, matchStack);
 		} else {
-			return stack.isItemEqual(matchStack);
+			return stack.sameItem(matchStack);
 		}
 	}
 	
 	@Override
-	protected boolean isUsable(ItemStack filterStack, CompoundNBT compound) {
+	protected boolean isUsable(ItemStack filterStack, CompoundTag compound) {
 		return filterStack.getItem() instanceof ItemFilterItem && compound.contains("stack");
 	}
 	
 	@OnlyIn(Dist.CLIENT)
 	@Override
-	public void addInformation(ItemStack stack, World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
+	public void appendHoverText(ItemStack stack, Level world, List<Component> tooltip, TooltipFlag flag) {
 		if (!isUsable(stack)) {
-			tooltip.add(TooltipCreator.create(this, "not_configured", 0).mergeStyle(TextFormatting.RED, TextFormatting.ITALIC));
-			tooltip.add(TooltipCreator.create(this, "not_configured", 1, TooltipCreator.create(UsefulBackpacksMod.MODID, "click", "right_click", 0).mergeStyle(TextFormatting.ITALIC, TextFormatting.GOLD)).mergeStyle(TextFormatting.GRAY));
+			tooltip.add(TooltipCreator.create(this, "not_configured", 0).withStyle(ChatFormatting.RED, ChatFormatting.ITALIC));
+			tooltip.add(TooltipCreator.create(this, "not_configured", 1, TooltipCreator.create(UsefulBackpacksMod.MODID, "click", "right_click", 0).withStyle(ChatFormatting.ITALIC, ChatFormatting.GOLD)).withStyle(ChatFormatting.GRAY));
 		} else {
-			tooltip.add(TooltipCreator.create(this, "configured", 0).mergeStyle(TextFormatting.GREEN, TextFormatting.ITALIC));
-			tooltip.add(TooltipCreator.create(this, "configured", 1, new TranslationTextComponent(ItemStack.read(stack.getTag().getCompound("stack")).getTranslationKey()).mergeStyle(TextFormatting.YELLOW)).mergeStyle(TextFormatting.GRAY));
-			tooltip.add(TooltipCreator.create(this, "configured", 2, new StringTextComponent(Boolean.toString(stack.getTag().getBoolean("strict"))).mergeStyle(TextFormatting.YELLOW)).mergeStyle(TextFormatting.GRAY));
-			tooltip.add(TooltipCreator.create(this, "configured", 3, TooltipCreator.create(UsefulBackpacksMod.MODID, "click", "shift_right_click", 0).mergeStyle(TextFormatting.ITALIC, TextFormatting.GOLD)).mergeStyle(TextFormatting.GRAY));
+			tooltip.add(TooltipCreator.create(this, "configured", 0).withStyle(ChatFormatting.GREEN, ChatFormatting.ITALIC));
+			tooltip.add(TooltipCreator.create(this, "configured", 1, new TranslatableComponent(ItemStack.of(stack.getTag().getCompound("stack")).getDescriptionId()).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GRAY));
+			tooltip.add(TooltipCreator.create(this, "configured", 2, new TextComponent(Boolean.toString(stack.getTag().getBoolean("strict"))).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GRAY));
+			tooltip.add(TooltipCreator.create(this, "configured", 3, TooltipCreator.create(UsefulBackpacksMod.MODID, "click", "shift_right_click", 0).withStyle(ChatFormatting.ITALIC, ChatFormatting.GOLD)).withStyle(ChatFormatting.GRAY));
 		}
 	}
 }

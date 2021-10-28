@@ -11,19 +11,19 @@ import info.u_team.u_team_core.recipeserializer.UShapedRecipeSerializer;
 import info.u_team.u_team_core.util.ColorUtil;
 import info.u_team.useful_backpacks.init.UsefulBackpacksRecipeSerializers;
 import info.u_team.useful_backpacks.item.BackpackItem;
-import net.minecraft.block.Block;
-import net.minecraft.inventory.CraftingInventory;
-import net.minecraft.item.DyeColor;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.item.crafting.ShapedRecipe;
-import net.minecraft.network.PacketBuffer;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.inventory.CraftingContainer;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.ShapedRecipe;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.util.JSONUtils;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.GsonHelper;
+import net.minecraft.core.NonNullList;
+import net.minecraft.resources.ResourceLocation;
 
 public class BackpackCraftingRecipe extends ShapedRecipe {
 	
@@ -32,14 +32,14 @@ public class BackpackCraftingRecipe extends ShapedRecipe {
 	}
 	
 	@Override
-	public ItemStack getCraftingResult(CraftingInventory inventory) {
-		final ItemStack backpackItem = super.getCraftingResult(inventory);
+	public ItemStack assemble(CraftingContainer inventory) {
+		final ItemStack backpackItem = super.assemble(inventory);
 		final List<DyeColor> dyeList = Lists.newArrayList();
 		
 		boolean backpackPresent = false;
 		
-		for (int index = 0; index < inventory.getSizeInventory(); ++index) {
-			final ItemStack slotStack = inventory.getStackInSlot(index);
+		for (int index = 0; index < inventory.getContainerSize(); ++index) {
+			final ItemStack slotStack = inventory.getItem(index);
 			if (!slotStack.isEmpty()) {
 				final Item item = slotStack.getItem();
 				if (item instanceof BackpackItem) {
@@ -52,7 +52,7 @@ public class BackpackCraftingRecipe extends ShapedRecipe {
 					}
 				} else {
 					if (ItemTags.WOOL.contains(item)) {
-						final DyeColor color = ColorUtil.getColorFromWool(Block.getBlockFromItem(item));
+						final DyeColor color = ColorUtil.getColorFromWool(Block.byItem(item));
 						if (color != null) {
 							dyeList.add(color);
 						}
@@ -67,50 +67,50 @@ public class BackpackCraftingRecipe extends ShapedRecipe {
 	}
 	
 	@Override
-	public IRecipeSerializer<?> getSerializer() {
+	public RecipeSerializer<?> getSerializer() {
 		return UsefulBackpacksRecipeSerializers.BACKPACK.get();
 	}
 	
 	public static class Serializer extends UShapedRecipeSerializer<BackpackCraftingRecipe> {
 		
 		@Override
-		public BackpackCraftingRecipe read(ResourceLocation recipeId, JsonObject json) {
-			final String group = JSONUtils.getString(json, "group", "");
-			final Map<String, Ingredient> keys = deserializeKey(JSONUtils.getJsonObject(json, "key"));
-			final String[] pattern = shrink(patternFromJson(JSONUtils.getJsonArray(json, "pattern")));
+		public BackpackCraftingRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
+			final String group = GsonHelper.getAsString(json, "group", "");
+			final Map<String, Ingredient> keys = deserializeKey(GsonHelper.getAsJsonObject(json, "key"));
+			final String[] pattern = shrink(patternFromJson(GsonHelper.getAsJsonArray(json, "pattern")));
 			final int width = pattern[0].length();
 			final int height = pattern.length;
 			final NonNullList<Ingredient> ingredients = deserializeIngredients(pattern, keys, width, height);
-			final ItemStack output = deserializeItem(JSONUtils.getJsonObject(json, "result"));
+			final ItemStack output = itemFromJson(GsonHelper.getAsJsonObject(json, "result"));
 			return new BackpackCraftingRecipe(recipeId, group, width, height, ingredients, output);
 		}
 		
 		@Override
-		public BackpackCraftingRecipe read(ResourceLocation recipeId, PacketBuffer buffer) {
+		public BackpackCraftingRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
 			final int width = buffer.readVarInt();
 			final int height = buffer.readVarInt();
-			final String group = buffer.readString(32767);
+			final String group = buffer.readUtf(32767);
 			final NonNullList<Ingredient> ingredients = NonNullList.withSize(width * height, Ingredient.EMPTY);
 			
 			for (int index = 0; index < ingredients.size(); ++index) {
-				ingredients.set(index, Ingredient.read(buffer));
+				ingredients.set(index, Ingredient.fromNetwork(buffer));
 			}
 			
-			final ItemStack output = buffer.readItemStack();
+			final ItemStack output = buffer.readItem();
 			return new BackpackCraftingRecipe(recipeId, group, width, height, ingredients, output);
 		}
 		
 		@Override
-		public void write(PacketBuffer buffer, BackpackCraftingRecipe recipe) {
+		public void toNetwork(FriendlyByteBuf buffer, BackpackCraftingRecipe recipe) {
 			buffer.writeVarInt(recipe.getWidth());
 			buffer.writeVarInt(recipe.getHeight());
-			buffer.writeString(recipe.getGroup());
+			buffer.writeUtf(recipe.getGroup());
 			
 			for (final Ingredient ingredient : recipe.getIngredients()) {
-				ingredient.write(buffer);
+				ingredient.toNetwork(buffer);
 			}
 			
-			buffer.writeItemStack(recipe.getRecipeOutput());
+			buffer.writeItem(recipe.getResultItem());
 		}
 	}
 	

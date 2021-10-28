@@ -6,38 +6,38 @@ import info.u_team.u_team_core.util.RGBA;
 import info.u_team.useful_backpacks.UsefulBackpacksMod;
 import info.u_team.useful_backpacks.container.ItemFilterContainer;
 import io.netty.buffer.Unpooled;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 
 public class ItemFilterScreen extends UBasicContainerScreen<ItemFilterContainer> {
 	
 	private static final ResourceLocation BACKGROUND = new ResourceLocation(UsefulBackpacksMod.MODID, "textures/gui/item_filter.png");
 	
-	private final ITextComponent strictTextComponent;
-	private final ITextComponent strictTooltipTextComponent;
+	private final Component strictTextComponent;
+	private final Component strictTooltipTextComponent;
 	
-	public ItemFilterScreen(ItemFilterContainer container, PlayerInventory playerInventory, ITextComponent title) {
+	public ItemFilterScreen(ItemFilterContainer container, Inventory playerInventory, Component title) {
 		super(container, playerInventory, title, BACKGROUND, 176, 130);
 		
 		final String langKey = "container.usefulbackpacks.item_filter.";
 		
-		strictTextComponent = new TranslationTextComponent(langKey + "strict");
-		strictTooltipTextComponent = new TranslationTextComponent(langKey + "strict.tooltip");
+		strictTextComponent = new TranslatableComponent(langKey + "strict");
+		strictTooltipTextComponent = new TranslatableComponent(langKey + "strict.tooltip");
 	}
 	
 	@Override
 	protected void init() {
 		super.init();
 		
-		final CheckboxButton isStrictCheckbox = addButton(new CheckboxButton(guiLeft + xSize - (17 + 16), guiTop + 17, 16, 16, strictTextComponent, container.isStrict(), true));
+		final CheckboxButton isStrictCheckbox = addButton(new CheckboxButton(leftPos + imageWidth - (17 + 16), topPos + 17, 16, 16, strictTextComponent, menu.isStrict(), true));
 		isStrictCheckbox.setTextColor(new RGBA(0x404040FF));
 		isStrictCheckbox.setLeftSideText(true);
 		isStrictCheckbox.setPressable(() -> {
-			container.getStrictMessage().triggerMessage(() -> new PacketBuffer(Unpooled.copyBoolean(isStrictCheckbox.isChecked())));
-			container.setStrict(isStrictCheckbox.isChecked());
+			menu.getStrictMessage().triggerMessage(() -> new FriendlyByteBuf(Unpooled.copyBoolean(isStrictCheckbox.isChecked())));
+			menu.setStrict(isStrictCheckbox.isChecked());
 		});
 		isStrictCheckbox.setTooltip((button, matrixStack, mouseX, mouseY) -> {
 			if (button.isHovered()) {

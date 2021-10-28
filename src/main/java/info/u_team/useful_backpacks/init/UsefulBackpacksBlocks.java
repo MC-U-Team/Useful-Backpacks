@@ -4,7 +4,7 @@ import info.u_team.u_team_core.util.registry.BlockDeferredRegister;
 import info.u_team.u_team_core.util.registry.BlockRegistryObject;
 import info.u_team.useful_backpacks.UsefulBackpacksMod;
 import info.u_team.useful_backpacks.block.FilterConfiguratorBlock;
-import net.minecraft.item.BlockItem;
+import net.minecraft.world.item.BlockItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 
 public class UsefulBackpacksBlocks {

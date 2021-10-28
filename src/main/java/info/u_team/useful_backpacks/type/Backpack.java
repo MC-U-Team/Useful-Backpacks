@@ -1,6 +1,6 @@
 package info.u_team.useful_backpacks.type;
 
-import net.minecraft.item.Rarity;
+import net.minecraft.world.item.Rarity;
 
 public enum Backpack {
 	

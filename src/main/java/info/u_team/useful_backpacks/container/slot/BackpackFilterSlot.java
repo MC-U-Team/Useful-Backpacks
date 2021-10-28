@@ -2,23 +2,23 @@ package info.u_team.useful_backpacks.container.slot;
 
 import info.u_team.useful_backpacks.UsefulBackpacksMod;
 import info.u_team.useful_backpacks.api.IBackpack;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.container.PlayerContainer;
-import net.minecraft.inventory.container.Slot;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.Container;
+import net.minecraft.world.inventory.InventoryMenu;
+import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.resources.ResourceLocation;
 
 public class BackpackFilterSlot extends Slot {
 	
 	public static final ResourceLocation BACKGROUND = new ResourceLocation(UsefulBackpacksMod.MODID, "item/empty_backpack_filter_slot");
 	
-	public BackpackFilterSlot(IInventory inventory, int index, int xPosition, int yPosition) {
+	public BackpackFilterSlot(Container inventory, int index, int xPosition, int yPosition) {
 		super(inventory, index, xPosition, yPosition);
-		setBackground(PlayerContainer.LOCATION_BLOCKS_TEXTURE, BACKGROUND);
+		setBackground(InventoryMenu.BLOCK_ATLAS, BACKGROUND);
 	}
 	
 	@Override
-	public boolean isItemValid(ItemStack stack) {
+	public boolean mayPlace(ItemStack stack) {
 		return stack.getItem() instanceof IBackpack;
 	}
 }

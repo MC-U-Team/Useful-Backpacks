@@ -5,53 +5,55 @@ import java.util.List;
 import info.u_team.u_team_core.item.UItem;
 import info.u_team.useful_backpacks.container.EnderChestBackpackContainer;
 import info.u_team.useful_backpacks.init.UsefulBackpacksItemGroups;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.container.SimpleNamedContainerProvider;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Rarity;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.world.World;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.Container;
+import net.minecraft.world.SimpleMenuProvider;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Rarity;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
 
+import net.minecraft.world.item.Item.Properties;
+
 public class EnderChestBackpackItem extends UItem implements AutoPickupBackpack {
 	
 	public EnderChestBackpackItem() {
-		super(UsefulBackpacksItemGroups.GROUP, new Properties().maxStackSize(1).rarity(Rarity.EPIC));
+		super(UsefulBackpacksItemGroups.GROUP, new Properties().stacksTo(1).rarity(Rarity.EPIC));
 	}
 	
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
-		final ItemStack stack = player.getHeldItem(hand);
-		if (!world.isRemote && player instanceof ServerPlayerEntity) {
-			open((ServerPlayerEntity) player, stack, hand == Hand.MAIN_HAND ? player.inventory.currentItem : -1);
+	public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
+		final ItemStack stack = player.getItemInHand(hand);
+		if (!world.isClientSide && player instanceof ServerPlayer) {
+			open((ServerPlayer) player, stack, hand == InteractionHand.MAIN_HAND ? player.inventory.selected : -1);
 		}
-		return ActionResult.resultSuccess(stack);
+		return InteractionResultHolder.success(stack);
 	}
 	
 	@Override
-	public void open(ServerPlayerEntity player, ItemStack backpackStack, int selectedSlot) {
-		NetworkHooks.openGui(player, new SimpleNamedContainerProvider((id, playerInventory, unused) -> {
+	public void open(ServerPlayer player, ItemStack backpackStack, int selectedSlot) {
+		NetworkHooks.openGui(player, new SimpleMenuProvider((id, playerInventory, unused) -> {
 			return EnderChestBackpackContainer.createEnderChestContainer(id, playerInventory, getInventory(player, backpackStack), selectedSlot);
-		}, backpackStack.getDisplayName()), buffer -> {
+		}, backpackStack.getHoverName()), buffer -> {
 			buffer.writeVarInt(selectedSlot);
 		});
 	}
 	
 	@Override
-	public IInventory getInventory(ServerPlayerEntity player, ItemStack backpackStack) {
-		return player.getInventoryEnderChest();
+	public Container getInventory(ServerPlayer player, ItemStack backpackStack) {
+		return player.getEnderChestInventory();
 	}
 	
 	@OnlyIn(Dist.CLIENT)
 	@Override
-	public void addInformation(ItemStack stack, World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
+	public void appendHoverText(ItemStack stack, Level world, List<Component> tooltip, TooltipFlag flag) {
 		addTooltip(stack, world, tooltip, flag);
 	}
 }

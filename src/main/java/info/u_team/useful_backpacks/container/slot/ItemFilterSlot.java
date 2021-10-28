@@ -1,33 +1,33 @@
 package info.u_team.useful_backpacks.container.slot;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.container.Slot;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.Container;
+import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.ItemStack;
 
 public class ItemFilterSlot extends Slot {
 	
-	public ItemFilterSlot(IInventory inventory, int index, int xPosition, int yPosition) {
+	public ItemFilterSlot(Container inventory, int index, int xPosition, int yPosition) {
 		super(inventory, index, xPosition, yPosition);
 	}
 	
 	@Override
-	public ItemStack onTake(PlayerEntity player, ItemStack stack) {
+	public ItemStack onTake(Player player, ItemStack stack) {
 		return stack;
 	}
 	
 	@Override
-	public ItemStack decrStackSize(int amound) {
+	public ItemStack remove(int amound) {
 		return ItemStack.EMPTY;
 	}
 	
 	@Override
-	public boolean isItemValid(ItemStack stack) {
+	public boolean mayPlace(ItemStack stack) {
 		return false;
 	}
 	
 	@Override
-	public boolean canTakeStack(PlayerEntity player) {
+	public boolean mayPickup(Player player) {
 		return false;
 	}
 }

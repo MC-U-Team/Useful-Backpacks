@@ -10,7 +10,7 @@ import info.u_team.u_team_core.util.registry.BusRegister;
 import info.u_team.useful_backpacks.UsefulBackpacksMod;
 import info.u_team.useful_backpacks.event.ItemPickupEventHandler;
 import info.u_team.useful_backpacks.integration.curios.util.BackpackCuriosUtil;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 
 @Integration(modid = UsefulBackpacksMod.MODID, integration = "curios")
 public class CuriosIntegrationCommonConstruct implements IModIntegration {

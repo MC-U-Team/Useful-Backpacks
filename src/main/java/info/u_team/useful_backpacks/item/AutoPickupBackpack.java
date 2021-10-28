@@ -10,7 +10,7 @@ import info.u_team.useful_backpacks.api.IFilter;
 import info.u_team.useful_backpacks.inventory.FilterInventory;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;

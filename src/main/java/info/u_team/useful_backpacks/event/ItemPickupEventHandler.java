@@ -7,12 +7,12 @@ import java.util.function.Function;
 import info.u_team.useful_backpacks.api.IBackpack;
 import info.u_team.useful_backpacks.config.CommonConfig;
 import info.u_team.useful_backpacks.item.BackpackItem;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.Container;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.eventbus.api.Event.Result;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -23,12 +23,12 @@ import net.minecraftforge.items.wrapper.InvWrapper;
 
 public class ItemPickupEventHandler {
 	
-	public static final List<Function<ServerPlayerEntity, ItemStack>> INTEGRATION_BACKPACKS = new ArrayList<>();
+	public static final List<Function<ServerPlayer, ItemStack>> INTEGRATION_BACKPACKS = new ArrayList<>();
 	
 	private static void onEntityItemPickup(EntityItemPickupEvent event) {
-		final PlayerEntity player = event.getPlayer();
+		final Player player = event.getPlayer();
 		
-		if (!(player instanceof ServerPlayerEntity)) {
+		if (!(player instanceof ServerPlayer)) {
 			return;
 		}
 		
@@ -36,7 +36,7 @@ public class ItemPickupEventHandler {
 		if (stackToPickup.getItem() instanceof BackpackItem && !CommonConfig.getInstance().allowStackingBackpacks.get()) { // TODO Move somewhere else
 			return;
 		}
-		final ItemStack resultStack = insertInBackpacks((ServerPlayerEntity) player, stackToPickup);
+		final ItemStack resultStack = insertInBackpacks((ServerPlayer) player, stackToPickup);
 		stackToPickup.setCount(resultStack.getCount());
 		
 		if (resultStack.isEmpty()) {
@@ -45,10 +45,10 @@ public class ItemPickupEventHandler {
 		
 	}
 	
-	private static ItemStack insertInBackpacks(ServerPlayerEntity player, ItemStack stackToPickup) {
-		final PlayerInventory playerInventory = player.inventory;
+	private static ItemStack insertInBackpacks(ServerPlayer player, ItemStack stackToPickup) {
+		final Inventory playerInventory = player.inventory;
 		
-		for (final Function<ServerPlayerEntity, ItemStack> function : INTEGRATION_BACKPACKS) {
+		for (final Function<ServerPlayer, ItemStack> function : INTEGRATION_BACKPACKS) {
 			final ItemStack stack = function.apply(player);
 			if (!stack.isEmpty()) {
 				stackToPickup = insertInBackpack(player, stack, stackToPickup);
@@ -58,8 +58,8 @@ public class ItemPickupEventHandler {
 			}
 		}
 		
-		for (int index = 0; index < playerInventory.getSizeInventory(); index++) {
-			final ItemStack stack = playerInventory.getStackInSlot(index);
+		for (int index = 0; index < playerInventory.getContainerSize(); index++) {
+			final ItemStack stack = playerInventory.getItem(index);
 			
 			stackToPickup = insertInBackpack(player, stack, stackToPickup);
 			if (stackToPickup.isEmpty()) {
@@ -69,14 +69,14 @@ public class ItemPickupEventHandler {
 		return stackToPickup;
 	}
 	
-	private static ItemStack insertInBackpack(ServerPlayerEntity player, ItemStack stack, ItemStack stackToPickup) {
+	private static ItemStack insertInBackpack(ServerPlayer player, ItemStack stack, ItemStack stackToPickup) {
 		final Item item = stack.getItem();
 		
 		if (item instanceof IBackpack) {
 			final IBackpack backpack = (IBackpack) item;
 			
 			if (backpack.canAutoPickup(stackToPickup, stack)) {
-				final IInventory inventory = backpack.getInventory(player, stack);
+				final Container inventory = backpack.getInventory(player, stack);
 				final IItemHandler itemHandler = new InvWrapper(inventory);
 				final ItemStack result = ItemHandlerHelper.insertItemStacked(itemHandler, stackToPickup, false);
 				if (result.getCount() != stackToPickup.getCount()) {

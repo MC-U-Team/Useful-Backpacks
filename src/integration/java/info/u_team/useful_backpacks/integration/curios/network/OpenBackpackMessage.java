@@ -7,17 +7,17 @@ import org.apache.commons.lang3.tuple.ImmutableTriple;
 
 import info.u_team.useful_backpacks.api.IBackpack;
 import info.u_team.useful_backpacks.integration.curios.util.BackpackCuriosUtil;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketBuffer;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.fml.network.NetworkEvent.Context;
 
 public class OpenBackpackMessage {
 	
-	public static void encode(OpenBackpackMessage message, PacketBuffer sendBuffer) {
+	public static void encode(OpenBackpackMessage message, FriendlyByteBuf sendBuffer) {
 	}
 	
-	public static OpenBackpackMessage decode(PacketBuffer sendBuffer) {
+	public static OpenBackpackMessage decode(FriendlyByteBuf sendBuffer) {
 		return new OpenBackpackMessage();
 	}
 	
@@ -26,7 +26,7 @@ public class OpenBackpackMessage {
 		public static void handle(OpenBackpackMessage message, Supplier<Context> contextSupplier) {
 			final Context context = contextSupplier.get();
 			context.enqueueWork(() -> {
-				final ServerPlayerEntity player = context.getSender();
+				final ServerPlayer player = context.getSender();
 				final Optional<ItemStack> curioBackpack = BackpackCuriosUtil.getBackpack(player).map(ImmutableTriple::getRight).filter(stack -> stack.getItem() instanceof IBackpack);
 				if (curioBackpack.isPresent()) {
 					final ItemStack stack = curioBackpack.get();

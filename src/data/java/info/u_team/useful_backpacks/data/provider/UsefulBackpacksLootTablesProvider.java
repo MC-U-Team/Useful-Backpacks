@@ -6,8 +6,8 @@ import java.util.function.BiConsumer;
 
 import info.u_team.u_team_core.data.CommonLootTablesProvider;
 import info.u_team.u_team_core.data.GenerationData;
-import net.minecraft.loot.LootTable;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.resources.ResourceLocation;
 
 public class UsefulBackpacksLootTablesProvider extends CommonLootTablesProvider {
 	

@@ -13,7 +13,7 @@ import java.util.function.Consumer;
 import info.u_team.u_team_core.data.CommonRecipesProvider;
 import info.u_team.u_team_core.data.GenerationData;
 import info.u_team.useful_backpacks.data.builder.BackpackCraftingRecipeBuilder;
-import net.minecraft.data.IFinishedRecipe;
+import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.item.Items;
 import net.minecraft.tags.ItemTags;
@@ -26,7 +26,7 @@ public class UsefulBackpacksRecipesProvider extends CommonRecipesProvider {
 	}
 	
 	@Override
-	protected void registerRecipes(Consumer<IFinishedRecipe> consumer) {
+	protected void registerRecipes(Consumer<FinishedRecipe> consumer) {
 		BackpackCraftingRecipeBuilder.backpackRecipe(SMALL_BACKPACK.get()) //
 				.patternLine("WLW") //
 				.patternLine("LSL") //

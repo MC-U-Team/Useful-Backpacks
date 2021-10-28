@@ -22,7 +22,7 @@ import net.minecraft.item.DyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.util.Size2i;
 
 public class BackpackCraftingRecipeCategoryExtension implements ICustomCraftingCategoryExtension {

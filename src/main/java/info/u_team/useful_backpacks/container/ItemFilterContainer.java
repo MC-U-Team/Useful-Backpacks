@@ -4,15 +4,15 @@ import info.u_team.u_team_core.api.sync.MessageHolder;
 import info.u_team.u_team_core.container.UContainer;
 import info.u_team.useful_backpacks.container.slot.ItemFilterSlot;
 import info.u_team.useful_backpacks.init.UsefulBackpacksContainerTypes;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.container.ClickType;
-import net.minecraft.inventory.container.Slot;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.PacketBuffer;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.Container;
+import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.inventory.ClickType;
+import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.FriendlyByteBuf;
 
 public class ItemFilterContainer extends UContainer {
 	
@@ -20,23 +20,23 @@ public class ItemFilterContainer extends UContainer {
 	private final int selectedSlot;
 	private boolean isStrict;
 	
-	private final IInventory filterItemSlotInventory = new Inventory(1);
+	private final Container filterItemSlotInventory = new SimpleContainer(1);
 	
 	private final MessageHolder strictMessage;
 	
-	public ItemFilterContainer(int id, PlayerInventory playerInventory, PacketBuffer buffer) {
+	public ItemFilterContainer(int id, Inventory playerInventory, FriendlyByteBuf buffer) {
 		this(id, playerInventory, ItemStack.EMPTY, buffer.readVarInt(), buffer.readBoolean());
 	}
 	
-	public ItemFilterContainer(int id, PlayerInventory playerInventory, ItemStack filterStack, int selectedSlot, boolean isStrict) {
+	public ItemFilterContainer(int id, Inventory playerInventory, ItemStack filterStack, int selectedSlot, boolean isStrict) {
 		super(UsefulBackpacksContainerTypes.ITEM_FILTER.get(), id);
 		this.filterStack = filterStack;
 		this.selectedSlot = selectedSlot;
 		this.isStrict = isStrict;
 		
-		final CompoundNBT compound = filterStack.getChildTag("stack");
+		final CompoundTag compound = filterStack.getTagElement("stack");
 		if (compound != null) {
-			filterItemSlotInventory.setInventorySlotContents(0, ItemStack.read(compound));
+			filterItemSlotInventory.setItem(0, ItemStack.of(compound));
 		}
 		
 		appendInventory(filterItemSlotInventory, ItemFilterSlot::new, 1, 1, 17, 17);
@@ -46,7 +46,7 @@ public class ItemFilterContainer extends UContainer {
 			final boolean newIsStrict = buffer.readBoolean();
 			if (!filterStack.isEmpty()) {
 				if (!newIsStrict) {
-					filterStack.removeChildTag("strict");
+					filterStack.removeTagKey("strict");
 				} else {
 					filterStack.getOrCreateTag().putBoolean("strict", newIsStrict);
 				}
@@ -55,60 +55,60 @@ public class ItemFilterContainer extends UContainer {
 	}
 	
 	@Override
-	public void detectAndSendChanges() {
-		super.detectAndSendChanges();
+	public void broadcastChanges() {
+		super.broadcastChanges();
 		if (!filterStack.isEmpty()) {
-			final ItemStack stackToFilter = filterItemSlotInventory.getStackInSlot(0);
+			final ItemStack stackToFilter = filterItemSlotInventory.getItem(0);
 			if (stackToFilter.isEmpty()) {
-				filterStack.removeChildTag("stack");
+				filterStack.removeTagKey("stack");
 			} else {
-				stackToFilter.write(filterStack.getOrCreateChildTag("stack"));
+				stackToFilter.save(filterStack.getOrCreateTagElement("stack"));
 			}
 		}
 	}
 	
 	@Override
-	public ItemStack slotClick(int slotId, int dragType, ClickType clickType, PlayerEntity player) {
+	public ItemStack clicked(int slotId, int dragType, ClickType clickType, Player player) {
 		if (slotId == 0) {
 			return filterSlotClick(dragType, clickType, player);
 		}
 		
 		Slot tmpSlot;
-		if (slotId >= 0 && slotId < inventorySlots.size()) {
-			tmpSlot = inventorySlots.get(slotId);
+		if (slotId >= 0 && slotId < slots.size()) {
+			tmpSlot = slots.get(slotId);
 		} else {
 			tmpSlot = null;
 		}
 		if (tmpSlot != null) {
-			if (tmpSlot.inventory == player.inventory && tmpSlot.getSlotIndex() == selectedSlot) {
-				return tmpSlot.getStack();
+			if (tmpSlot.container == player.inventory && tmpSlot.getSlotIndex() == selectedSlot) {
+				return tmpSlot.getItem();
 			}
 		}
 		if (clickType == ClickType.SWAP) {
-			final ItemStack stack = player.inventory.getStackInSlot(dragType);
-			final ItemStack currentItem = PlayerInventory.isHotbar(selectedSlot) ? player.inventory.mainInventory.get(selectedSlot) : selectedSlot == -1 ? player.inventory.offHandInventory.get(0) : ItemStack.EMPTY;
+			final ItemStack stack = player.inventory.getItem(dragType);
+			final ItemStack currentItem = Inventory.isHotbarSlot(selectedSlot) ? player.inventory.items.get(selectedSlot) : selectedSlot == -1 ? player.inventory.offhand.get(0) : ItemStack.EMPTY;
 			
 			if (!currentItem.isEmpty() && stack == currentItem) {
 				return ItemStack.EMPTY;
 			}
 		}
-		return super.slotClick(slotId, dragType, clickType, player);
+		return super.clicked(slotId, dragType, clickType, player);
 	}
 	
-	private ItemStack filterSlotClick(int dragType, ClickType clickType, PlayerEntity player) {
+	private ItemStack filterSlotClick(int dragType, ClickType clickType, Player player) {
 		final ItemStack stack;
 		
 		if (clickType == ClickType.THROW) {
-			filterItemSlotInventory.setInventorySlotContents(0, ItemStack.EMPTY);
+			filterItemSlotInventory.setItem(0, ItemStack.EMPTY);
 			stack = ItemStack.EMPTY;
 		} else if (clickType == ClickType.PICKUP || clickType == ClickType.CLONE) {
-			stack = player.inventory.getItemStack().copy();
+			stack = player.inventory.getCarried().copy();
 			stack.setCount(1);
-			filterItemSlotInventory.setInventorySlotContents(0, stack);
+			filterItemSlotInventory.setItem(0, stack);
 		} else if (clickType == ClickType.SWAP) {
-			stack = player.inventory.getStackInSlot(dragType).copy();
+			stack = player.inventory.getItem(dragType).copy();
 			stack.setCount(1);
-			filterItemSlotInventory.setInventorySlotContents(0, stack);
+			filterItemSlotInventory.setItem(0, stack);
 		} else {
 			stack = ItemStack.EMPTY;
 		}
@@ -128,12 +128,12 @@ public class ItemFilterContainer extends UContainer {
 	}
 	
 	@Override
-	public ItemStack transferStackInSlot(PlayerEntity player, int index) {
+	public ItemStack quickMoveStack(Player player, int index) {
 		ItemStack itemstack = ItemStack.EMPTY;
-		final Slot slot = inventorySlots.get(index);
+		final Slot slot = slots.get(index);
 		
-		if (slot != null && slot.getHasStack()) {
-			final ItemStack itemstack1 = slot.getStack();
+		if (slot != null && slot.hasItem()) {
+			final ItemStack itemstack1 = slot.getItem();
 			itemstack = itemstack1.copy();
 			
 			if (index < 1) {
@@ -141,7 +141,7 @@ public class ItemFilterContainer extends UContainer {
 			} else {
 				final ItemStack stack = itemstack1.copy();
 				stack.setCount(1);
-				filterItemSlotInventory.setInventorySlotContents(0, stack);
+				filterItemSlotInventory.setItem(0, stack);
 				return ItemStack.EMPTY;
 			}
 		}

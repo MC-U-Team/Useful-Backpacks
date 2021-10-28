@@ -2,22 +2,22 @@ package info.u_team.useful_backpacks.inventory;
 
 import java.util.Set;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.Container;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 
-public class DelegateInventory implements IInventory {
+public class DelegateInventory implements Container {
 	
-	private final IInventory fallback;
-	private IInventory inventory;
+	private final Container fallback;
+	private Container inventory;
 	
-	public DelegateInventory(IInventory fallback) {
+	public DelegateInventory(Container fallback) {
 		this.fallback = fallback;
 		inventory = fallback;
 	}
 	
-	public void setInventory(IInventory inventory) {
+	public void setInventory(Container inventory) {
 		this.inventory = inventory;
 		if (this.inventory == null) {
 			this.inventory = fallback;
@@ -25,13 +25,13 @@ public class DelegateInventory implements IInventory {
 	}
 	
 	@Override
-	public void clear() {
-		inventory.clear();
+	public void clearContent() {
+		inventory.clearContent();
 	}
 	
 	@Override
-	public int getSizeInventory() {
-		return inventory.getSizeInventory();
+	public int getContainerSize() {
+		return inventory.getContainerSize();
 	}
 	
 	@Override
@@ -40,62 +40,62 @@ public class DelegateInventory implements IInventory {
 	}
 	
 	@Override
-	public ItemStack getStackInSlot(int index) {
-		return inventory.getStackInSlot(index);
+	public ItemStack getItem(int index) {
+		return inventory.getItem(index);
 	}
 	
 	@Override
-	public ItemStack decrStackSize(int index, int count) {
-		return inventory.decrStackSize(index, count);
+	public ItemStack removeItem(int index, int count) {
+		return inventory.removeItem(index, count);
 	}
 	
 	@Override
-	public ItemStack removeStackFromSlot(int index) {
-		return inventory.removeStackFromSlot(index);
+	public ItemStack removeItemNoUpdate(int index) {
+		return inventory.removeItemNoUpdate(index);
 	}
 	
 	@Override
-	public void setInventorySlotContents(int index, ItemStack stack) {
-		inventory.setInventorySlotContents(index, stack);
+	public void setItem(int index, ItemStack stack) {
+		inventory.setItem(index, stack);
 	}
 	
 	@Override
-	public int getInventoryStackLimit() {
-		return inventory.getInventoryStackLimit();
+	public int getMaxStackSize() {
+		return inventory.getMaxStackSize();
 	}
 	
 	@Override
-	public void markDirty() {
-		inventory.markDirty();
+	public void setChanged() {
+		inventory.setChanged();
 	}
 	
 	@Override
-	public boolean isUsableByPlayer(PlayerEntity player) {
-		return inventory.isUsableByPlayer(player);
+	public boolean stillValid(Player player) {
+		return inventory.stillValid(player);
 	}
 	
 	@Override
-	public void openInventory(PlayerEntity player) {
-		inventory.openInventory(player);
+	public void startOpen(Player player) {
+		inventory.startOpen(player);
 	}
 	
 	@Override
-	public void closeInventory(PlayerEntity player) {
-		inventory.closeInventory(player);
+	public void stopOpen(Player player) {
+		inventory.stopOpen(player);
 	}
 	
 	@Override
-	public boolean isItemValidForSlot(int index, ItemStack stack) {
-		return inventory.isItemValidForSlot(index, stack);
+	public boolean canPlaceItem(int index, ItemStack stack) {
+		return inventory.canPlaceItem(index, stack);
 	}
 	
 	@Override
-	public int count(Item itemIn) {
-		return inventory.count(itemIn);
+	public int countItem(Item itemIn) {
+		return inventory.countItem(itemIn);
 	}
 	
 	@Override
-	public boolean hasAny(Set<Item> set) {
-		return inventory.hasAny(set);
+	public boolean hasAnyOf(Set<Item> set) {
+		return inventory.hasAnyOf(set);
 	}
 }

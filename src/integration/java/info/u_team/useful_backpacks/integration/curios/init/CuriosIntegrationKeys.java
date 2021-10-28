@@ -6,7 +6,7 @@ import info.u_team.u_team_core.util.registry.ClientRegistry;
 import info.u_team.useful_backpacks.integration.curios.network.OpenBackpackMessage;
 import info.u_team.useful_backpacks.integration.curios.util.BackpackCuriosUtil;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.client.KeyMapping;
 import net.minecraftforge.client.settings.IKeyConflictContext;
 import net.minecraftforge.event.TickEvent.ClientTickEvent;
 import net.minecraftforge.event.TickEvent.Phase;
@@ -15,7 +15,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 public class CuriosIntegrationKeys {
 	
-	public static final KeyBinding OPEN_BACKPACK = new KeyBinding("key.usefulbackpacks.curiosintegration.description", GLFW.GLFW_KEY_V, "key.usefulbackpacks.curiosintegration.category");
+	public static final KeyMapping OPEN_BACKPACK = new KeyMapping("key.usefulbackpacks.curiosintegration.description", GLFW.GLFW_KEY_V, "key.usefulbackpacks.curiosintegration.category");
 	
 	private static void setup(FMLClientSetupEvent event) {
 		OPEN_BACKPACK.setKeyConflictContext(new IKeyConflictContext() {

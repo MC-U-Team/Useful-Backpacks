@@ -6,6 +6,8 @@ import info.u_team.useful_backpacks.init.UsefulBackpacksItemGroups;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 
+import net.minecraft.world.item.Item.Properties;
+
 public abstract class FilterItem extends UItem implements IFilter {
 	
 	public FilterItem() {

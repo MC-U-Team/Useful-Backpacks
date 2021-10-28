@@ -2,11 +2,11 @@ package info.u_team.useful_backpacks.container.slot;
 
 import info.u_team.useful_backpacks.UsefulBackpacksMod;
 import info.u_team.useful_backpacks.api.IFilter;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.container.PlayerContainer;
-import net.minecraft.inventory.container.Slot;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.Container;
+import net.minecraft.world.inventory.InventoryMenu;
+import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -14,16 +14,16 @@ public class FilterSlot extends Slot {
 	
 	public static final ResourceLocation BACKGROUND = new ResourceLocation(UsefulBackpacksMod.MODID, "item/empty_filter_slot");
 	
-	private final IInventory backpackSlotInventory;
+	private final Container backpackSlotInventory;
 	
-	public FilterSlot(IInventory backpackSlotInventory, IInventory inventory, int index, int xPosition, int yPosition) {
+	public FilterSlot(Container backpackSlotInventory, Container inventory, int index, int xPosition, int yPosition) {
 		super(inventory, index, xPosition, yPosition);
 		this.backpackSlotInventory = backpackSlotInventory;
-		setBackground(PlayerContainer.LOCATION_BLOCKS_TEXTURE, BACKGROUND);
+		setBackground(InventoryMenu.BLOCK_ATLAS, BACKGROUND);
 	}
 	
 	@Override
-	public boolean isItemValid(ItemStack stack) {
+	public boolean mayPlace(ItemStack stack) {
 		return stack.getItem() instanceof IFilter && ((IFilter) stack.getItem()).isUsable(stack);
 	}
 	

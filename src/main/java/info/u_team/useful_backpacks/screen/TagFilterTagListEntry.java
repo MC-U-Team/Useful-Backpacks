@@ -1,9 +1,9 @@
 package info.u_team.useful_backpacks.screen;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 
 import info.u_team.u_team_core.gui.elements.ScrollableListEntry;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 
 public class TagFilterTagListEntry extends ScrollableListEntry<TagFilterTagListEntry> {
 	
@@ -14,11 +14,11 @@ public class TagFilterTagListEntry extends ScrollableListEntry<TagFilterTagListE
 	}
 	
 	@Override
-	public void render(MatrixStack matrixStack, int slotIndex, int entryY, int entryX, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float partialTicks) {
-		matrixStack.push();
+	public void render(PoseStack matrixStack, int slotIndex, int entryY, int entryX, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float partialTicks) {
+		matrixStack.pushPose();
 		matrixStack.scale(0.75F, 0.75F, 0.75F);
-		minecraft.fontRenderer.drawString(matrixStack, tag.toString(), entryX * 1 / 0.75f, entryY * 1 / 0.75f, 0xFF0083FF);
-		matrixStack.pop();
+		minecraft.font.draw(matrixStack, tag.toString(), entryX * 1 / 0.75f, entryY * 1 / 0.75f, 0xFF0083FF);
+		matrixStack.popPose();
 	}
 	
 	@Override

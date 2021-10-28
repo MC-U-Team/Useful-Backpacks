@@ -1,12 +1,12 @@
 package info.u_team.useful_backpacks.inventory;
 
-import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.ItemStackHelper;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.NonNullList;
+import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.ContainerHelper;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.core.NonNullList;
 
-public class BackpackInventory extends Inventory {
+public class BackpackInventory extends SimpleContainer {
 	
 	private final ItemStack stack;
 	
@@ -28,25 +28,25 @@ public class BackpackInventory extends Inventory {
 	
 	public void writeItemStack() {
 		if (isEmpty()) {
-			stack.removeChildTag("Items");
+			stack.removeTagKey("Items");
 		} else {
 			writeNBT(stack.getOrCreateTag());
 		}
 	}
 	
-	private void readNBT(CompoundNBT compound) {
-		final NonNullList<ItemStack> list = NonNullList.withSize(getSizeInventory(), ItemStack.EMPTY);
-		ItemStackHelper.loadAllItems(compound, list);
+	private void readNBT(CompoundTag compound) {
+		final NonNullList<ItemStack> list = NonNullList.withSize(getContainerSize(), ItemStack.EMPTY);
+		ContainerHelper.loadAllItems(compound, list);
 		for (int index = 0; index < list.size(); index++) {
-			setInventorySlotContents(index, list.get(index));
+			setItem(index, list.get(index));
 		}
 	}
 	
-	private void writeNBT(CompoundNBT compound) {
-		final NonNullList<ItemStack> list = NonNullList.withSize(getSizeInventory(), ItemStack.EMPTY);
+	private void writeNBT(CompoundTag compound) {
+		final NonNullList<ItemStack> list = NonNullList.withSize(getContainerSize(), ItemStack.EMPTY);
 		for (int index = 0; index < list.size(); index++) {
-			list.set(index, getStackInSlot(index));
+			list.set(index, getItem(index));
 		}
-		ItemStackHelper.saveAllItems(compound, list, false);
+		ContainerHelper.saveAllItems(compound, list, false);
 	}
 }

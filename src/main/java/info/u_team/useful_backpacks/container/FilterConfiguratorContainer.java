@@ -8,41 +8,41 @@ import info.u_team.useful_backpacks.init.UsefulBackpacksBlocks;
 import info.u_team.useful_backpacks.init.UsefulBackpacksContainerTypes;
 import info.u_team.useful_backpacks.inventory.DelegateInventory;
 import info.u_team.useful_backpacks.inventory.FilterInventory;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Inventory;
+import net.minecraft.world.Container;
+import net.minecraft.world.SimpleContainer;
 import net.minecraft.inventory.container.IContainerListener;
 import net.minecraft.inventory.container.Slot;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.network.play.server.SSetSlotPacket;
-import net.minecraft.util.IWorldPosCallable;
+import net.minecraft.world.inventory.ContainerLevelAccess;
 
 public class FilterConfiguratorContainer extends UContainer {
 	
-	private final IWorldPosCallable worldPos;
+	private final ContainerLevelAccess worldPos;
 	
-	private final IInventory backpackSlotInventory = new Inventory(1) {
+	private final Container backpackSlotInventory = new SimpleContainer(1) {
 		
 		@Override
-		public void markDirty() {
-			super.markDirty();
-			onCraftMatrixChanged(this);
+		public void setChanged() {
+			super.setChanged();
+			slotsChanged(this);
 		}
 	};
-	private final DelegateInventory filterSlotInventory = new DelegateInventory(new Inventory(9));
+	private final DelegateInventory filterSlotInventory = new DelegateInventory(new SimpleContainer(9));
 	
-	private IInventory filterInventory;
+	private Container filterInventory;
 	
 	// Client
-	public FilterConfiguratorContainer(int id, PlayerInventory playerInventory) {
-		this(id, playerInventory, IWorldPosCallable.DUMMY);
-		filterInventory = new Inventory(9);
+	public FilterConfiguratorContainer(int id, Inventory playerInventory) {
+		this(id, playerInventory, ContainerLevelAccess.NULL);
+		filterInventory = new SimpleContainer(9);
 	}
 	
 	// Server
-	public FilterConfiguratorContainer(int id, PlayerInventory playerInventory, IWorldPosCallable worldPos) {
+	public FilterConfiguratorContainer(int id, Inventory playerInventory, ContainerLevelAccess worldPos) {
 		super(UsefulBackpacksContainerTypes.FILTER_CONFIGURATOR.get(), id);
 		this.worldPos = worldPos;
 		
@@ -52,23 +52,23 @@ public class FilterConfiguratorContainer extends UContainer {
 	}
 	
 	@Override
-	public boolean canInteractWith(PlayerEntity player) {
-		return isWithinUsableDistance(worldPos, player, UsefulBackpacksBlocks.FILTER_CONFIGURATOR.get());
+	public boolean stillValid(Player player) {
+		return stillValid(worldPos, player, UsefulBackpacksBlocks.FILTER_CONFIGURATOR.get());
 	}
 	
 	@Override
-	public void onContainerClosed(PlayerEntity player) {
-		super.onContainerClosed(player);
+	public void removed(Player player) {
+		super.removed(player);
 		saveFilterInventory();
-		worldPos.consume((world, pos) -> clearContainer(player, world, backpackSlotInventory));
+		worldPos.execute((world, pos) -> clearContainer(player, world, backpackSlotInventory));
 	}
 	
 	@Override
-	public void detectAndSendChanges() {
+	public void broadcastChanges() {
 		final ItemStack oldStack = getInventoryItemStacks().get(0);
-		final ItemStack newStack = backpackSlotInventory.getStackInSlot(0);
+		final ItemStack newStack = backpackSlotInventory.getItem(0);
 		
-		final boolean stackChanged = !ItemStack.areItemStacksEqual(oldStack, newStack);
+		final boolean stackChanged = !ItemStack.matches(oldStack, newStack);
 		
 		if (stackChanged) {
 			if (newStack.getItem() instanceof IBackpack) {
