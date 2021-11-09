@@ -4,35 +4,33 @@ import java.util.List;
 
 import info.u_team.u_team_core.item.UItem;
 import info.u_team.useful_backpacks.container.EnderChestBackpackContainer;
-import info.u_team.useful_backpacks.init.UsefulBackpacksItemGroups;
-import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.entity.player.Player;
+import info.u_team.useful_backpacks.init.UsefulBackpacksCreativeTabs;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.SimpleMenuProvider;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
-import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.network.NetworkHooks;
-
-import net.minecraft.world.item.Item.Properties;
+import net.minecraftforge.fmllegacy.network.NetworkHooks;
 
 public class EnderChestBackpackItem extends UItem implements AutoPickupBackpack {
 	
 	public EnderChestBackpackItem() {
-		super(UsefulBackpacksItemGroups.GROUP, new Properties().stacksTo(1).rarity(Rarity.EPIC));
+		super(UsefulBackpacksCreativeTabs.TAB, new Properties().stacksTo(1).rarity(Rarity.EPIC));
 	}
 	
 	@Override
 	public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
 		final ItemStack stack = player.getItemInHand(hand);
 		if (!world.isClientSide && player instanceof ServerPlayer) {
-			open((ServerPlayer) player, stack, hand == InteractionHand.MAIN_HAND ? player.inventory.selected : -1);
+			open((ServerPlayer) player, stack, hand == InteractionHand.MAIN_HAND ? player.getInventory().selected : -1);
 		}
 		return InteractionResultHolder.success(stack);
 	}

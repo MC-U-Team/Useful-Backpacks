@@ -3,7 +3,7 @@ package info.u_team.useful_backpacks.container;
 import info.u_team.u_team_core.api.sync.MessageHolder;
 import info.u_team.u_team_core.container.UContainer;
 import info.u_team.useful_backpacks.container.slot.ItemFilterSlot;
-import info.u_team.useful_backpacks.init.UsefulBackpacksContainerTypes;
+import info.u_team.useful_backpacks.init.UsefulBackpacksMenuTypes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.Container;
@@ -29,7 +29,7 @@ public class ItemFilterContainer extends UContainer {
 	}
 	
 	public ItemFilterContainer(int id, Inventory playerInventory, ItemStack filterStack, int selectedSlot, boolean isStrict) {
-		super(UsefulBackpacksContainerTypes.ITEM_FILTER.get(), id);
+		super(UsefulBackpacksMenuTypes.ITEM_FILTER.get(), id);
 		this.filterStack = filterStack;
 		this.selectedSlot = selectedSlot;
 		this.isStrict = isStrict;

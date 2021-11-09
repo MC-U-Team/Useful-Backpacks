@@ -6,24 +6,24 @@ import java.util.Map;
 import com.google.common.collect.Lists;
 import com.google.gson.JsonObject;
 
-import info.u_team.u_team_core.api.dye.IDyeableItem;
+import info.u_team.u_team_core.api.dye.DyeableItem;
 import info.u_team.u_team_core.recipeserializer.UShapedRecipeSerializer;
 import info.u_team.u_team_core.util.ColorUtil;
 import info.u_team.useful_backpacks.init.UsefulBackpacksRecipeSerializers;
 import info.u_team.useful_backpacks.item.BackpackItem;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.core.NonNullList;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.util.GsonHelper;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.ShapedRecipe;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.util.GsonHelper;
-import net.minecraft.core.NonNullList;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Block;
 
 public class BackpackCraftingRecipe extends ShapedRecipe {
 	
@@ -61,7 +61,7 @@ public class BackpackCraftingRecipe extends ShapedRecipe {
 			}
 		}
 		if (!dyeList.isEmpty() && !dyeList.parallelStream().allMatch(color -> color == DyeColor.WHITE)) { // Don't change color if all color is white (neutral element).
-			return IDyeableItem.colorStack(backpackItem, dyeList);
+			return DyeableItem.colorStack(backpackItem, dyeList);
 		}
 		return backpackItem;
 	}
@@ -81,7 +81,7 @@ public class BackpackCraftingRecipe extends ShapedRecipe {
 			final int width = pattern[0].length();
 			final int height = pattern.length;
 			final NonNullList<Ingredient> ingredients = deserializeIngredients(pattern, keys, width, height);
-			final ItemStack output = itemFromJson(GsonHelper.getAsJsonObject(json, "result"));
+			final ItemStack output = itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"));
 			return new BackpackCraftingRecipe(recipeId, group, width, height, ingredients, output);
 		}
 		

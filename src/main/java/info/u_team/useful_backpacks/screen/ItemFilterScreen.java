@@ -1,18 +1,18 @@
 package info.u_team.useful_backpacks.screen;
 
 import info.u_team.u_team_core.gui.elements.CheckboxButton;
-import info.u_team.u_team_core.screen.UBasicContainerScreen;
+import info.u_team.u_team_core.screen.UContainerMenuScreen;
 import info.u_team.u_team_core.util.RGBA;
 import info.u_team.useful_backpacks.UsefulBackpacksMod;
 import info.u_team.useful_backpacks.container.ItemFilterContainer;
 import io.netty.buffer.Unpooled;
-import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Inventory;
 
-public class ItemFilterScreen extends UBasicContainerScreen<ItemFilterContainer> {
+public class ItemFilterScreen extends UContainerMenuScreen<ItemFilterContainer> {
 	
 	private static final ResourceLocation BACKGROUND = new ResourceLocation(UsefulBackpacksMod.MODID, "textures/gui/item_filter.png");
 	
@@ -32,7 +32,7 @@ public class ItemFilterScreen extends UBasicContainerScreen<ItemFilterContainer>
 	protected void init() {
 		super.init();
 		
-		final CheckboxButton isStrictCheckbox = addButton(new CheckboxButton(leftPos + imageWidth - (17 + 16), topPos + 17, 16, 16, strictTextComponent, menu.isStrict(), true));
+		final CheckboxButton isStrictCheckbox = addRenderableWidget(new CheckboxButton(leftPos + imageWidth - (17 + 16), topPos + 17, 16, 16, strictTextComponent, menu.isStrict(), true));
 		isStrictCheckbox.setTextColor(new RGBA(0x404040FF));
 		isStrictCheckbox.setLeftSideText(true);
 		isStrictCheckbox.setPressable(() -> {

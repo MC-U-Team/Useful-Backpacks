@@ -7,10 +7,10 @@ import java.util.function.Function;
 import info.u_team.useful_backpacks.api.IBackpack;
 import info.u_team.useful_backpacks.config.CommonConfig;
 import info.u_team.useful_backpacks.item.BackpackItem;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
@@ -46,7 +46,7 @@ public class ItemPickupEventHandler {
 	}
 	
 	private static ItemStack insertInBackpacks(ServerPlayer player, ItemStack stackToPickup) {
-		final Inventory playerInventory = player.inventory;
+		final Inventory playerInventory = player.getInventory();
 		
 		for (final Function<ServerPlayer, ItemStack> function : INTEGRATION_BACKPACKS) {
 			final ItemStack stack = function.apply(player);

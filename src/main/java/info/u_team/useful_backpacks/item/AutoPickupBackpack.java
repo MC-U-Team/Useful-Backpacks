@@ -8,15 +8,15 @@ import info.u_team.useful_backpacks.UsefulBackpacksMod;
 import info.u_team.useful_backpacks.api.IBackpack;
 import info.u_team.useful_backpacks.api.IFilter;
 import info.u_team.useful_backpacks.inventory.FilterInventory;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.item.Item;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.util.text.IFormattableTextComponent;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -26,12 +26,10 @@ public interface AutoPickupBackpack extends IBackpack {
 	default boolean canAutoPickup(ItemStack stack, ItemStack backpackStack) {
 		final FilterInventory filterInventory = new FilterInventory(backpackStack);
 		
-		for (int index = 0; index < filterInventory.getSizeInventory(); index++) {
-			final ItemStack filterStack = filterInventory.getStackInSlot(index);
+		for (int index = 0; index < filterInventory.getContainerSize(); index++) {
+			final ItemStack filterStack = filterInventory.getItem(index);
 			final Item filterItem = filterStack.getItem();
-			if (filterItem instanceof IFilter) {
-				final IFilter filter = (IFilter) filterItem;
-				
+			if (filterItem instanceof IFilter filter) {
 				if (filter.matchItem(filterStack, stack)) {
 					return true;
 				}
@@ -41,38 +39,38 @@ public interface AutoPickupBackpack extends IBackpack {
 	}
 	
 	@OnlyIn(Dist.CLIENT)
-	default void addTooltip(ItemStack stack, World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
+	default void addTooltip(ItemStack stack, Level world, List<Component> tooltip, TooltipFlag flag) {
 		final List<ItemStack> filters = new ArrayList<>();
 		
 		final FilterInventory filterInventory = new FilterInventory(stack);
 		
-		for (int index = 0; index < filterInventory.getSizeInventory(); index++) {
-			final ItemStack filterStack = filterInventory.getStackInSlot(index);
+		for (int index = 0; index < filterInventory.getContainerSize(); index++) {
+			final ItemStack filterStack = filterInventory.getItem(index);
 			if (filterStack.getItem() instanceof IFilter) {
 				filters.add(filterStack);
 			}
 		}
 		
 		if (!filters.isEmpty()) {
-			tooltip.add(TooltipCreator.create(UsefulBackpacksMod.MODID, "backpack", "filter", 0).mergeStyle(TextFormatting.GREEN, TextFormatting.ITALIC));
-			tooltip.add(ITextComponent.getTextComponentOrEmpty(null));
+			tooltip.add(TooltipCreator.create(UsefulBackpacksMod.MODID, "backpack", "filter", 0).withStyle(ChatFormatting.GREEN, ChatFormatting.ITALIC));
+			tooltip.add(TextComponent.EMPTY);
 			if (!flag.isAdvanced()) {
-				tooltip.add(TooltipCreator.create(UsefulBackpacksMod.MODID, "backpack", "filter_not_advanced", 0).mergeStyle(TextFormatting.RED, TextFormatting.ITALIC));
+				tooltip.add(TooltipCreator.create(UsefulBackpacksMod.MODID, "backpack", "filter_not_advanced", 0).withStyle(ChatFormatting.RED, ChatFormatting.ITALIC));
 			} else {
-				tooltip.add(TooltipCreator.create(UsefulBackpacksMod.MODID, "backpack", "filter_applied", 0).mergeStyle(TextFormatting.AQUA));
+				tooltip.add(TooltipCreator.create(UsefulBackpacksMod.MODID, "backpack", "filter_applied", 0).withStyle(ChatFormatting.AQUA));
 				
 				filters.stream().filter(filterStack -> filterStack.getItem() instanceof ItemFilterItem).forEach(filterStack -> {
-					final IFormattableTextComponent component = TooltipCreator.create(UsefulBackpacksMod.MODID, "backpack", "filter_applied_item", 0, new TranslationTextComponent(ItemStack.read(filterStack.getTag().getCompound("stack")).getTranslationKey()).mergeStyle(TextFormatting.YELLOW));
+					final TranslatableComponent component = TooltipCreator.create(UsefulBackpacksMod.MODID, "backpack", "filter_applied_item", 0, new TranslatableComponent(ItemStack.of(filterStack.getTag().getCompound("stack")).getDescriptionId()).withStyle(ChatFormatting.YELLOW));
 					if (filterStack.getTag().getBoolean("strict")) {
-						component.appendString(" ").appendSibling(TooltipCreator.create(UsefulBackpacksMod.MODID, "backpack", "filter_applied_item", 1));
+						component.append(" ").append(TooltipCreator.create(UsefulBackpacksMod.MODID, "backpack", "filter_applied_item", 1));
 					}
-					component.mergeStyle(TextFormatting.GRAY);
-					tooltip.add(new StringTextComponent("").appendSibling(component));
+					component.withStyle(ChatFormatting.GRAY);
+					tooltip.add(component);
 				});
 				
 				filters.stream().filter(filterStack -> filterStack.getItem() instanceof TagFilterItem).forEach(filterStack -> {
-					final IFormattableTextComponent component = TooltipCreator.create(UsefulBackpacksMod.MODID, "backpack", "filter_applied_tag", 0, new StringTextComponent(filterStack.getTag().getString("id")).mergeStyle(TextFormatting.YELLOW)).mergeStyle(TextFormatting.GRAY);
-					tooltip.add(new StringTextComponent("").appendSibling(component));
+					final MutableComponent component = TooltipCreator.create(UsefulBackpacksMod.MODID, "backpack", "filter_applied_tag", 0, new TextComponent(filterStack.getTag().getString("id")).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GRAY);
+					tooltip.add(component);
 				});
 			}
 		}

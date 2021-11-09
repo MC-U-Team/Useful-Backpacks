@@ -13,11 +13,11 @@ public class UsefulBackpacksScreens {
 	
 	private static void setup(FMLClientSetupEvent event) {
 		event.enqueueWork(() -> {
-			ClientRegistry.registerScreen(UsefulBackpacksContainerTypes.BACKPACK, BackpackScreen::new);
-			ClientRegistry.registerScreen(UsefulBackpacksContainerTypes.ENDERCHEST_BACKPACK, ContainerScreen::new);
-			ClientRegistry.registerScreen(UsefulBackpacksContainerTypes.FILTER_CONFIGURATOR, FilterConfiguratorScreen::new);
-			ClientRegistry.registerScreen(UsefulBackpacksContainerTypes.ITEM_FILTER, ItemFilterScreen::new);
-			ClientRegistry.registerScreen(UsefulBackpacksContainerTypes.TAG_FILTER, TagFilterScreen::new);
+			ClientRegistry.registerScreen(UsefulBackpacksMenuTypes.BACKPACK, BackpackScreen::new);
+			ClientRegistry.registerScreen(UsefulBackpacksMenuTypes.ENDERCHEST_BACKPACK, ContainerScreen::new);
+			ClientRegistry.registerScreen(UsefulBackpacksMenuTypes.FILTER_CONFIGURATOR, FilterConfiguratorScreen::new);
+			ClientRegistry.registerScreen(UsefulBackpacksMenuTypes.ITEM_FILTER, ItemFilterScreen::new);
+			ClientRegistry.registerScreen(UsefulBackpacksMenuTypes.TAG_FILTER, TagFilterScreen::new);
 		});
 	}
 	

@@ -2,8 +2,8 @@ package info.u_team.useful_backpacks.init;
 
 import info.u_team.u_team_core.util.TagUtil;
 import info.u_team.useful_backpacks.UsefulBackpacksMod;
-import net.minecraft.world.item.Item;
 import net.minecraft.tags.Tag.Named;
+import net.minecraft.world.item.Item;
 
 public class UsefulBackpacksTags {
 	

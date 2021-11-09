@@ -1,7 +1,7 @@
 package info.u_team.useful_backpacks.container.slot;
 
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.Container;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 
@@ -12,8 +12,7 @@ public class ItemFilterSlot extends Slot {
 	}
 	
 	@Override
-	public ItemStack onTake(Player player, ItemStack stack) {
-		return stack;
+	public void onTake(Player player, ItemStack stack) {
 	}
 	
 	@Override

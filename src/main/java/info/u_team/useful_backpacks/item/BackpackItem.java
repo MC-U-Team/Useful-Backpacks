@@ -3,39 +3,35 @@ package info.u_team.useful_backpacks.item;
 import java.util.Arrays;
 import java.util.List;
 
-import info.u_team.u_team_core.api.dye.IDyeableItem;
+import info.u_team.u_team_core.api.dye.DyeableItem;
 import info.u_team.u_team_core.item.UItem;
 import info.u_team.useful_backpacks.config.ServerConfig;
 import info.u_team.useful_backpacks.container.BackpackContainer;
-import info.u_team.useful_backpacks.init.UsefulBackpacksItemGroups;
+import info.u_team.useful_backpacks.init.UsefulBackpacksCreativeTabs;
 import info.u_team.useful_backpacks.inventory.BackpackInventory;
 import info.u_team.useful_backpacks.type.Backpack;
-import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.core.NonNullList;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
-import net.minecraft.world.SimpleMenuProvider;
-import net.minecraft.world.item.DyeColor;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.core.NonNullList;
-import net.minecraft.network.chat.Component;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.SimpleMenuProvider;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.network.NetworkHooks;
+import net.minecraftforge.fmllegacy.network.NetworkHooks;
 
-import net.minecraft.world.item.Item.Properties;
-
-public class BackpackItem extends UItem implements AutoPickupBackpack, IDyeableItem {
+public class BackpackItem extends UItem implements AutoPickupBackpack, DyeableItem {
 	
 	private final Backpack backpack;
 	
 	public BackpackItem(Backpack backpack) {
-		super(UsefulBackpacksItemGroups.GROUP, new Properties().stacksTo(1).rarity(backpack.getRarity()));
+		super(UsefulBackpacksCreativeTabs.TAB, new Properties().stacksTo(1).rarity(backpack.getRarity()));
 		this.backpack = backpack;
 		addColoredItem(this);
 	}
@@ -44,7 +40,7 @@ public class BackpackItem extends UItem implements AutoPickupBackpack, IDyeableI
 	public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
 		final ItemStack stack = player.getItemInHand(hand);
 		if (!world.isClientSide && player instanceof ServerPlayer) {
-			open((ServerPlayer) player, stack, hand == InteractionHand.MAIN_HAND ? player.inventory.selected : -1);
+			open((ServerPlayer) player, stack, hand == InteractionHand.MAIN_HAND ? player.getInventory().selected : -1);
 		}
 		return InteractionResultHolder.success(stack);
 	}
@@ -71,7 +67,6 @@ public class BackpackItem extends UItem implements AutoPickupBackpack, IDyeableI
 		}
 	}
 	
-	@OnlyIn(Dist.CLIENT)
 	@Override
 	public void appendHoverText(ItemStack stack, Level world, List<Component> tooltip, TooltipFlag flag) {
 		addTooltip(stack, world, tooltip, flag);
@@ -97,7 +92,7 @@ public class BackpackItem extends UItem implements AutoPickupBackpack, IDyeableI
 		}
 		items.add(new ItemStack(this));
 		for (final DyeColor color : DyeColor.values()) {
-			items.add(IDyeableItem.colorStack(new ItemStack(this, 1), Arrays.asList(color)));
+			items.add(DyeableItem.colorStack(new ItemStack(this, 1), Arrays.asList(color)));
 		}
 	}
 	

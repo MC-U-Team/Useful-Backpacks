@@ -2,7 +2,7 @@ package info.u_team.useful_backpacks.container;
 
 import info.u_team.u_team_core.api.sync.MessageHolder;
 import info.u_team.u_team_core.container.UContainer;
-import info.u_team.useful_backpacks.init.UsefulBackpacksContainerTypes;
+import info.u_team.useful_backpacks.init.UsefulBackpacksMenuTypes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.ClickType;
@@ -24,7 +24,7 @@ public class TagFilterContainer extends UContainer {
 	}
 	
 	public TagFilterContainer(int id, Inventory playerInventory, ItemStack filterStack, int selectedSlot, String tag) {
-		super(UsefulBackpacksContainerTypes.TAG_FILTER.get(), id);
+		super(UsefulBackpacksMenuTypes.TAG_FILTER.get(), id);
 		this.selectedSlot = selectedSlot;
 		this.tag = tag;
 		

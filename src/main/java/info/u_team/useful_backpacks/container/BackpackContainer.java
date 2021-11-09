@@ -1,21 +1,21 @@
 package info.u_team.useful_backpacks.container;
 
-import info.u_team.u_team_core.container.UContainer;
+import info.u_team.u_team_core.menu.UContainerMenu;
 import info.u_team.useful_backpacks.api.IBackpack;
 import info.u_team.useful_backpacks.container.slot.BackpackSlot;
-import info.u_team.useful_backpacks.init.UsefulBackpacksContainerTypes;
+import info.u_team.useful_backpacks.init.UsefulBackpacksMenuTypes;
 import info.u_team.useful_backpacks.inventory.BackpackInventory;
 import info.u_team.useful_backpacks.type.Backpack;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ClickType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.network.FriendlyByteBuf;
 
-public class BackpackContainer extends UContainer {
+public class BackpackContainer extends UContainerMenu {
 	
 	private final Container backpackInventory;
 	private final Backpack backpack;
@@ -30,15 +30,15 @@ public class BackpackContainer extends UContainer {
 	
 	// Server
 	public BackpackContainer(int id, Inventory playerInventory, Container backpackInventory, Backpack backpack, int selectedSlot) {
-		super(UsefulBackpacksContainerTypes.BACKPACK.get(), id);
+		super(UsefulBackpacksMenuTypes.BACKPACK.get(), id);
 		this.backpackInventory = backpackInventory;
 		this.backpack = backpack;
 		this.selectedSlot = selectedSlot;
-		appendBackpackInventory(backpack.getSlotBackpackX(), backpack.getSlotBackpackY());
-		appendPlayerInventory(playerInventory, backpack.getSlotPlayerX(), backpack.getSlotPlayerY());
+		addBackpackInventory(backpack.getSlotBackpackX(), backpack.getSlotBackpackY());
+		addPlayerInventory(playerInventory, backpack.getSlotPlayerX(), backpack.getSlotPlayerY());
 	}
 	
-	public void appendBackpackInventory(int x, int y) {
+	public void addBackpackInventory(int x, int y) {
 		for (int height = 0; height < backpack.getInventoryHeight(); height++) {
 			for (int width = 0; width < backpack.getInventoryWidth(); width++) {
 				addSlot(new BackpackSlot(backpackInventory, width + height * backpack.getInventoryWidth(), width * 18 + x, height * 18 + y));
@@ -81,7 +81,7 @@ public class BackpackContainer extends UContainer {
 	}
 	
 	@Override
-	public ItemStack clicked(int slotId, int dragType, ClickType clickType, Player player) {
+	public void clicked(int slotId, int dragType, ClickType clickType, Player player) {
 		Slot tmpSlot;
 		if (slotId >= 0 && slotId < slots.size()) {
 			tmpSlot = slots.get(slotId);
@@ -89,19 +89,21 @@ public class BackpackContainer extends UContainer {
 			tmpSlot = null;
 		}
 		if (tmpSlot != null) {
-			if (tmpSlot.container == player.inventory && tmpSlot.getSlotIndex() == selectedSlot) {
-				return tmpSlot.getItem();
+			if (tmpSlot.container == player.getInventory() && tmpSlot.getSlotIndex() == selectedSlot) {
+				// return tmpSlot.getItem(); // TODO just return??
+				return;
 			}
 		}
 		if (clickType == ClickType.SWAP) {
-			final ItemStack stack = player.inventory.getItem(dragType);
-			final ItemStack currentItem = Inventory.isHotbarSlot(selectedSlot) ? player.inventory.items.get(selectedSlot) : selectedSlot == -1 ? player.inventory.offhand.get(0) : ItemStack.EMPTY;
+			final ItemStack stack = player.getInventory().getItem(dragType);
+			final ItemStack currentItem = Inventory.isHotbarSlot(selectedSlot) ? player.getInventory().items.get(selectedSlot) : selectedSlot == -1 ? player.getInventory().offhand.get(0) : ItemStack.EMPTY;
 			
 			if (!currentItem.isEmpty() && stack == currentItem) {
-				return ItemStack.EMPTY;
+				// return ItemStack.EMPTY; // TODO just return??
+				return;
 			}
 		}
-		return super.clicked(slotId, dragType, clickType, player);
+		super.clicked(slotId, dragType, clickType, player);
 	}
 	
 	@Override

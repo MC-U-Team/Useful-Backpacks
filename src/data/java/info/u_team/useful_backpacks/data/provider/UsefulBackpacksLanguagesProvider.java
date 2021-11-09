@@ -10,7 +10,7 @@ import static info.u_team.useful_backpacks.init.UsefulBackpacksItems.TAG_FILTER;
 
 import info.u_team.u_team_core.data.CommonLanguagesProvider;
 import info.u_team.u_team_core.data.GenerationData;
-import info.u_team.useful_backpacks.init.UsefulBackpacksItemGroups;
+import info.u_team.useful_backpacks.init.UsefulBackpacksCreativeTabs;
 
 public class UsefulBackpacksLanguagesProvider extends CommonLanguagesProvider {
 	
@@ -21,7 +21,7 @@ public class UsefulBackpacksLanguagesProvider extends CommonLanguagesProvider {
 	@Override
 	public void addTranslations() {
 		// English
-		add(UsefulBackpacksItemGroups.GROUP, "Useful Backpacks");
+		add(UsefulBackpacksCreativeTabs.TAB, "Useful Backpacks");
 		addItem(SMALL_BACKPACK, "Small Backpack");
 		addItem(MEDIUM_BACKPACK, "Medium Backpack");
 		addItem(LARGE_BACKPACK, "Large Backpack");
@@ -55,7 +55,7 @@ public class UsefulBackpacksLanguagesProvider extends CommonLanguagesProvider {
 		addTooltip("click", "shift_right_click", 0, "Shift + Right click");
 		
 		// German
-		add("de_de", UsefulBackpacksItemGroups.GROUP, "Nützliche Rucksäcke");
+		add("de_de", UsefulBackpacksCreativeTabs.TAB, "Nützliche Rucksäcke");
 		addItem("de_de", SMALL_BACKPACK, "Kleiner Rucksack");
 		addItem("de_de", MEDIUM_BACKPACK, "Mittlerer Rucksack");
 		addItem("de_de", LARGE_BACKPACK, "Großer Rucksack");

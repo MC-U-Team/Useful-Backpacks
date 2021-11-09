@@ -9,8 +9,9 @@ import info.u_team.u_team_core.gui.elements.ScrollableList;
 import info.u_team.useful_backpacks.container.TagFilterContainer;
 import io.netty.buffer.Unpooled;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.tags.SerializationTags;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.SerializationTags;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class TagFilterTagList extends ScrollableList<TagFilterTagListEntry> {
 	
@@ -22,7 +23,7 @@ public class TagFilterTagList extends ScrollableList<TagFilterTagListEntry> {
 		
 		setRenderTopAndBottom(false);
 		setShouldUseScissor(true);
-		setShouldRenderTransparentBorder(true);
+		setRenderTransparentBorder(true);
 		
 		updateEntries(unused -> true);
 		
@@ -58,7 +59,7 @@ public class TagFilterTagList extends ScrollableList<TagFilterTagListEntry> {
 	}
 	
 	private void updateEntries(Predicate<ResourceLocation> predicate) {
-		final List<ResourceLocation> list = SerializationTags.getInstance().getItems().getAvailableTags().stream().filter(predicate).collect(Collectors.toList());
+		final List<ResourceLocation> list = SerializationTags.getInstance().getOrEmpty(ForgeRegistries.Keys.ITEMS).getAvailableTags().stream().filter(predicate).collect(Collectors.toList());
 		
 		Collections.sort(list, (a, b) -> {
 			return a.toString().compareTo(b.toString());

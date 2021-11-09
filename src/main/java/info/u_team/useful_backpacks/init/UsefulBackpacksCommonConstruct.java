@@ -1,7 +1,7 @@
 package info.u_team.useful_backpacks.init;
 
 import info.u_team.u_team_core.api.construct.Construct;
-import info.u_team.u_team_core.api.construct.IModConstruct;
+import info.u_team.u_team_core.api.construct.ModConstruct;
 import info.u_team.u_team_core.util.registry.BusRegister;
 import info.u_team.useful_backpacks.UsefulBackpacksMod;
 import info.u_team.useful_backpacks.config.CommonConfig;
@@ -11,7 +11,7 @@ import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.config.ModConfig.Type;
 
 @Construct(modid = UsefulBackpacksMod.MODID)
-public class UsefulBackpacksCommonConstruct implements IModConstruct {
+public class UsefulBackpacksCommonConstruct implements ModConstruct {
 	
 	@Override
 	public void construct() {
@@ -19,7 +19,7 @@ public class UsefulBackpacksCommonConstruct implements IModConstruct {
 		ModLoadingContext.get().registerConfig(Type.SERVER, ServerConfig.CONFIG);
 		
 		BusRegister.registerMod(UsefulBackpacksBlocks::registerMod);
-		BusRegister.registerMod(UsefulBackpacksContainerTypes::registerMod);
+		BusRegister.registerMod(UsefulBackpacksMenuTypes::registerMod);
 		BusRegister.registerMod(UsefulBackpacksItems::registerMod);
 		BusRegister.registerMod(UsefulBackpacksRecipeSerializers::registerMod);
 		

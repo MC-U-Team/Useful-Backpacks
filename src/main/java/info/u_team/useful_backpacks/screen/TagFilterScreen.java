@@ -2,23 +2,23 @@ package info.u_team.useful_backpacks.screen;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 
-import info.u_team.u_team_core.gui.elements.ScalableTextField;
-import info.u_team.u_team_core.screen.UBasicContainerScreen;
+import info.u_team.u_team_core.gui.elements.ScalableEditBox;
+import info.u_team.u_team_core.screen.UContainerMenuScreen;
 import info.u_team.u_team_core.util.WidgetUtil;
 import info.u_team.useful_backpacks.UsefulBackpacksMod;
 import info.u_team.useful_backpacks.container.TagFilterContainer;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Inventory;
 
-public class TagFilterScreen extends UBasicContainerScreen<TagFilterContainer> {
+public class TagFilterScreen extends UContainerMenuScreen<TagFilterContainer> {
 	
 	private static final ResourceLocation BACKGROUND = new ResourceLocation(UsefulBackpacksMod.MODID, "textures/gui/tag_filter.png");
 	
 	private final Component tagSearchTextComponent;
 	
-	private ScalableTextField tagTextField;
+	private ScalableEditBox tagTextField;
 	
 	private TagFilterTagList tagList;
 	
@@ -34,7 +34,7 @@ public class TagFilterScreen extends UBasicContainerScreen<TagFilterContainer> {
 		
 		minecraft.keyboardHandler.setSendRepeatsToGui(true);
 		
-		tagTextField = addButton(new ScalableTextField(font, leftPos + 8, topPos + 20, 160, 15, tagTextField, tagSearchTextComponent, 0.75F));
+		tagTextField = addRenderableWidget(new ScalableEditBox(font, leftPos + 8, topPos + 20, 160, 15, tagTextField, tagSearchTextComponent, 0.75F));
 		tagTextField.setMaxLength(300);
 		tagTextField.setTooltip((textField, matrixStack, mouseX, mouseY) -> {
 			if (WidgetUtil.isHovered(textField)) {
@@ -46,14 +46,12 @@ public class TagFilterScreen extends UBasicContainerScreen<TagFilterContainer> {
 		});
 		setInitialFocus(tagTextField);
 		
-		tagList = new TagFilterTagList(menu, leftPos + 7, topPos + 40, 161, 52, menu.getTag());
-		children.add(tagList);
+		tagList = addRenderableWidget(new TagFilterTagList(menu, leftPos + 7, topPos + 40, 161, 52, menu.getTag()));
 	}
 	
 	@Override
 	public void render(PoseStack matrixStack, int mouseX, int mouseY, float partialTicks) {
 		super.render(matrixStack, mouseX, mouseY, partialTicks);
-		tagList.render(matrixStack, mouseX, mouseY, partialTicks);
 	}
 	
 	@Override

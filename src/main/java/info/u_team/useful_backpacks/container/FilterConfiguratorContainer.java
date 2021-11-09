@@ -5,7 +5,7 @@ import info.u_team.useful_backpacks.api.IBackpack;
 import info.u_team.useful_backpacks.container.slot.BackpackFilterSlot;
 import info.u_team.useful_backpacks.container.slot.FilterSlot;
 import info.u_team.useful_backpacks.init.UsefulBackpacksBlocks;
-import info.u_team.useful_backpacks.init.UsefulBackpacksContainerTypes;
+import info.u_team.useful_backpacks.init.UsefulBackpacksMenuTypes;
 import info.u_team.useful_backpacks.inventory.DelegateInventory;
 import info.u_team.useful_backpacks.inventory.FilterInventory;
 import net.minecraft.world.entity.player.Player;
@@ -43,7 +43,7 @@ public class FilterConfiguratorContainer extends UContainer {
 	
 	// Server
 	public FilterConfiguratorContainer(int id, Inventory playerInventory, ContainerLevelAccess worldPos) {
-		super(UsefulBackpacksContainerTypes.FILTER_CONFIGURATOR.get(), id);
+		super(UsefulBackpacksMenuTypes.FILTER_CONFIGURATOR.get(), id);
 		this.worldPos = worldPos;
 		
 		appendInventory(backpackSlotInventory, (inventory, index, xPosition, yPosition) -> new BackpackFilterSlot(inventory, index, xPosition, yPosition), 1, 1, 35, 35);
