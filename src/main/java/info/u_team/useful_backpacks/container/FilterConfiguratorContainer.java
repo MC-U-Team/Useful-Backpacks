@@ -1,6 +1,6 @@
 package info.u_team.useful_backpacks.container;
 
-import info.u_team.u_team_core.container.UContainer;
+import info.u_team.u_team_core.menu.UContainerMenu;
 import info.u_team.useful_backpacks.api.IBackpack;
 import info.u_team.useful_backpacks.container.slot.BackpackFilterSlot;
 import info.u_team.useful_backpacks.container.slot.FilterSlot;
@@ -8,20 +8,17 @@ import info.u_team.useful_backpacks.init.UsefulBackpacksBlocks;
 import info.u_team.useful_backpacks.init.UsefulBackpacksMenuTypes;
 import info.u_team.useful_backpacks.inventory.DelegateInventory;
 import info.u_team.useful_backpacks.inventory.FilterInventory;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
-import net.minecraft.inventory.container.IContainerListener;
-import net.minecraft.inventory.container.Slot;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.network.play.server.SSetSlotPacket;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ContainerLevelAccess;
+import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.ItemStack;
 
-public class FilterConfiguratorContainer extends UContainer {
+public class FilterConfiguratorContainer extends UContainerMenu {
 	
-	private final ContainerLevelAccess worldPos;
+	private final ContainerLevelAccess access;
 	
 	private final Container backpackSlotInventory = new SimpleContainer(1) {
 		
@@ -42,30 +39,31 @@ public class FilterConfiguratorContainer extends UContainer {
 	}
 	
 	// Server
-	public FilterConfiguratorContainer(int id, Inventory playerInventory, ContainerLevelAccess worldPos) {
+	public FilterConfiguratorContainer(int id, Inventory playerInventory, ContainerLevelAccess access) {
 		super(UsefulBackpacksMenuTypes.FILTER_CONFIGURATOR.get(), id);
-		this.worldPos = worldPos;
+		this.access = access;
 		
-		appendInventory(backpackSlotInventory, (inventory, index, xPosition, yPosition) -> new BackpackFilterSlot(inventory, index, xPosition, yPosition), 1, 1, 35, 35);
-		appendInventory(filterSlotInventory, (inventory, index, xPosition, yPosition) -> new FilterSlot(backpackSlotInventory, inventory, index, xPosition, yPosition), 3, 3, 89, 17);
-		appendPlayerInventory(playerInventory, 8, 84);
+		addSlots(backpackSlotInventory, (inventory, index, xPosition, yPosition) -> new BackpackFilterSlot(inventory, index, xPosition, yPosition), 1, 1, 35, 35);
+		addSlots(filterSlotInventory, (inventory, index, xPosition, yPosition) -> new FilterSlot(backpackSlotInventory, inventory, index, xPosition, yPosition), 3, 3, 89, 17);
+		addPlayerInventory(playerInventory, 8, 84);
 	}
 	
 	@Override
 	public boolean stillValid(Player player) {
-		return stillValid(worldPos, player, UsefulBackpacksBlocks.FILTER_CONFIGURATOR.get());
+		return stillValid(access, player, UsefulBackpacksBlocks.FILTER_CONFIGURATOR.get());
 	}
 	
 	@Override
 	public void removed(Player player) {
 		super.removed(player);
 		saveFilterInventory();
-		worldPos.execute((world, pos) -> clearContainer(player, world, backpackSlotInventory));
+		access.execute((world, pos) -> clearContainer(player, backpackSlotInventory));
 	}
 	
+	// TODO rewrite this stuff, Can be probably way easier with the new sync / inventory management system
 	@Override
 	public void broadcastChanges() {
-		final ItemStack oldStack = getInventoryItemStacks().get(0);
+		final ItemStack oldStack = getItems().get(0); // TODO access to remote slot or direct slot content??
 		final ItemStack newStack = backpackSlotInventory.getItem(0);
 		
 		final boolean stackChanged = !ItemStack.matches(oldStack, newStack);
@@ -75,7 +73,7 @@ public class FilterConfiguratorContainer extends UContainer {
 				if (filterInventory instanceof FilterInventory) {
 					((FilterInventory) filterInventory).writeItemStack();
 				}
-				filterInventory = new FilterInventory(backpackSlotInventory.getStackInSlot(0));
+				filterInventory = new FilterInventory(backpackSlotInventory.getItem(0));
 				filterSlotInventory.setInventory(filterInventory);
 			} else if (newStack.isEmpty() && filterInventory instanceof FilterInventory) {
 				filterInventory = null;
@@ -84,46 +82,47 @@ public class FilterConfiguratorContainer extends UContainer {
 		}
 		
 		saveFilterInventory();
-		super.detectAndSendChanges();
+		super.broadcastChanges();
 	}
 	
 	private void saveFilterInventory() {
-		if (filterInventory instanceof FilterInventory) {
-			final FilterInventory inventory = (FilterInventory) filterInventory;
-			final ItemStack copy = inventory.getStack().copy();
-			inventory.writeItemStack();
-			if (!ItemStack.areItemStacksEqual(copy, inventory.getStack())) {
-				for (final IContainerListener listener : getListeners()) {
-					if (listener instanceof ServerPlayerEntity) {
-						final ServerPlayerEntity player = (ServerPlayerEntity) listener;
-						player.connection.netManager.sendPacket(new SSetSlotPacket(windowId, 0, inventory.getStack()));
-					}
-				}
-			}
-		}
+		// TODO fix
+		// if (filterInventory instanceof FilterInventory) {
+		// final FilterInventory inventory = (FilterInventory) filterInventory;
+		// final ItemStack copy = inventory.getStack().copy();
+		// inventory.writeItemStack();
+		// if (!ItemStack.matches(copy, inventory.getStack())) {
+		// for (final IContainerListener listener : getListeners()) {
+		// if (listener instanceof ServerPlayerEntity) {
+		// final ServerPlayerEntity player = (ServerPlayerEntity) listener;
+		// player.connection.netManager.sendPacket(new SSetSlotPacket(windowId, 0, inventory.getStack()));
+		// }
+		// }
+		// }
+		// }
 	}
 	
 	@Override
-	public ItemStack transferStackInSlot(PlayerEntity playerIn, int index) {
+	public ItemStack quickMoveStack(Player player, int index) {
 		ItemStack itemstack = ItemStack.EMPTY;
-		final Slot slot = inventorySlots.get(index);
+		final Slot slot = slots.get(index);
 		
-		if (slot != null && slot.getHasStack()) {
-			final ItemStack itemstack1 = slot.getStack();
+		if (slot != null && slot.hasItem()) {
+			final ItemStack itemstack1 = slot.getItem();
 			itemstack = itemstack1.copy();
 			
 			if (index < 10) {
-				if (!this.mergeItemStack(itemstack1, 10, this.inventorySlots.size(), true)) {
+				if (!this.moveItemStackTo(itemstack1, 10, slots.size(), true)) {
 					return ItemStack.EMPTY;
 				}
-			} else if (!this.mergeItemStack(itemstack1, 0, 10, false)) {
+			} else if (!this.moveItemStackTo(itemstack1, 0, 10, false)) {
 				return ItemStack.EMPTY;
 			}
 			
 			if (itemstack1.isEmpty()) {
-				slot.putStack(ItemStack.EMPTY);
+				slot.set(ItemStack.EMPTY);
 			} else {
-				slot.onSlotChanged();
+				slot.setChanged();
 			}
 		}
 		return itemstack;
