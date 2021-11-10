@@ -6,8 +6,8 @@ import info.u_team.u_team_core.util.RecipeBuilderUtil;
 import info.u_team.useful_backpacks.init.UsefulBackpacksRecipeSerializers;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
-import net.minecraft.world.level.ItemLike;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.ItemLike;
 
 public class BackpackCraftingRecipeBuilder extends ShapedRecipeBuilder {
 	
@@ -24,7 +24,7 @@ public class BackpackCraftingRecipeBuilder extends ShapedRecipeBuilder {
 	}
 	
 	@Override
-	public void build(Consumer<FinishedRecipe> consumer, ResourceLocation location) {
-		super.build(recipe -> consumer.accept(RecipeBuilderUtil.getRecipeWithSerializer(recipe, UsefulBackpacksRecipeSerializers.BACKPACK.get())), location);
+	public void save(Consumer<FinishedRecipe> consumer, ResourceLocation location) {
+		super.save(recipe -> consumer.accept(RecipeBuilderUtil.getRecipeWithSerializer(recipe, UsefulBackpacksRecipeSerializers.BACKPACK.get())), location);
 	}
 }

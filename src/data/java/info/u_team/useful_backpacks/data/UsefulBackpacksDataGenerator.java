@@ -11,7 +11,7 @@ import info.u_team.useful_backpacks.data.provider.UsefulBackpacksRecipesProvider
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
-import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
+import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
 
 @EventBusSubscriber(modid = UsefulBackpacksMod.MODID, bus = Bus.MOD)
 public class UsefulBackpacksDataGenerator {
