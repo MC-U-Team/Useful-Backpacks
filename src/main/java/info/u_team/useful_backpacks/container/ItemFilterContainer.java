@@ -1,20 +1,20 @@
 package info.u_team.useful_backpacks.container;
 
 import info.u_team.u_team_core.api.sync.MessageHolder;
-import info.u_team.u_team_core.container.UContainer;
+import info.u_team.u_team_core.menu.UContainerMenu;
 import info.u_team.useful_backpacks.container.slot.ItemFilterSlot;
 import info.u_team.useful_backpacks.init.UsefulBackpacksMenuTypes;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ClickType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.FriendlyByteBuf;
 
-public class ItemFilterContainer extends UContainer {
+public class ItemFilterContainer extends UContainerMenu {
 	
 	private final ItemStack filterStack;
 	private final int selectedSlot;
@@ -39,10 +39,10 @@ public class ItemFilterContainer extends UContainer {
 			filterItemSlotInventory.setItem(0, ItemStack.of(compound));
 		}
 		
-		appendInventory(filterItemSlotInventory, ItemFilterSlot::new, 1, 1, 17, 17);
-		appendPlayerInventory(playerInventory, 8, 48);
+		addSlots(filterItemSlotInventory, ItemFilterSlot::new, 1, 1, 17, 17);
+		addPlayerInventory(playerInventory, 8, 48);
 		
-		strictMessage = addClientToServerTracker(new MessageHolder(buffer -> {
+		strictMessage = addDataHolderToServer(new MessageHolder(buffer -> {
 			final boolean newIsStrict = buffer.readBoolean();
 			if (!filterStack.isEmpty()) {
 				if (!newIsStrict) {
@@ -52,6 +52,11 @@ public class ItemFilterContainer extends UContainer {
 				}
 			}
 		}));
+	}
+	
+	@Override
+	public boolean stillValid(Player player) {
+		return true;
 	}
 	
 	@Override
@@ -68,9 +73,10 @@ public class ItemFilterContainer extends UContainer {
 	}
 	
 	@Override
-	public ItemStack clicked(int slotId, int dragType, ClickType clickType, Player player) {
+	public void clicked(int slotId, int dragType, ClickType clickType, Player player) {
 		if (slotId == 0) {
-			return filterSlotClick(dragType, clickType, player);
+			filterSlotClick(dragType, clickType, player); // TODO Update method
+			return;
 		}
 		
 		Slot tmpSlot;
@@ -80,21 +86,24 @@ public class ItemFilterContainer extends UContainer {
 			tmpSlot = null;
 		}
 		if (tmpSlot != null) {
-			if (tmpSlot.container == player.inventory && tmpSlot.getSlotIndex() == selectedSlot) {
-				return tmpSlot.getItem();
+			if (tmpSlot.container == player.getInventory() && tmpSlot.getSlotIndex() == selectedSlot) {
+				// return tmpSlot.getItem(); // TODO right?
+				return;
 			}
 		}
 		if (clickType == ClickType.SWAP) {
-			final ItemStack stack = player.inventory.getItem(dragType);
-			final ItemStack currentItem = Inventory.isHotbarSlot(selectedSlot) ? player.inventory.items.get(selectedSlot) : selectedSlot == -1 ? player.inventory.offhand.get(0) : ItemStack.EMPTY;
+			final ItemStack stack = player.getInventory().getItem(dragType);
+			final ItemStack currentItem = Inventory.isHotbarSlot(selectedSlot) ? player.getInventory().items.get(selectedSlot) : selectedSlot == -1 ? player.getInventory().offhand.get(0) : ItemStack.EMPTY;
 			
 			if (!currentItem.isEmpty() && stack == currentItem) {
-				return ItemStack.EMPTY;
+				// return ItemStack.EMPTY; // TODO right?
+				return;
 			}
 		}
-		return super.clicked(slotId, dragType, clickType, player);
+		super.clicked(slotId, dragType, clickType, player);
 	}
 	
+	// TODO method does not work that way anymore. Need to update logic
 	private ItemStack filterSlotClick(int dragType, ClickType clickType, Player player) {
 		final ItemStack stack;
 		
@@ -102,11 +111,11 @@ public class ItemFilterContainer extends UContainer {
 			filterItemSlotInventory.setItem(0, ItemStack.EMPTY);
 			stack = ItemStack.EMPTY;
 		} else if (clickType == ClickType.PICKUP || clickType == ClickType.CLONE) {
-			stack = player.inventory.getCarried().copy();
+			stack = getCarried().copy();
 			stack.setCount(1);
 			filterItemSlotInventory.setItem(0, stack);
 		} else if (clickType == ClickType.SWAP) {
-			stack = player.inventory.getItem(dragType).copy();
+			stack = player.getInventory().getItem(dragType).copy();
 			stack.setCount(1);
 			filterItemSlotInventory.setItem(0, stack);
 		} else {
@@ -147,4 +156,5 @@ public class ItemFilterContainer extends UContainer {
 		}
 		return itemstack;
 	}
+	
 }

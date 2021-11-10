@@ -1,18 +1,16 @@
 package info.u_team.useful_backpacks.container;
 
 import info.u_team.u_team_core.api.sync.MessageHolder;
-import info.u_team.u_team_core.container.UContainer;
+import info.u_team.u_team_core.menu.UContainerMenu;
 import info.u_team.useful_backpacks.init.UsefulBackpacksMenuTypes;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ClickType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.network.FriendlyByteBuf;
 
-public class TagFilterContainer extends UContainer {
-	
-	private static final int MAX_TAG_LENGTH = 32767;
+public class TagFilterContainer extends UContainerMenu {
 	
 	private final int selectedSlot;
 	private String tag;
@@ -20,7 +18,7 @@ public class TagFilterContainer extends UContainer {
 	private final MessageHolder tagMessage;
 	
 	public TagFilterContainer(int id, Inventory playerInventory, FriendlyByteBuf buffer) {
-		this(id, playerInventory, ItemStack.EMPTY, buffer.readVarInt(), buffer.readUtf(MAX_TAG_LENGTH));
+		this(id, playerInventory, ItemStack.EMPTY, buffer.readVarInt(), buffer.readUtf());
 	}
 	
 	public TagFilterContainer(int id, Inventory playerInventory, ItemStack filterStack, int selectedSlot, String tag) {
@@ -28,10 +26,10 @@ public class TagFilterContainer extends UContainer {
 		this.selectedSlot = selectedSlot;
 		this.tag = tag;
 		
-		appendPlayerInventory(playerInventory, 8, 108);
+		addPlayerInventory(playerInventory, 8, 108);
 		
-		tagMessage = addClientToServerTracker(new MessageHolder(buffer -> {
-			final String newTag = buffer.readUtf(MAX_TAG_LENGTH);
+		tagMessage = addDataHolderToServer(new MessageHolder(buffer -> {
+			final String newTag = buffer.readUtf();
 			if (!filterStack.isEmpty()) {
 				if (newTag.isEmpty()) {
 					filterStack.removeTagKey("id");
@@ -43,7 +41,12 @@ public class TagFilterContainer extends UContainer {
 	}
 	
 	@Override
-	public ItemStack clicked(int slotId, int dragType, ClickType clickType, Player player) {
+	public boolean stillValid(Player player) {
+		return true;
+	}
+	
+	@Override
+	public void clicked(int slotId, int dragType, ClickType clickType, Player player) {
 		Slot tmpSlot;
 		if (slotId >= 0 && slotId < slots.size()) {
 			tmpSlot = slots.get(slotId);
@@ -51,19 +54,21 @@ public class TagFilterContainer extends UContainer {
 			tmpSlot = null;
 		}
 		if (tmpSlot != null) {
-			if (tmpSlot.container == player.inventory && tmpSlot.getSlotIndex() == selectedSlot) {
-				return tmpSlot.getItem();
+			if (tmpSlot.container == player.getInventory() && tmpSlot.getSlotIndex() == selectedSlot) {
+				// return tmpSlot.getItem(); // TODO Right way ???
+				return;
 			}
 		}
 		if (clickType == ClickType.SWAP) {
-			final ItemStack stack = player.inventory.getItem(dragType);
-			final ItemStack currentItem = Inventory.isHotbarSlot(selectedSlot) ? player.inventory.items.get(selectedSlot) : selectedSlot == -1 ? player.inventory.offhand.get(0) : ItemStack.EMPTY;
+			final ItemStack stack = player.getInventory().getItem(dragType);
+			final ItemStack currentItem = Inventory.isHotbarSlot(selectedSlot) ? player.getInventory().items.get(selectedSlot) : selectedSlot == -1 ? player.getInventory().offhand.get(0) : ItemStack.EMPTY;
 			
 			if (!currentItem.isEmpty() && stack == currentItem) {
-				return ItemStack.EMPTY;
+				// return ItemStack.EMPTY; TODO Right way???
+				return;
 			}
 		}
-		return super.clicked(slotId, dragType, clickType, player);
+		super.clicked(slotId, dragType, clickType, player);
 	}
 	
 	public String getTag() {
