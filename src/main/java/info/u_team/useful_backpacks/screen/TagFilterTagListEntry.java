@@ -32,4 +32,16 @@ public class TagFilterTagListEntry extends ScrollableListEntry<TagFilterTagListE
 		return tag;
 	}
 	
+	// Something broke in obfuscation!
+	@Deprecated(forRemoval = true)
+	@Override
+	public void m_6311_(PoseStack poseStack, int index, int top, int left, int width, int height, int mouseX, int mouseY, boolean hovered, float partialTicks) {
+		System.out.println("_____________________________________ WHY IS THIS CALLED=??????????");
+	}
+	
+	@Override
+	public Component getNarration() {
+		return null;
+	}
+	
 }
