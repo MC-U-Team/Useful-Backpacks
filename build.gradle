@@ -144,15 +144,15 @@ repositories {
 		url = "https://dvs1.progwml6.com/files/maven"
 	}
 	maven {
-        url = "https://maven.theillusivec4.top/"
-    }
+		url = "https://maven.theillusivec4.top/"
+	}
 }
 
 dependencies {
 	minecraft "net.minecraftforge:forge:1.17.1-37.1.0"
 	compileOnly "info.u-team:u_team_core-1.17.1:4.0.0.199"
 	compileOnly fg.deobf("mezz.jei:jei-1.17.1:8.2.0.37:api")
-	runtimeOnly fg.deobf("mezz.jei:jei-1.17.1:8.1.0.31")
+	runtimeOnly fg.deobf("mezz.jei:jei-1.17.1:8.2.0.37")
 	compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.17.1-5.0.2.3:api")
 	runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.17.1-5.0.2.3")
 }
