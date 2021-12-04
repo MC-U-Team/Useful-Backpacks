@@ -9,12 +9,9 @@ import static info.u_team.useful_backpacks.init.UsefulBackpacksItems.TAG_FILTER;
 import static info.u_team.useful_backpacks.init.UsefulBackpacksTags.Items.BACKPACK;
 import static info.u_team.useful_backpacks.init.UsefulBackpacksTags.Items.FILTER;
 
-import java.io.IOException;
-
 import info.u_team.u_team_core.data.CommonItemTagsProvider;
 import info.u_team.u_team_core.data.GenerationData;
 import info.u_team.u_team_core.util.TagUtil;
-import net.minecraft.data.HashCache;
 
 public class UsefulBackpacksItemTagsProvider extends CommonItemTagsProvider {
 	
