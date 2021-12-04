@@ -1,10 +1,10 @@
 package info.u_team.useful_backpacks.inventory;
 
-import net.minecraft.world.SimpleContainer;
-import net.minecraft.world.ContainerHelper;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.core.NonNullList;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.ContainerHelper;
+import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.item.ItemStack;
 
 public class BackpackInventory extends SimpleContainer {
 	

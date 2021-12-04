@@ -2,8 +2,8 @@ package info.u_team.useful_backpacks.inventory;
 
 import java.util.Set;
 
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.Container;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
