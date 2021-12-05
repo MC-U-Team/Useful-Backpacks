@@ -2,16 +2,16 @@ package info.u_team.useful_backpacks.integration.curios.init;
 
 import org.lwjgl.glfw.GLFW;
 
-import info.u_team.u_team_core.util.registry.ClientRegistry;
 import info.u_team.useful_backpacks.integration.curios.network.OpenBackpackMessage;
 import info.u_team.useful_backpacks.integration.curios.util.BackpackCuriosUtil;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.KeyMapping;
+import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.settings.IKeyConflictContext;
 import net.minecraftforge.event.TickEvent.ClientTickEvent;
 import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fmlclient.registry.ClientRegistry;
 
 public class CuriosIntegrationKeys {
 	
@@ -30,15 +30,15 @@ public class CuriosIntegrationKeys {
 				return false;
 			}
 		});
-		ClientRegistry.registerKeybinding(OPEN_BACKPACK);
+		ClientRegistry.registerKeyBinding(OPEN_BACKPACK);
 	}
 	
 	public static void onClientTick(ClientTickEvent event) {
 		if (event.phase != Phase.END) {
 			return;
 		}
-		final Minecraft minecraft = Minecraft.getInstance();
-		if (minecraft.isGameFocused() && minecraft.currentScreen == null && OPEN_BACKPACK.isKeyDown()) {
+		final var minecraft = Minecraft.getInstance();
+		if (minecraft.isWindowActive() && minecraft.screen == null && OPEN_BACKPACK.isDown()) {
 			CuriosIntegrationNetwork.NETWORK.sendToServer(new OpenBackpackMessage());
 		}
 	}
