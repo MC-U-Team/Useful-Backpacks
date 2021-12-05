@@ -4,6 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 
 import info.u_team.u_team_core.gui.elements.ScrollableListEntry;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
 
 public class TagFilterTagListEntry extends ScrollableListEntry<TagFilterTagListEntry> {
@@ -34,7 +35,7 @@ public class TagFilterTagListEntry extends ScrollableListEntry<TagFilterTagListE
 	
 	@Override
 	public Component getNarration() {
-		return null;
+		return TextComponent.EMPTY;
 	}
 	
 }
