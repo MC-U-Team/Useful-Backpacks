@@ -1,6 +1,6 @@
 package info.u_team.useful_backpacks.integration.jei;
 
-import info.u_team.u_team_core.api.dye.IDyeableItem;
+import info.u_team.u_team_core.api.dye.DyeableItem;
 import info.u_team.useful_backpacks.UsefulBackpacksMod;
 import info.u_team.useful_backpacks.init.UsefulBackpacksItems;
 import info.u_team.useful_backpacks.integration.jei.extension.BackpackCraftingRecipeCategoryExtension;
@@ -10,8 +10,8 @@ import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.ingredients.subtypes.IIngredientSubtypeInterpreter;
 import mezz.jei.api.registration.ISubtypeRegistration;
 import mezz.jei.api.registration.IVanillaCategoryExtensionRegistration;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
 
 @JeiPlugin
 public class UsefulBackpacksJeiPlugin implements IModPlugin {
@@ -26,8 +26,7 @@ public class UsefulBackpacksJeiPlugin implements IModPlugin {
 	@Override
 	public void registerItemSubtypes(ISubtypeRegistration registration) {
 		final IIngredientSubtypeInterpreter<ItemStack> interpreter = (stack, context) -> {
-			if (stack.hasTag() && stack.getItem() instanceof IDyeableItem) {
-				final IDyeableItem item = (IDyeableItem) stack.getItem();
+			if (stack.hasTag() && stack.getItem()instanceof DyeableItem item) {
 				return Integer.toString(item.getColor(stack));
 			}
 			return IIngredientSubtypeInterpreter.NONE;
