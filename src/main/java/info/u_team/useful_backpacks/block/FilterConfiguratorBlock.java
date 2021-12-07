@@ -27,19 +27,19 @@ public class FilterConfiguratorBlock extends UBlock {
 	}
 	
 	@Override
-	public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-		if (world.isClientSide) {
+	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+		if (level.isClientSide) {
 			return InteractionResult.SUCCESS;
 		} else {
-			player.openMenu(state.getMenuProvider(world, pos));
+			player.openMenu(state.getMenuProvider(level, pos));
 			return InteractionResult.CONSUME;
 		}
 	}
 	
 	@Override
-	public MenuProvider getMenuProvider(BlockState state, Level world, BlockPos pos) {
+	public MenuProvider getMenuProvider(BlockState state, Level level, BlockPos pos) {
 		return new SimpleMenuProvider((id, inventory, player) -> {
-			return new FilterConfiguratorContainer(id, inventory, ContainerLevelAccess.create(world, pos));
+			return new FilterConfiguratorContainer(id, inventory, ContainerLevelAccess.create(level, pos));
 		}, CONTAINER_NAME);
 	}
 	

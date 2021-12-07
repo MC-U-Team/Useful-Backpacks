@@ -16,11 +16,11 @@ public class TagFilterTagListEntry extends ScrollableListEntry<TagFilterTagListE
 	}
 	
 	@Override
-	public void render(PoseStack matrixStack, int slotIndex, int entryY, int entryX, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float partialTicks) {
-		matrixStack.pushPose();
-		matrixStack.scale(0.75F, 0.75F, 0.75F);
-		minecraft.font.draw(matrixStack, tag.toString(), entryX * 1 / 0.75f, entryY * 1 / 0.75f, 0xFF0083FF);
-		matrixStack.popPose();
+	public void render(PoseStack poseStack, int slotIndex, int entryY, int entryX, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float partialTicks) {
+		poseStack.pushPose();
+		poseStack.scale(0.75F, 0.75F, 0.75F);
+		minecraft.font.draw(poseStack, tag.toString(), entryX * 1 / 0.75f, entryY * 1 / 0.75f, 0xFF0083FF);
+		poseStack.popPose();
 	}
 	
 	@Override

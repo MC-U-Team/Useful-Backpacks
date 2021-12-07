@@ -34,7 +34,7 @@ public interface AutoPickupBackpack extends Backpack {
 		return false;
 	}
 	
-	default void addTooltip(ItemStack stack, Level world, List<Component> tooltip, TooltipFlag flag) {
+	default void addTooltip(ItemStack stack, Level level, List<Component> tooltip, TooltipFlag flag) {
 		final List<ItemStack> filters = new ArrayList<>();
 		
 		final var filterInventory = new FilterInventory(stack);

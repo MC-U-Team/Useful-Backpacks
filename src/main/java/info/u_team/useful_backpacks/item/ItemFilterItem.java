@@ -24,9 +24,9 @@ import net.minecraftforge.items.ItemHandlerHelper;
 public class ItemFilterItem extends FilterItem {
 	
 	@Override
-	public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
+	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
 		final var stack = player.getItemInHand(hand);
-		if (!world.isClientSide && player instanceof ServerPlayer) {
+		if (!level.isClientSide && player instanceof ServerPlayer) {
 			if (player.isShiftKeyDown()) {
 				stack.removeTagKey("strict");
 				stack.removeTagKey("stack");
@@ -72,7 +72,7 @@ public class ItemFilterItem extends FilterItem {
 	}
 	
 	@Override
-	public void appendHoverText(ItemStack stack, Level world, List<Component> tooltip, TooltipFlag flag) {
+	public void appendHoverText(ItemStack stack, Level level, List<Component> tooltip, TooltipFlag flag) {
 		if (!isUsable(stack)) {
 			tooltip.add(TooltipCreator.create(this, "not_configured", 0).withStyle(ChatFormatting.RED, ChatFormatting.ITALIC));
 			tooltip.add(TooltipCreator.create(this, "not_configured", 1, TooltipCreator.create(UsefulBackpacksMod.MODID, "click", "right_click", 0).withStyle(ChatFormatting.ITALIC, ChatFormatting.GOLD)).withStyle(ChatFormatting.GRAY));

@@ -56,7 +56,7 @@ public class FilterConfiguratorContainer extends UContainerMenu {
 	public void removed(Player player) {
 		super.removed(player);
 		saveFilterInventory();
-		access.execute((world, pos) -> clearContainer(player, backpackSlotInventory));
+		access.execute((level, pos) -> clearContainer(player, backpackSlotInventory));
 	}
 	
 	// TODO rewrite this stuff, Can be probably way easier with the new sync / inventory management system

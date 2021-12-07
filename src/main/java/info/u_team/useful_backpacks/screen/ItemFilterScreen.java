@@ -39,9 +39,9 @@ public class ItemFilterScreen extends UContainerMenuScreen<ItemFilterContainer> 
 			menu.getStrictMessage().triggerMessage(() -> new FriendlyByteBuf(Unpooled.copyBoolean(isStrictCheckbox.isChecked())));
 			menu.setStrict(isStrictCheckbox.isChecked());
 		});
-		isStrictCheckbox.setTooltip((button, matrixStack, mouseX, mouseY) -> {
+		isStrictCheckbox.setTooltip((button, poseStack, mouseX, mouseY) -> {
 			if (WidgetUtil.isHovered(button)) {
-				renderTooltip(matrixStack, strictTooltipTextComponent, mouseX, mouseY);
+				renderTooltip(poseStack, strictTooltipTextComponent, mouseX, mouseY);
 			}
 		});
 	}

@@ -33,9 +33,9 @@ public class TagFilterScreen extends UContainerMenuScreen<TagFilterContainer> {
 		
 		tagTextField = addRenderableWidget(new ScalableEditBox(font, leftPos + 8, topPos + 20, 160, 15, tagTextField, tagSearchTextComponent, 0.75F));
 		tagTextField.setMaxLength(300);
-		tagTextField.setTooltip((textField, matrixStack, mouseX, mouseY) -> {
+		tagTextField.setTooltip((textField, poseStack, mouseX, mouseY) -> {
 			if (WidgetUtil.isHovered(textField)) {
-				renderTooltip(matrixStack, tagSearchTextComponent, mouseX, mouseY);
+				renderTooltip(poseStack, tagSearchTextComponent, mouseX, mouseY);
 			}
 		});
 		tagTextField.setResponder(search -> {

@@ -27,9 +27,9 @@ public class EnderChestBackpackItem extends UItem implements AutoPickupBackpack 
 	}
 	
 	@Override
-	public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
+	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
 		final var stack = player.getItemInHand(hand);
-		if (!world.isClientSide && player instanceof ServerPlayer) {
+		if (!level.isClientSide && player instanceof ServerPlayer) {
 			open((ServerPlayer) player, stack, hand == InteractionHand.MAIN_HAND ? player.getInventory().selected : -1);
 		}
 		return InteractionResultHolder.success(stack);
@@ -51,7 +51,7 @@ public class EnderChestBackpackItem extends UItem implements AutoPickupBackpack 
 	
 	@OnlyIn(Dist.CLIENT)
 	@Override
-	public void appendHoverText(ItemStack stack, Level world, List<Component> tooltip, TooltipFlag flag) {
-		addTooltip(stack, world, tooltip, flag);
+	public void appendHoverText(ItemStack stack, Level level, List<Component> tooltip, TooltipFlag flag) {
+		addTooltip(stack, level, tooltip, flag);
 	}
 }
