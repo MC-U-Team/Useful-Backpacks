@@ -38,8 +38,11 @@ public class TagFilterTagList extends ScrollableList<TagFilterTagListEntry> {
 	@Override
 	public void setSelected(TagFilterTagListEntry entry) {
 		super.setSelected(entry);
-		container.getTagMessage().triggerMessage(() -> new FriendlyByteBuf(Unpooled.buffer(100)).writeUtf(entry.getTag().toString()));
-		container.setTag(entry.getTag().toString());
+		
+		final var tag = entry.getTag().toString();
+		
+		container.getTagMessage().triggerMessage(() -> new FriendlyByteBuf(Unpooled.buffer(100)).writeUtf(tag));
+		container.setTag(tag);
 	}
 	
 	public void updateSearch(String search) {

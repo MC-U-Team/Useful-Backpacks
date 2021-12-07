@@ -1,7 +1,5 @@
 package info.u_team.useful_backpacks.screen;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-
 import info.u_team.u_team_core.gui.elements.ScalableEditBox;
 import info.u_team.u_team_core.screen.UContainerMenuScreen;
 import info.u_team.u_team_core.util.WidgetUtil;
@@ -19,7 +17,6 @@ public class TagFilterScreen extends UContainerMenuScreen<TagFilterContainer> {
 	private final Component tagSearchTextComponent;
 	
 	private ScalableEditBox tagTextField;
-	
 	private TagFilterTagList tagList;
 	
 	public TagFilterScreen(TagFilterContainer container, Inventory playerInventory, Component title) {
@@ -47,11 +44,6 @@ public class TagFilterScreen extends UContainerMenuScreen<TagFilterContainer> {
 		setInitialFocus(tagTextField);
 		
 		tagList = addRenderableWidget(new TagFilterTagList(menu, leftPos + 7, topPos + 40, 161, 52, menu.getTag()));
-	}
-	
-	@Override
-	public void render(PoseStack matrixStack, int mouseX, int mouseY, float partialTicks) {
-		super.render(matrixStack, mouseX, mouseY, partialTicks);
 	}
 	
 	@Override

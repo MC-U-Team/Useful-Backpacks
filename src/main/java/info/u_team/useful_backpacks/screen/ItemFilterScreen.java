@@ -2,7 +2,7 @@ package info.u_team.useful_backpacks.screen;
 
 import info.u_team.u_team_core.gui.elements.CheckboxButton;
 import info.u_team.u_team_core.screen.UContainerMenuScreen;
-import info.u_team.u_team_core.util.RGBA;
+import info.u_team.u_team_core.util.WidgetUtil;
 import info.u_team.useful_backpacks.UsefulBackpacksMod;
 import info.u_team.useful_backpacks.container.ItemFilterContainer;
 import io.netty.buffer.Unpooled;
@@ -33,14 +33,14 @@ public class ItemFilterScreen extends UContainerMenuScreen<ItemFilterContainer> 
 		super.init();
 		
 		final CheckboxButton isStrictCheckbox = addRenderableWidget(new CheckboxButton(leftPos + imageWidth - (17 + 16), topPos + 17, 16, 16, strictTextComponent, menu.isStrict(), true));
-		isStrictCheckbox.setTextColor(new RGBA(0x404040FF));
+		isStrictCheckbox.setTextColor(DEFAULT_TEXT_COLOR);
 		isStrictCheckbox.setLeftSideText(true);
 		isStrictCheckbox.setPressable(() -> {
 			menu.getStrictMessage().triggerMessage(() -> new FriendlyByteBuf(Unpooled.copyBoolean(isStrictCheckbox.isChecked())));
 			menu.setStrict(isStrictCheckbox.isChecked());
 		});
 		isStrictCheckbox.setTooltip((button, matrixStack, mouseX, mouseY) -> {
-			if (button.isHovered()) {
+			if (WidgetUtil.isHovered(button)) {
 				renderTooltip(matrixStack, strictTooltipTextComponent, mouseX, mouseY);
 			}
 		});
