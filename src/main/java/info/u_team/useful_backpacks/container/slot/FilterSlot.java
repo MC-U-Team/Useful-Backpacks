@@ -14,15 +14,15 @@ public class FilterSlot extends Slot {
 	
 	private final Container backpackSlotInventory;
 	
-	public FilterSlot(Container backpackSlotInventory, Container inventory, int index, int xPosition, int yPosition) {
-		super(inventory, index, xPosition, yPosition);
+	public FilterSlot(Container backpackSlotInventory, Container container, int index, int x, int y) {
+		super(container, index, x, y);
 		this.backpackSlotInventory = backpackSlotInventory;
 		setBackground(InventoryMenu.BLOCK_ATLAS, BACKGROUND);
 	}
 	
 	@Override
 	public boolean mayPlace(ItemStack stack) {
-		return stack.getItem() instanceof Filter && ((Filter) stack.getItem()).isUsable(stack);
+		return stack.getItem()instanceof Filter filter && filter.isUsable(stack);
 	}
 	
 	@Override

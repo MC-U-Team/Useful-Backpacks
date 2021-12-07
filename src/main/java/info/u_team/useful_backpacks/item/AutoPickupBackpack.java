@@ -17,8 +17,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 public interface AutoPickupBackpack extends Backpack {
 	
@@ -38,7 +36,6 @@ public interface AutoPickupBackpack extends Backpack {
 		return false;
 	}
 	
-	@OnlyIn(Dist.CLIENT)
 	default void addTooltip(ItemStack stack, Level world, List<Component> tooltip, TooltipFlag flag) {
 		final List<ItemStack> filters = new ArrayList<>();
 		

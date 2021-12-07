@@ -8,8 +8,8 @@ import net.minecraft.world.item.ItemStack;
 
 public class BackpackSlot extends Slot {
 	
-	public BackpackSlot(Container inventoryIn, int index, int xPosition, int yPosition) {
-		super(inventoryIn, index, xPosition, yPosition);
+	public BackpackSlot(Container container, int index, int x, int y) {
+		super(container, index, x, y);
 	}
 	
 	@Override

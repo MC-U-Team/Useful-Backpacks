@@ -7,8 +7,8 @@ import net.minecraft.world.item.ItemStack;
 
 public class ItemFilterSlot extends Slot {
 	
-	public ItemFilterSlot(Container inventory, int index, int xPosition, int yPosition) {
-		super(inventory, index, xPosition, yPosition);
+	public ItemFilterSlot(Container container, int index, int x, int y) {
+		super(container, index, x, y);
 	}
 	
 	@Override
