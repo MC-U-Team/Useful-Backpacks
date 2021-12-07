@@ -4,7 +4,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 
-public interface IBackpack {
+public interface Backpack {
 	
 	void open(ServerPlayer player, ItemStack backpackStack, int selectedSlot);
 	

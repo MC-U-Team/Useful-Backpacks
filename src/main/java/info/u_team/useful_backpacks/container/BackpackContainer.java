@@ -1,11 +1,11 @@
 package info.u_team.useful_backpacks.container;
 
 import info.u_team.u_team_core.menu.UContainerMenu;
-import info.u_team.useful_backpacks.api.IBackpack;
+import info.u_team.useful_backpacks.api.Backpack;
 import info.u_team.useful_backpacks.container.slot.BackpackSlot;
 import info.u_team.useful_backpacks.init.UsefulBackpacksMenuTypes;
 import info.u_team.useful_backpacks.inventory.BackpackInventory;
-import info.u_team.useful_backpacks.type.Backpack;
+import info.u_team.useful_backpacks.type.BackpackType;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
@@ -18,18 +18,18 @@ import net.minecraft.world.item.ItemStack;
 public class BackpackContainer extends UContainerMenu {
 	
 	private final Container backpackInventory;
-	private final Backpack backpack;
+	private final BackpackType backpack;
 	private final int selectedSlot;
 	
 	// Client
 	public static BackpackContainer createClientContainer(int id, Inventory playerInventory, FriendlyByteBuf buffer) {
-		final Backpack backpack = buffer.readEnum(Backpack.class);
+		final BackpackType backpack = buffer.readEnum(BackpackType.class);
 		final int selectedSlot = buffer.readVarInt();
 		return new BackpackContainer(id, playerInventory, new SimpleContainer(backpack.getInventorySize()), backpack, selectedSlot);
 	}
 	
 	// Server
-	public BackpackContainer(int id, Inventory playerInventory, Container backpackInventory, Backpack backpack, int selectedSlot) {
+	public BackpackContainer(int id, Inventory playerInventory, Container backpackInventory, BackpackType backpack, int selectedSlot) {
 		super(UsefulBackpacksMenuTypes.BACKPACK.get(), id);
 		this.backpackInventory = backpackInventory;
 		this.backpack = backpack;
@@ -110,12 +110,12 @@ public class BackpackContainer extends UContainerMenu {
 	public boolean stillValid(Player player) {
 		if (backpackInventory instanceof BackpackInventory) {
 			final ItemStack stack = ((BackpackInventory) backpackInventory).getStack();
-			return !stack.isEmpty() && stack.getItem() instanceof IBackpack;
+			return !stack.isEmpty() && stack.getItem() instanceof Backpack;
 		}
 		return true;
 	}
 	
-	public Backpack getBackpack() {
+	public BackpackType getBackpack() {
 		return backpack;
 	}
 }

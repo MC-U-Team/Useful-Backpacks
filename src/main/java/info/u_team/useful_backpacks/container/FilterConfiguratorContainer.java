@@ -1,7 +1,7 @@
 package info.u_team.useful_backpacks.container;
 
 import info.u_team.u_team_core.menu.UContainerMenu;
-import info.u_team.useful_backpacks.api.IBackpack;
+import info.u_team.useful_backpacks.api.Backpack;
 import info.u_team.useful_backpacks.container.slot.BackpackFilterSlot;
 import info.u_team.useful_backpacks.container.slot.FilterSlot;
 import info.u_team.useful_backpacks.init.UsefulBackpacksBlocks;
@@ -69,7 +69,7 @@ public class FilterConfiguratorContainer extends UContainerMenu {
 		final boolean stackChanged = !ItemStack.matches(oldStack, newStack);
 		
 		if (stackChanged) {
-			if (newStack.getItem() instanceof IBackpack) {
+			if (newStack.getItem() instanceof Backpack) {
 				if (filterInventory instanceof FilterInventory) {
 					((FilterInventory) filterInventory).writeItemStack();
 				}

@@ -1,6 +1,6 @@
 package info.u_team.useful_backpacks.integration.curios.init;
 
-import info.u_team.useful_backpacks.api.IBackpack;
+import info.u_team.useful_backpacks.api.Backpack;
 import info.u_team.useful_backpacks.integration.curios.capability.CuriosBackpackCapability;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.core.Direction;
@@ -16,7 +16,7 @@ public class CuriosIntegrationCapabilities {
 	
 	private static void onAttachCapabilities(AttachCapabilitiesEvent<ItemStack> event) {
 		final var stack = event.getObject();
-		if (!(stack.getItem() instanceof IBackpack)) {
+		if (!(stack.getItem() instanceof Backpack)) {
 			return;
 		}
 		

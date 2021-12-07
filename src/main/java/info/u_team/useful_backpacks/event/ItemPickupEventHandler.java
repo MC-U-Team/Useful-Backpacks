@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
-import info.u_team.useful_backpacks.api.IBackpack;
+import info.u_team.useful_backpacks.api.Backpack;
 import info.u_team.useful_backpacks.config.CommonConfig;
-import info.u_team.useful_backpacks.item.BackpackItem;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
@@ -33,7 +32,7 @@ public class ItemPickupEventHandler {
 		}
 		
 		final ItemStack stackToPickup = event.getItem().getItem();
-		if (stackToPickup.getItem() instanceof BackpackItem && !CommonConfig.getInstance().allowStackingBackpacks.get()) { // TODO Move somewhere else
+		if (stackToPickup.getItem() instanceof Backpack && !CommonConfig.getInstance().allowStackingBackpacks.get()) { // TODO Move somewhere else
 			return;
 		}
 		final ItemStack resultStack = insertInBackpacks((ServerPlayer) player, stackToPickup);
@@ -72,8 +71,8 @@ public class ItemPickupEventHandler {
 	private static ItemStack insertInBackpack(ServerPlayer player, ItemStack stack, ItemStack stackToPickup) {
 		final Item item = stack.getItem();
 		
-		if (item instanceof IBackpack) {
-			final IBackpack backpack = (IBackpack) item;
+		if (item instanceof Backpack) {
+			final Backpack backpack = (Backpack) item;
 			
 			if (backpack.canAutoPickup(stackToPickup, stack)) {
 				final Container inventory = backpack.getInventory(player, stack);

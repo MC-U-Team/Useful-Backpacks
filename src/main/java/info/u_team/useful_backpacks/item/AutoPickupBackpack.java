@@ -5,8 +5,8 @@ import java.util.List;
 
 import info.u_team.u_team_core.util.TooltipCreator;
 import info.u_team.useful_backpacks.UsefulBackpacksMod;
-import info.u_team.useful_backpacks.api.IBackpack;
-import info.u_team.useful_backpacks.api.IFilter;
+import info.u_team.useful_backpacks.api.Backpack;
+import info.u_team.useful_backpacks.api.Filter;
 import info.u_team.useful_backpacks.inventory.FilterInventory;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -20,7 +20,7 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public interface AutoPickupBackpack extends IBackpack {
+public interface AutoPickupBackpack extends Backpack {
 	
 	@Override
 	default boolean canAutoPickup(ItemStack stack, ItemStack backpackStack) {
@@ -29,7 +29,7 @@ public interface AutoPickupBackpack extends IBackpack {
 		for (int index = 0; index < filterInventory.getContainerSize(); index++) {
 			final ItemStack filterStack = filterInventory.getItem(index);
 			final Item filterItem = filterStack.getItem();
-			if (filterItem instanceof IFilter filter) {
+			if (filterItem instanceof Filter filter) {
 				if (filter.matchItem(filterStack, stack)) {
 					return true;
 				}
@@ -46,7 +46,7 @@ public interface AutoPickupBackpack extends IBackpack {
 		
 		for (int index = 0; index < filterInventory.getContainerSize(); index++) {
 			final ItemStack filterStack = filterInventory.getItem(index);
-			if (filterStack.getItem() instanceof IFilter) {
+			if (filterStack.getItem() instanceof Filter) {
 				filters.add(filterStack);
 			}
 		}

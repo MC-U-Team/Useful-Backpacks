@@ -9,7 +9,7 @@ import info.u_team.useful_backpacks.config.ServerConfig;
 import info.u_team.useful_backpacks.container.BackpackContainer;
 import info.u_team.useful_backpacks.init.UsefulBackpacksCreativeTabs;
 import info.u_team.useful_backpacks.inventory.BackpackInventory;
-import info.u_team.useful_backpacks.type.Backpack;
+import info.u_team.useful_backpacks.type.BackpackType;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -28,9 +28,9 @@ import net.minecraftforge.fmllegacy.network.NetworkHooks;
 
 public class BackpackItem extends UItem implements AutoPickupBackpack, DyeableItem {
 	
-	private final Backpack backpack;
+	private final BackpackType backpack;
 	
-	public BackpackItem(Backpack backpack) {
+	public BackpackItem(BackpackType backpack) {
 		super(UsefulBackpacksCreativeTabs.TAB, new Properties().stacksTo(1).rarity(backpack.getRarity()));
 		this.backpack = backpack;
 		addColoredItem(this);
@@ -79,7 +79,7 @@ public class BackpackItem extends UItem implements AutoPickupBackpack, DyeableIt
 	
 	// Getter
 	
-	public Backpack getBackpack() {
+	public BackpackType getBackpack() {
 		return backpack;
 	}
 	

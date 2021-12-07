@@ -4,7 +4,7 @@ import java.util.function.Supplier;
 
 import org.apache.commons.lang3.tuple.ImmutableTriple;
 
-import info.u_team.useful_backpacks.api.IBackpack;
+import info.u_team.useful_backpacks.api.Backpack;
 import info.u_team.useful_backpacks.integration.curios.util.BackpackCuriosUtil;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.fmllegacy.network.NetworkEvent.Context;
@@ -24,10 +24,10 @@ public class OpenBackpackMessage {
 			final Context context = contextSupplier.get();
 			context.enqueueWork(() -> {
 				final var player = context.getSender();
-				final var curioBackpack = BackpackCuriosUtil.getBackpack(player).map(ImmutableTriple::getRight).filter(stack -> stack.getItem() instanceof IBackpack);
+				final var curioBackpack = BackpackCuriosUtil.getBackpack(player).map(ImmutableTriple::getRight).filter(stack -> stack.getItem() instanceof Backpack);
 				if (curioBackpack.isPresent()) {
 					final var stack = curioBackpack.get();
-					final var backpack = (IBackpack) stack.getItem();
+					final var backpack = (Backpack) stack.getItem();
 					backpack.open(player, stack, -2);
 				}
 			});

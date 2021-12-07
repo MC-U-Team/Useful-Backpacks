@@ -1,7 +1,7 @@
 package info.u_team.useful_backpacks.container.slot;
 
 import info.u_team.useful_backpacks.UsefulBackpacksMod;
-import info.u_team.useful_backpacks.api.IFilter;
+import info.u_team.useful_backpacks.api.Filter;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Container;
 import net.minecraft.world.inventory.InventoryMenu;
@@ -22,7 +22,7 @@ public class FilterSlot extends Slot {
 	
 	@Override
 	public boolean mayPlace(ItemStack stack) {
-		return stack.getItem() instanceof IFilter && ((IFilter) stack.getItem()).isUsable(stack);
+		return stack.getItem() instanceof Filter && ((Filter) stack.getItem()).isUsable(stack);
 	}
 	
 	@Override
