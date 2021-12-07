@@ -24,12 +24,12 @@ public class TagFilterItem extends FilterItem {
 	
 	@Override
 	public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
-		final ItemStack stack = player.getItemInHand(hand);
+		final var stack = player.getItemInHand(hand);
 		if (!world.isClientSide && player instanceof ServerPlayer) {
 			if (player.isShiftKeyDown()) {
 				stack.removeTagKey("id");
 			} else {
-				final int selectedSlot = hand == InteractionHand.MAIN_HAND ? player.getInventory().selected : -1;
+				final var selectedSlot = hand == InteractionHand.MAIN_HAND ? player.getInventory().selected : -1;
 				final String tag;
 				if (stack.hasTag()) {
 					tag = stack.getTag().getString("id");
@@ -54,7 +54,7 @@ public class TagFilterItem extends FilterItem {
 	
 	@Override
 	protected boolean matchItem(ItemStack filterStack, ItemStack matchStack, CompoundTag compound) {
-		final ResourceLocation id = ResourceLocation.tryParse(compound.getString("id"));
+		final var id = ResourceLocation.tryParse(compound.getString("id"));
 		
 		if (id != null) {
 			return matchStack.getItem().getTags().contains(id);

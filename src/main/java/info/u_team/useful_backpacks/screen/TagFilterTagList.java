@@ -50,10 +50,7 @@ public class TagFilterTagList extends ScrollableList<TagFilterTagListEntry> {
 			updateEntries(tag -> true);
 		} else {
 			updateEntries(tag -> {
-				if (tag.getNamespace().startsWith(search)) {
-					return true;
-				}
-				if (tag.getPath().startsWith(search)) {
+				if (tag.getNamespace().startsWith(search) || tag.getPath().startsWith(search)) {
 					return true;
 				}
 				return false;
@@ -67,11 +64,11 @@ public class TagFilterTagList extends ScrollableList<TagFilterTagListEntry> {
 		Collections.sort(list, (a, b) -> {
 			return a.toString().compareTo(b.toString());
 		});
-		final TagFilterTagListEntry selected = getSelected();
+		final var selected = getSelected();
 		clearEntries();
 		setScrollAmount(0);
 		list.forEach(tag -> {
-			final TagFilterTagListEntry entry = new TagFilterTagListEntry(tag);
+			final var entry = new TagFilterTagListEntry(tag);
 			addEntry(entry);
 			
 			if (selected != null && selected.getTag().equals(tag)) {

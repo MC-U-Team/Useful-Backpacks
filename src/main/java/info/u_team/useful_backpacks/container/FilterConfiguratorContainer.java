@@ -13,7 +13,6 @@ import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ContainerLevelAccess;
-import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 
 public class FilterConfiguratorContainer extends UContainerMenu {
@@ -63,10 +62,10 @@ public class FilterConfiguratorContainer extends UContainerMenu {
 	// TODO rewrite this stuff, Can be probably way easier with the new sync / inventory management system
 	@Override
 	public void broadcastChanges() {
-		final ItemStack oldStack = getItems().get(0); // TODO access to remote slot or direct slot content??
-		final ItemStack newStack = backpackSlotInventory.getItem(0);
+		final var oldStack = getItems().get(0); // TODO access to remote slot or direct slot content??
+		final var newStack = backpackSlotInventory.getItem(0);
 		
-		final boolean stackChanged = !ItemStack.matches(oldStack, newStack);
+		final var stackChanged = !ItemStack.matches(oldStack, newStack);
 		
 		if (stackChanged) {
 			if (newStack.getItem() instanceof Backpack) {
@@ -104,18 +103,18 @@ public class FilterConfiguratorContainer extends UContainerMenu {
 	
 	@Override
 	public ItemStack quickMoveStack(Player player, int index) {
-		ItemStack itemstack = ItemStack.EMPTY;
-		final Slot slot = slots.get(index);
+		var itemstack = ItemStack.EMPTY;
+		final var slot = slots.get(index);
 		
 		if (slot != null && slot.hasItem()) {
-			final ItemStack itemstack1 = slot.getItem();
+			final var itemstack1 = slot.getItem();
 			itemstack = itemstack1.copy();
 			
 			if (index < 10) {
-				if (!this.moveItemStackTo(itemstack1, 10, slots.size(), true)) {
+				if (!moveItemStackTo(itemstack1, 10, slots.size(), true)) {
 					return ItemStack.EMPTY;
 				}
-			} else if (!this.moveItemStackTo(itemstack1, 0, 10, false)) {
+			} else if (!moveItemStackTo(itemstack1, 0, 10, false)) {
 				return ItemStack.EMPTY;
 			}
 			

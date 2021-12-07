@@ -20,7 +20,7 @@ public class UsefulBackpacksBlockStatesProvider extends CommonBlockStatesProvide
 	}
 	
 	private ModelFile cubeBottomTop(Block block) {
-		final ResourceLocation location = blockTexture(block);
+		final var location = blockTexture(block);
 		return models().cubeBottomTop(getPath(FILTER_CONFIGURATOR.get()), extend(location, "_side"), extend(location, "_bottom"), extend(location, "_top"));
 	}
 	

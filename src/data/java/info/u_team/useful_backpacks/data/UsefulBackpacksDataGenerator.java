@@ -18,7 +18,7 @@ public class UsefulBackpacksDataGenerator {
 	
 	@SubscribeEvent
 	public static void data(GatherDataEvent event) {
-		final GenerationData data = new GenerationData(UsefulBackpacksMod.MODID, event);
+		final var data = new GenerationData(UsefulBackpacksMod.MODID, event);
 		if (event.includeServer()) {
 			data.addProvider(UsefulBackpacksItemTagsProvider::new);
 			data.addProvider(UsefulBackpacksLootTablesProvider::new);

@@ -22,7 +22,7 @@ public class ItemFilterScreen extends UContainerMenuScreen<ItemFilterContainer> 
 	public ItemFilterScreen(ItemFilterContainer container, Inventory playerInventory, Component title) {
 		super(container, playerInventory, title, BACKGROUND, 176, 130);
 		
-		final String langKey = "container.usefulbackpacks.item_filter.";
+		final var langKey = "container.usefulbackpacks.item_filter.";
 		
 		strictTextComponent = new TranslatableComponent(langKey + "strict");
 		strictTooltipTextComponent = new TranslatableComponent(langKey + "strict.tooltip");
@@ -32,7 +32,7 @@ public class ItemFilterScreen extends UContainerMenuScreen<ItemFilterContainer> 
 	protected void init() {
 		super.init();
 		
-		final CheckboxButton isStrictCheckbox = addRenderableWidget(new CheckboxButton(leftPos + imageWidth - (17 + 16), topPos + 17, 16, 16, strictTextComponent, menu.isStrict(), true));
+		final var isStrictCheckbox = addRenderableWidget(new CheckboxButton(leftPos + imageWidth - (17 + 16), topPos + 17, 16, 16, strictTextComponent, menu.isStrict(), true));
 		isStrictCheckbox.setTextColor(DEFAULT_TEXT_COLOR);
 		isStrictCheckbox.setLeftSideText(true);
 		isStrictCheckbox.setPressable(() -> {

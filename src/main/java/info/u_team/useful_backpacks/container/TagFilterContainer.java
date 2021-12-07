@@ -29,7 +29,7 @@ public class TagFilterContainer extends UContainerMenu {
 		addPlayerInventory(playerInventory, 8, 108);
 		
 		tagMessage = addDataHolderToServer(new MessageHolder(buffer -> {
-			final String newTag = buffer.readUtf();
+			final var newTag = buffer.readUtf();
 			if (!filterStack.isEmpty()) {
 				if (newTag.isEmpty()) {
 					filterStack.removeTagKey("id");
@@ -60,8 +60,8 @@ public class TagFilterContainer extends UContainerMenu {
 			}
 		}
 		if (clickType == ClickType.SWAP) {
-			final ItemStack stack = player.getInventory().getItem(dragType);
-			final ItemStack currentItem = Inventory.isHotbarSlot(selectedSlot) ? player.getInventory().items.get(selectedSlot) : selectedSlot == -1 ? player.getInventory().offhand.get(0) : ItemStack.EMPTY;
+			final var stack = player.getInventory().getItem(dragType);
+			final var currentItem = Inventory.isHotbarSlot(selectedSlot) ? player.getInventory().items.get(selectedSlot) : selectedSlot == -1 ? player.getInventory().offhand.get(0) : ItemStack.EMPTY;
 			
 			if (!currentItem.isEmpty() && stack == currentItem) {
 				// return ItemStack.EMPTY; TODO Right way???
@@ -85,18 +85,18 @@ public class TagFilterContainer extends UContainerMenu {
 	
 	@Override
 	public ItemStack quickMoveStack(Player player, int index) {
-		ItemStack itemstack = ItemStack.EMPTY;
-		final Slot slot = slots.get(index);
+		var itemstack = ItemStack.EMPTY;
+		final var slot = slots.get(index);
 		
 		if (slot != null && slot.hasItem()) {
-			final ItemStack itemstack1 = slot.getItem();
+			final var itemstack1 = slot.getItem();
 			itemstack = itemstack1.copy();
 			
 			if (index < 27) {
-				if (!this.moveItemStackTo(itemstack1, 27, 36, false)) {
+				if (!moveItemStackTo(itemstack1, 27, 36, false)) {
 					return ItemStack.EMPTY;
 				}
-			} else if (!this.moveItemStackTo(itemstack1, 0, 27, false)) {
+			} else if (!moveItemStackTo(itemstack1, 0, 27, false)) {
 				return ItemStack.EMPTY;
 			}
 			

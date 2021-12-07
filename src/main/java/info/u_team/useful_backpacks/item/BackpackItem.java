@@ -38,7 +38,7 @@ public class BackpackItem extends UItem implements AutoPickupBackpack, DyeableIt
 	
 	@Override
 	public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
-		final ItemStack stack = player.getItemInHand(hand);
+		final var stack = player.getItemInHand(hand);
 		if (!world.isClientSide && player instanceof ServerPlayer) {
 			open((ServerPlayer) player, stack, hand == InteractionHand.MAIN_HAND ? player.getInventory().selected : -1);
 		}
@@ -113,7 +113,7 @@ public class BackpackItem extends UItem implements AutoPickupBackpack, DyeableIt
 		if (!stack.hasTag()) {
 			return null;
 		}
-		final CompoundTag compound = stack.getTag().copy();
+		final var compound = stack.getTag().copy();
 		compound.remove("Items");
 		if (compound.isEmpty()) {
 			return null;

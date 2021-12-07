@@ -23,8 +23,8 @@ public class BackpackContainer extends UContainerMenu {
 	
 	// Client
 	public static BackpackContainer createClientContainer(int id, Inventory playerInventory, FriendlyByteBuf buffer) {
-		final BackpackType backpack = buffer.readEnum(BackpackType.class);
-		final int selectedSlot = buffer.readVarInt();
+		final var backpack = buffer.readEnum(BackpackType.class);
+		final var selectedSlot = buffer.readVarInt();
 		return new BackpackContainer(id, playerInventory, new SimpleContainer(backpack.getInventorySize()), backpack, selectedSlot);
 	}
 	
@@ -39,8 +39,8 @@ public class BackpackContainer extends UContainerMenu {
 	}
 	
 	public void addBackpackInventory(int x, int y) {
-		for (int height = 0; height < backpack.getInventoryHeight(); height++) {
-			for (int width = 0; width < backpack.getInventoryWidth(); width++) {
+		for (var height = 0; height < backpack.getInventoryHeight(); height++) {
+			for (var width = 0; width < backpack.getInventoryWidth(); width++) {
 				addSlot(new BackpackSlot(backpackInventory, width + height * backpack.getInventoryWidth(), width * 18 + x, height * 18 + y));
 			}
 		}
@@ -56,18 +56,18 @@ public class BackpackContainer extends UContainerMenu {
 	
 	@Override
 	public ItemStack quickMoveStack(Player player, int index) {
-		ItemStack itemstack = ItemStack.EMPTY;
-		final Slot slot = slots.get(index);
+		var itemstack = ItemStack.EMPTY;
+		final var slot = slots.get(index);
 		
 		if (slot != null && slot.hasItem()) {
-			final ItemStack itemstack1 = slot.getItem();
+			final var itemstack1 = slot.getItem();
 			itemstack = itemstack1.copy();
 			
 			if (index < backpack.getInventorySize()) {
-				if (!this.moveItemStackTo(itemstack1, backpack.getInventorySize(), this.slots.size(), true)) {
+				if (!moveItemStackTo(itemstack1, backpack.getInventorySize(), slots.size(), true)) {
 					return ItemStack.EMPTY;
 				}
-			} else if (!this.moveItemStackTo(itemstack1, 0, backpack.getInventorySize(), false)) {
+			} else if (!moveItemStackTo(itemstack1, 0, backpack.getInventorySize(), false)) {
 				return ItemStack.EMPTY;
 			}
 			
@@ -95,8 +95,8 @@ public class BackpackContainer extends UContainerMenu {
 			}
 		}
 		if (clickType == ClickType.SWAP) {
-			final ItemStack stack = player.getInventory().getItem(dragType);
-			final ItemStack currentItem = Inventory.isHotbarSlot(selectedSlot) ? player.getInventory().items.get(selectedSlot) : selectedSlot == -1 ? player.getInventory().offhand.get(0) : ItemStack.EMPTY;
+			final var stack = player.getInventory().getItem(dragType);
+			final var currentItem = Inventory.isHotbarSlot(selectedSlot) ? player.getInventory().items.get(selectedSlot) : selectedSlot == -1 ? player.getInventory().offhand.get(0) : ItemStack.EMPTY;
 			
 			if (!currentItem.isEmpty() && stack == currentItem) {
 				// return ItemStack.EMPTY; // TODO just return??
@@ -109,7 +109,7 @@ public class BackpackContainer extends UContainerMenu {
 	@Override
 	public boolean stillValid(Player player) {
 		if (backpackInventory instanceof BackpackInventory) {
-			final ItemStack stack = ((BackpackInventory) backpackInventory).getStack();
+			final var stack = ((BackpackInventory) backpackInventory).getStack();
 			return !stack.isEmpty() && stack.getItem() instanceof Backpack;
 		}
 		return true;

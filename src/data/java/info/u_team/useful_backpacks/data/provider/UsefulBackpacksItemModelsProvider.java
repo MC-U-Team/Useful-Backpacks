@@ -32,7 +32,7 @@ public class UsefulBackpacksItemModelsProvider extends CommonItemModelsProvider 
 	}
 	
 	protected void simpleBackpackGenerated(BackpackItem item) {
-		final String registryPath = item.getRegistryName().getPath();
+		final var registryPath = item.getRegistryName().getPath();
 		getBuilder(registryPath).parent(new UncheckedModelFile("item/generated")).texture("layer0", "item/backpack/" + item.getBackpack().getName());
 	}
 	

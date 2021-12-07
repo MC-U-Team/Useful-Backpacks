@@ -10,10 +10,8 @@ import info.u_team.useful_backpacks.api.Filter;
 import info.u_team.useful_backpacks.inventory.FilterInventory;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
@@ -22,11 +20,11 @@ public interface AutoPickupBackpack extends Backpack {
 	
 	@Override
 	default boolean canAutoPickup(ItemStack stack, ItemStack backpackStack) {
-		final FilterInventory filterInventory = new FilterInventory(backpackStack);
+		final var filterInventory = new FilterInventory(backpackStack);
 		
-		for (int index = 0; index < filterInventory.getContainerSize(); index++) {
-			final ItemStack filterStack = filterInventory.getItem(index);
-			final Item filterItem = filterStack.getItem();
+		for (var index = 0; index < filterInventory.getContainerSize(); index++) {
+			final var filterStack = filterInventory.getItem(index);
+			final var filterItem = filterStack.getItem();
 			if (filterItem instanceof Filter filter) {
 				if (filter.matchItem(filterStack, stack)) {
 					return true;
@@ -39,10 +37,10 @@ public interface AutoPickupBackpack extends Backpack {
 	default void addTooltip(ItemStack stack, Level world, List<Component> tooltip, TooltipFlag flag) {
 		final List<ItemStack> filters = new ArrayList<>();
 		
-		final FilterInventory filterInventory = new FilterInventory(stack);
+		final var filterInventory = new FilterInventory(stack);
 		
-		for (int index = 0; index < filterInventory.getContainerSize(); index++) {
-			final ItemStack filterStack = filterInventory.getItem(index);
+		for (var index = 0; index < filterInventory.getContainerSize(); index++) {
+			final var filterStack = filterInventory.getItem(index);
 			if (filterStack.getItem() instanceof Filter) {
 				filters.add(filterStack);
 			}
@@ -57,7 +55,7 @@ public interface AutoPickupBackpack extends Backpack {
 				tooltip.add(TooltipCreator.create(UsefulBackpacksMod.MODID, "backpack", "filter_applied", 0).withStyle(ChatFormatting.AQUA));
 				
 				filters.stream().filter(filterStack -> filterStack.getItem() instanceof ItemFilterItem).forEach(filterStack -> {
-					final TranslatableComponent component = TooltipCreator.create(UsefulBackpacksMod.MODID, "backpack", "filter_applied_item", 0, new TranslatableComponent(ItemStack.of(filterStack.getTag().getCompound("stack")).getDescriptionId()).withStyle(ChatFormatting.YELLOW));
+					final var component = TooltipCreator.create(UsefulBackpacksMod.MODID, "backpack", "filter_applied_item", 0, new TranslatableComponent(ItemStack.of(filterStack.getTag().getCompound("stack")).getDescriptionId()).withStyle(ChatFormatting.YELLOW));
 					if (filterStack.getTag().getBoolean("strict")) {
 						component.append(" ").append(TooltipCreator.create(UsefulBackpacksMod.MODID, "backpack", "filter_applied_item", 1));
 					}
@@ -66,7 +64,7 @@ public interface AutoPickupBackpack extends Backpack {
 				});
 				
 				filters.stream().filter(filterStack -> filterStack.getItem() instanceof TagFilterItem).forEach(filterStack -> {
-					final MutableComponent component = TooltipCreator.create(UsefulBackpacksMod.MODID, "backpack", "filter_applied_tag", 0, new TextComponent(filterStack.getTag().getString("id")).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GRAY);
+					final var component = TooltipCreator.create(UsefulBackpacksMod.MODID, "backpack", "filter_applied_tag", 0, new TextComponent(filterStack.getTag().getString("id")).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GRAY);
 					tooltip.add(component);
 				});
 			}

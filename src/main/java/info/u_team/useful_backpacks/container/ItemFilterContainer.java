@@ -4,7 +4,6 @@ import info.u_team.u_team_core.api.sync.MessageHolder;
 import info.u_team.u_team_core.menu.UContainerMenu;
 import info.u_team.useful_backpacks.container.slot.ItemFilterSlot;
 import info.u_team.useful_backpacks.init.UsefulBackpacksMenuTypes;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
@@ -34,7 +33,7 @@ public class ItemFilterContainer extends UContainerMenu {
 		this.selectedSlot = selectedSlot;
 		this.isStrict = isStrict;
 		
-		final CompoundTag compound = filterStack.getTagElement("stack");
+		final var compound = filterStack.getTagElement("stack");
 		if (compound != null) {
 			filterItemSlotInventory.setItem(0, ItemStack.of(compound));
 		}
@@ -43,7 +42,7 @@ public class ItemFilterContainer extends UContainerMenu {
 		addPlayerInventory(playerInventory, 8, 48);
 		
 		strictMessage = addDataHolderToServer(new MessageHolder(buffer -> {
-			final boolean newIsStrict = buffer.readBoolean();
+			final var newIsStrict = buffer.readBoolean();
 			if (!filterStack.isEmpty()) {
 				if (!newIsStrict) {
 					filterStack.removeTagKey("strict");
@@ -63,7 +62,7 @@ public class ItemFilterContainer extends UContainerMenu {
 	public void broadcastChanges() {
 		super.broadcastChanges();
 		if (!filterStack.isEmpty()) {
-			final ItemStack stackToFilter = filterItemSlotInventory.getItem(0);
+			final var stackToFilter = filterItemSlotInventory.getItem(0);
 			if (stackToFilter.isEmpty()) {
 				filterStack.removeTagKey("stack");
 			} else {
@@ -92,8 +91,8 @@ public class ItemFilterContainer extends UContainerMenu {
 			}
 		}
 		if (clickType == ClickType.SWAP) {
-			final ItemStack stack = player.getInventory().getItem(dragType);
-			final ItemStack currentItem = Inventory.isHotbarSlot(selectedSlot) ? player.getInventory().items.get(selectedSlot) : selectedSlot == -1 ? player.getInventory().offhand.get(0) : ItemStack.EMPTY;
+			final var stack = player.getInventory().getItem(dragType);
+			final var currentItem = Inventory.isHotbarSlot(selectedSlot) ? player.getInventory().items.get(selectedSlot) : selectedSlot == -1 ? player.getInventory().offhand.get(0) : ItemStack.EMPTY;
 			
 			if (!currentItem.isEmpty() && stack == currentItem) {
 				// return ItemStack.EMPTY; // TODO right?
@@ -138,17 +137,17 @@ public class ItemFilterContainer extends UContainerMenu {
 	
 	@Override
 	public ItemStack quickMoveStack(Player player, int index) {
-		ItemStack itemstack = ItemStack.EMPTY;
-		final Slot slot = slots.get(index);
+		var itemstack = ItemStack.EMPTY;
+		final var slot = slots.get(index);
 		
 		if (slot != null && slot.hasItem()) {
-			final ItemStack itemstack1 = slot.getItem();
+			final var itemstack1 = slot.getItem();
 			itemstack = itemstack1.copy();
 			
 			if (index < 1) {
 				return ItemStack.EMPTY;
 			} else {
-				final ItemStack stack = itemstack1.copy();
+				final var stack = itemstack1.copy();
 				stack.setCount(1);
 				filterItemSlotInventory.setItem(0, stack);
 				return ItemStack.EMPTY;
