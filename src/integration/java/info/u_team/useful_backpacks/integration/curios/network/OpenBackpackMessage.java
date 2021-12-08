@@ -27,8 +27,9 @@ public class OpenBackpackMessage {
 				final var curioBackpack = BackpackCuriosUtil.getBackpack(player).map(ImmutableTriple::getRight).filter(stack -> stack.getItem() instanceof Backpack);
 				if (curioBackpack.isPresent()) {
 					final var stack = curioBackpack.get();
-					final var backpack = (Backpack) stack.getItem();
-					backpack.open(player, stack, -2);
+					if (stack.getItem()instanceof Backpack backpack) {
+						backpack.open(player, stack, -2);
+					}
 				}
 			});
 			context.setPacketHandled(true);
