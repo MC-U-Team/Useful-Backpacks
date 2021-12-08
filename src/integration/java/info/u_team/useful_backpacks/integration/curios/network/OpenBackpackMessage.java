@@ -24,7 +24,7 @@ public class OpenBackpackMessage {
 			final var context = contextSupplier.get();
 			context.enqueueWork(() -> {
 				final var player = context.getSender();
-				final var curioBackpack = BackpackCuriosUtil.getBackpack(player).map(ImmutableTriple::getRight).filter(stack -> stack.getItem() instanceof Backpack);
+				final var curioBackpack = BackpackCuriosUtil.getBackpack(player).map(ImmutableTriple::getRight);
 				if (curioBackpack.isPresent()) {
 					final var stack = curioBackpack.get();
 					if (stack.getItem()instanceof Backpack backpack) {
