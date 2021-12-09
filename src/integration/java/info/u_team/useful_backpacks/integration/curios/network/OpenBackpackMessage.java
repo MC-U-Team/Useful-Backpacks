@@ -11,10 +11,10 @@ import net.minecraftforge.fmllegacy.network.NetworkEvent.Context;
 
 public class OpenBackpackMessage {
 	
-	public static void encode(OpenBackpackMessage message, FriendlyByteBuf sendBuffer) {
+	public static void encode(OpenBackpackMessage message, FriendlyByteBuf byteBuf) {
 	}
 	
-	public static OpenBackpackMessage decode(FriendlyByteBuf sendBuffer) {
+	public static OpenBackpackMessage decode(FriendlyByteBuf byteBuf) {
 		return new OpenBackpackMessage();
 	}
 	
@@ -24,6 +24,9 @@ public class OpenBackpackMessage {
 			final var context = contextSupplier.get();
 			context.enqueueWork(() -> {
 				final var player = context.getSender();
+				if (!player.isAlive()) {
+					// TODO more conditions?
+				}
 				final var curioBackpack = BackpackCuriosUtil.getBackpack(player).map(ImmutableTriple::getRight);
 				if (curioBackpack.isPresent()) {
 					final var stack = curioBackpack.get();
