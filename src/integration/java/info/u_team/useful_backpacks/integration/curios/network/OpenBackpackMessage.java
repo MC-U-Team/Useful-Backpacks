@@ -30,7 +30,7 @@ public class OpenBackpackMessage {
 				final var curioBackpack = BackpackCuriosUtil.getBackpack(player).map(ImmutableTriple::getRight);
 				if (curioBackpack.isPresent()) {
 					final var stack = curioBackpack.get();
-					if (stack.getItem()instanceof Backpack backpack) {
+					if (stack.getItem() instanceof Backpack backpack) {
 						backpack.open(player, stack, -2);
 					}
 				}

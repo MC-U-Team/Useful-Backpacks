@@ -22,7 +22,7 @@ public class FilterSlot extends Slot {
 	
 	@Override
 	public boolean mayPlace(ItemStack stack) {
-		return stack.getItem()instanceof Filter filter && filter.isUsable(stack);
+		return stack.getItem() instanceof Filter filter && filter.isUsable(stack);
 	}
 	
 	@Override
