@@ -1,10 +1,8 @@
 package info.u_team.useful_backpacks.container;
 
-import java.lang.reflect.Field;
 import java.util.List;
 
 import info.u_team.u_team_core.menu.UContainerMenu;
-import info.u_team.u_team_core.util.CastUtil;
 import info.u_team.useful_backpacks.api.Backpack;
 import info.u_team.useful_backpacks.container.slot.BackpackFilterSlot;
 import info.u_team.useful_backpacks.container.slot.FilterSlot;
@@ -16,18 +14,10 @@ import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 
 public class FilterConfiguratorContainer extends UContainerMenu {
-	
-	// TODO remove and make this accessible in uteamcore
-	private static final Field LAST_SLOTS_FIELD = ObfuscationReflectionHelper.findField(AbstractContainerMenu.class, "f_38841_");
-	static {
-		LAST_SLOTS_FIELD.setAccessible(true);
-	}
 	
 	private final ContainerLevelAccess access;
 	
@@ -73,12 +63,7 @@ public class FilterConfiguratorContainer extends UContainerMenu {
 	
 	@Override
 	public void broadcastChanges() {
-		final List<ItemStack> lastSlots;
-		try {
-			lastSlots = CastUtil.uncheckedCast(LAST_SLOTS_FIELD.get(this));
-		} catch (Exception ex) {
-			throw new RuntimeException("An error occured while trying to get last slot fields.", ex);
-		}
+		final List<ItemStack> lastSlots = getLastSlots();
 		
 		final var oldStack = lastSlots.get(0);
 		final var newStack = backpackSlotInventory.getItem(0);
