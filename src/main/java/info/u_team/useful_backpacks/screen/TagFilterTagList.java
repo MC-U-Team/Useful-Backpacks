@@ -22,7 +22,7 @@ public class TagFilterTagList extends ScrollableList<TagFilterTagListEntry> {
 		this.container = container;
 		
 		setRenderTopAndBottom(false);
-		setShouldUseScissor(true);
+		setUseScissor(true);
 		setRenderTransparentBorder(true);
 		
 		updateEntries(unused -> true);

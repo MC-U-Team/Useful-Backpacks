@@ -5,8 +5,8 @@ import info.u_team.useful_backpacks.UsefulBackpacksMod;
 import info.u_team.useful_backpacks.recipe.BackpackCraftingRecipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 public class UsefulBackpacksRecipeSerializers {
 	

@@ -7,7 +7,7 @@ import org.apache.commons.lang3.tuple.ImmutableTriple;
 import info.u_team.useful_backpacks.api.Backpack;
 import info.u_team.useful_backpacks.integration.curios.util.BackpackCuriosUtil;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraftforge.fmllegacy.network.NetworkEvent.Context;
+import net.minecraftforge.network.NetworkEvent.Context;
 
 public class OpenBackpackMessage {
 	

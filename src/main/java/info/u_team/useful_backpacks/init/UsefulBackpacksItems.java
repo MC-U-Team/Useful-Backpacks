@@ -9,8 +9,8 @@ import info.u_team.useful_backpacks.item.TagFilterItem;
 import info.u_team.useful_backpacks.type.BackpackType;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 public class UsefulBackpacksItems {
 	
