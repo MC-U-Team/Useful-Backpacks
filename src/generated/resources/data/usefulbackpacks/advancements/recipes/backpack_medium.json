@@ -11,7 +11,9 @@
 			"conditions": {
 				"items": [
 					{
-						"item": "usefulbackpacks:backpack_small"
+						"items": [
+							"usefulbackpacks:backpack_small"
+						]
 					}
 				]
 			}

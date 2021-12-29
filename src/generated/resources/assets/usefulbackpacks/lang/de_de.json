@@ -29,7 +29,7 @@
 	"item.usefulbackpacks.filter_tag.tooltip.configured.2": "%s um die aktuelle Konfiguration zu entfernen",
 	"item.usefulbackpacks.filter_tag.tooltip.not_configured.0": "Dieser Filter ist nicht konfiguriert",
 	"item.usefulbackpacks.filter_tag.tooltip.not_configured.1": "%s um den Aliasdatenfilter zu konfigurieren",
-	"itemGroup.usefulbackpacks.group": "Nützliche Rucksäcke",
+	"itemGroup.usefulbackpacks.tab": "Nützliche Rucksäcke",
 	"key.usefulbackpacks.curiosintegration.category": "Nützliche Rucksäcke : Curios Integration",
 	"key.usefulbackpacks.curiosintegration.description": "Öffne Rucksack"
 }
