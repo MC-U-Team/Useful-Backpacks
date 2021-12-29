@@ -60,7 +60,6 @@ public class ItemFilterContainer extends UContainerMenu {
 	
 	@Override
 	public void broadcastChanges() {
-		super.broadcastChanges();
 		if (!filterStack.isEmpty()) {
 			final var stackToFilter = filterItemSlotInventory.getItem(0);
 			if (stackToFilter.isEmpty()) {
@@ -69,12 +68,14 @@ public class ItemFilterContainer extends UContainerMenu {
 				stackToFilter.save(filterStack.getOrCreateTagElement("stack"));
 			}
 		}
+		
+		super.broadcastChanges();
 	}
 	
 	@Override
 	public void clicked(int slotId, int dragType, ClickType clickType, Player player) {
 		if (slotId == 0) {
-			filterSlotClick(dragType, clickType, player); // TODO Update method
+			filterSlotClick(dragType, clickType, player);
 			return;
 		}
 		
@@ -102,7 +103,6 @@ public class ItemFilterContainer extends UContainerMenu {
 		super.clicked(slotId, dragType, clickType, player);
 	}
 	
-	// TODO method does not work that way anymore. Need to update logic
 	private ItemStack filterSlotClick(int dragType, ClickType clickType, Player player) {
 		final ItemStack stack;
 		
