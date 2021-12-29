@@ -32,7 +32,7 @@ version = generateVersion()
 
 java {
 	toolchain {
-		languageVersion = JavaLanguageVersion.of(16)
+		languageVersion = JavaLanguageVersion.of(17)
 	}
 }
 
@@ -149,12 +149,12 @@ repositories {
 }
 
 dependencies {
-	minecraft "net.minecraftforge:forge:1.17.1-37.1.0"
-	implementation fg.deobf("info.u-team:u_team_core-1.17.1:4.0.0.199")
-	compileOnly fg.deobf("mezz.jei:jei-1.17.1:8.2.0.37:api")
-	runtimeOnly fg.deobf("mezz.jei:jei-1.17.1:8.2.0.37")
-	compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.17.1-5.0.2.3:api")
-	runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.17.1-5.0.2.3")
+	minecraft "net.minecraftforge:forge:${config.forge.mcversion}-${config.forge.version}"
+	implementation fg.deobf("info.u-team:u_team_core-1.18.1:4.0.0.201-SNAPSHOT")
+	compileOnly fg.deobf("mezz.jei:jei-1.18.1:9.1.1.48:api")
+	runtimeOnly fg.deobf("mezz.jei:jei-1.18.1:9.1.1.48")
+	compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.18.1-5.0.4.2:api")
+	runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.18.1-5.0.4.2")
 }
 
 curseforge {
@@ -174,7 +174,7 @@ curseforge {
 		
 		addGameVersion config.forge.mcversion
 		addGameVersion "Forge"
-		addGameVersion "Java 16"
+		addGameVersion "Java 17"
 		
 		relations {
 			requiredDependency "u-team-core"
@@ -189,7 +189,7 @@ curseforge {
 		}
 		
 		addArtifact(deobfJar) {
-			displayName = "${config.curse.display}-${config.forge.mcversion}-${project.version}-dev"
+			displayName = "(For development use) ${config.curse.display}-${config.forge.mcversion}-${project.version}-dev"
 			changelogType = "text"
 			changelog = "ONLY for development environment!\nMappings: ${config.forge.mapping_channel}_${config.forge.mapping}"
 		}
