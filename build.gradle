@@ -151,7 +151,7 @@ repositories {
 dependencies {
 	minecraft "net.minecraftforge:forge:${config.forge.mcversion}-${config.forge.version}"
 	implementation fg.deobf("info.u-team:u_team_core-1.18.1:4.0.0.201-SNAPSHOT")
-	compileOnly fg.deobf("mezz.jei:jei-1.18.1:9.1.1.48:api")
+	compileOnly fg.deobf("mezz.jei:jei-1.18.1:9.4.1.100:api")
 	runtimeOnly fg.deobf("mezz.jei:jei-1.18.1:9.1.1.48")
 	compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.18.1-5.0.4.2:api")
 	runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.18.1-5.0.4.2")
