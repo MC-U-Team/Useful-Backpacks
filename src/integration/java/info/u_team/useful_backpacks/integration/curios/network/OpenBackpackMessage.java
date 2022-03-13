@@ -2,12 +2,11 @@ package info.u_team.useful_backpacks.integration.curios.network;
 
 import java.util.function.Supplier;
 
-import org.apache.commons.lang3.tuple.ImmutableTriple;
-
 import info.u_team.useful_backpacks.api.Backpack;
 import info.u_team.useful_backpacks.integration.curios.util.BackpackCuriosUtil;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.network.NetworkEvent.Context;
+import top.theillusivec4.curios.api.SlotResult;
 
 public class OpenBackpackMessage {
 	
@@ -27,7 +26,7 @@ public class OpenBackpackMessage {
 				if (!player.isAlive()) {
 					// TODO more conditions?
 				}
-				final var curioBackpack = BackpackCuriosUtil.getBackpack(player).map(ImmutableTriple::getRight);
+				final var curioBackpack = BackpackCuriosUtil.getBackpack(player).map(SlotResult::stack);
 				if (curioBackpack.isPresent()) {
 					final var stack = curioBackpack.get();
 					if (stack.getItem() instanceof Backpack backpack) {

@@ -19,9 +19,9 @@ public class CuriosIntegrationCommonConstruct implements ModIntegration {
 		BusRegister.registerForge(CuriosIntegrationCapabilities::registerForge);
 		
 		ItemPickupEventHandler.INTEGRATION_BACKPACKS.add((player) -> {
-			final var optional = BackpackCuriosUtil.getBackpack(player);
-			if (optional.isPresent()) {
-				return optional.get().getRight();
+			final var slotResult = BackpackCuriosUtil.getBackpack(player);
+			if (slotResult.isPresent()) {
+				return slotResult.get().stack();
 			}
 			return ItemStack.EMPTY;
 		});

@@ -57,7 +57,7 @@ public class TagFilterItem extends FilterItem {
 		final var id = ResourceLocation.tryParse(compound.getString("id"));
 		
 		if (id != null) {
-			return matchStack.getItem().getTags().contains(id);
+			return matchStack.getTags().anyMatch(key -> key.location().equals(id));
 		} else {
 			return false;
 		}

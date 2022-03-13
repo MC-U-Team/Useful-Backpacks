@@ -31,7 +31,7 @@ public class UsefulBackpacksJeiPlugin implements IModPlugin {
 			}
 			return IIngredientSubtypeInterpreter.NONE;
 		};
-		
+
 		registration.registerSubtypeInterpreter(UsefulBackpacksItems.SMALL_BACKPACK.get(), interpreter);
 		registration.registerSubtypeInterpreter(UsefulBackpacksItems.MEDIUM_BACKPACK.get(), interpreter);
 		registration.registerSubtypeInterpreter(UsefulBackpacksItems.LARGE_BACKPACK.get(), interpreter);

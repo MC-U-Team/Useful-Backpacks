@@ -21,7 +21,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.ShapedRecipe;
-import net.minecraft.world.level.block.Block;
 
 public class BackpackCraftingRecipe extends ShapedRecipe {
 	
@@ -49,8 +48,8 @@ public class BackpackCraftingRecipe extends ShapedRecipe {
 						backpackItem.setTag(slotStack.getTag().copy()); // Copy tag from existing one including color and inventory if exist
 					}
 				} else {
-					if (ItemTags.WOOL.contains(item)) {
-						final var color = ColorUtil.getColorFromWool(Block.byItem(item));
+					if (slotStack.is(ItemTags.WOOL)) {
+						final var color = ColorUtil.getColorFromWool(item);
 						if (color != null) {
 							dyeList.add(color);
 						}
