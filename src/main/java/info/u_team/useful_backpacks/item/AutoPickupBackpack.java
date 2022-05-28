@@ -27,7 +27,7 @@ public interface AutoPickupBackpack extends Backpack {
 		for (int index = 0; index < filterInventory.getContainerSize(); index++) {
 			final ItemStack filterStack = filterInventory.getItem(index);
 			final Item filterItem = filterStack.getItem();
-			if (filterItem instanceof Filter filter) {
+			if (filterItem instanceof final Filter filter) {
 				if (filter.matchItem(filterStack, stack)) {
 					return true;
 				}

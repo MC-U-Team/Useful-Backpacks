@@ -32,7 +32,7 @@ public class OpenBackpackMessage {
 				final Optional<ItemStack> curioBackpack = BackpackCuriosUtil.getBackpack(player).map(SlotResult::stack);
 				if (curioBackpack.isPresent()) {
 					final ItemStack stack = curioBackpack.get();
-					if (stack.getItem() instanceof Backpack backpack) {
+					if (stack.getItem() instanceof final Backpack backpack) {
 						backpack.open(player, stack, -2);
 					}
 				}

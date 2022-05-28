@@ -71,7 +71,7 @@ public class ItemPickupEventHandler {
 	private static ItemStack insertInBackpack(ServerPlayer player, ItemStack stack, ItemStack stackToPickup) {
 		final Item item = stack.getItem();
 		
-		if (item instanceof Backpack backpack) {
+		if (item instanceof final Backpack backpack) {
 			if (backpack.canAutoPickup(stackToPickup, stack)) {
 				final Container inventory = backpack.getInventory(player, stack);
 				final IItemHandler itemHandler = new InvWrapper(inventory);
