@@ -31,15 +31,12 @@ version = gradlefiles.version()
 
 gradlefiles {
 	vendor "Team UTeam"
-	
-	signJars true
 }
 
 java {
 	toolchain {
 		languageVersion = JavaLanguageVersion.of(17)
 	}
-	withDeobfJar()
 	withSourcesJar()
 	withJavadocJar()
 }
@@ -92,6 +89,8 @@ tasks.withType(Javadoc) { task ->
 	task.options.addStringOption("Xdoclint:none", "-quiet")
 }
 
+gradlefiles.signDefaultForgeJar()
+
 sourceSets {
 	main {
 		java {
@@ -110,7 +109,7 @@ repositories {
 		url = "https://dvs1.progwml6.com/files/maven"
 	}
 	maven {
-		url = "https://maven.theillusivec4.top/"
+		url = "https://maven.theillusivec4.top"
 	}
 }
 
