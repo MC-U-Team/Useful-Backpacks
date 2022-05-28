@@ -18,7 +18,7 @@ public class EnderChestBackpackContainer extends ChestMenu {
 	
 	// Client
 	public static EnderChestBackpackContainer createEnderChestContainer(int id, Inventory playerInventory, FriendlyByteBuf buffer) {
-		final var selectedSlot = buffer.readVarInt();
+		final int selectedSlot = buffer.readVarInt();
 		return createEnderChestContainer(id, playerInventory, new SimpleContainer(9 * 3), selectedSlot);
 	}
 	
@@ -47,8 +47,8 @@ public class EnderChestBackpackContainer extends ChestMenu {
 			}
 		}
 		if (clickType == ClickType.SWAP) {
-			final var stack = player.getInventory().getItem(dragType);
-			final var currentItem = Inventory.isHotbarSlot(selectedSlot) ? player.getInventory().items.get(selectedSlot) : selectedSlot == -1 ? player.getInventory().offhand.get(0) : ItemStack.EMPTY;
+			final ItemStack stack = player.getInventory().getItem(dragType);
+			final ItemStack currentItem = Inventory.isHotbarSlot(selectedSlot) ? player.getInventory().items.get(selectedSlot) : selectedSlot == -1 ? player.getInventory().offhand.get(0) : ItemStack.EMPTY;
 			
 			if (!currentItem.isEmpty() && stack == currentItem) {
 				// return ItemStack.EMPTY; // TODO just return??

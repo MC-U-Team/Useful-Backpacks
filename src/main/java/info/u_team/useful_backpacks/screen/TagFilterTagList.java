@@ -39,7 +39,7 @@ public class TagFilterTagList extends ScrollableList<TagFilterTagListEntry> {
 	public void setSelected(TagFilterTagListEntry entry) {
 		super.setSelected(entry);
 		
-		final var tag = entry.getTag().toString();
+		final String tag = entry.getTag().toString();
 		
 		container.getTagMessage().triggerMessage(() -> new FriendlyByteBuf(Unpooled.buffer(100)).writeUtf(tag));
 		container.setTag(tag);
@@ -65,11 +65,11 @@ public class TagFilterTagList extends ScrollableList<TagFilterTagListEntry> {
 		Collections.sort(list, (a, b) -> {
 			return a.toString().compareTo(b.toString());
 		});
-		final var selected = getSelected();
+		final TagFilterTagListEntry selected = getSelected();
 		clearEntries();
 		setScrollAmount(0);
 		list.forEach(tag -> {
-			final var entry = new TagFilterTagListEntry(tag);
+			final TagFilterTagListEntry entry = new TagFilterTagListEntry(tag);
 			addEntry(entry);
 			
 			if (selected != null && selected.getTag().equals(tag)) {

@@ -37,7 +37,7 @@ public class CuriosIntegrationKeys {
 		if (event.phase != Phase.END) {
 			return;
 		}
-		final var minecraft = Minecraft.getInstance();
+		final Minecraft minecraft = Minecraft.getInstance();
 		if (minecraft.isWindowActive() && minecraft.screen == null && OPEN_BACKPACK.isDown()) {
 			CuriosIntegrationNetwork.NETWORK.sendToServer(new OpenBackpackMessage());
 		}

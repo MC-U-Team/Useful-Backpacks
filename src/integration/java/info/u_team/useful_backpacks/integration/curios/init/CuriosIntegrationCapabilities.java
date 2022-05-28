@@ -15,7 +15,7 @@ import top.theillusivec4.curios.api.type.capability.ICurio;
 public class CuriosIntegrationCapabilities {
 	
 	private static void onAttachCapabilities(AttachCapabilitiesEvent<ItemStack> event) {
-		final var stack = event.getObject();
+		final ItemStack stack = event.getObject();
 		if (!(stack.getItem() instanceof Backpack)) {
 			return;
 		}

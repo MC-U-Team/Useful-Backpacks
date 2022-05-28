@@ -37,14 +37,14 @@ public class BackpackInventory extends SimpleContainer {
 	private void readNBT(CompoundTag compound) {
 		final NonNullList<ItemStack> list = NonNullList.withSize(getContainerSize(), ItemStack.EMPTY);
 		ContainerHelper.loadAllItems(compound, list);
-		for (var index = 0; index < list.size(); index++) {
+		for (int index = 0; index < list.size(); index++) {
 			setItem(index, list.get(index));
 		}
 	}
 	
 	private void writeNBT(CompoundTag compound) {
 		final NonNullList<ItemStack> list = NonNullList.withSize(getContainerSize(), ItemStack.EMPTY);
-		for (var index = 0; index < list.size(); index++) {
+		for (int index = 0; index < list.size(); index++) {
 			list.set(index, getItem(index));
 		}
 		ContainerHelper.saveAllItems(compound, list, false);

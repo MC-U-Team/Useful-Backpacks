@@ -25,13 +25,13 @@ public class ItemFilterItem extends FilterItem {
 	
 	@Override
 	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
-		final var stack = player.getItemInHand(hand);
+		final ItemStack stack = player.getItemInHand(hand);
 		if (!level.isClientSide && player instanceof ServerPlayer) {
 			if (player.isShiftKeyDown()) {
 				stack.removeTagKey("strict");
 				stack.removeTagKey("stack");
 			} else {
-				final var selectedSlot = hand == InteractionHand.MAIN_HAND ? player.getInventory().selected : -1;
+				final int selectedSlot = hand == InteractionHand.MAIN_HAND ? player.getInventory().selected : -1;
 				final boolean isStrict;
 				if (stack.hasTag()) {
 					isStrict = stack.getTag().getBoolean("strict");
@@ -56,8 +56,8 @@ public class ItemFilterItem extends FilterItem {
 	
 	@Override
 	protected boolean matchItem(ItemStack filterStack, ItemStack matchStack, CompoundTag compound) {
-		final var strict = compound.getBoolean("strict");
-		final var stack = ItemStack.of(compound.getCompound("stack"));
+		final boolean strict = compound.getBoolean("strict");
+		final ItemStack stack = ItemStack.of(compound.getCompound("stack"));
 		
 		if (strict) {
 			return ItemHandlerHelper.canItemStacksStack(stack, matchStack);

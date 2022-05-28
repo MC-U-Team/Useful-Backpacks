@@ -19,7 +19,7 @@ public class CuriosBackpackRenderer implements ICurioRenderer {
 	
 	@Override
 	public <T extends LivingEntity, M extends EntityModel<T>> void render(ItemStack stack, SlotContext slotContext, PoseStack poseStack, RenderLayerParent<T, M> renderLayerParent, MultiBufferSource renderTypeBuffer, int light, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
-		final var livingEntity = slotContext.entity();
+		final LivingEntity livingEntity = slotContext.entity();
 		
 		if (livingEntity.hasItemInSlot(EquipmentSlot.CHEST)) {
 			return;

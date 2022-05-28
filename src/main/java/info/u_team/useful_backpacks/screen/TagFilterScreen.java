@@ -62,7 +62,7 @@ public class TagFilterScreen extends UContainerMenuScreen<TagFilterContainer> {
 	
 	@Override
 	public boolean mouseDragged(double mouseX, double mouseY, int button, double dragX, double dragY) {
-		final var dragged = getFocused() != null && isDragging() && button == 0 ? getFocused().mouseDragged(mouseX, mouseY, button, dragX, dragY) : false;
+		final boolean dragged = getFocused() != null && isDragging() && button == 0 ? getFocused().mouseDragged(mouseX, mouseY, button, dragX, dragY) : false;
 		if (!dragged) {
 			return super.mouseDragged(mouseX, mouseY, button, dragX, dragY);
 		}
