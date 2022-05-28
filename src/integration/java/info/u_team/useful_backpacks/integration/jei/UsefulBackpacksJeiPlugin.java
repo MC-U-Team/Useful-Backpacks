@@ -7,6 +7,7 @@ import info.u_team.useful_backpacks.integration.jei.extension.BackpackCraftingRe
 import info.u_team.useful_backpacks.recipe.BackpackCraftingRecipe;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
+import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.ingredients.subtypes.IIngredientSubtypeInterpreter;
 import mezz.jei.api.registration.ISubtypeRegistration;
 import mezz.jei.api.registration.IVanillaCategoryExtensionRegistration;
@@ -31,10 +32,10 @@ public class UsefulBackpacksJeiPlugin implements IModPlugin {
 			}
 			return IIngredientSubtypeInterpreter.NONE;
 		};
-
-		registration.registerSubtypeInterpreter(UsefulBackpacksItems.SMALL_BACKPACK.get(), interpreter);
-		registration.registerSubtypeInterpreter(UsefulBackpacksItems.MEDIUM_BACKPACK.get(), interpreter);
-		registration.registerSubtypeInterpreter(UsefulBackpacksItems.LARGE_BACKPACK.get(), interpreter);
+		
+		registration.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK, UsefulBackpacksItems.SMALL_BACKPACK.get(), interpreter);
+		registration.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK, UsefulBackpacksItems.MEDIUM_BACKPACK.get(), interpreter);
+		registration.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK, UsefulBackpacksItems.LARGE_BACKPACK.get(), interpreter);
 	}
 	
 	@Override
