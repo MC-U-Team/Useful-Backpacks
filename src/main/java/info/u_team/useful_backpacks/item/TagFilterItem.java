@@ -4,7 +4,7 @@ import java.util.List;
 
 import info.u_team.u_team_core.util.TooltipCreator;
 import info.u_team.useful_backpacks.UsefulBackpacksMod;
-import info.u_team.useful_backpacks.container.TagFilterContainer;
+import info.u_team.useful_backpacks.menu.TagFilterMenu;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -37,7 +37,7 @@ public class TagFilterItem extends FilterItem {
 					tag = "";
 				}
 				NetworkHooks.openGui((ServerPlayer) player, new SimpleMenuProvider((id, playerInventory, unused) -> {
-					return new TagFilterContainer(id, playerInventory, stack, selectedSlot, tag);
+					return new TagFilterMenu(id, playerInventory, stack, selectedSlot, tag);
 				}, stack.getHoverName()), buffer -> {
 					buffer.writeVarInt(selectedSlot);
 					buffer.writeUtf(tag);
@@ -49,7 +49,7 @@ public class TagFilterItem extends FilterItem {
 	
 	@Override
 	public boolean onDroppedByPlayer(ItemStack item, Player player) {
-		return !(player.containerMenu instanceof TagFilterContainer);
+		return !(player.containerMenu instanceof TagFilterMenu);
 	}
 	
 	@Override

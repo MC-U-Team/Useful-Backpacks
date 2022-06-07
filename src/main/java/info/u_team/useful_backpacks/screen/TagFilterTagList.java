@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import info.u_team.u_team_core.gui.elements.ScrollableList;
-import info.u_team.useful_backpacks.container.TagFilterContainer;
+import info.u_team.useful_backpacks.menu.TagFilterMenu;
 import io.netty.buffer.Unpooled;
 import net.minecraft.core.Registry;
 import net.minecraft.network.FriendlyByteBuf;
@@ -15,9 +15,9 @@ import net.minecraft.tags.TagKey;
 
 public class TagFilterTagList extends ScrollableList<TagFilterTagListEntry> {
 	
-	private final TagFilterContainer container;
+	private final TagFilterMenu container;
 	
-	public TagFilterTagList(TagFilterContainer container, int x, int y, int width, int height, String tag) {
+	public TagFilterTagList(TagFilterMenu container, int x, int y, int width, int height, String tag) {
 		super(x, y, width, height, 10, 15);
 		this.container = container;
 		

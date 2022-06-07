@@ -1,8 +1,8 @@
 package info.u_team.useful_backpacks.block;
 
 import info.u_team.u_team_core.block.UBlock;
-import info.u_team.useful_backpacks.container.FilterConfiguratorContainer;
 import info.u_team.useful_backpacks.init.UsefulBackpacksCreativeTabs;
+import info.u_team.useful_backpacks.menu.FilterConfiguratorMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -39,7 +39,7 @@ public class FilterConfiguratorBlock extends UBlock {
 	@Override
 	public MenuProvider getMenuProvider(BlockState state, Level level, BlockPos pos) {
 		return new SimpleMenuProvider((id, inventory, player) -> {
-			return new FilterConfiguratorContainer(id, inventory, ContainerLevelAccess.create(level, pos));
+			return new FilterConfiguratorMenu(id, inventory, ContainerLevelAccess.create(level, pos));
 		}, CONTAINER_NAME);
 	}
 	

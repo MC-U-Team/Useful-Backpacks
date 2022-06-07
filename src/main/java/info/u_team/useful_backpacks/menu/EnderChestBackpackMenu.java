@@ -1,4 +1,4 @@
-package info.u_team.useful_backpacks.container;
+package info.u_team.useful_backpacks.menu;
 
 import info.u_team.useful_backpacks.init.UsefulBackpacksMenuTypes;
 import net.minecraft.network.FriendlyByteBuf;
@@ -12,22 +12,22 @@ import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 
-public class EnderChestBackpackContainer extends ChestMenu {
+public class EnderChestBackpackMenu extends ChestMenu {
 	
 	private final int selectedSlot;
 	
 	// Client
-	public static EnderChestBackpackContainer createEnderChestContainer(int id, Inventory playerInventory, FriendlyByteBuf buffer) {
+	public static EnderChestBackpackMenu createEnderChestContainer(int id, Inventory playerInventory, FriendlyByteBuf buffer) {
 		final int selectedSlot = buffer.readVarInt();
 		return createEnderChestContainer(id, playerInventory, new SimpleContainer(9 * 3), selectedSlot);
 	}
 	
 	// Server
-	public static EnderChestBackpackContainer createEnderChestContainer(int id, Inventory playerInventory, Container inventory, int selectedSlot) {
-		return new EnderChestBackpackContainer(UsefulBackpacksMenuTypes.ENDERCHEST_BACKPACK.get(), id, playerInventory, inventory, 3, selectedSlot);
+	public static EnderChestBackpackMenu createEnderChestContainer(int id, Inventory playerInventory, Container inventory, int selectedSlot) {
+		return new EnderChestBackpackMenu(UsefulBackpacksMenuTypes.ENDERCHEST_BACKPACK.get(), id, playerInventory, inventory, 3, selectedSlot);
 	}
 	
-	public EnderChestBackpackContainer(MenuType<?> type, int id, Inventory playerInventory, Container inventory, int rows, int selectedSlot) {
+	public EnderChestBackpackMenu(MenuType<?> type, int id, Inventory playerInventory, Container inventory, int rows, int selectedSlot) {
 		super(type, id, playerInventory, inventory, rows);
 		this.selectedSlot = selectedSlot;
 	}

@@ -1,15 +1,15 @@
-package info.u_team.useful_backpacks.container;
+package info.u_team.useful_backpacks.menu;
 
 import java.util.List;
 
 import info.u_team.u_team_core.menu.UContainerMenu;
 import info.u_team.useful_backpacks.api.Backpack;
-import info.u_team.useful_backpacks.container.slot.BackpackFilterSlot;
-import info.u_team.useful_backpacks.container.slot.FilterSlot;
 import info.u_team.useful_backpacks.init.UsefulBackpacksBlocks;
 import info.u_team.useful_backpacks.init.UsefulBackpacksMenuTypes;
 import info.u_team.useful_backpacks.inventory.DelegateInventory;
 import info.u_team.useful_backpacks.inventory.FilterInventory;
+import info.u_team.useful_backpacks.menu.slot.BackpackFilterSlot;
+import info.u_team.useful_backpacks.menu.slot.FilterSlot;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -18,7 +18,7 @@ import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 
-public class FilterConfiguratorContainer extends UContainerMenu {
+public class FilterConfiguratorMenu extends UContainerMenu {
 	
 	private final ContainerLevelAccess access;
 	
@@ -35,13 +35,13 @@ public class FilterConfiguratorContainer extends UContainerMenu {
 	private Container filterInventory;
 	
 	// Client
-	public FilterConfiguratorContainer(int id, Inventory playerInventory) {
+	public FilterConfiguratorMenu(int id, Inventory playerInventory) {
 		this(id, playerInventory, ContainerLevelAccess.NULL);
 		filterInventory = new SimpleContainer(9);
 	}
 	
 	// Server
-	public FilterConfiguratorContainer(int id, Inventory playerInventory, ContainerLevelAccess access) {
+	public FilterConfiguratorMenu(int id, Inventory playerInventory, ContainerLevelAccess access) {
 		super(UsefulBackpacksMenuTypes.FILTER_CONFIGURATOR.get(), id);
 		this.access = access;
 		

@@ -1,4 +1,4 @@
-package info.u_team.useful_backpacks.container.slot;
+package info.u_team.useful_backpacks.menu.slot;
 
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Player;

@@ -4,7 +4,7 @@ import java.util.List;
 
 import info.u_team.u_team_core.util.TooltipCreator;
 import info.u_team.useful_backpacks.UsefulBackpacksMod;
-import info.u_team.useful_backpacks.container.ItemFilterContainer;
+import info.u_team.useful_backpacks.menu.ItemFilterMenu;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -39,7 +39,7 @@ public class ItemFilterItem extends FilterItem {
 					isStrict = false;
 				}
 				NetworkHooks.openGui((ServerPlayer) player, new SimpleMenuProvider((id, playerInventory, unused) -> {
-					return new ItemFilterContainer(id, playerInventory, stack, selectedSlot, isStrict);
+					return new ItemFilterMenu(id, playerInventory, stack, selectedSlot, isStrict);
 				}, stack.getHoverName()), buffer -> {
 					buffer.writeVarInt(selectedSlot);
 					buffer.writeBoolean(isStrict);
@@ -51,7 +51,7 @@ public class ItemFilterItem extends FilterItem {
 	
 	@Override
 	public boolean onDroppedByPlayer(ItemStack item, Player player) {
-		return !(player.containerMenu instanceof ItemFilterContainer);
+		return !(player.containerMenu instanceof ItemFilterMenu);
 	}
 	
 	@Override

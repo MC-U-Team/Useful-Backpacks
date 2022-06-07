@@ -1,9 +1,9 @@
-package info.u_team.useful_backpacks.container;
+package info.u_team.useful_backpacks.menu;
 
 import info.u_team.u_team_core.api.sync.MessageHolder;
 import info.u_team.u_team_core.menu.UContainerMenu;
-import info.u_team.useful_backpacks.container.slot.ItemFilterSlot;
 import info.u_team.useful_backpacks.init.UsefulBackpacksMenuTypes;
+import info.u_team.useful_backpacks.menu.slot.ItemFilterSlot;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
@@ -14,7 +14,7 @@ import net.minecraft.world.inventory.ClickType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 
-public class ItemFilterContainer extends UContainerMenu {
+public class ItemFilterMenu extends UContainerMenu {
 	
 	private final ItemStack filterStack;
 	private final int selectedSlot;
@@ -24,11 +24,11 @@ public class ItemFilterContainer extends UContainerMenu {
 	
 	private final MessageHolder strictMessage;
 	
-	public ItemFilterContainer(int id, Inventory playerInventory, FriendlyByteBuf buffer) {
+	public ItemFilterMenu(int id, Inventory playerInventory, FriendlyByteBuf buffer) {
 		this(id, playerInventory, ItemStack.EMPTY, buffer.readVarInt(), buffer.readBoolean());
 	}
 	
-	public ItemFilterContainer(int id, Inventory playerInventory, ItemStack filterStack, int selectedSlot, boolean isStrict) {
+	public ItemFilterMenu(int id, Inventory playerInventory, ItemStack filterStack, int selectedSlot, boolean isStrict) {
 		super(UsefulBackpacksMenuTypes.ITEM_FILTER.get(), id);
 		this.filterStack = filterStack;
 		this.selectedSlot = selectedSlot;

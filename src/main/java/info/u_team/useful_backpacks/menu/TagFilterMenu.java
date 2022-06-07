@@ -1,4 +1,4 @@
-package info.u_team.useful_backpacks.container;
+package info.u_team.useful_backpacks.menu;
 
 import info.u_team.u_team_core.api.sync.MessageHolder;
 import info.u_team.u_team_core.menu.UContainerMenu;
@@ -10,18 +10,18 @@ import net.minecraft.world.inventory.ClickType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 
-public class TagFilterContainer extends UContainerMenu {
+public class TagFilterMenu extends UContainerMenu {
 	
 	private final int selectedSlot;
 	private String tag;
 	
 	private final MessageHolder tagMessage;
 	
-	public TagFilterContainer(int id, Inventory playerInventory, FriendlyByteBuf buffer) {
+	public TagFilterMenu(int id, Inventory playerInventory, FriendlyByteBuf buffer) {
 		this(id, playerInventory, ItemStack.EMPTY, buffer.readVarInt(), buffer.readUtf());
 	}
 	
-	public TagFilterContainer(int id, Inventory playerInventory, ItemStack filterStack, int selectedSlot, String tag) {
+	public TagFilterMenu(int id, Inventory playerInventory, ItemStack filterStack, int selectedSlot, String tag) {
 		super(UsefulBackpacksMenuTypes.TAG_FILTER.get(), id);
 		this.selectedSlot = selectedSlot;
 		this.tag = tag;

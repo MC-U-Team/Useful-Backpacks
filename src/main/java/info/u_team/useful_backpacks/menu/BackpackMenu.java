@@ -1,10 +1,10 @@
-package info.u_team.useful_backpacks.container;
+package info.u_team.useful_backpacks.menu;
 
 import info.u_team.u_team_core.menu.UContainerMenu;
 import info.u_team.useful_backpacks.api.Backpack;
-import info.u_team.useful_backpacks.container.slot.BackpackSlot;
 import info.u_team.useful_backpacks.init.UsefulBackpacksMenuTypes;
 import info.u_team.useful_backpacks.inventory.BackpackInventory;
+import info.u_team.useful_backpacks.menu.slot.BackpackSlot;
 import info.u_team.useful_backpacks.type.BackpackType;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
@@ -15,21 +15,21 @@ import net.minecraft.world.inventory.ClickType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 
-public class BackpackContainer extends UContainerMenu {
+public class BackpackMenu extends UContainerMenu {
 	
 	private final Container backpackInventory;
 	private final BackpackType backpack;
 	private final int selectedSlot;
 	
 	// Client
-	public static BackpackContainer createClientContainer(int id, Inventory playerInventory, FriendlyByteBuf buffer) {
+	public static BackpackMenu createClientContainer(int id, Inventory playerInventory, FriendlyByteBuf buffer) {
 		final BackpackType backpack = buffer.readEnum(BackpackType.class);
 		final int selectedSlot = buffer.readVarInt();
-		return new BackpackContainer(id, playerInventory, new SimpleContainer(backpack.getInventorySize()), backpack, selectedSlot);
+		return new BackpackMenu(id, playerInventory, new SimpleContainer(backpack.getInventorySize()), backpack, selectedSlot);
 	}
 	
 	// Server
-	public BackpackContainer(int id, Inventory playerInventory, Container backpackInventory, BackpackType backpack, int selectedSlot) {
+	public BackpackMenu(int id, Inventory playerInventory, Container backpackInventory, BackpackType backpack, int selectedSlot) {
 		super(UsefulBackpacksMenuTypes.BACKPACK.get(), id);
 		this.backpackInventory = backpackInventory;
 		this.backpack = backpack;

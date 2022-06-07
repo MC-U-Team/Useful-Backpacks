@@ -6,9 +6,9 @@ import java.util.List;
 import info.u_team.u_team_core.api.dye.DyeableItem;
 import info.u_team.u_team_core.item.UItem;
 import info.u_team.useful_backpacks.config.ServerConfig;
-import info.u_team.useful_backpacks.container.BackpackContainer;
 import info.u_team.useful_backpacks.init.UsefulBackpacksCreativeTabs;
 import info.u_team.useful_backpacks.inventory.BackpackInventory;
+import info.u_team.useful_backpacks.menu.BackpackMenu;
 import info.u_team.useful_backpacks.type.BackpackType;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
@@ -48,7 +48,7 @@ public class BackpackItem extends UItem implements AutoPickupBackpack, DyeableIt
 	@Override
 	public void open(ServerPlayer player, ItemStack backpackStack, int selectedSlot) {
 		NetworkHooks.openGui(player, new SimpleMenuProvider((id, playerInventory, unused) -> {
-			return new BackpackContainer(id, playerInventory, getInventory(player, backpackStack), backpack, selectedSlot);
+			return new BackpackMenu(id, playerInventory, getInventory(player, backpackStack), backpack, selectedSlot);
 		}, backpackStack.getHoverName()), buffer -> {
 			buffer.writeEnum(backpack);
 			buffer.writeVarInt(selectedSlot);
@@ -125,6 +125,6 @@ public class BackpackItem extends UItem implements AutoPickupBackpack, DyeableIt
 	
 	@Override
 	public boolean onDroppedByPlayer(ItemStack item, Player player) {
-		return !(player.containerMenu instanceof BackpackContainer);
+		return !(player.containerMenu instanceof BackpackMenu);
 	}
 }

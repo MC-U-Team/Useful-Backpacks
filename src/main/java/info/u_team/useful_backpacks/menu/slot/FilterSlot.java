@@ -1,4 +1,4 @@
-package info.u_team.useful_backpacks.container.slot;
+package info.u_team.useful_backpacks.menu.slot;
 
 import info.u_team.useful_backpacks.UsefulBackpacksMod;
 import info.u_team.useful_backpacks.api.Filter;
