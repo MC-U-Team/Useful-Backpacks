@@ -20,7 +20,7 @@ import net.minecraft.world.phys.BlockHitResult;
 
 public class FilterConfiguratorBlock extends UBlock {
 	
-	private static Component CONTAINER_NAME = new TranslatableComponent("container.usefulbackpacks.filter_configurator");
+	private static final Component CONTAINER_NAME = new TranslatableComponent("container.usefulbackpacks.filter_configurator");
 	
 	public FilterConfiguratorBlock() {
 		super(UsefulBackpacksCreativeTabs.TAB, Properties.of(Material.WOOD).strength(2.5F).sound(SoundType.WOOD));
