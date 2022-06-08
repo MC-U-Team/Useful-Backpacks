@@ -87,7 +87,7 @@ public class BackpackItem extends UItem implements AutoPickupBackpack, DyeableIt
 	
 	@Override
 	public void fillItemCategory(CreativeModeTab group, NonNullList<ItemStack> items) {
-		if (!allowdedIn(group)) {
+		if (!allowedIn(group)) {
 			return;
 		}
 		items.add(new ItemStack(this));

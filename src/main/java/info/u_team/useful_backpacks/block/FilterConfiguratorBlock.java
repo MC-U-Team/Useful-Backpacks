@@ -5,7 +5,6 @@ import info.u_team.useful_backpacks.init.UsefulBackpacksCreativeTabs;
 import info.u_team.useful_backpacks.menu.FilterConfiguratorMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
@@ -20,7 +19,7 @@ import net.minecraft.world.phys.BlockHitResult;
 
 public class FilterConfiguratorBlock extends UBlock {
 	
-	private static final Component CONTAINER_NAME = new TranslatableComponent("container.usefulbackpacks.filter_configurator");
+	private static final Component CONTAINER_NAME = Component.translatable("container.usefulbackpacks.filter_configurator");
 	
 	public FilterConfiguratorBlock() {
 		super(UsefulBackpacksCreativeTabs.TAB, Properties.of(Material.WOOD).strength(2.5F).sound(SoundType.WOOD));

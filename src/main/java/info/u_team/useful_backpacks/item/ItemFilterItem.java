@@ -8,8 +8,6 @@ import info.u_team.useful_backpacks.menu.ItemFilterMenu;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -78,8 +76,8 @@ public class ItemFilterItem extends FilterItem {
 			tooltip.add(TooltipCreator.create(this, "not_configured", 1, TooltipCreator.create(UsefulBackpacksMod.MODID, "click", "right_click", 0).withStyle(ChatFormatting.ITALIC, ChatFormatting.GOLD)).withStyle(ChatFormatting.GRAY));
 		} else {
 			tooltip.add(TooltipCreator.create(this, "configured", 0).withStyle(ChatFormatting.GREEN, ChatFormatting.ITALIC));
-			tooltip.add(TooltipCreator.create(this, "configured", 1, new TranslatableComponent(ItemStack.of(stack.getTag().getCompound("stack")).getDescriptionId()).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GRAY));
-			tooltip.add(TooltipCreator.create(this, "configured", 2, new TextComponent(Boolean.toString(stack.getTag().getBoolean("strict"))).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GRAY));
+			tooltip.add(TooltipCreator.create(this, "configured", 1, Component.translatable(ItemStack.of(stack.getTag().getCompound("stack")).getDescriptionId()).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GRAY));
+			tooltip.add(TooltipCreator.create(this, "configured", 2, Component.literal(Boolean.toString(stack.getTag().getBoolean("strict"))).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GRAY));
 			tooltip.add(TooltipCreator.create(this, "configured", 3, TooltipCreator.create(UsefulBackpacksMod.MODID, "click", "shift_right_click", 0).withStyle(ChatFormatting.ITALIC, ChatFormatting.GOLD)).withStyle(ChatFormatting.GRAY));
 		}
 	}

@@ -6,7 +6,6 @@ import info.u_team.u_team_core.util.WidgetUtil;
 import info.u_team.useful_backpacks.UsefulBackpacksMod;
 import info.u_team.useful_backpacks.menu.TagFilterMenu;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
@@ -22,7 +21,7 @@ public class TagFilterScreen extends UContainerMenuScreen<TagFilterMenu> {
 	public TagFilterScreen(TagFilterMenu container, Inventory playerInventory, Component title) {
 		super(container, playerInventory, title, BACKGROUND, 176, 190);
 		
-		tagSearchTextComponent = new TranslatableComponent("container.usefulbackpacks.tag_filter.search");
+		tagSearchTextComponent = Component.translatable("container.usefulbackpacks.tag_filter.search");
 	}
 	
 	@Override

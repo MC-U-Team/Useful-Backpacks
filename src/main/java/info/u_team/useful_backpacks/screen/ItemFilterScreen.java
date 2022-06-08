@@ -8,7 +8,6 @@ import info.u_team.useful_backpacks.menu.ItemFilterMenu;
 import io.netty.buffer.Unpooled;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
@@ -24,8 +23,8 @@ public class ItemFilterScreen extends UContainerMenuScreen<ItemFilterMenu> {
 		
 		final String langKey = "container.usefulbackpacks.item_filter.";
 		
-		strictTextComponent = new TranslatableComponent(langKey + "strict");
-		strictTooltipTextComponent = new TranslatableComponent(langKey + "strict.tooltip");
+		strictTextComponent = Component.translatable(langKey + "strict");
+		strictTooltipTextComponent = Component.translatable(langKey + "strict.tooltip");
 	}
 	
 	@Override

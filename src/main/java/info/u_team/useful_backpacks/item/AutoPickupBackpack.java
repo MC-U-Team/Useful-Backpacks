@@ -9,10 +9,9 @@ import info.u_team.useful_backpacks.api.Backpack;
 import info.u_team.useful_backpacks.api.Filter;
 import info.u_team.useful_backpacks.inventory.FilterInventory;
 import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -50,14 +49,14 @@ public interface AutoPickupBackpack extends Backpack {
 		
 		if (!filters.isEmpty()) {
 			tooltip.add(TooltipCreator.create(UsefulBackpacksMod.MODID, "backpack", "filter", 0).withStyle(ChatFormatting.GREEN, ChatFormatting.ITALIC));
-			tooltip.add(TextComponent.EMPTY);
+			tooltip.add(CommonComponents.EMPTY);
 			if (!flag.isAdvanced()) {
 				tooltip.add(TooltipCreator.create(UsefulBackpacksMod.MODID, "backpack", "filter_not_advanced", 0).withStyle(ChatFormatting.RED, ChatFormatting.ITALIC));
 			} else {
 				tooltip.add(TooltipCreator.create(UsefulBackpacksMod.MODID, "backpack", "filter_applied", 0).withStyle(ChatFormatting.AQUA));
 				
 				filters.stream().filter(filterStack -> filterStack.getItem() instanceof ItemFilterItem).forEach(filterStack -> {
-					final TranslatableComponent component = TooltipCreator.create(UsefulBackpacksMod.MODID, "backpack", "filter_applied_item", 0, new TranslatableComponent(ItemStack.of(filterStack.getTag().getCompound("stack")).getDescriptionId()).withStyle(ChatFormatting.YELLOW));
+					final MutableComponent component = TooltipCreator.create(UsefulBackpacksMod.MODID, "backpack", "filter_applied_item", 0, Component.translatable(ItemStack.of(filterStack.getTag().getCompound("stack")).getDescriptionId()).withStyle(ChatFormatting.YELLOW));
 					if (filterStack.getTag().getBoolean("strict")) {
 						component.append(" ").append(TooltipCreator.create(UsefulBackpacksMod.MODID, "backpack", "filter_applied_item", 1));
 					}
@@ -66,7 +65,7 @@ public interface AutoPickupBackpack extends Backpack {
 				});
 				
 				filters.stream().filter(filterStack -> filterStack.getItem() instanceof TagFilterItem).forEach(filterStack -> {
-					final MutableComponent component = TooltipCreator.create(UsefulBackpacksMod.MODID, "backpack", "filter_applied_tag", 0, new TextComponent(filterStack.getTag().getString("id")).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GRAY);
+					final MutableComponent component = TooltipCreator.create(UsefulBackpacksMod.MODID, "backpack", "filter_applied_tag", 0, Component.literal(filterStack.getTag().getString("id")).withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GRAY);
 					tooltip.add(component);
 				});
 			}
