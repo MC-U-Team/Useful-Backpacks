@@ -126,7 +126,9 @@ dependencies {
 
 curseforge {
 	apiKey = defaultPropertyValue("curseforge.token")
-	
+	options {
+		debug = true
+	}
 	project {
 		id = config.curse.id
 		releaseType = config.curse.type
