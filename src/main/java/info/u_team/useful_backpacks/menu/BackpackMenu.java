@@ -118,4 +118,8 @@ public class BackpackMenu extends UContainerMenu {
 	public BackpackType getBackpack() {
 		return backpack;
 	}
+	
+	public Container getBackpackInventory() {
+		return backpackInventory;
+	}
 }

@@ -6,6 +6,9 @@ import java.util.function.Function;
 
 import info.u_team.useful_backpacks.api.Backpack;
 import info.u_team.useful_backpacks.config.CommonConfig;
+import info.u_team.useful_backpacks.inventory.BackpackInventory;
+import info.u_team.useful_backpacks.item.BackpackItem;
+import info.u_team.useful_backpacks.menu.BackpackMenu;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
@@ -45,6 +48,24 @@ public class ItemPickupEventHandler {
 	}
 	
 	private static ItemStack insertInBackpacks(ServerPlayer player, ItemStack stackToPickup) {
+		if (player.containerMenu instanceof BackpackMenu menu) {
+			if (menu.getBackpackInventory() instanceof BackpackInventory inventory) {
+				if (inventory.getStack().getItem() instanceof BackpackItem backpack) {
+					if (backpack.canAutoPickup(stackToPickup, inventory.getStack())) {
+						final IItemHandler itemHandler = new InvWrapper(inventory);
+						final ItemStack result = ItemHandlerHelper.insertItemStacked(itemHandler, stackToPickup, false);
+						if (result.getCount() != stackToPickup.getCount()) {
+							inventory.writeItemStack();
+						}
+						stackToPickup = result;
+						if (stackToPickup.isEmpty()) {
+							return stackToPickup;
+						}
+					}
+				}
+			}
+		}
+		
 		final Inventory playerInventory = player.getInventory();
 		
 		for (final Function<ServerPlayer, ItemStack> function : INTEGRATION_BACKPACKS) {
