@@ -1,21 +1,21 @@
 {
 	"type": "usefulbackpacks:crafting_backpack",
+	"key": {
+		"B": {
+			"item": "usefulbackpacks:backpack_medium"
+		},
+		"L": {
+			"item": "minecraft:leather"
+		},
+		"W": {
+			"tag": "minecraft:wool"
+		}
+	},
 	"pattern": [
 		"WLW",
 		"LBL",
 		"WLW"
 	],
-	"key": {
-		"W": {
-			"tag": "minecraft:wool"
-		},
-		"L": {
-			"item": "minecraft:leather"
-		},
-		"B": {
-			"item": "usefulbackpacks:backpack_medium"
-		}
-	},
 	"result": {
 		"item": "usefulbackpacks:backpack_large"
 	}

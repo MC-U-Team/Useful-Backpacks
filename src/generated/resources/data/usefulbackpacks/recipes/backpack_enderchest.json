@@ -1,24 +1,24 @@
 {
 	"type": "minecraft:crafting_shaped",
+	"key": {
+		"E": {
+			"item": "minecraft:ender_chest"
+		},
+		"L": {
+			"item": "minecraft:leather"
+		},
+		"S": {
+			"item": "minecraft:string"
+		},
+		"W": {
+			"tag": "minecraft:wool"
+		}
+	},
 	"pattern": [
 		"WLW",
 		"ESE",
 		"WLW"
 	],
-	"key": {
-		"W": {
-			"tag": "minecraft:wool"
-		},
-		"L": {
-			"item": "minecraft:leather"
-		},
-		"E": {
-			"item": "minecraft:ender_chest"
-		},
-		"S": {
-			"item": "minecraft:string"
-		}
-	},
 	"result": {
 		"item": "usefulbackpacks:backpack_enderchest"
 	}

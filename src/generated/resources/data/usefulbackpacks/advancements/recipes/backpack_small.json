@@ -1,23 +1,7 @@
 {
 	"parent": "minecraft:recipes/root",
-	"rewards": {
-		"recipes": [
-			"usefulbackpacks:backpack_small"
-		]
-	},
 	"criteria": {
-		"has_wool": {
-			"trigger": "minecraft:inventory_changed",
-			"conditions": {
-				"items": [
-					{
-						"tag": "minecraft:wool"
-					}
-				]
-			}
-		},
 		"has_leather": {
-			"trigger": "minecraft:inventory_changed",
 			"conditions": {
 				"items": [
 					{
@@ -26,13 +10,24 @@
 						]
 					}
 				]
-			}
+			},
+			"trigger": "minecraft:inventory_changed"
 		},
 		"has_the_recipe": {
-			"trigger": "minecraft:recipe_unlocked",
 			"conditions": {
 				"recipe": "usefulbackpacks:backpack_small"
-			}
+			},
+			"trigger": "minecraft:recipe_unlocked"
+		},
+		"has_wool": {
+			"conditions": {
+				"items": [
+					{
+						"tag": "minecraft:wool"
+					}
+				]
+			},
+			"trigger": "minecraft:inventory_changed"
 		}
 	},
 	"requirements": [
@@ -41,5 +36,10 @@
 			"has_leather",
 			"has_the_recipe"
 		]
-	]
+	],
+	"rewards": {
+		"recipes": [
+			"usefulbackpacks:backpack_small"
+		]
+	}
 }

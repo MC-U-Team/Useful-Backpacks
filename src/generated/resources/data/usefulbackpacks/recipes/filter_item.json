@@ -1,13 +1,14 @@
 {
 	"type": "minecraft:crafting_shaped",
-	"pattern": [
-		"WLW",
-		"RDS",
-		"IEI"
-	],
 	"key": {
-		"W": {
-			"tag": "minecraft:wool"
+		"D": {
+			"tag": "forge:gems/diamond"
+		},
+		"E": {
+			"tag": "forge:end_stones"
+		},
+		"I": {
+			"tag": "forge:ingots/iron"
 		},
 		"L": {
 			"item": "minecraft:leather"
@@ -15,19 +16,18 @@
 		"R": {
 			"tag": "forge:dusts/redstone"
 		},
-		"D": {
-			"tag": "forge:gems/diamond"
-		},
 		"S": {
 			"item": "minecraft:string"
 		},
-		"I": {
-			"tag": "forge:ingots/iron"
-		},
-		"E": {
-			"tag": "forge:end_stones"
+		"W": {
+			"tag": "minecraft:wool"
 		}
 	},
+	"pattern": [
+		"WLW",
+		"RDS",
+		"IEI"
+	],
 	"result": {
 		"item": "usefulbackpacks:filter_item"
 	}

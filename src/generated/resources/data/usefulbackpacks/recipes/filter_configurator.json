@@ -1,13 +1,8 @@
 {
 	"type": "minecraft:crafting_shaped",
-	"pattern": [
-		"WLW",
-		"PCP",
-		"WLW"
-	],
 	"key": {
-		"W": {
-			"tag": "minecraft:wool"
+		"C": {
+			"item": "minecraft:crafting_table"
 		},
 		"L": {
 			"item": "minecraft:leather"
@@ -15,10 +10,15 @@
 		"P": {
 			"tag": "minecraft:planks"
 		},
-		"C": {
-			"item": "minecraft:crafting_table"
+		"W": {
+			"tag": "minecraft:wool"
 		}
 	},
+	"pattern": [
+		"WLW",
+		"PCP",
+		"WLW"
+	],
 	"result": {
 		"item": "usefulbackpacks:filter_configurator"
 	}
