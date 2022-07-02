@@ -14,12 +14,12 @@ import info.u_team.useful_backpacks.init.UsefulBackpacksCreativeTabs;
 
 public class UsefulBackpacksLanguagesProvider extends CommonLanguagesProvider {
 	
-	public UsefulBackpacksLanguagesProvider(GenerationData data) {
-		super(data);
+	public UsefulBackpacksLanguagesProvider(GenerationData generationData) {
+		super(generationData);
 	}
 	
 	@Override
-	public void addTranslations() {
+	public void register() {
 		// English
 		add(UsefulBackpacksCreativeTabs.TAB, "Useful Backpacks");
 		addItem(SMALL_BACKPACK, "Small Backpack");

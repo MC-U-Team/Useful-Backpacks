@@ -10,7 +10,7 @@ import static info.u_team.useful_backpacks.init.UsefulBackpacksItems.TAG_FILTER;
 
 import java.util.function.Consumer;
 
-import info.u_team.u_team_core.data.CommonRecipesProvider;
+import info.u_team.u_team_core.data.CommonRecipeProvider;
 import info.u_team.u_team_core.data.GenerationData;
 import info.u_team.useful_backpacks.data.builder.BackpackCraftingRecipeBuilder;
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -19,14 +19,14 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.common.Tags;
 
-public class UsefulBackpacksRecipesProvider extends CommonRecipesProvider {
+public class UsefulBackpacksRecipesProvider extends CommonRecipeProvider {
 	
 	public UsefulBackpacksRecipesProvider(GenerationData data) {
 		super(data);
 	}
 	
 	@Override
-	protected void registerRecipes(Consumer<FinishedRecipe> consumer) {
+	public void register(Consumer<FinishedRecipe> consumer) {
 		BackpackCraftingRecipeBuilder.backpackRecipe(SMALL_BACKPACK.get()) //
 				.pattern("WLW") //
 				.pattern("LSL") //
@@ -34,8 +34,8 @@ public class UsefulBackpacksRecipesProvider extends CommonRecipesProvider {
 				.define('W', getIngredientOfTag(ItemTags.WOOL)) //
 				.define('L', Items.LEATHER) //
 				.define('S', Items.STRING) //
-				.unlockedBy("has_wool", hasItem(ItemTags.WOOL)) //
-				.unlockedBy("has_leather", hasItem(Items.LEATHER)) //
+				.unlockedBy("has_wool", has(ItemTags.WOOL)) //
+				.unlockedBy("has_leather", has(Items.LEATHER)) //
 				.save(consumer);
 		
 		BackpackCraftingRecipeBuilder.backpackRecipe(MEDIUM_BACKPACK.get()) //
@@ -45,7 +45,7 @@ public class UsefulBackpacksRecipesProvider extends CommonRecipesProvider {
 				.define('W', getIngredientOfTag(ItemTags.WOOL)) //
 				.define('L', Items.LEATHER) //
 				.define('B', SMALL_BACKPACK.get()) //
-				.unlockedBy("has_small_backpack", hasItem(SMALL_BACKPACK.get())) //
+				.unlockedBy("has_small_backpack", has(SMALL_BACKPACK.get())) //
 				.save(consumer);
 		
 		BackpackCraftingRecipeBuilder.backpackRecipe(LARGE_BACKPACK.get()) //
@@ -55,7 +55,7 @@ public class UsefulBackpacksRecipesProvider extends CommonRecipesProvider {
 				.define('W', getIngredientOfTag(ItemTags.WOOL)) //
 				.define('L', Items.LEATHER) //
 				.define('B', MEDIUM_BACKPACK.get()) //
-				.unlockedBy("has_medium_backpack", hasItem(MEDIUM_BACKPACK.get())) //
+				.unlockedBy("has_medium_backpack", has(MEDIUM_BACKPACK.get())) //
 				.save(consumer);
 		
 		ShapedRecipeBuilder.shaped(ENDERCHEST_BACKPACK.get()) //
@@ -66,7 +66,7 @@ public class UsefulBackpacksRecipesProvider extends CommonRecipesProvider {
 				.define('L', Items.LEATHER) //
 				.define('E', Items.ENDER_CHEST) //
 				.define('S', Items.STRING) //
-				.unlockedBy("has_enderchest", hasItem(Items.ENDER_CHEST)) //
+				.unlockedBy("has_enderchest", has(Items.ENDER_CHEST)) //
 				.save(consumer);
 		
 		ShapedRecipeBuilder.shaped(FILTER_CONFIGURATOR.get()) //
@@ -77,8 +77,8 @@ public class UsefulBackpacksRecipesProvider extends CommonRecipesProvider {
 				.define('L', Items.LEATHER) //
 				.define('P', getIngredientOfTag(ItemTags.PLANKS)) //
 				.define('C', Items.CRAFTING_TABLE) //
-				.unlockedBy("has_wool", hasItem(ItemTags.WOOL)) //
-				.unlockedBy("has_leather", hasItem(Items.LEATHER)) //
+				.unlockedBy("has_wool", has(ItemTags.WOOL)) //
+				.unlockedBy("has_leather", has(Items.LEATHER)) //
 				.save(consumer);
 		
 		ShapedRecipeBuilder.shaped(ITEM_FILTER.get()) //
@@ -92,7 +92,7 @@ public class UsefulBackpacksRecipesProvider extends CommonRecipesProvider {
 				.define('S', Items.STRING) //
 				.define('I', getIngredientOfTag(Tags.Items.INGOTS_IRON)) //
 				.define('E', getIngredientOfTag(Tags.Items.END_STONES)) //
-				.unlockedBy("has_small_backpack", hasItem(SMALL_BACKPACK.get())) //
+				.unlockedBy("has_small_backpack", has(SMALL_BACKPACK.get())) //
 				.save(consumer);
 		
 		ShapedRecipeBuilder.shaped(TAG_FILTER.get()) //
@@ -106,7 +106,7 @@ public class UsefulBackpacksRecipesProvider extends CommonRecipesProvider {
 				.define('S', Items.STRING) //
 				.define('I', getIngredientOfTag(Tags.Items.INGOTS_IRON)) //
 				.define('E', getIngredientOfTag(Tags.Items.END_STONES)) //
-				.unlockedBy("has_small_backpack", hasItem(SMALL_BACKPACK.get())) //
+				.unlockedBy("has_small_backpack", has(SMALL_BACKPACK.get())) //
 				.save(consumer);
 	}
 }

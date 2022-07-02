@@ -8,19 +8,19 @@ import static info.u_team.useful_backpacks.init.UsefulBackpacksItems.MEDIUM_BACK
 import static info.u_team.useful_backpacks.init.UsefulBackpacksItems.SMALL_BACKPACK;
 import static info.u_team.useful_backpacks.init.UsefulBackpacksItems.TAG_FILTER;
 
-import info.u_team.u_team_core.data.CommonItemModelsProvider;
+import info.u_team.u_team_core.data.CommonItemModelProvider;
 import info.u_team.u_team_core.data.GenerationData;
 import info.u_team.useful_backpacks.item.BackpackItem;
 import net.minecraftforge.client.model.generators.ModelFile.UncheckedModelFile;
 
-public class UsefulBackpacksItemModelsProvider extends CommonItemModelsProvider {
+public class UsefulBackpacksItemModelsProvider extends CommonItemModelProvider {
 	
-	public UsefulBackpacksItemModelsProvider(GenerationData data) {
-		super(data);
+	public UsefulBackpacksItemModelsProvider(GenerationData generationData) {
+		super(generationData);
 	}
 	
 	@Override
-	protected void registerModels() {
+	public void register() {
 		simpleBackpackGenerated(SMALL_BACKPACK.get());
 		simpleBackpackGenerated(MEDIUM_BACKPACK.get());
 		simpleBackpackGenerated(LARGE_BACKPACK.get());

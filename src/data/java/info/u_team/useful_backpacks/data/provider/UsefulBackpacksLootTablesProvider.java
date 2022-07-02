@@ -4,19 +4,19 @@ import static info.u_team.useful_backpacks.init.UsefulBackpacksBlocks.FILTER_CON
 
 import java.util.function.BiConsumer;
 
-import info.u_team.u_team_core.data.CommonLootTablesProvider;
+import info.u_team.u_team_core.data.CommonLootTableProvider;
 import info.u_team.u_team_core.data.GenerationData;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.storage.loot.LootTable;
 
-public class UsefulBackpacksLootTablesProvider extends CommonLootTablesProvider {
+public class UsefulBackpacksLootTablesProvider extends CommonLootTableProvider {
 	
-	public UsefulBackpacksLootTablesProvider(GenerationData data) {
-		super(data);
+	public UsefulBackpacksLootTablesProvider(GenerationData generationData) {
+		super(generationData);
 	}
 	
 	@Override
-	protected void registerLootTables(BiConsumer<ResourceLocation, LootTable> consumer) {
+	public void register(BiConsumer<ResourceLocation, LootTable> consumer) {
 		registerBlock(FILTER_CONFIGURATOR, addBasicBlockLootTable(FILTER_CONFIGURATOR.get()), consumer);
 	}
 	

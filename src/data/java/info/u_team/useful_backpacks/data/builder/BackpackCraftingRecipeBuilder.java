@@ -25,6 +25,6 @@ public class BackpackCraftingRecipeBuilder extends ShapedRecipeBuilder {
 	
 	@Override
 	public void save(Consumer<FinishedRecipe> consumer, ResourceLocation location) {
-		super.save(recipe -> consumer.accept(RecipeBuilderUtil.getRecipeWithSerializer(recipe, UsefulBackpacksRecipeSerializers.BACKPACK.get())), location);
+		super.save(recipe -> consumer.accept(RecipeBuilderUtil.getRecipeWithSerializer(recipe, UsefulBackpacksRecipeSerializers.BACKPACK)), location);
 	}
 }

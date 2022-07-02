@@ -19,15 +19,12 @@ public class UsefulBackpacksDataGenerator {
 	@SubscribeEvent
 	public static void data(GatherDataEvent event) {
 		final GenerationData data = new GenerationData(UsefulBackpacksMod.MODID, event);
-		if (event.includeServer()) {
-			data.addProvider(UsefulBackpacksItemTagsProvider::new);
-			data.addProvider(UsefulBackpacksLootTablesProvider::new);
-			data.addProvider(UsefulBackpacksRecipesProvider::new);
-		}
-		if (event.includeClient()) {
-			data.addProvider(UsefulBackpacksBlockStatesProvider::new);
-			data.addProvider(UsefulBackpacksItemModelsProvider::new);
-			data.addProvider(UsefulBackpacksLanguagesProvider::new);
-		}
+		data.addProvider(event.includeServer(), UsefulBackpacksItemTagsProvider::new);
+		data.addProvider(event.includeServer(), UsefulBackpacksLootTablesProvider::new);
+		data.addProvider(event.includeServer(), UsefulBackpacksRecipesProvider::new);
+		
+		data.addProvider(event.includeClient(), UsefulBackpacksBlockStatesProvider::new);
+		data.addProvider(event.includeClient(), UsefulBackpacksItemModelsProvider::new);
+		data.addProvider(event.includeClient(), UsefulBackpacksLanguagesProvider::new);
 	}
 }

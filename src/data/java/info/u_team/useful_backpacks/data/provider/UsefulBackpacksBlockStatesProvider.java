@@ -2,20 +2,20 @@ package info.u_team.useful_backpacks.data.provider;
 
 import static info.u_team.useful_backpacks.init.UsefulBackpacksBlocks.FILTER_CONFIGURATOR;
 
-import info.u_team.u_team_core.data.CommonBlockStatesProvider;
+import info.u_team.u_team_core.data.CommonBlockStateProvider;
 import info.u_team.u_team_core.data.GenerationData;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.ModelFile;
 
-public class UsefulBackpacksBlockStatesProvider extends CommonBlockStatesProvider {
+public class UsefulBackpacksBlockStatesProvider extends CommonBlockStateProvider {
 	
 	public UsefulBackpacksBlockStatesProvider(GenerationData data) {
 		super(data);
 	}
 	
 	@Override
-	protected void registerStatesAndModels() {
+	public void register() {
 		simpleBlock(FILTER_CONFIGURATOR.get(), cubeBottomTop(FILTER_CONFIGURATOR.get()));
 	}
 	
