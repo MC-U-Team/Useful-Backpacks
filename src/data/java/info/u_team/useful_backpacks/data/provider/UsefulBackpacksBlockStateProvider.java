@@ -8,9 +8,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.ModelFile;
 
-public class UsefulBackpacksBlockStatesProvider extends CommonBlockStateProvider {
+public class UsefulBackpacksBlockStateProvider extends CommonBlockStateProvider {
 	
-	public UsefulBackpacksBlockStatesProvider(GenerationData data) {
+	public UsefulBackpacksBlockStateProvider(GenerationData data) {
 		super(data);
 	}
 	

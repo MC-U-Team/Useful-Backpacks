@@ -13,9 +13,9 @@ import info.u_team.u_team_core.data.GenerationData;
 import info.u_team.useful_backpacks.item.BackpackItem;
 import net.minecraftforge.client.model.generators.ModelFile.UncheckedModelFile;
 
-public class UsefulBackpacksItemModelsProvider extends CommonItemModelProvider {
+public class UsefulBackpacksItemModelProvider extends CommonItemModelProvider {
 	
-	public UsefulBackpacksItemModelsProvider(GenerationData generationData) {
+	public UsefulBackpacksItemModelProvider(GenerationData generationData) {
 		super(generationData);
 	}
 	

@@ -9,9 +9,9 @@ import info.u_team.u_team_core.data.GenerationData;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.storage.loot.LootTable;
 
-public class UsefulBackpacksLootTablesProvider extends CommonLootTableProvider {
+public class UsefulBackpacksLootTableProvider extends CommonLootTableProvider {
 	
-	public UsefulBackpacksLootTablesProvider(GenerationData generationData) {
+	public UsefulBackpacksLootTableProvider(GenerationData generationData) {
 		super(generationData);
 	}
 	

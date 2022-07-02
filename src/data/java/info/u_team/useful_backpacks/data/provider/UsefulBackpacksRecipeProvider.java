@@ -19,9 +19,9 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.common.Tags;
 
-public class UsefulBackpacksRecipesProvider extends CommonRecipeProvider {
+public class UsefulBackpacksRecipeProvider extends CommonRecipeProvider {
 	
-	public UsefulBackpacksRecipesProvider(GenerationData data) {
+	public UsefulBackpacksRecipeProvider(GenerationData data) {
 		super(data);
 	}
 	
