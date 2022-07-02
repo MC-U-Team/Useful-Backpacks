@@ -9,6 +9,7 @@ import static info.u_team.useful_backpacks.init.UsefulBackpacksItems.TAG_FILTER;
 import static info.u_team.useful_backpacks.init.UsefulBackpacksTags.Items.BACKPACK;
 import static info.u_team.useful_backpacks.init.UsefulBackpacksTags.Items.FILTER;
 
+import info.u_team.u_team_core.data.CommonBlockTagsProvider;
 import info.u_team.u_team_core.data.CommonItemTagsProvider;
 import info.u_team.u_team_core.data.GenerationData;
 import info.u_team.u_team_core.util.TagUtil;
@@ -16,7 +17,12 @@ import info.u_team.u_team_core.util.TagUtil;
 public class UsefulBackpacksItemTagsProvider extends CommonItemTagsProvider {
 	
 	public UsefulBackpacksItemTagsProvider(GenerationData generationData) {
-		super(generationData, null);
+		super(generationData, new CommonBlockTagsProvider(generationData) {
+			
+			@Override
+			public void register() {
+			}
+		});
 	}
 	
 	@Override
