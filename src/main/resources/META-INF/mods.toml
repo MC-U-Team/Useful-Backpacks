@@ -12,7 +12,7 @@ license="Apache-2.0 License"
 	logoFile="logo.png"
 	credits="Team U-Team"
 	authors="HyCraftHD"
-	description="Join our discord server here: https://discord.u-team.info\n\nThis mod adds cool new backpacks to your game."
+	description="Join our discord server here: https://discord.hycrafthd.net\n\nThis mod adds cool new backpacks to your game."
 	
 	[[dependencies.usefulbackpacks]]
 	    modId="forge"
