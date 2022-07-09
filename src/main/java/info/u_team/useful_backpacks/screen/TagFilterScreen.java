@@ -18,8 +18,8 @@ public class TagFilterScreen extends UContainerMenuScreen<TagFilterMenu> {
 	private ScalableEditBox tagTextField;
 	private TagFilterTagList tagList;
 	
-	public TagFilterScreen(TagFilterMenu container, Inventory playerInventory, Component title) {
-		super(container, playerInventory, title, BACKGROUND, 176, 190);
+	public TagFilterScreen(TagFilterMenu menu, Inventory playerInventory, Component title) {
+		super(menu, playerInventory, title, BACKGROUND, 176, 190);
 		
 		tagSearchTextComponent = Component.translatable("container.usefulbackpacks.tag_filter.search");
 	}

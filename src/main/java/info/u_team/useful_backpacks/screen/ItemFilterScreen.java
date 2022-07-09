@@ -18,8 +18,8 @@ public class ItemFilterScreen extends UContainerMenuScreen<ItemFilterMenu> {
 	private final Component strictTextComponent;
 	private final Component strictTooltipTextComponent;
 	
-	public ItemFilterScreen(ItemFilterMenu container, Inventory playerInventory, Component title) {
-		super(container, playerInventory, title, BACKGROUND, 176, 130);
+	public ItemFilterScreen(ItemFilterMenu menu, Inventory playerInventory, Component title) {
+		super(menu, playerInventory, title, BACKGROUND, 176, 130);
 		
 		final String langKey = "container.usefulbackpacks.item_filter.";
 		

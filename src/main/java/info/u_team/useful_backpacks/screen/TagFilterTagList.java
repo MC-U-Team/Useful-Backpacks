@@ -15,11 +15,11 @@ import net.minecraft.tags.TagKey;
 
 public class TagFilterTagList extends ScrollableList<TagFilterTagListEntry> {
 	
-	private final TagFilterMenu container;
+	private final TagFilterMenu menu;
 	
-	public TagFilterTagList(TagFilterMenu container, int x, int y, int width, int height, String tag) {
+	public TagFilterTagList(TagFilterMenu menu, int x, int y, int width, int height, String tag) {
 		super(x, y, width, height, 10, 15);
-		this.container = container;
+		this.menu = menu;
 		
 		setRenderTopAndBottom(false);
 		setUseScissor(true);
@@ -41,8 +41,8 @@ public class TagFilterTagList extends ScrollableList<TagFilterTagListEntry> {
 		
 		final String tag = entry.getTag().toString();
 		
-		container.getTagMessage().triggerMessage(() -> new FriendlyByteBuf(Unpooled.buffer(100)).writeUtf(tag));
-		container.setTag(tag);
+		menu.getTagMessage().triggerMessage(() -> new FriendlyByteBuf(Unpooled.buffer(100)).writeUtf(tag));
+		menu.setTag(tag);
 	}
 	
 	public void updateSearch(String search) {

@@ -9,8 +9,8 @@ import net.minecraft.world.entity.player.Inventory;
 
 public class BackpackScreen extends UContainerMenuScreen<BackpackMenu> {
 	
-	public BackpackScreen(BackpackMenu container, Inventory playerInventory, Component title) {
-		super(container, playerInventory, title, new ResourceLocation(UsefulBackpacksMod.MODID, "textures/gui/backpack/" + container.getBackpack().getName() + ".png"), container.getBackpack().getTextureSizeX(), container.getBackpack().getTextureSizeY());
+	public BackpackScreen(BackpackMenu menu, Inventory playerInventory, Component title) {
+		super(menu, playerInventory, title, new ResourceLocation(UsefulBackpacksMod.MODID, "textures/gui/backpack/" + menu.getBackpack().getName() + ".png"), menu.getBackpack().getTextureSizeX(), menu.getBackpack().getTextureSizeY());
 		setBackgroundDimensions(512);
 		setDrawText(true, false);
 		setTextLocation(8, 9, 0, 0);

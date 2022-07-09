@@ -11,7 +11,7 @@ public class FilterConfiguratorScreen extends UContainerMenuScreen<FilterConfigu
 	
 	private static final ResourceLocation BACKGROUND = new ResourceLocation(UsefulBackpacksMod.MODID, "textures/gui/filter_configurator.png");
 	
-	public FilterConfiguratorScreen(FilterConfiguratorMenu container, Inventory playerInventory, Component title) {
-		super(container, playerInventory, title, BACKGROUND);
+	public FilterConfiguratorScreen(FilterConfiguratorMenu menu, Inventory playerInventory, Component title) {
+		super(menu, playerInventory, title, BACKGROUND);
 	}
 }
