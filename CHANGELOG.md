@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.19-1.14.0.99] - 2022-07-15
+### Changed
+ - Update forge version to 41.0.98
+
 ## [1.19-1.13.1.98] - 2022-07-02
 ### Changed
  - Update forge version to 41.0.63
