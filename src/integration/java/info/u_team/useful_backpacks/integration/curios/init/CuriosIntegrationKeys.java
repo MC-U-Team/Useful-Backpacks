@@ -6,18 +6,17 @@ import info.u_team.useful_backpacks.integration.curios.network.OpenBackpackMessa
 import info.u_team.useful_backpacks.integration.curios.util.BackpackCuriosUtil;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
-import net.minecraftforge.client.ClientRegistry;
+import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.client.settings.IKeyConflictContext;
 import net.minecraftforge.event.TickEvent.ClientTickEvent;
 import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 public class CuriosIntegrationKeys {
 	
 	public static final KeyMapping OPEN_BACKPACK = new KeyMapping("key.usefulbackpacks.curiosintegration.description", GLFW.GLFW_KEY_V, "key.usefulbackpacks.curiosintegration.category");
 	
-	private static void setup(FMLClientSetupEvent event) {
+	private static void register(RegisterKeyMappingsEvent event) {
 		OPEN_BACKPACK.setKeyConflictContext(new IKeyConflictContext() {
 			
 			@Override
@@ -30,7 +29,7 @@ public class CuriosIntegrationKeys {
 				return false;
 			}
 		});
-		ClientRegistry.registerKeyBinding(OPEN_BACKPACK);
+		event.register(OPEN_BACKPACK);
 	}
 	
 	public static void onClientTick(ClientTickEvent event) {
@@ -44,7 +43,7 @@ public class CuriosIntegrationKeys {
 	}
 	
 	public static void registerMod(IEventBus bus) {
-		bus.addListener(CuriosIntegrationKeys::setup);
+		bus.addListener(CuriosIntegrationKeys::register);
 	}
 	
 	public static void registerForge(IEventBus bus) {
