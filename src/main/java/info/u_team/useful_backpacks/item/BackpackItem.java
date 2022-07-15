@@ -47,7 +47,7 @@ public class BackpackItem extends UItem implements AutoPickupBackpack, DyeableIt
 	
 	@Override
 	public void open(ServerPlayer player, ItemStack backpackStack, int selectedSlot) {
-		NetworkHooks.openGui(player, new SimpleMenuProvider((id, playerInventory, unused) -> {
+		NetworkHooks.openScreen(player, new SimpleMenuProvider((id, playerInventory, unused) -> {
 			return new BackpackMenu(id, playerInventory, getInventory(player, backpackStack), backpack, selectedSlot);
 		}, backpackStack.getHoverName()), buffer -> {
 			buffer.writeEnum(backpack);

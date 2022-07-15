@@ -36,7 +36,7 @@ public class ItemFilterItem extends FilterItem {
 				} else {
 					isStrict = false;
 				}
-				NetworkHooks.openGui((ServerPlayer) player, new SimpleMenuProvider((id, playerInventory, unused) -> {
+				NetworkHooks.openScreen((ServerPlayer) player, new SimpleMenuProvider((id, playerInventory, unused) -> {
 					return new ItemFilterMenu(id, playerInventory, stack, selectedSlot, isStrict);
 				}, stack.getHoverName()), buffer -> {
 					buffer.writeVarInt(selectedSlot);

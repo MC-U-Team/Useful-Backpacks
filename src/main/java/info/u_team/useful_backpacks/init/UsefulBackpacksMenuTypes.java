@@ -15,7 +15,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class UsefulBackpacksMenuTypes {
 	
-	public static final CommonDeferredRegister<MenuType<?>> MENU_TYPES = CommonDeferredRegister.create(ForgeRegistries.CONTAINERS, UsefulBackpacksMod.MODID);
+	public static final CommonDeferredRegister<MenuType<?>> MENU_TYPES = CommonDeferredRegister.create(ForgeRegistries.MENU_TYPES, UsefulBackpacksMod.MODID);
 	
 	public static final RegistryObject<MenuType<BackpackMenu>> BACKPACK = MENU_TYPES.register("backpack", () -> new UMenuType<>(BackpackMenu::createClientContainer));
 	public static final RegistryObject<MenuType<EnderChestBackpackMenu>> ENDERCHEST_BACKPACK = MENU_TYPES.register("backpack_enderchest", () -> new UMenuType<>(EnderChestBackpackMenu::createEnderChestContainer));

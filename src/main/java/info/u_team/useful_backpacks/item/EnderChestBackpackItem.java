@@ -37,7 +37,7 @@ public class EnderChestBackpackItem extends UItem implements AutoPickupBackpack 
 	
 	@Override
 	public void open(ServerPlayer player, ItemStack backpackStack, int selectedSlot) {
-		NetworkHooks.openGui(player, new SimpleMenuProvider((id, playerInventory, unused) -> {
+		NetworkHooks.openScreen(player, new SimpleMenuProvider((id, playerInventory, unused) -> {
 			return EnderChestBackpackMenu.createEnderChestContainer(id, playerInventory, getInventory(player, backpackStack), selectedSlot);
 		}, backpackStack.getHoverName()), buffer -> {
 			buffer.writeVarInt(selectedSlot);

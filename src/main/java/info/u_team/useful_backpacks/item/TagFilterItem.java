@@ -35,7 +35,7 @@ public class TagFilterItem extends FilterItem {
 				} else {
 					tag = "";
 				}
-				NetworkHooks.openGui((ServerPlayer) player, new SimpleMenuProvider((id, playerInventory, unused) -> {
+				NetworkHooks.openScreen((ServerPlayer) player, new SimpleMenuProvider((id, playerInventory, unused) -> {
 					return new TagFilterMenu(id, playerInventory, stack, selectedSlot, tag);
 				}, stack.getHoverName()), buffer -> {
 					buffer.writeVarInt(selectedSlot);

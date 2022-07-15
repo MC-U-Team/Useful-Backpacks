@@ -28,7 +28,7 @@ public class ItemPickupEventHandler {
 	public static final List<Function<ServerPlayer, ItemStack>> INTEGRATION_BACKPACKS = new ArrayList<>();
 	
 	private static void onEntityItemPickup(EntityItemPickupEvent event) {
-		final Player player = event.getPlayer();
+		final Player player = event.getEntity();
 		
 		if (!(player instanceof ServerPlayer)) {
 			return;
@@ -48,9 +48,9 @@ public class ItemPickupEventHandler {
 	}
 	
 	private static ItemStack insertInBackpacks(ServerPlayer player, ItemStack stackToPickup) {
-		if (player.containerMenu instanceof BackpackMenu menu) {
-			if (menu.getBackpackInventory() instanceof BackpackInventory inventory) {
-				if (inventory.getStack().getItem() instanceof BackpackItem backpack) {
+		if (player.containerMenu instanceof final BackpackMenu menu) {
+			if (menu.getBackpackInventory() instanceof final BackpackInventory inventory) {
+				if (inventory.getStack().getItem() instanceof final BackpackItem backpack) {
 					if (backpack.canAutoPickup(stackToPickup, inventory.getStack())) {
 						final IItemHandler itemHandler = new InvWrapper(inventory);
 						final ItemStack result = ItemHandlerHelper.insertItemStacked(itemHandler, stackToPickup, false);
