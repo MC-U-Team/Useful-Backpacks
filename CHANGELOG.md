@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.16.5-1.12.1.103] - 2022-09-15
+### Changed
+ - Update required uteamcore version
+
 ## [1.16.5-1.12.1.102] - 2022-09-15
 ### Changed
  - Update build script and add gradle files plugin
