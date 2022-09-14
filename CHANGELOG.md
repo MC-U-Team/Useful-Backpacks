@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.16.5-1.12.1.102] - 2022-09-15
+### Changed
+ - Update build script and add gradle files plugin
+ - Update to latest forge version
+
 ## [1.16.5-1.12.1.90] - 2021-06-13
 ### Changed
  - Updated forge version to 36.1.30
