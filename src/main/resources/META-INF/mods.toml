@@ -17,7 +17,7 @@ license="Apache-2.0 License"
 	[[dependencies.usefulbackpacks]]
 	    modId="forge"
 	    mandatory=true
-	    versionRange="[43.0.0,)"
+	    versionRange="[43.1.25,)"
 	    ordering="NONE"
 	    side="BOTH"
 	
