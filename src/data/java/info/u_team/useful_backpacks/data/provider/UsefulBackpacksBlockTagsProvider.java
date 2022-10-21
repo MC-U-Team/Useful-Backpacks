@@ -14,7 +14,6 @@ public class UsefulBackpacksBlockTagsProvider extends CommonBlockTagsProvider {
 	@Override
 	public void register() {
 		tag(VanillaTierTags.MINEABLE_WITH_AXE).add(UsefulBackpacksBlocks.FILTER_CONFIGURATOR.get());
-		tag(VanillaTierTags.NEEDS_WOOD_TOOL).add(UsefulBackpacksBlocks.FILTER_CONFIGURATOR.get());
 	}
 	
 }
