@@ -53,7 +53,7 @@ public class BackpackCraftingRecipeCategoryExtension implements ICraftingCategor
 		// final IFocus<ItemStack> focus = focuses.getFocuses(VanillaTypes.ITEM).findFirst().orElse(null);
 		// TODO reimplement old matching logic
 		
-		craftingGridHelper.setInputs(builder, VanillaTypes.ITEM_STACK, inputs, getWidth(), getHeight());
-		craftingGridHelper.setOutputs(builder, VanillaTypes.ITEM_STACK, outputs);
+		craftingGridHelper.createAndSetInputs(builder, VanillaTypes.ITEM_STACK, inputs, getWidth(), getHeight());
+		craftingGridHelper.createAndSetOutputs(builder, VanillaTypes.ITEM_STACK, outputs);
 	}
 }
