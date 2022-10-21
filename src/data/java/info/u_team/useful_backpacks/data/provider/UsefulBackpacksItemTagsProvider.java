@@ -16,13 +16,8 @@ import info.u_team.u_team_core.util.TagUtil;
 
 public class UsefulBackpacksItemTagsProvider extends CommonItemTagsProvider {
 	
-	public UsefulBackpacksItemTagsProvider(GenerationData generationData) {
-		super(generationData, new CommonBlockTagsProvider(generationData) {
-			
-			@Override
-			public void register() {
-			}
-		});
+	public UsefulBackpacksItemTagsProvider(GenerationData generationData, CommonBlockTagsProvider blockTagsProvider) {
+		super(generationData, blockTagsProvider);
 	}
 	
 	@Override
