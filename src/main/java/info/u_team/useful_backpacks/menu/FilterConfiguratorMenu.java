@@ -88,7 +88,7 @@ public class FilterConfiguratorMenu extends UContainerMenu {
 	}
 	
 	private void saveFilterInventory() {
-		if (filterInventory instanceof FilterInventory inventory) {
+		if (filterInventory instanceof final FilterInventory inventory) {
 			// final ItemStack copy = inventory.getStack().copy();
 			inventory.writeItemStack();
 			
