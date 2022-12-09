@@ -127,7 +127,7 @@ repositories {
 dependencies {
 	minecraft gradlefiles.forgeDependency()
 	
-	implementation fg.deobf("info.u-team:u_team_core-1.19.2:4.4.3.235")
+	implementation fg.deobf("info.u-team:u_team_core-1.19.2:4.4.3.236")
 	
 	compileOnly fg.deobf("mezz.jei:jei-${config.minecraft.version}-forge-api:${config.jei.version}")
 	compileOnly fg.deobf("mezz.jei:jei-${config.minecraft.version}-common-api:${config.jei.version}")
