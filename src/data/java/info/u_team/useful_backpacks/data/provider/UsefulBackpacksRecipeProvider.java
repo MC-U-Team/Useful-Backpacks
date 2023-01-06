@@ -14,6 +14,7 @@ import info.u_team.u_team_core.data.CommonRecipeProvider;
 import info.u_team.u_team_core.data.GenerationData;
 import info.u_team.useful_backpacks.data.builder.BackpackCraftingRecipeBuilder;
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
@@ -27,7 +28,7 @@ public class UsefulBackpacksRecipeProvider extends CommonRecipeProvider {
 	
 	@Override
 	public void register(Consumer<FinishedRecipe> consumer) {
-		BackpackCraftingRecipeBuilder.backpackRecipe(SMALL_BACKPACK.get()) //
+		BackpackCraftingRecipeBuilder.backpackRecipe(RecipeCategory.TOOLS, SMALL_BACKPACK.get()) //
 				.pattern("WLW") //
 				.pattern("LSL") //
 				.pattern("WLW") //
@@ -38,7 +39,7 @@ public class UsefulBackpacksRecipeProvider extends CommonRecipeProvider {
 				.unlockedBy("has_leather", has(Items.LEATHER)) //
 				.save(consumer);
 		
-		BackpackCraftingRecipeBuilder.backpackRecipe(MEDIUM_BACKPACK.get()) //
+		BackpackCraftingRecipeBuilder.backpackRecipe(RecipeCategory.TOOLS, MEDIUM_BACKPACK.get()) //
 				.pattern("WLW") //
 				.pattern("LBL") //
 				.pattern("WLW") //
@@ -48,7 +49,7 @@ public class UsefulBackpacksRecipeProvider extends CommonRecipeProvider {
 				.unlockedBy("has_small_backpack", has(SMALL_BACKPACK.get())) //
 				.save(consumer);
 		
-		BackpackCraftingRecipeBuilder.backpackRecipe(LARGE_BACKPACK.get()) //
+		BackpackCraftingRecipeBuilder.backpackRecipe(RecipeCategory.TOOLS, LARGE_BACKPACK.get()) //
 				.pattern("WLW") //
 				.pattern("LBL") //
 				.pattern("WLW") //
@@ -58,7 +59,7 @@ public class UsefulBackpacksRecipeProvider extends CommonRecipeProvider {
 				.unlockedBy("has_medium_backpack", has(MEDIUM_BACKPACK.get())) //
 				.save(consumer);
 		
-		ShapedRecipeBuilder.shaped(ENDERCHEST_BACKPACK.get()) //
+		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ENDERCHEST_BACKPACK.get()) //
 				.pattern("WLW") //
 				.pattern("ESE") //
 				.pattern("WLW") //
@@ -69,7 +70,7 @@ public class UsefulBackpacksRecipeProvider extends CommonRecipeProvider {
 				.unlockedBy("has_enderchest", has(Items.ENDER_CHEST)) //
 				.save(consumer);
 		
-		ShapedRecipeBuilder.shaped(FILTER_CONFIGURATOR.get()) //
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, FILTER_CONFIGURATOR.get()) //
 				.pattern("WLW") //
 				.pattern("PCP") //
 				.pattern("WLW") //
@@ -81,7 +82,7 @@ public class UsefulBackpacksRecipeProvider extends CommonRecipeProvider {
 				.unlockedBy("has_leather", has(Items.LEATHER)) //
 				.save(consumer);
 		
-		ShapedRecipeBuilder.shaped(ITEM_FILTER.get()) //
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ITEM_FILTER.get()) //
 				.pattern("WLW") //
 				.pattern("RDS") //
 				.pattern("IEI") //
@@ -95,7 +96,7 @@ public class UsefulBackpacksRecipeProvider extends CommonRecipeProvider {
 				.unlockedBy("has_small_backpack", has(SMALL_BACKPACK.get())) //
 				.save(consumer);
 		
-		ShapedRecipeBuilder.shaped(TAG_FILTER.get()) //
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TAG_FILTER.get()) //
 				.pattern("WLW") //
 				.pattern("RAS") //
 				.pattern("IEI") //
