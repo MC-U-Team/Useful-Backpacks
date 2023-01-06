@@ -29,7 +29,7 @@
 	"item.usefulbackpacks.filter_tag.tooltip.configured.2": "%s щоб видалити нинішню конфігурацію",
 	"item.usefulbackpacks.filter_tag.tooltip.not_configured.0": "Цей фільтр не налаштовано",
 	"item.usefulbackpacks.filter_tag.tooltip.not_configured.1": "%s щоб налаштувати фільтр предметів",
-	"itemGroup.usefulbackpacks.tab": "Корисні Рюкзаки",
+	"creativetabs.usefulbackpacks.tab": "Корисні Рюкзаки",
 	"key.usefulbackpacks.curiosintegration.category": "Корисні Рюкзаки : Інтеграція Curios ",
 	"key.usefulbackpacks.curiosintegration.description": "Відкрити рюкзак"
 }

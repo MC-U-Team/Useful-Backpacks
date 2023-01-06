@@ -3,5 +3,5 @@
 	"item.usefulbackpacks.backpack_large": "大型背包",
 	"item.usefulbackpacks.backpack_medium": "中型背包",
 	"item.usefulbackpacks.backpack_small": "小型背包",
-	"itemGroup.usefulbackpacks.tab": "Useful Backpacks"
+	"creativetabs.usefulbackpacks.tab": "Useful Backpacks"
 }

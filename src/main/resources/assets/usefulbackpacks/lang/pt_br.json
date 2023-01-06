@@ -3,5 +3,5 @@
 	"item.usefulbackpacks.backpack_large": "Mochila Grande",
 	"item.usefulbackpacks.backpack_medium": "Mochila Média",
 	"item.usefulbackpacks.backpack_small": "Mochila Pequena",
-	"itemGroup.usefulbackpacks.tab": "Useful Backpacks"
+	"creativetabs.usefulbackpacks.tab": "Useful Backpacks"
 }
