@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.19.2-1.14.1.107] - 2023-01-06
+### Changed
+ - Update forge version to 43.2.0
+
 ## [1.19.2-1.14.1.106] - 2022-10-21
 ### Changed
  - Fix filter configurator block mining speed
