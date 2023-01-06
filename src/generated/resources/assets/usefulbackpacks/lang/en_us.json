@@ -4,6 +4,7 @@
 	"container.usefulbackpacks.item_filter.strict": "Strict match: ",
 	"container.usefulbackpacks.item_filter.strict.tooltip": "If checked the item NBT must match the configured item",
 	"container.usefulbackpacks.tag_filter.search": "Search for tags",
+	"creativetabs.usefulbackpacks.tab": "Useful Backpacks",
 	"general.usefulbackpacks.backpack.tooltip.filter.0": "This backpack is configured with auto pickup filters",
 	"general.usefulbackpacks.backpack.tooltip.filter_applied.0": "The following auto pickup filters are applied:",
 	"general.usefulbackpacks.backpack.tooltip.filter_applied_item.0": "- Item: %s",
@@ -29,7 +30,6 @@
 	"item.usefulbackpacks.filter_tag.tooltip.configured.2": "%s to remove current configuration",
 	"item.usefulbackpacks.filter_tag.tooltip.not_configured.0": "This filter is not configured",
 	"item.usefulbackpacks.filter_tag.tooltip.not_configured.1": "%s to configure the tag filter",
-	"itemGroup.usefulbackpacks.tab": "Useful Backpacks",
 	"key.usefulbackpacks.curiosintegration.category": "Useful Backpacks : Curios Integration",
 	"key.usefulbackpacks.curiosintegration.description": "Open backpack"
 }

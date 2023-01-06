@@ -1,5 +1,6 @@
 {
 	"type": "usefulbackpacks:crafting_backpack",
+	"category": "equipment",
 	"key": {
 		"B": {
 			"item": "usefulbackpacks:backpack_small"

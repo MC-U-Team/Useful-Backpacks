@@ -4,6 +4,7 @@
 	"container.usefulbackpacks.item_filter.strict": "Strenge Übereinstimmung: ",
 	"container.usefulbackpacks.item_filter.strict.tooltip": "Wenn diese Option aktiviert ist, muss das Item NBT mit dem konfigurierten Item übereinstimmen",
 	"container.usefulbackpacks.tag_filter.search": "Suche nach Aliasdaten (Tags)",
+	"creativetabs.usefulbackpacks.tab": "Nützliche Rucksäcke",
 	"general.usefulbackpacks.backpack.tooltip.filter.0": "Dieser Rucksack ist mit automatischen Aufhebefilter konfiguriert",
 	"general.usefulbackpacks.backpack.tooltip.filter_applied.0": "Die folgenden automatischen Aufhebefilter werden angewendet:",
 	"general.usefulbackpacks.backpack.tooltip.filter_applied_item.0": "- Gegenstand: %s",
@@ -29,7 +30,6 @@
 	"item.usefulbackpacks.filter_tag.tooltip.configured.2": "%s um die aktuelle Konfiguration zu entfernen",
 	"item.usefulbackpacks.filter_tag.tooltip.not_configured.0": "Dieser Filter ist nicht konfiguriert",
 	"item.usefulbackpacks.filter_tag.tooltip.not_configured.1": "%s um den Aliasdatenfilter zu konfigurieren",
-	"itemGroup.usefulbackpacks.tab": "Nützliche Rucksäcke",
 	"key.usefulbackpacks.curiosintegration.category": "Nützliche Rucksäcke : Curios Integration",
 	"key.usefulbackpacks.curiosintegration.description": "Öffne Rucksack"
 }
