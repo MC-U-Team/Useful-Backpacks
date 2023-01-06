@@ -1,6 +1,5 @@
 package info.u_team.useful_backpacks.item;
 
-import java.util.Arrays;
 import java.util.List;
 
 import info.u_team.u_team_core.api.dye.DyeableItem;
@@ -9,7 +8,6 @@ import info.u_team.useful_backpacks.config.ServerConfig;
 import info.u_team.useful_backpacks.inventory.BackpackInventory;
 import info.u_team.useful_backpacks.menu.BackpackMenu;
 import info.u_team.useful_backpacks.type.BackpackType;
-import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
@@ -18,8 +16,6 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
@@ -80,19 +76,6 @@ public class BackpackItem extends UItem implements AutoPickupBackpack, DyeableIt
 	
 	public BackpackType getBackpack() {
 		return backpack;
-	}
-	
-	// Item group
-	
-	@Override
-	public void fillItemCategory(CreativeModeTab group, NonNullList<ItemStack> items) {
-		if (!allowedIn(group)) {
-			return;
-		}
-		items.add(new ItemStack(this));
-		for (final DyeColor color : DyeColor.values()) {
-			items.add(DyeableItem.colorStack(new ItemStack(this, 1), Arrays.asList(color)));
-		}
 	}
 	
 	// Default backpack color if not present
