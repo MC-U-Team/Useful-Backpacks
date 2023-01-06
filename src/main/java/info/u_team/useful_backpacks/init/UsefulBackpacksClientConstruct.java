@@ -10,7 +10,6 @@ public class UsefulBackpacksClientConstruct implements ModConstruct {
 	
 	@Override
 	public void construct() {
-		BusRegister.registerMod(UsefulBackpacksModels::registerMod);
 		BusRegister.registerMod(UsefulBackpacksScreens::registerMod);
 	}
 	
