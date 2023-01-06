@@ -1,7 +1,8 @@
 package info.u_team.useful_backpacks.integration.curios.render;
 
+import org.joml.Quaternionf;
+
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Vector3f;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.EntityModel;
@@ -28,13 +29,13 @@ public class CuriosBackpackRenderer implements ICurioRenderer {
 		ICurioRenderer.translateIfSneaking(poseStack, livingEntity);
 		ICurioRenderer.rotateIfSneaking(poseStack, livingEntity);
 		
-		poseStack.mulPose(Vector3f.XN.rotation((float) Math.PI));
+		poseStack.mulPose(new Quaternionf().rotateX((float) Math.PI));
 		
 		poseStack.translate(0, -0.3, -0.14);
 		
 		poseStack.scale(0.6F, 0.6F, 0.6F);
 		
-		Minecraft.getInstance().getItemRenderer().renderStatic(stack, TransformType.FIXED, 0xF000F0, OverlayTexture.NO_OVERLAY, poseStack, renderTypeBuffer, 0 /* TODO what does this number means? **/);
+		Minecraft.getInstance().getItemRenderer().renderStatic(stack, TransformType.FIXED, 0xF000F0, OverlayTexture.NO_OVERLAY, poseStack, renderTypeBuffer, 0);
 	}
 	
 }
