@@ -1,26 +1,6 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [1.19.2-1.14.1.107] - 2023-01-06
+## [1.19.3-1.14.2.108] - 2023-01-06
 ### Changed
- - Update forge version to 43.2.0
-
-## [1.19.2-1.14.1.106] - 2022-10-21
-### Changed
- - Fix filter configurator block mining speed
-
-## [1.19.2-1.14.1.105] - 2022-10-16
-### Changed
- - Update forge version to 43.1.43
- - Fix uteamcore changes
- 
-## [1.19.2-1.14.1.104] - 2022-09-17
-### Changed
- - Update forge version to 43.1.25
- - Update gradle files version
- - Use parchment mappings
- - Update required uteamcore version
-
-## [1.19.2-1.14.1.101] - 2022-08-06
-### Changed
- - Port to 1.19.2
+ - Port to 1.19.3
