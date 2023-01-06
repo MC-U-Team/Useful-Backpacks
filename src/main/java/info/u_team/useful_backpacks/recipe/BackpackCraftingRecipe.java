@@ -20,14 +20,15 @@ import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.CraftingBookCategory;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.ShapedRecipe;
 
 public class BackpackCraftingRecipe extends ShapedRecipe {
 	
-	public BackpackCraftingRecipe(ResourceLocation id, String group, int width, int height, NonNullList<Ingredient> ingredients, ItemStack output) {
-		super(id, group, width, height, ingredients, output);
+	public BackpackCraftingRecipe(ResourceLocation id, String group, CraftingBookCategory category, int width, int height, NonNullList<Ingredient> ingredients, ItemStack output) {
+		super(id, group, category, width, height, ingredients, output);
 	}
 	
 	@Override
@@ -75,20 +76,23 @@ public class BackpackCraftingRecipe extends ShapedRecipe {
 		@Override
 		public BackpackCraftingRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
 			final String group = GsonHelper.getAsString(json, "group", "");
+			@SuppressWarnings("deprecation")
+			final CraftingBookCategory category = CraftingBookCategory.CODEC.byName(GsonHelper.getAsString(json, "category", null), CraftingBookCategory.MISC);
 			final Map<String, Ingredient> keys = deserializeKey(GsonHelper.getAsJsonObject(json, "key"));
 			final String[] pattern = shrink(patternFromJson(GsonHelper.getAsJsonArray(json, "pattern")));
 			final int width = pattern[0].length();
 			final int height = pattern.length;
 			final NonNullList<Ingredient> ingredients = deserializeIngredients(pattern, keys, width, height);
 			final ItemStack output = itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"));
-			return new BackpackCraftingRecipe(recipeId, group, width, height, ingredients, output);
+			return new BackpackCraftingRecipe(recipeId, group, category, width, height, ingredients, output);
 		}
 		
 		@Override
 		public BackpackCraftingRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
 			final int width = buffer.readVarInt();
 			final int height = buffer.readVarInt();
-			final String group = buffer.readUtf(32767);
+			final String group = buffer.readUtf();
+			final CraftingBookCategory category = buffer.readEnum(CraftingBookCategory.class);
 			final NonNullList<Ingredient> ingredients = NonNullList.withSize(width * height, Ingredient.EMPTY);
 			
 			for (int index = 0; index < ingredients.size(); ++index) {
@@ -96,7 +100,7 @@ public class BackpackCraftingRecipe extends ShapedRecipe {
 			}
 			
 			final ItemStack output = buffer.readItem();
-			return new BackpackCraftingRecipe(recipeId, group, width, height, ingredients, output);
+			return new BackpackCraftingRecipe(recipeId, group, category, width, height, ingredients, output);
 		}
 		
 		@Override
@@ -104,6 +108,7 @@ public class BackpackCraftingRecipe extends ShapedRecipe {
 			buffer.writeVarInt(recipe.getWidth());
 			buffer.writeVarInt(recipe.getHeight());
 			buffer.writeUtf(recipe.getGroup());
+			buffer.writeEnum(recipe.category());
 			
 			for (final Ingredient ingredient : recipe.getIngredients()) {
 				ingredient.toNetwork(buffer);

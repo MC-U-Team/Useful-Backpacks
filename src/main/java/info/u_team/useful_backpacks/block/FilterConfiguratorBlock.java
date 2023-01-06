@@ -1,7 +1,6 @@
 package info.u_team.useful_backpacks.block;
 
 import info.u_team.u_team_core.block.UBlock;
-import info.u_team.useful_backpacks.init.UsefulBackpacksCreativeTabs;
 import info.u_team.useful_backpacks.menu.FilterConfiguratorMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -22,7 +21,7 @@ public class FilterConfiguratorBlock extends UBlock {
 	private static final Component CONTAINER_NAME = Component.translatable("container.usefulbackpacks.filter_configurator");
 	
 	public FilterConfiguratorBlock() {
-		super(UsefulBackpacksCreativeTabs.TAB, Properties.of(Material.WOOD).strength(2.5F).sound(SoundType.WOOD));
+		super(Properties.of(Material.WOOD).strength(2.5F).sound(SoundType.WOOD));
 	}
 	
 	@Override

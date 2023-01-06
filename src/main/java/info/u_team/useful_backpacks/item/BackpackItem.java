@@ -6,7 +6,6 @@ import java.util.List;
 import info.u_team.u_team_core.api.dye.DyeableItem;
 import info.u_team.u_team_core.item.UItem;
 import info.u_team.useful_backpacks.config.ServerConfig;
-import info.u_team.useful_backpacks.init.UsefulBackpacksCreativeTabs;
 import info.u_team.useful_backpacks.inventory.BackpackInventory;
 import info.u_team.useful_backpacks.menu.BackpackMenu;
 import info.u_team.useful_backpacks.type.BackpackType;
@@ -31,7 +30,7 @@ public class BackpackItem extends UItem implements AutoPickupBackpack, DyeableIt
 	private final BackpackType backpack;
 	
 	public BackpackItem(BackpackType backpack) {
-		super(UsefulBackpacksCreativeTabs.TAB, new Properties().stacksTo(1).rarity(backpack.getRarity()));
+		super(new Properties().stacksTo(1).rarity(backpack.getRarity()));
 		this.backpack = backpack;
 		addColoredItem(this);
 	}

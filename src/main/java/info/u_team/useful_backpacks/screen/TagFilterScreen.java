@@ -2,9 +2,9 @@ package info.u_team.useful_backpacks.screen;
 
 import info.u_team.u_team_core.gui.elements.ScalableEditBox;
 import info.u_team.u_team_core.screen.UContainerMenuScreen;
-import info.u_team.u_team_core.util.WidgetUtil;
 import info.u_team.useful_backpacks.UsefulBackpacksMod;
 import info.u_team.useful_backpacks.menu.TagFilterMenu;
+import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
@@ -28,26 +28,15 @@ public class TagFilterScreen extends UContainerMenuScreen<TagFilterMenu> {
 	protected void init() {
 		super.init();
 		
-		minecraft.keyboardHandler.setSendRepeatsToGui(true);
-		
 		tagTextField = addRenderableWidget(new ScalableEditBox(font, leftPos + 8, topPos + 20, 160, 15, tagTextField, tagSearchTextComponent, 0.75F));
 		tagTextField.setMaxLength(300);
-		tagTextField.setTooltip((textField, poseStack, mouseX, mouseY) -> {
-			if (WidgetUtil.isHovered(textField)) {
-				renderTooltip(poseStack, tagSearchTextComponent, mouseX, mouseY);
-			}
-		});
+		tagTextField.setTooltip(Tooltip.create(tagSearchTextComponent));
 		tagTextField.setResponder(search -> {
 			tagList.updateSearch(search);
 		});
 		setInitialFocus(tagTextField);
 		
 		tagList = addRenderableWidget(new TagFilterTagList(menu, leftPos + 7, topPos + 40, 161, 52, menu.getTag()));
-	}
-	
-	@Override
-	public void removed() {
-		minecraft.keyboardHandler.setSendRepeatsToGui(false);
 	}
 	
 	@Override

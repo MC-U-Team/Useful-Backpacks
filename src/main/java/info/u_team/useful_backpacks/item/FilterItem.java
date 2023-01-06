@@ -2,14 +2,13 @@ package info.u_team.useful_backpacks.item;
 
 import info.u_team.u_team_core.item.UItem;
 import info.u_team.useful_backpacks.api.Filter;
-import info.u_team.useful_backpacks.init.UsefulBackpacksCreativeTabs;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 
 public abstract class FilterItem extends UItem implements Filter {
 	
 	public FilterItem() {
-		super(UsefulBackpacksCreativeTabs.TAB, new Properties().stacksTo(1));
+		super(new Properties().stacksTo(1));
 	}
 	
 	@Override

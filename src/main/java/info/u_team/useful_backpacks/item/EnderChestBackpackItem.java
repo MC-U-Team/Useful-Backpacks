@@ -3,7 +3,6 @@ package info.u_team.useful_backpacks.item;
 import java.util.List;
 
 import info.u_team.u_team_core.item.UItem;
-import info.u_team.useful_backpacks.init.UsefulBackpacksCreativeTabs;
 import info.u_team.useful_backpacks.menu.EnderChestBackpackMenu;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
@@ -23,7 +22,7 @@ import net.minecraftforge.network.NetworkHooks;
 public class EnderChestBackpackItem extends UItem implements AutoPickupBackpack {
 	
 	public EnderChestBackpackItem() {
-		super(UsefulBackpacksCreativeTabs.TAB, new Properties().stacksTo(1).rarity(Rarity.EPIC));
+		super(new Properties().stacksTo(1).rarity(Rarity.EPIC));
 	}
 	
 	@Override
