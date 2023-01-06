@@ -129,9 +129,9 @@ dependencies {
 	
 	implementation fg.deobf("info.u-team:u_team_core-1.19.3:4.5.0.237")
 	
-	//	compileOnly fg.deobf("mezz.jei:jei-${config.minecraft.version}-forge-api:${config.jei.version}")
-	//	compileOnly fg.deobf("mezz.jei:jei-${config.minecraft.version}-common-api:${config.jei.version}")
-	//	runtimeOnly fg.deobf("mezz.jei:jei-${config.minecraft.version}-forge:${config.jei.version}")
+	//compileOnly fg.deobf("mezz.jei:jei-${config.minecraft.version}-forge-api:${config.jei.version}")
+	//compileOnly fg.deobf("mezz.jei:jei-${config.minecraft.version}-common-api:${config.jei.version}")
+	//runtimeOnly fg.deobf("mezz.jei:jei-${config.minecraft.version}-forge:${config.jei.version}")
 	compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${config.minecraft.version}-${config.curios.version}:api")
 	runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${config.minecraft.version}-${config.curios.version}")
 }
