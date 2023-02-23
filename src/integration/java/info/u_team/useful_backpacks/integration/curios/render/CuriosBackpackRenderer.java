@@ -1,8 +1,7 @@
 package info.u_team.useful_backpacks.integration.curios.render;
 
-import org.joml.Quaternionf;
-
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Axis;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.EntityModel;
@@ -10,6 +9,7 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.model.ItemTransforms.TransformType;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
@@ -29,7 +29,7 @@ public class CuriosBackpackRenderer implements ICurioRenderer {
 		ICurioRenderer.translateIfSneaking(poseStack, livingEntity);
 		ICurioRenderer.rotateIfSneaking(poseStack, livingEntity);
 		
-		poseStack.mulPose(new Quaternionf().rotateX((float) Math.PI));
+		poseStack.mulPose(Axis.XP.rotation(Mth.PI));
 		
 		poseStack.translate(0, -0.3, -0.14);
 		
