@@ -42,7 +42,6 @@ public class EnderChestBackpackMenu extends ChestMenu {
 		}
 		if (tmpSlot != null) {
 			if (tmpSlot.container == player.getInventory() && tmpSlot.getSlotIndex() == selectedSlot) {
-				// return tmpSlot.getItem(); // TODO just return??
 				return;
 			}
 		}
@@ -51,7 +50,6 @@ public class EnderChestBackpackMenu extends ChestMenu {
 			final ItemStack currentItem = Inventory.isHotbarSlot(selectedSlot) ? player.getInventory().items.get(selectedSlot) : selectedSlot == -1 ? player.getInventory().offhand.get(0) : ItemStack.EMPTY;
 			
 			if (!currentItem.isEmpty() && stack == currentItem) {
-				// return ItemStack.EMPTY; // TODO just return??
 				return;
 			}
 		}

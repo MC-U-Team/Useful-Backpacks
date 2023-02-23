@@ -89,19 +89,7 @@ public class FilterConfiguratorMenu extends UContainerMenu {
 	
 	private void saveFilterInventory() {
 		if (filterInventory instanceof final FilterInventory inventory) {
-			// final ItemStack copy = inventory.getStack().copy();
 			inventory.writeItemStack();
-			
-			// No manual sync seems to be needed. Rewrite whole system once its released for 1.18.1
-			
-			// if (!ItemStack.matches(copy, inventory.getStack())) {
-			// for (final IContainerListener listener : getListeners()) {
-			// if (listener instanceof ServerPlayerEntity) {
-			// final ServerPlayerEntity player = (ServerPlayerEntity) listener;
-			// player.connection.netManager.sendPacket(new SSetSlotPacket(windowId, 0, inventory.getStack()));
-			// }
-			// }
-			// }
 		}
 	}
 	

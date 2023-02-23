@@ -55,7 +55,6 @@ public class TagFilterMenu extends UContainerMenu {
 		}
 		if (tmpSlot != null) {
 			if (tmpSlot.container == player.getInventory() && tmpSlot.getSlotIndex() == selectedSlot) {
-				// return tmpSlot.getItem(); // TODO Right way ???
 				return;
 			}
 		}
@@ -64,7 +63,6 @@ public class TagFilterMenu extends UContainerMenu {
 			final ItemStack currentItem = Inventory.isHotbarSlot(selectedSlot) ? player.getInventory().items.get(selectedSlot) : selectedSlot == -1 ? player.getInventory().offhand.get(0) : ItemStack.EMPTY;
 			
 			if (!currentItem.isEmpty() && stack == currentItem) {
-				// return ItemStack.EMPTY; TODO Right way???
 				return;
 			}
 		}

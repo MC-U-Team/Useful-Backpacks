@@ -90,7 +90,6 @@ public class BackpackMenu extends UContainerMenu {
 		}
 		if (tmpSlot != null) {
 			if (tmpSlot.container == player.getInventory() && tmpSlot.getSlotIndex() == selectedSlot) {
-				// return tmpSlot.getItem(); // TODO just return??
 				return;
 			}
 		}
@@ -99,7 +98,6 @@ public class BackpackMenu extends UContainerMenu {
 			final ItemStack currentItem = Inventory.isHotbarSlot(selectedSlot) ? player.getInventory().items.get(selectedSlot) : selectedSlot == -1 ? player.getInventory().offhand.get(0) : ItemStack.EMPTY;
 			
 			if (!currentItem.isEmpty() && stack == currentItem) {
-				// return ItemStack.EMPTY; // TODO just return??
 				return;
 			}
 		}

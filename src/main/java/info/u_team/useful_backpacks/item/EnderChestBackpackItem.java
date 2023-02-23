@@ -15,8 +15,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.network.NetworkHooks;
 
 public class EnderChestBackpackItem extends UItem implements AutoPickupBackpack {
@@ -48,7 +46,6 @@ public class EnderChestBackpackItem extends UItem implements AutoPickupBackpack 
 		return player.getEnderChestInventory();
 	}
 	
-	@OnlyIn(Dist.CLIENT)
 	@Override
 	public void appendHoverText(ItemStack stack, Level level, List<Component> tooltip, TooltipFlag flag) {
 		addTooltip(stack, level, tooltip, flag);
