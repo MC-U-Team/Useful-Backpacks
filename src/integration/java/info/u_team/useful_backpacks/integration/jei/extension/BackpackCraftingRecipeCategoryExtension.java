@@ -10,6 +10,7 @@ import com.google.common.collect.Lists;
 
 import info.u_team.u_team_core.api.dye.DyeableItem;
 import info.u_team.u_team_core.util.ColorUtil;
+import info.u_team.u_team_core.util.RGB;
 import info.u_team.useful_backpacks.recipe.BackpackCraftingRecipe;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
@@ -59,7 +60,7 @@ public class BackpackCraftingRecipeCategoryExtension implements ICraftingCategor
 				.findFirst().ifPresent(outputStack -> {
 					if (outputStack.getItem() instanceof DyeableItem dyeable) {
 						final int dyeableColor = dyeable.getColor(outputStack);
-						final DyeColor color = findClostestDyeColor(dyeableColor);
+						final DyeColor color = ColorUtil.findClosestDyeColor(new RGB(dyeableColor));
 						final Block wool = ColorUtil.getWoolFromColor(color);
 						for (int index = 0; index < inputs.size(); index++) {
 							final List<ItemStack> list = inputs.get(index);
@@ -100,28 +101,6 @@ public class BackpackCraftingRecipeCategoryExtension implements ICraftingCategor
 		
 		craftingGridHelper.createAndSetInputs(builder, VanillaTypes.ITEM_STACK, inputs, getWidth(), getHeight());
 		craftingGridHelper.createAndSetOutputs(builder, VanillaTypes.ITEM_STACK, outputs);
-	}
-	
-	// TODO move to color util in uteamcore
-	private static DyeColor findClostestDyeColor(int color) {
-		final int red = (color >> 16 & 255);
-		final int green = (color >> 8 & 255);
-		final int blue = (color & 255);
-		return findClostestDyeColor(red / 255f, green / 255f, blue / 255f);
-	}
-	
-	private static DyeColor findClostestDyeColor(float red, float green, float blue) {
-		DyeColor match = DyeColor.WHITE;
-		double clostestMatch = Double.MAX_VALUE;
-		for (final DyeColor color : DyeColor.values()) {
-			final float[] textureColor = color.getTextureDiffuseColors();
-			double difference = Math.pow(textureColor[0] - red, 2) + Math.pow(textureColor[1] - green, 2) + Math.pow(textureColor[2] - blue, 2);
-			if (difference < clostestMatch) {
-				clostestMatch = difference;
-				match = color;
-			}
-		}
-		return match;
 	}
 	
 }
