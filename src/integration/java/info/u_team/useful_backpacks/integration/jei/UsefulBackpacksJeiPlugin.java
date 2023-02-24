@@ -9,6 +9,7 @@ import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.ingredients.subtypes.IIngredientSubtypeInterpreter;
+import mezz.jei.api.ingredients.subtypes.UidContext;
 import mezz.jei.api.registration.ISubtypeRegistration;
 import mezz.jei.api.registration.IVanillaCategoryExtensionRegistration;
 import net.minecraft.resources.ResourceLocation;
@@ -27,8 +28,10 @@ public class UsefulBackpacksJeiPlugin implements IModPlugin {
 	@Override
 	public void registerItemSubtypes(ISubtypeRegistration registration) {
 		final IIngredientSubtypeInterpreter<ItemStack> interpreter = (stack, context) -> {
-			if (stack.hasTag() && stack.getItem() instanceof final DyeableItem item) {
-				return Integer.toString(item.getColor(stack));
+			if (context == UidContext.Ingredient) {
+				if (stack.hasTag() && stack.getItem() instanceof final DyeableItem item) {
+					return Integer.toString(item.getColor(stack));
+				}
 			}
 			return IIngredientSubtypeInterpreter.NONE;
 		};
