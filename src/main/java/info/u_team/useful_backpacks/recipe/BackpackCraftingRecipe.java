@@ -12,6 +12,7 @@ import info.u_team.u_team_core.util.ColorUtil;
 import info.u_team.useful_backpacks.init.UsefulBackpacksRecipeSerializers;
 import info.u_team.useful_backpacks.item.BackpackItem;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
@@ -32,8 +33,8 @@ public class BackpackCraftingRecipe extends ShapedRecipe {
 	}
 	
 	@Override
-	public ItemStack assemble(CraftingContainer inventory) {
-		final ItemStack backpackItem = super.assemble(inventory);
+	public ItemStack assemble(CraftingContainer inventory, RegistryAccess registryAccess) {
+		final ItemStack backpackItem = super.assemble(inventory, registryAccess);
 		final List<DyeColor> dyeList = Lists.newArrayList();
 		
 		boolean backpackPresent = false;
@@ -114,7 +115,7 @@ public class BackpackCraftingRecipe extends ShapedRecipe {
 				ingredient.toNetwork(buffer);
 			}
 			
-			buffer.writeItem(recipe.getResultItem());
+			buffer.writeItem(recipe.getResultItem(null)); // TODO cleanup in uteamcore
 		}
 	}
 	

@@ -22,7 +22,7 @@ public class UsefulBackpacksCreativeTabs {
 		TAB = event.registerCreativeModeTab(new ResourceLocation(UsefulBackpacksMod.MODID, "tab"), builder -> {
 			builder.icon(() -> new ItemStack(UsefulBackpacksItems.SMALL_BACKPACK.get()));
 			builder.title(Component.translatable("creativetabs.usefulbackpacks.tab"));
-			builder.displayItems((enabledFeatures, output, displayOperatorCreativeTab) -> {
+			builder.displayItems((parameters, output) -> {
 				UsefulBackpacksBlocks.BLOCKS.itemIterable().forEach(item -> {
 					output.accept(item);
 				});
