@@ -22,5 +22,6 @@
 	],
 	"result": {
 		"item": "usefulbackpacks:backpack_enderchest"
-	}
+	},
+	"show_notification": true
 }

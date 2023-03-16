@@ -19,5 +19,6 @@
 	],
 	"result": {
 		"item": "usefulbackpacks:backpack_small"
-	}
+	},
+	"show_notification": true
 }

@@ -22,5 +22,6 @@
 	],
 	"result": {
 		"item": "usefulbackpacks:filter_configurator"
-	}
+	},
+	"show_notification": true
 }

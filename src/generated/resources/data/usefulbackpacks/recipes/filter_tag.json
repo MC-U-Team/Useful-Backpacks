@@ -31,5 +31,6 @@
 	],
 	"result": {
 		"item": "usefulbackpacks:filter_tag"
-	}
+	},
+	"show_notification": true
 }
