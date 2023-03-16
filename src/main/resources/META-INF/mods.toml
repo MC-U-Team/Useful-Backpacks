@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[44,)"
+loaderVersion="[45,)"
 issueTrackerURL="https://github.com/MC-U-Team/Useful-Backpacks/issues"
 license="Apache-2.0 License"
 
@@ -17,20 +17,20 @@ license="Apache-2.0 License"
 	[[dependencies.usefulbackpacks]]
 	    modId="forge"
 	    mandatory=true
-	    versionRange="[44.1.17,)"
+	    versionRange="[45.0.8,)"
 	    ordering="NONE"
 	    side="BOTH"
 	
 	[[dependencies.usefulbackpacks]]
 	    modId="minecraft"
 	    mandatory=true
-	    versionRange="[1.19.3]"
+	    versionRange="[1.19.4]"
 	    ordering="NONE"
 	    side="BOTH"
 	    
 	[[dependencies.usefulbackpacks]]
 	    modId="uteamcore"
 	    mandatory=true
-	    versionRange="[4.5.3.240,)"
+	    versionRange="[4.5.4.241-SNAPSHOT,)"
 	    ordering="NONE"
 	    side="BOTH"
