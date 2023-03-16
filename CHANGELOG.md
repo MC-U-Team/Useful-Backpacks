@@ -1,12 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [1.19.3-1.14.3.109] - 2023-02-24
+## [1.19.4-1.14.4.110-SNAPSHOT] - 2023-03-17
 ### Changed
- - Integrate jei again
- - Recipes in jei now respect colored backpacks and colored wool
- - Cleanup some internal code
-
-## [1.19.3-1.14.2.108] - 2023-01-06
-### Changed
- - Port to 1.19.3
+ - Port to 1.19.4
+ - Jei integration disabled until jei releases
