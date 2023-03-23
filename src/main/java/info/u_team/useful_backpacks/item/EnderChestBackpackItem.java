@@ -26,7 +26,7 @@ public class EnderChestBackpackItem extends UItem implements AutoPickupBackpack 
 	@Override
 	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
 		final ItemStack stack = player.getItemInHand(hand);
-		if (!level.isClientSide && player instanceof ServerPlayer serverPlayer) {
+		if (!level.isClientSide && player instanceof final ServerPlayer serverPlayer) {
 			open(serverPlayer, stack, hand == InteractionHand.MAIN_HAND ? player.getInventory().selected : -1);
 		}
 		return InteractionResultHolder.success(stack);
