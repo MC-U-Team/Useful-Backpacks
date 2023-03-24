@@ -31,6 +31,6 @@ license="Apache-2.0 License"
 	[[dependencies.usefulbackpacks]]
 	    modId="uteamcore"
 	    mandatory=true
-	    versionRange="[4.5.4.241-SNAPSHOT,)"
+	    versionRange="[4.6.0.242,)"
 	    ordering="NONE"
 	    side="BOTH"
