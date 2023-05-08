@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.19.4-1.15.1.112] - 2023-05-08
+### Changed
+ - Update uteamcore
+ - Reintroduce jei integration for crafting recipes
+
 ## [1.19.4-1.15.0.111] - 2023-03-23
 ### Changed
  - Update to uteamcore changes
