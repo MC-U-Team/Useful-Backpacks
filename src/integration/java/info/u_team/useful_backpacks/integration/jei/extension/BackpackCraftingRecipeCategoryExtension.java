@@ -18,7 +18,7 @@ import mezz.jei.api.gui.ingredient.ICraftingGridHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.category.extensions.vanilla.crafting.ICraftingCategoryExtension;
-import mezz.jei.library.util.RecipeUtil;
+import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.DyeColor;
@@ -52,7 +52,7 @@ public class BackpackCraftingRecipeCategoryExtension implements ICraftingCategor
 	@Override
 	public void setRecipe(IRecipeLayoutBuilder builder, ICraftingGridHelper craftingGridHelper, IFocusGroup focuses) {
 		final List<List<ItemStack>> inputs = recipe.getIngredients().stream().map(ingredient -> Lists.newArrayList(ingredient.getItems())).collect(Collectors.toCollection(ArrayList::new));
-		final List<ItemStack> outputs = Lists.newArrayList(RecipeUtil.getResultItem(recipe));
+		final List<ItemStack> outputs = Lists.newArrayList(recipe.getResultItem(Minecraft.getInstance().level.registryAccess()));
 		
 		final AtomicBoolean changed = new AtomicBoolean(false);
 		
