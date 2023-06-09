@@ -2,6 +2,7 @@ package info.u_team.useful_backpacks.item;
 
 import java.util.List;
 
+import info.u_team.u_team_core.util.MenuUtil;
 import info.u_team.u_team_core.util.TooltipCreator;
 import info.u_team.useful_backpacks.UsefulBackpacksMod;
 import info.u_team.useful_backpacks.menu.ItemFilterMenu;
@@ -17,14 +18,13 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.items.ItemHandlerHelper;
-import net.minecraftforge.network.NetworkHooks;
 
 public class ItemFilterItem extends FilterItem {
 	
 	@Override
 	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
 		final ItemStack stack = player.getItemInHand(hand);
-		if (!level.isClientSide && player instanceof ServerPlayer) {
+		if (!level.isClientSide && player instanceof ServerPlayer serverPlayer) {
 			if (player.isShiftKeyDown()) {
 				stack.removeTagKey("strict");
 				stack.removeTagKey("stack");
@@ -36,12 +36,12 @@ public class ItemFilterItem extends FilterItem {
 				} else {
 					isStrict = false;
 				}
-				NetworkHooks.openScreen((ServerPlayer) player, new SimpleMenuProvider((id, playerInventory, unused) -> {
+				MenuUtil.openMenu(serverPlayer, new SimpleMenuProvider((id, playerInventory, unused) -> {
 					return new ItemFilterMenu(id, playerInventory, stack, selectedSlot, isStrict);
 				}, stack.getHoverName()), buffer -> {
 					buffer.writeVarInt(selectedSlot);
 					buffer.writeBoolean(isStrict);
-				});
+				}, false);
 			}
 		}
 		return InteractionResultHolder.success(stack);

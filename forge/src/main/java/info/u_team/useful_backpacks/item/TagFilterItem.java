@@ -2,6 +2,7 @@ package info.u_team.useful_backpacks.item;
 
 import java.util.List;
 
+import info.u_team.u_team_core.util.MenuUtil;
 import info.u_team.u_team_core.util.TooltipCreator;
 import info.u_team.useful_backpacks.UsefulBackpacksMod;
 import info.u_team.useful_backpacks.menu.TagFilterMenu;
@@ -17,14 +18,13 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.network.NetworkHooks;
 
 public class TagFilterItem extends FilterItem {
 	
 	@Override
 	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
 		final ItemStack stack = player.getItemInHand(hand);
-		if (!level.isClientSide && player instanceof ServerPlayer) {
+		if (!level.isClientSide && player instanceof ServerPlayer serverPlayer) {
 			if (player.isShiftKeyDown()) {
 				stack.removeTagKey("id");
 			} else {
@@ -35,12 +35,12 @@ public class TagFilterItem extends FilterItem {
 				} else {
 					tag = "";
 				}
-				NetworkHooks.openScreen((ServerPlayer) player, new SimpleMenuProvider((id, playerInventory, unused) -> {
+				MenuUtil.openMenu(serverPlayer, new SimpleMenuProvider((id, playerInventory, unused) -> {
 					return new TagFilterMenu(id, playerInventory, stack, selectedSlot, tag);
 				}, stack.getHoverName()), buffer -> {
 					buffer.writeVarInt(selectedSlot);
 					buffer.writeUtf(tag);
-				});
+				}, false);
 			}
 		}
 		return InteractionResultHolder.success(stack);

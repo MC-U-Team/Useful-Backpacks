@@ -4,6 +4,7 @@ import java.util.List;
 
 import info.u_team.u_team_core.api.dye.DyeableItem;
 import info.u_team.u_team_core.item.UItem;
+import info.u_team.u_team_core.util.MenuUtil;
 import info.u_team.useful_backpacks.config.ServerConfig;
 import info.u_team.useful_backpacks.inventory.BackpackInventory;
 import info.u_team.useful_backpacks.menu.BackpackMenu;
@@ -19,7 +20,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.network.NetworkHooks;
 
 public class BackpackItem extends UItem implements AutoPickupBackpack, DyeableItem {
 	
@@ -42,12 +42,12 @@ public class BackpackItem extends UItem implements AutoPickupBackpack, DyeableIt
 	
 	@Override
 	public void open(ServerPlayer player, ItemStack backpackStack, int selectedSlot) {
-		NetworkHooks.openScreen(player, new SimpleMenuProvider((id, playerInventory, unused) -> {
+		MenuUtil.openMenu(player, new SimpleMenuProvider((id, playerInventory, unused) -> {
 			return new BackpackMenu(id, playerInventory, getInventory(player, backpackStack), backpack, selectedSlot);
 		}, backpackStack.getHoverName()), buffer -> {
 			buffer.writeEnum(backpack);
 			buffer.writeVarInt(selectedSlot);
-		});
+		}, false);
 	}
 	
 	@Override

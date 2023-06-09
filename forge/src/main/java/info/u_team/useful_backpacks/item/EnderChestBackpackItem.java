@@ -3,6 +3,7 @@ package info.u_team.useful_backpacks.item;
 import java.util.List;
 
 import info.u_team.u_team_core.item.UItem;
+import info.u_team.u_team_core.util.MenuUtil;
 import info.u_team.useful_backpacks.menu.EnderChestBackpackMenu;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
@@ -15,7 +16,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.network.NetworkHooks;
 
 public class EnderChestBackpackItem extends UItem implements AutoPickupBackpack {
 	
@@ -34,11 +34,11 @@ public class EnderChestBackpackItem extends UItem implements AutoPickupBackpack 
 	
 	@Override
 	public void open(ServerPlayer player, ItemStack backpackStack, int selectedSlot) {
-		NetworkHooks.openScreen(player, new SimpleMenuProvider((id, playerInventory, unused) -> {
+		MenuUtil.openMenu(player, new SimpleMenuProvider((id, playerInventory, unused) -> {
 			return EnderChestBackpackMenu.createEnderChestContainer(id, playerInventory, getInventory(player, backpackStack), selectedSlot);
 		}, backpackStack.getHoverName()), buffer -> {
 			buffer.writeVarInt(selectedSlot);
-		});
+		}, false);
 	}
 	
 	@Override
