@@ -69,7 +69,7 @@ public class BackpackItem extends UItem implements AutoPickupBackpack, DyeableIt
 	
 	@Override
 	public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
-		return !ItemStack.isSame(oldStack, newStack);
+		return !ItemStack.isSameItem(oldStack, newStack);
 	}
 	
 	// Getter

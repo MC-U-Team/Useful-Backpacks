@@ -18,11 +18,11 @@ public class UsefulBackpacksCommonConstruct implements ModConstruct {
 		ModLoadingContext.get().registerConfig(Type.COMMON, CommonConfig.CONFIG);
 		ModLoadingContext.get().registerConfig(Type.SERVER, ServerConfig.CONFIG);
 		
-		BusRegister.registerMod(UsefulBackpacksBlocks::registerMod);
-		BusRegister.registerMod(UsefulBackpacksCreativeTabs::registerMod);
-		BusRegister.registerMod(UsefulBackpacksMenuTypes::registerMod);
-		BusRegister.registerMod(UsefulBackpacksItems::registerMod);
-		BusRegister.registerMod(UsefulBackpacksRecipeSerializers::registerMod);
+		UsefulBackpacksBlocks.register();
+		UsefulBackpacksCreativeTabs.registerMod();
+		UsefulBackpacksMenuTypes.register();
+		UsefulBackpacksItems.register();
+		UsefulBackpacksRecipeSerializers.register();
 		
 		BusRegister.registerForge(ItemPickupEventHandler::registerForge);
 	}

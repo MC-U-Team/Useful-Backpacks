@@ -60,7 +60,7 @@ public class ItemFilterItem extends FilterItem {
 		if (strict) {
 			return ItemHandlerHelper.canItemStacksStack(stack, matchStack);
 		} else {
-			return stack.sameItem(matchStack);
+			return ItemStack.isSameItem(stack, matchStack);
 		}
 	}
 	

@@ -13,7 +13,8 @@ import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.BlockHitResult;
 
 public class FilterConfiguratorBlock extends UBlock {
@@ -21,7 +22,7 @@ public class FilterConfiguratorBlock extends UBlock {
 	private static final Component CONTAINER_NAME = Component.translatable("container.usefulbackpacks.filter_configurator");
 	
 	public FilterConfiguratorBlock() {
-		super(Properties.of(Material.WOOD).strength(2.5F).sound(SoundType.WOOD));
+		super(Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).strength(2.5F).sound(SoundType.WOOD).sound(SoundType.WOOD).ignitedByLava());
 	}
 	
 	@Override

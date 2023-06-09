@@ -21,7 +21,7 @@ public class UsefulBackpacksLanguagesProvider extends CommonLanguagesProvider {
 	@Override
 	public void register() {
 		// English
-		add(UsefulBackpacksCreativeTabs.TAB, "Useful Backpacks");
+		add(UsefulBackpacksCreativeTabs.TAB.get(), "Useful Backpacks");
 		addItem(SMALL_BACKPACK, "Small Backpack");
 		addItem(MEDIUM_BACKPACK, "Medium Backpack");
 		addItem(LARGE_BACKPACK, "Large Backpack");
@@ -55,7 +55,7 @@ public class UsefulBackpacksLanguagesProvider extends CommonLanguagesProvider {
 		addTooltip("click", "shift_right_click", 0, "Shift + Right click");
 		
 		// German
-		add("de_de", UsefulBackpacksCreativeTabs.TAB, "Nützliche Rucksäcke");
+		add("de_de", UsefulBackpacksCreativeTabs.TAB.get(), "Nützliche Rucksäcke");
 		addItem("de_de", SMALL_BACKPACK, "Kleiner Rucksack");
 		addItem("de_de", MEDIUM_BACKPACK, "Mittlerer Rucksack");
 		addItem("de_de", LARGE_BACKPACK, "Großer Rucksack");

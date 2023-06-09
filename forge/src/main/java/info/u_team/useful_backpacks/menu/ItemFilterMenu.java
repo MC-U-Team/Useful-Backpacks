@@ -39,7 +39,7 @@ public class ItemFilterMenu extends UContainerMenu {
 			filterItemSlotInventory.setItem(0, ItemStack.of(compound));
 		}
 		
-		addSlots(filterItemSlotInventory, ItemFilterSlot::new, 1, 1, 17, 17);
+		addSlots((index, xPosition, yPosition) -> new ItemFilterSlot(filterItemSlotInventory, index, xPosition, yPosition), 1, 1, 17, 17);
 		addPlayerInventory(playerInventory, 8, 48);
 		
 		strictMessage = addDataHolderToServer(new MessageHolder(buffer -> {

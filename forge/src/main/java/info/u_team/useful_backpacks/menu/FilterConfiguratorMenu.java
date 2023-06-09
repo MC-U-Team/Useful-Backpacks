@@ -45,8 +45,8 @@ public class FilterConfiguratorMenu extends UContainerMenu {
 		super(UsefulBackpacksMenuTypes.FILTER_CONFIGURATOR.get(), id);
 		this.access = access;
 		
-		addSlots(backpackSlotInventory, (inventory, index, xPosition, yPosition) -> new BackpackFilterSlot(inventory, index, xPosition, yPosition), 1, 1, 35, 35);
-		addSlots(filterSlotInventory, (inventory, index, xPosition, yPosition) -> new FilterSlot(backpackSlotInventory, inventory, index, xPosition, yPosition), 3, 3, 89, 17);
+		addSlots((index, xPosition, yPosition) -> new BackpackFilterSlot(backpackSlotInventory, index, xPosition, yPosition), 1, 1, 35, 35);
+		addSlots((index, xPosition, yPosition) -> new FilterSlot(backpackSlotInventory, filterSlotInventory, index, xPosition, yPosition), 3, 3, 89, 17);
 		addPlayerInventory(playerInventory, 8, 84);
 	}
 	
