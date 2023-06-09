@@ -19,7 +19,7 @@ java {
 	withJavadocJar()
 }
 
-loom {	
+loom {
 	runs {
 		client {
 			runDir "run/client"
@@ -34,6 +34,10 @@ loom {
 			vmArgs "-Dmixin.debug.export=true"
 			ideConfigGenerated true
 		}
+	}
+	
+	mixin {
+		defaultRefmapName = "usefulbackpacks.mixins.refmap.json"
 	}
 }
 
@@ -89,7 +93,7 @@ dependencies {
 	modImplementation gradlefiles.fabricApiDependency()
 	
 	modImplementation "info.u-team:u_team_core-fabric-1.20:5.1.0.251"
-		
+	
 	//modCompileOnly "mezz.jei:jei-${config.minecraft.version}-fabric-api:${config.jei.version}"
 	//modCompileOnly "mezz.jei:jei-${config.minecraft.version}-common-api:${config.jei.version}"
 	//modRuntimeOnly "mezz.jei:jei-${config.minecraft.version}-fabric:${config.jei.version}"

@@ -1,0 +1,40 @@
+{
+	"schemaVersion": 1,
+	"id": "usefulbackpacks",
+	"version": "${version}",
+	"name": "Useful Backpacks",
+	"description": "Join our discord server here: https://discord.hycrafthd.net\n\nThis mod adds cool new backpacks to your game.",
+	"authors": [
+		"HyCraftHD"
+	],
+	"contact": {
+		"homepage": "https://u-team.info/mods/usefulbackpacks",
+		"sources": "https://github.com/MC-U-Team/Useful-Backpacks"
+	},
+	"license": "Apache-2.0 License",
+	"icon": "logo.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"info.u_team.useful_backpacks.UsefulBackpacksMod"
+		]
+	},
+	"mixins": [
+		"usefulbackpacks.mixins.json"
+	],
+	"depends": {
+		"uteamcore": ">=5.1.0.251",
+		"fabricloader": ">=0.14.21",
+		"fabric": ">=0.83.0+1.20",
+		"minecraft": "1.20",
+		"java": ">=17"
+	},
+	"custom": {
+		"uteamcore:update_url": "https://api.u-team.info/update/usefulbackpacks_fabric.json",
+		"modmenu": {
+			"links": {
+				"modmenu.discord": "https://discord.hycrafthd.net"
+			}
+		}
+	}
+}
