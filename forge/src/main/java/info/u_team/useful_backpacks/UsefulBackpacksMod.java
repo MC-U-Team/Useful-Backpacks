@@ -7,7 +7,7 @@ import net.minecraftforge.fml.common.Mod;
 @Mod(UsefulBackpacksMod.MODID)
 public class UsefulBackpacksMod {
 	
-	public static final String MODID = "usefulbackpacks";
+	public static final String MODID = UsefulBackpacksReference.MODID;
 	
 	public UsefulBackpacksMod() {
 		JarSignVerifier.checkSigned(MODID);
