@@ -91,7 +91,7 @@ sourceSets {
 	main {
 		java {
 			srcDirs += "src/data/java"
-			srcDirs += "src/integration/java"
+			//srcDirs += "src/integration/java"
 			srcDirs += project(":common").sourceSets.common.java.srcDirs
 		}
 		resources {
