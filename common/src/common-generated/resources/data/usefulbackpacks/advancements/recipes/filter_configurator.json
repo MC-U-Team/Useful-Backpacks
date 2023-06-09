@@ -41,5 +41,6 @@
 		"recipes": [
 			"usefulbackpacks:filter_configurator"
 		]
-	}
+	},
+	"sends_telemetry_event": false
 }

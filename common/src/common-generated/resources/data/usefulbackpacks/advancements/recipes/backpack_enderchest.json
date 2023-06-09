@@ -30,5 +30,6 @@
 		"recipes": [
 			"usefulbackpacks:backpack_enderchest"
 		]
-	}
+	},
+	"sends_telemetry_event": false
 }

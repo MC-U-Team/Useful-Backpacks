@@ -30,5 +30,6 @@
 		"recipes": [
 			"usefulbackpacks:filter_item"
 		]
-	}
+	},
+	"sends_telemetry_event": false
 }
