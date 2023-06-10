@@ -6,6 +6,7 @@
 	"package": "info.u_team.useful_backpacks.mixin",
 	"mixins": [
 		"BackpackItemMixin",
+		"ItemEntityMixin",
 		"ServerPlayerMixin"
 	],
 	"injectors": {
