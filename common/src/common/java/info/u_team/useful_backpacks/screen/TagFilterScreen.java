@@ -2,7 +2,7 @@ package info.u_team.useful_backpacks.screen;
 
 import info.u_team.u_team_core.gui.elements.ScalableEditBox;
 import info.u_team.u_team_core.screen.UContainerMenuScreen;
-import info.u_team.useful_backpacks.UsefulBackpacksMod;
+import info.u_team.useful_backpacks.UsefulBackpacksReference;
 import info.u_team.useful_backpacks.menu.TagFilterMenu;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.network.chat.Component;
@@ -11,7 +11,7 @@ import net.minecraft.world.entity.player.Inventory;
 
 public class TagFilterScreen extends UContainerMenuScreen<TagFilterMenu> {
 	
-	private static final ResourceLocation BACKGROUND = new ResourceLocation(UsefulBackpacksMod.MODID, "textures/gui/tag_filter.png");
+	private static final ResourceLocation BACKGROUND = new ResourceLocation(UsefulBackpacksReference.MODID, "textures/gui/tag_filter.png");
 	
 	private final Component tagSearchTextComponent;
 	

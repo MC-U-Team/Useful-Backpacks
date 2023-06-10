@@ -6,12 +6,14 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import info.u_team.u_team_core.gui.elements.ScrollableList;
+import info.u_team.u_team_core.util.RegistryUtil;
+import info.u_team.u_team_core.util.ResourceLocationUtil;
 import info.u_team.useful_backpacks.menu.TagFilterMenu;
 import io.netty.buffer.Unpooled;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
-import net.minecraftforge.registries.ForgeRegistries;
 
 public class TagFilterTagList extends ScrollableList<TagFilterTagListEntry> {
 	
@@ -58,11 +60,9 @@ public class TagFilterTagList extends ScrollableList<TagFilterTagListEntry> {
 	}
 	
 	private void updateEntries(Predicate<ResourceLocation> predicate) {
-		final List<ResourceLocation> list = ForgeRegistries.ITEMS.tags().getTagNames().filter(tagKey -> predicate.test(tagKey.location())).map(TagKey::location).collect(Collectors.toList());
+		final List<ResourceLocation> list = RegistryUtil.getBuiltInRegistry(Registries.ITEM).asLookup().listTagIds().filter(tagKey -> predicate.test(tagKey.location())).map(TagKey::location).collect(Collectors.toList());
+		Collections.sort(list, ResourceLocationUtil.nameSpacedComparator());
 		
-		Collections.sort(list, (a, b) -> {
-			return a.toString().compareTo(b.toString());
-		});
 		final TagFilterTagListEntry selected = getSelected();
 		clearEntries();
 		setScrollAmount(0);

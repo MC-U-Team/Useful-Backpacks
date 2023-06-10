@@ -2,7 +2,7 @@ package info.u_team.useful_backpacks.screen;
 
 import info.u_team.u_team_core.gui.elements.CheckboxButton;
 import info.u_team.u_team_core.screen.UContainerMenuScreen;
-import info.u_team.useful_backpacks.UsefulBackpacksMod;
+import info.u_team.useful_backpacks.UsefulBackpacksReference;
 import info.u_team.useful_backpacks.menu.ItemFilterMenu;
 import io.netty.buffer.Unpooled;
 import net.minecraft.client.gui.components.Tooltip;
@@ -13,7 +13,7 @@ import net.minecraft.world.entity.player.Inventory;
 
 public class ItemFilterScreen extends UContainerMenuScreen<ItemFilterMenu> {
 	
-	private static final ResourceLocation BACKGROUND = new ResourceLocation(UsefulBackpacksMod.MODID, "textures/gui/item_filter.png");
+	private static final ResourceLocation BACKGROUND = new ResourceLocation(UsefulBackpacksReference.MODID, "textures/gui/item_filter.png");
 	
 	private final Component strictTextComponent;
 	private final Component strictTooltipTextComponent;
