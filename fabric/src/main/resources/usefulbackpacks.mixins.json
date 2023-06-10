@@ -4,7 +4,10 @@
 	"compatibilityLevel": "JAVA_17",
 	"refmap": "usefulbackpacks.mixins.refmap.json",
 	"package": "info.u_team.useful_backpacks.mixin",
-	"mixins": [],
+	"mixins": [
+		"BackpackItemMixin",
+		"ServerPlayerMixin"
+	],
 	"injectors": {
 		"defaultRequire": 1
 	}

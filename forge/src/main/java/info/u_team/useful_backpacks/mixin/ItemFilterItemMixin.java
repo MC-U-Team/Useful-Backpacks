@@ -9,7 +9,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 
 @Mixin(ItemFilterItem.class)
-public class ItemFilterItemMixin extends UItem {
+abstract class ItemFilterItemMixin extends UItem {
 	
 	private ItemFilterItemMixin(Properties properties) {
 		super(properties);

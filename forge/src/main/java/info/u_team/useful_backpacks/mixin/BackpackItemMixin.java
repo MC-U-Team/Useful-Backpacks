@@ -9,7 +9,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 
 @Mixin(BackpackItem.class)
-public class BackpackItemMixin extends UItem {
+abstract class BackpackItemMixin extends UItem {
 	
 	private BackpackItemMixin(Properties properties) {
 		super(properties);
