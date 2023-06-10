@@ -15,7 +15,7 @@ public class BackpackSlot extends Slot {
 	@Override
 	public boolean mayPlace(ItemStack stack) {
 		if (stack.getItem() instanceof BackpackItem) {
-			return CommonConfig.getInstance().allowStackingBackpacks.get();
+			return CommonConfig.getInstance().allowStackingBackpacks().get();
 		}
 		return true;
 	}

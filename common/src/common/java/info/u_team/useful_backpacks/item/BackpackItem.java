@@ -5,11 +5,9 @@ import java.util.List;
 import info.u_team.u_team_core.api.dye.DyeableItem;
 import info.u_team.u_team_core.item.UItem;
 import info.u_team.u_team_core.util.MenuUtil;
-import info.u_team.useful_backpacks.config.ServerConfig;
 import info.u_team.useful_backpacks.inventory.BackpackInventory;
 import info.u_team.useful_backpacks.menu.BackpackMenu;
 import info.u_team.useful_backpacks.type.BackpackType;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
@@ -83,24 +81,6 @@ public class BackpackItem extends UItem implements AutoPickupBackpack, DyeableIt
 	@Override
 	public int getDefaultColor() {
 		return 0x816040;
-	}
-	
-	// Fix bug #22 (too large packet size with certain mod items) and kind of reverted (config option) with #24
-	
-	@Override
-	public CompoundTag getShareTag(ItemStack stack) {
-		if (ServerConfig.getInstance().shareAllNBTData.get()) {
-			return super.getShareTag(stack);
-		}
-		if (!stack.hasTag()) {
-			return null;
-		}
-		final CompoundTag compound = stack.getTag().copy();
-		compound.remove("Items");
-		if (compound.isEmpty()) {
-			return null;
-		}
-		return compound;
 	}
 	
 	// Fix bug #30 (dupe bug when lagging server)

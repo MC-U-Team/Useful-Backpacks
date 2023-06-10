@@ -35,7 +35,7 @@ public class ItemPickupEventHandler {
 		}
 		
 		final ItemStack stackToPickup = event.getItem().getItem();
-		if (stackToPickup.getItem() instanceof Backpack && !CommonConfig.getInstance().allowStackingBackpacks.get()) { // TODO Move somewhere else
+		if (stackToPickup.getItem() instanceof Backpack && !CommonConfig.getInstance().allowStackingBackpacks().get()) { // TODO Move somewhere else
 			return;
 		}
 		final ItemStack resultStack = insertInBackpacks((ServerPlayer) player, stackToPickup);
@@ -44,7 +44,6 @@ public class ItemPickupEventHandler {
 		if (resultStack.isEmpty()) {
 			event.setResult(Result.ALLOW);
 		}
-		
 	}
 	
 	private static ItemStack insertInBackpacks(ServerPlayer player, ItemStack stackToPickup) {
