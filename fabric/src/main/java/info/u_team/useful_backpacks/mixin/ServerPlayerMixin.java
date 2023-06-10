@@ -25,7 +25,7 @@ abstract class ServerPlayerMixin extends Player {
 		super(level, pos, yaw, profile);
 	}
 	
-	@Inject(method = "drop", at = @At(value = "HEAD"), cancellable = true)
+	@Inject(method = "drop(Z)Z", at = @At(value = "HEAD"), cancellable = true)
 	private void usefulbackpacks$drop(boolean dropStack, CallbackInfoReturnable<Boolean> info) {
 		final ItemStack selected = getInventory().getSelected();
 		if (selected.isEmpty() //
