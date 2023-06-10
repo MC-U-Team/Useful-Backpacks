@@ -58,7 +58,7 @@ public class FabricCommonConfig {
 	
 	private void save() {
 		try (final BufferedWriter writer = Files.newBufferedWriter(path, StandardCharsets.UTF_8)) {
-			properties.store(writer, "Configuration file to Basic Discord Rich Presence Mod");
+			properties.store(writer, "Configuration file for Useful Backpacks mod");
 		} catch (final IOException ex) {
 			UCoreReference.LOGGER.warn("Could not read property file '" + path.toAbsolutePath() + "'", ex);
 		}
