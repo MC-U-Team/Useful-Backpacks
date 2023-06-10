@@ -1,9 +1,11 @@
 package info.u_team.useful_backpacks.block;
 
 import info.u_team.u_team_core.block.UBlock;
+import info.u_team.u_team_core.util.MenuUtil;
 import info.u_team.useful_backpacks.menu.FilterConfiguratorMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
@@ -27,10 +29,13 @@ public class FilterConfiguratorBlock extends UBlock {
 	
 	@Override
 	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-		if (level.isClientSide) {
+		if (level.isClientSide()) {
 			return InteractionResult.SUCCESS;
 		} else {
-			player.openMenu(state.getMenuProvider(level, pos));
+			if (player instanceof ServerPlayer serverPlayer) {
+				MenuUtil.openMenu(serverPlayer, state.getMenuProvider(level, pos), data -> {
+				}, true);
+			}
 			return InteractionResult.CONSUME;
 		}
 	}

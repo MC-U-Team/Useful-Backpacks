@@ -10,9 +10,9 @@ import info.u_team.useful_backpacks.menu.BackpackMenu;
 import info.u_team.useful_backpacks.type.BackpackType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.Container;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -49,14 +49,14 @@ public class BackpackItem extends UItem implements AutoPickupBackpack, DyeableIt
 	}
 	
 	@Override
-	public Container getInventory(ServerPlayer player, ItemStack backpackStack) {
+	public SimpleContainer getInventory(ServerPlayer player, ItemStack backpackStack) {
 		return new BackpackInventory(backpackStack, backpack.getInventorySize());
 	}
 	
 	@Override
-	public void saveInventory(Container inventory, ItemStack backpackStack) {
-		if (inventory instanceof BackpackInventory) {
-			((BackpackInventory) inventory).writeItemStack();
+	public void saveInventory(SimpleContainer inventory, ItemStack backpackStack) {
+		if (inventory instanceof BackpackInventory backpackInventory) {
+			backpackInventory.writeItemStack();
 		}
 	}
 	
@@ -64,8 +64,6 @@ public class BackpackItem extends UItem implements AutoPickupBackpack, DyeableIt
 	public void appendHoverText(ItemStack stack, Level level, List<Component> tooltip, TooltipFlag flag) {
 		addTooltip(stack, level, tooltip, flag);
 	}
-	
-	// Getter
 	
 	public BackpackType getBackpack() {
 		return backpack;
