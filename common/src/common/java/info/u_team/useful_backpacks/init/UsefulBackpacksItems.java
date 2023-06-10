@@ -2,7 +2,7 @@ package info.u_team.useful_backpacks.init;
 
 import info.u_team.u_team_core.api.registry.CommonRegister;
 import info.u_team.u_team_core.api.registry.RegistryEntry;
-import info.u_team.useful_backpacks.UsefulBackpacksMod;
+import info.u_team.useful_backpacks.UsefulBackpacksReference;
 import info.u_team.useful_backpacks.item.BackpackItem;
 import info.u_team.useful_backpacks.item.EnderChestBackpackItem;
 import info.u_team.useful_backpacks.item.ItemFilterItem;
@@ -13,7 +13,7 @@ import net.minecraft.world.item.Item;
 
 public class UsefulBackpacksItems {
 	
-	public static final CommonRegister<Item> ITEMS = CommonRegister.create(Registries.ITEM, UsefulBackpacksMod.MODID);
+	public static final CommonRegister<Item> ITEMS = CommonRegister.create(Registries.ITEM, UsefulBackpacksReference.MODID);
 	
 	public static final RegistryEntry<BackpackItem> SMALL_BACKPACK = ITEMS.register("backpack_" + BackpackType.SMALL.getName(), () -> new BackpackItem(BackpackType.SMALL));
 	public static final RegistryEntry<BackpackItem> MEDIUM_BACKPACK = ITEMS.register("backpack_" + BackpackType.MEDIUM.getName(), () -> new BackpackItem(BackpackType.MEDIUM));

@@ -3,7 +3,7 @@ package info.u_team.useful_backpacks.init;
 import info.u_team.u_team_core.api.registry.CommonRegister;
 import info.u_team.u_team_core.api.registry.RegistryEntry;
 import info.u_team.u_team_core.menutype.UMenuType;
-import info.u_team.useful_backpacks.UsefulBackpacksMod;
+import info.u_team.useful_backpacks.UsefulBackpacksReference;
 import info.u_team.useful_backpacks.menu.BackpackMenu;
 import info.u_team.useful_backpacks.menu.EnderChestBackpackMenu;
 import info.u_team.useful_backpacks.menu.FilterConfiguratorMenu;
@@ -14,7 +14,7 @@ import net.minecraft.world.inventory.MenuType;
 
 public class UsefulBackpacksMenuTypes {
 	
-	public static final CommonRegister<MenuType<?>> MENU_TYPES = CommonRegister.create(Registries.MENU, UsefulBackpacksMod.MODID);
+	public static final CommonRegister<MenuType<?>> MENU_TYPES = CommonRegister.create(Registries.MENU, UsefulBackpacksReference.MODID);
 	
 	public static final RegistryEntry<MenuType<BackpackMenu>> BACKPACK = MENU_TYPES.register("backpack", () -> new UMenuType<>(BackpackMenu::createClientContainer));
 	public static final RegistryEntry<MenuType<EnderChestBackpackMenu>> ENDERCHEST_BACKPACK = MENU_TYPES.register("backpack_enderchest", () -> new UMenuType<>(EnderChestBackpackMenu::createEnderChestContainer));

@@ -8,7 +8,6 @@ import info.u_team.useful_backpacks.config.CommonConfig;
 import info.u_team.useful_backpacks.config.ServerConfig;
 import info.u_team.useful_backpacks.event.ItemPickupEventHandler;
 import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.config.ModConfig.Type;
 
 @Construct(modid = UsefulBackpacksMod.MODID)
 public class UsefulBackpacksCommonConstruct implements ModConstruct {

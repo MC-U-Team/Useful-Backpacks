@@ -89,7 +89,7 @@ public class BackpackMenu extends UContainerMenu {
 			tmpSlot = null;
 		}
 		if (tmpSlot != null) {
-			if (tmpSlot.container == player.getInventory() && tmpSlot.getSlotIndex() == selectedSlot) {
+			if (tmpSlot.container == player.getInventory() && tmpSlot.getContainerSlot() == selectedSlot) {
 				return;
 			}
 		}

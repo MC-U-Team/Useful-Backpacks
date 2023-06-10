@@ -5,7 +5,7 @@ import java.util.List;
 import info.u_team.u_team_core.api.dye.DyeableItem;
 import info.u_team.u_team_core.api.registry.CreativeModeTabRegister;
 import info.u_team.u_team_core.api.registry.RegistryEntry;
-import info.u_team.useful_backpacks.UsefulBackpacksMod;
+import info.u_team.useful_backpacks.UsefulBackpacksReference;
 import info.u_team.useful_backpacks.item.BackpackItem;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -14,7 +14,7 @@ import net.minecraft.world.item.ItemStack;
 
 public class UsefulBackpacksCreativeTabs {
 	
-	public static final CreativeModeTabRegister CREATIVE_MODE_TABS = CreativeModeTabRegister.create(UsefulBackpacksMod.MODID);
+	public static final CreativeModeTabRegister CREATIVE_MODE_TABS = CreativeModeTabRegister.create(UsefulBackpacksReference.MODID);
 	
 	public static final RegistryEntry<CreativeModeTab> TAB = CREATIVE_MODE_TABS.register("tab", builder -> {
 		builder.icon(() -> new ItemStack(UsefulBackpacksItems.SMALL_BACKPACK.get()));

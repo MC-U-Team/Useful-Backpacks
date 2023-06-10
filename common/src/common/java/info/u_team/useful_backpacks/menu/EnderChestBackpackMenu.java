@@ -41,7 +41,7 @@ public class EnderChestBackpackMenu extends ChestMenu {
 			tmpSlot = null;
 		}
 		if (tmpSlot != null) {
-			if (tmpSlot.container == player.getInventory() && tmpSlot.getSlotIndex() == selectedSlot) {
+			if (tmpSlot.container == player.getInventory() && tmpSlot.getContainerSlot() == selectedSlot) {
 				return;
 			}
 		}
