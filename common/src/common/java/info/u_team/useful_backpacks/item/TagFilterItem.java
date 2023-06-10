@@ -47,11 +47,6 @@ public class TagFilterItem extends FilterItem {
 	}
 	
 	@Override
-	public boolean onDroppedByPlayer(ItemStack item, Player player) {
-		return !(player.containerMenu instanceof TagFilterMenu);
-	}
-	
-	@Override
 	protected boolean matchItem(ItemStack filterStack, ItemStack matchStack, CompoundTag compound) {
 		final ResourceLocation id = ResourceLocation.tryParse(compound.getString("id"));
 		

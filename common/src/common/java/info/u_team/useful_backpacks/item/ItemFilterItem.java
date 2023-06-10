@@ -17,7 +17,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.items.ItemHandlerHelper;
 
 public class ItemFilterItem extends FilterItem {
 	
@@ -48,17 +47,12 @@ public class ItemFilterItem extends FilterItem {
 	}
 	
 	@Override
-	public boolean onDroppedByPlayer(ItemStack item, Player player) {
-		return !(player.containerMenu instanceof ItemFilterMenu);
-	}
-	
-	@Override
 	protected boolean matchItem(ItemStack filterStack, ItemStack matchStack, CompoundTag compound) {
 		final boolean strict = compound.getBoolean("strict");
 		final ItemStack stack = ItemStack.of(compound.getCompound("stack"));
 		
 		if (strict) {
-			return ItemHandlerHelper.canItemStacksStack(stack, matchStack);
+			return ItemStack.isSameItemSameTags(stack, matchStack);
 		} else {
 			return ItemStack.isSameItem(stack, matchStack);
 		}

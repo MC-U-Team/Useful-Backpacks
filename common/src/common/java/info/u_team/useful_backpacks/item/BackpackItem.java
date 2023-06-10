@@ -65,11 +65,6 @@ public class BackpackItem extends UItem implements AutoPickupBackpack, DyeableIt
 		addTooltip(stack, level, tooltip, flag);
 	}
 	
-	@Override
-	public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
-		return !ItemStack.isSameItem(oldStack, newStack);
-	}
-	
 	// Getter
 	
 	public BackpackType getBackpack() {
@@ -81,12 +76,5 @@ public class BackpackItem extends UItem implements AutoPickupBackpack, DyeableIt
 	@Override
 	public int getDefaultColor() {
 		return 0x816040;
-	}
-	
-	// Fix bug #30 (dupe bug when lagging server)
-	
-	@Override
-	public boolean onDroppedByPlayer(ItemStack item, Player player) {
-		return !(player.containerMenu instanceof BackpackMenu);
 	}
 }

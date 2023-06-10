@@ -23,7 +23,7 @@ java {
 
 minecraft {
 	mappings channel: config.forge.mapping_channel, version: config.forge.mapping
-		
+	
 	runs {
 		client {
 			workingDirectory file("run/client")
@@ -64,7 +64,10 @@ minecraft {
 	}
 }
 
-mixin {	
+mixin {
+	add sourceSets.main, "usefulbackpacks.mixins.refmap.json"
+	config "usefulbackpacks.mixins.json"
+	
 	debug.verbose = true
 	debug.export = true
 }
