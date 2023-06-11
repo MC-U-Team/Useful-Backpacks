@@ -1,5 +1,3 @@
-import cpw.mods.jarhandling.impl.Jar
-
 plugins {
 	id "net.minecraftforge.gradle"
 	id "org.parchmentmc.librarian.forgegradle"
