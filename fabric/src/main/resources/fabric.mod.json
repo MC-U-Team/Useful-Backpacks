@@ -23,7 +23,7 @@
 		"usefulbackpacks.mixins.json"
 	],
 	"depends": {
-		"uteamcore": ">=5.1.0.251",
+		"uteamcore": ">=5.1.2.253",
 		"fabricloader": ">=0.14.21",
 		"fabric": ">=0.83.0+1.20",
 		"minecraft": "1.20",
