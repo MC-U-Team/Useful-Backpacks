@@ -75,4 +75,9 @@ public class ItemFilterItem extends FilterItem {
 			tooltip.add(TooltipCreator.create(this, "configured", 3, TooltipCreator.create(UsefulBackpacksReference.MODID, "click", "shift_right_click", 0).withStyle(ChatFormatting.ITALIC, ChatFormatting.GOLD)).withStyle(ChatFormatting.GRAY));
 		}
 	}
+	
+	@Override
+	public boolean canBeDropped(ItemStack stack, Player player) {
+		return !(player.containerMenu instanceof ItemFilterMenu);
+	}
 }

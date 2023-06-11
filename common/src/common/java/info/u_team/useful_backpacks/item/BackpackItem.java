@@ -75,4 +75,14 @@ public class BackpackItem extends UItem implements AutoPickupBackpack, DyeableIt
 	public int getDefaultColor() {
 		return 0x816040;
 	}
+	
+	@Override
+	public boolean shouldPlayUpdateAnimation(ItemStack oldStack, ItemStack newStack) {
+		return !ItemStack.isSameItem(oldStack, newStack);
+	}
+	
+	@Override
+	public boolean canBeDropped(ItemStack stack, Player player) {
+		return !(player.containerMenu instanceof BackpackMenu);
+	}
 }

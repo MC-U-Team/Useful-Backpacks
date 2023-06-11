@@ -5,9 +5,7 @@
 	"refmap": "usefulbackpacks.mixins.refmap.json",
 	"package": "info.u_team.useful_backpacks.mixin",
 	"mixins": [
-		"BackpackItemMixin",
-		"ItemEntityMixin",
-		"ServerPlayerMixin"
+		"ItemEntityMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

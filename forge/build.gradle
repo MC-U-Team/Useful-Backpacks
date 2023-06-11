@@ -1,3 +1,5 @@
+import cpw.mods.jarhandling.impl.Jar
+
 plugins {
 	id "net.minecraftforge.gradle"
 	id "org.parchmentmc.librarian.forgegradle"
@@ -65,9 +67,6 @@ minecraft {
 }
 
 mixin {
-	add sourceSets.main, "usefulbackpacks.mixins.refmap.json"
-	config "usefulbackpacks.mixins.json"
-	
 	debug.verbose = true
 	debug.export = true
 }
