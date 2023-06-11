@@ -19,7 +19,7 @@ public class ItemPickupEventHandler {
 		
 		final ItemStack stackToPickup = event.getItem().getItem();
 		final ItemStack resultStack = ItemPickupCommonEventHandler.insertInBackpacks(serverPlayer, stackToPickup);
-		event.getItem().setItem(resultStack.copy());
+		stackToPickup.setCount(resultStack.getCount());
 		
 		if (resultStack.isEmpty()) {
 			event.setResult(Result.ALLOW);
