@@ -71,7 +71,7 @@ dependencies {
 	modImplementation gradlefiles.fabricLoaderDependency()
 	modRuntimeOnly gradlefiles.fabricApiDependency()
 	
-	modImplementation "info.u-team:u_team_core-common-1.20:5.1.1.252"
+	modImplementation "info.u-team:u_team_core-common-1.20:5.1.2.253"
 }
 
 publishing {
