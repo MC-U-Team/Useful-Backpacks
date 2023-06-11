@@ -1,16 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [1.19.4-1.15.1.112] - 2023-05-08
+## [1.20-2.0.0.113] - 2023-06-11
 ### Changed
- - Update uteamcore
- - Reintroduce jei integration for crafting recipes
-
-## [1.19.4-1.15.0.111] - 2023-03-23
-### Changed
- - Update to uteamcore changes
-
-## [1.19.4-1.14.4.110-SNAPSHOT] - 2023-03-17
-### Changed
- - Port to 1.19.4
- - Jei integration disabled until jei releases
+ - Port to fabric and 1.20
+ - Removed curios integration for now (not updated yet)
