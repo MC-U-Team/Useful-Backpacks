@@ -17,6 +17,9 @@
 	"entrypoints": {
 		"main": [
 			"info.u_team.useful_backpacks.UsefulBackpacksMod"
+		],
+		"jei_mod_plugin": [
+			"info.u_team.useful_backpacks.integration.jei.UsefulBackpacksJeiPlugin"
 		]
 	},
 	"mixins": [
