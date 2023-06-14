@@ -118,8 +118,8 @@ dependencies {
 	compileOnly fg.deobf("mezz.jei:jei-${config.minecraft.version}-common-api:${config.jei.version}")
 	runtimeOnly fg.deobf("mezz.jei:jei-${config.minecraft.version}-forge:${config.jei.version}")
 	
-	modCompileOnly "top.theillusivec4.curios:curios-forge:${config.curios.version}:api"
-	modRuntimeOnly "top.theillusivec4.curios:curios-forge:${config.curios.version}"
+	compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${config.curios.version}:api")
+	runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${config.curios.version}")
 }
 
 curseforge {
