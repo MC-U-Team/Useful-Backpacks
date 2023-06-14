@@ -62,9 +62,11 @@ processResources {
 sourceSets {
 	main {
 		java {
+			srcDirs += "src/integration/java"
 			srcDirs += project(":common").sourceSets.common.java.srcDirs
 		}
 		resources {
+			srcDirs += "src/integration/resources"
 			srcDirs += project(":common").sourceSets.common.resources.srcDirs
 		}
 	}

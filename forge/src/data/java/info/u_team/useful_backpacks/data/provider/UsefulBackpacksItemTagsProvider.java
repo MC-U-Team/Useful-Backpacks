@@ -27,6 +27,7 @@ public class UsefulBackpacksItemTagsProvider extends CommonItemTagsProvider {
 		tag(FILTER).add(ITEM_FILTER.get(), TAG_FILTER.get());
 		
 		tag(TagUtil.createItemTag("curios", "back")).addTag(BACKPACK);
+		tag(TagUtil.createItemTag("trinkets", "chest/back")).addTag(BACKPACK);
 	}
 	
 }
