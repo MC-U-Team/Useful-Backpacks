@@ -78,7 +78,10 @@ repositories {
 		url = "https://maven.blamejared.com"
 	}
 	maven {
-		url = "https://maven.theillusivec4.top"
+		url = "https://maven.terraformersmc.com"
+	}
+	maven {
+		url = "https://ladysnake.jfrog.io/artifactory/mods"
 	}
 }
 
@@ -98,8 +101,7 @@ dependencies {
 	modCompileOnly "mezz.jei:jei-${config.minecraft.version}-common-api:${config.jei.version}"
 	modRuntimeOnly "mezz.jei:jei-${config.minecraft.version}-fabric:${config.jei.version}"
 	
-	//modCompileOnly "top.theillusivec4.curios:curios-fabric:${config.minecraft.version}-${config.curios.version}:api"
-	//modRuntimeOnly "top.theillusivec4.curios:curios-fabric:${config.minecraft.version}-${config.curios.version}"
+	modImplementation "dev.emi:trinkets:${config.trinkets.version}"
 }
 
 gradlefiles.removePublishingDependency { dependency ->

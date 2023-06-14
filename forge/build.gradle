@@ -91,7 +91,7 @@ sourceSets {
 	main {
 		java {
 			srcDirs += "src/data/java"
-			//srcDirs += "src/integration/java"
+			srcDirs += "src/integration/java"
 			srcDirs += project(":common").sourceSets.common.java.srcDirs
 		}
 		resources {
@@ -118,8 +118,8 @@ dependencies {
 	compileOnly fg.deobf("mezz.jei:jei-${config.minecraft.version}-common-api:${config.jei.version}")
 	runtimeOnly fg.deobf("mezz.jei:jei-${config.minecraft.version}-forge:${config.jei.version}")
 	
-	//modCompileOnly "top.theillusivec4.curios:curios-forge:${config.minecraft.version}-${config.curios.version}:api"
-	//modRuntimeOnly "top.theillusivec4.curios:curios-forge:${config.minecraft.version}-${config.curios.version}"
+	modCompileOnly "top.theillusivec4.curios:curios-forge:${config.curios.version}:api"
+	modRuntimeOnly "top.theillusivec4.curios:curios-forge:${config.curios.version}"
 }
 
 curseforge {
