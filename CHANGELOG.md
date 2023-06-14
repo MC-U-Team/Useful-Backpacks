@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.20-2.0.1.115] - 2023-06-14
+### Changed
+ - Fixup git release
+
 ## [1.20-2.0.1.114] - 2023-06-14
 ### Changed
  - Integrate curios again
