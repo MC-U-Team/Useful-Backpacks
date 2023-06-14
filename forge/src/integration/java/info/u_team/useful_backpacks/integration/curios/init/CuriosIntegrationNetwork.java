@@ -13,7 +13,7 @@ import net.minecraftforge.network.simple.SimpleChannel;
 
 public class CuriosIntegrationNetwork {
 	
-	public static final String PROTOCOL = "1.19-1";
+	public static final String PROTOCOL = "1.20-1";
 	
 	public static final SimpleChannel NETWORK = NetworkRegistry.newSimpleChannel(new ResourceLocation(UsefulBackpacksMod.MODID, "curios"), () -> PROTOCOL, PROTOCOL::equals, PROTOCOL::equals);
 	

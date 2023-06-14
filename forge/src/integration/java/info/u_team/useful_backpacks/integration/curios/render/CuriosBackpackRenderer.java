@@ -35,7 +35,7 @@ public class CuriosBackpackRenderer implements ICurioRenderer {
 		
 		poseStack.scale(0.6F, 0.6F, 0.6F);
 		
-		Minecraft.getInstance().getItemRenderer().renderStatic(stack, ItemDisplayContext.FIXED, 0xF000F0, OverlayTexture.NO_OVERLAY, poseStack, renderTypeBuffer, livingEntity.getLevel(), 0);
+		Minecraft.getInstance().getItemRenderer().renderStatic(stack, ItemDisplayContext.FIXED, 0xF000F0, OverlayTexture.NO_OVERLAY, poseStack, renderTypeBuffer, livingEntity.level(), 0);
 	}
 	
 }

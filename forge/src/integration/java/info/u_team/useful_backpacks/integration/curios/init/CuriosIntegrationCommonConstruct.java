@@ -6,7 +6,7 @@ import info.u_team.u_team_core.api.integration.Integration;
 import info.u_team.u_team_core.api.integration.ModIntegration;
 import info.u_team.u_team_core.util.registry.BusRegister;
 import info.u_team.useful_backpacks.UsefulBackpacksMod;
-import info.u_team.useful_backpacks.event.ItemPickupEventHandler;
+import info.u_team.useful_backpacks.event.ItemPickupCommonEventHandler;
 import info.u_team.useful_backpacks.integration.curios.util.BackpackCuriosUtil;
 import net.minecraft.world.item.ItemStack;
 import top.theillusivec4.curios.api.SlotResult;
@@ -16,12 +16,11 @@ public class CuriosIntegrationCommonConstruct implements ModIntegration {
 	
 	@Override
 	public void construct() {
-		BusRegister.registerMod(CuriosIntegrationModComms::registerMod);
 		BusRegister.registerMod(CuriosIntegrationNetwork::registerMod);
 		
 		BusRegister.registerForge(CuriosIntegrationCapabilities::registerForge);
 		
-		ItemPickupEventHandler.INTEGRATION_BACKPACKS.add((player) -> {
+		ItemPickupCommonEventHandler.INTEGRATION_BACKPACKS.add((player) -> {
 			final Optional<SlotResult> slotResult = BackpackCuriosUtil.getBackpack(player);
 			if (slotResult.isPresent()) {
 				return slotResult.get().stack();
