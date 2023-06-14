@@ -104,6 +104,7 @@ dependencies {
 	modRuntimeOnly "mezz.jei:jei-${config.minecraft.version}-fabric:${config.jei.version}"
 	
 	modImplementation "dev.emi:trinkets:${config.trinkets.version}"
+	modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-base:5.2.0"
 }
 
 gradlefiles.removePublishingDependency { dependency ->
