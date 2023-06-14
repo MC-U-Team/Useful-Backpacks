@@ -30,6 +30,6 @@
 	"item.usefulbackpacks.filter_tag.tooltip.not_configured.0": "Цей фільтр не налаштовано",
 	"item.usefulbackpacks.filter_tag.tooltip.not_configured.1": "%s щоб налаштувати фільтр предметів",
 	"creativetabs.usefulbackpacks.tab": "Корисні Рюкзаки",
-	"key.usefulbackpacks.curiosintegration.category": "Корисні Рюкзаки : Інтеграція Curios ",
-	"key.usefulbackpacks.curiosintegration.description": "Відкрити рюкзак"
+	"key.usefulbackpacks.slotmodintegration.category": "Корисні Рюкзаки : Інтеграція Curios ",
+	"key.usefulbackpacks.slotmodintegration.open_backpack.description": "Відкрити рюкзак"
 }

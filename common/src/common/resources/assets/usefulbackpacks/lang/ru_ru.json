@@ -4,6 +4,6 @@
 	"item.usefulbackpacks.backpack_medium": "Средний Рюкзак",
 	"item.usefulbackpacks.backpack_large": "Большой Рюкзак",
 	"item.usefulbackpacks.backpack_enderchest": "Рюкзак Края",
-	"key.usefulbackpacks.curiosintegration.category": "Useful Backpacks : Интеграция с Curios",
-	"key.usefulbackpacks.curiosintegration.description": "Открыть рюкзак"
+	"key.usefulbackpacks.slotmodintegration.category": "Useful Backpacks : Интеграция с Curios",
+	"key.usefulbackpacks.slotmodintegration.open_backpack.description": "Открыть рюкзак"
 }

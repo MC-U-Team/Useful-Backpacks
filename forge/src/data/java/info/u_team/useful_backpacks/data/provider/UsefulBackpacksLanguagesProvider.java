@@ -92,12 +92,12 @@ public class UsefulBackpacksLanguagesProvider extends CommonLanguagesProvider {
 		// Curious
 		
 		// English
-		add("key.usefulbackpacks.curiosintegration.description", "Open backpack");
-		add("key.usefulbackpacks.curiosintegration.category", "Useful Backpacks : Curios Integration");
+		add("key.usefulbackpacks.slotmodintegration.open_backpack.description", "Open backpack");
+		add("key.usefulbackpacks.slotmodintegration.category", "Useful Backpacks : Curios / Trinkets Integration");
 		
 		// German
-		add("de_de", "key.usefulbackpacks.curiosintegration.description", "Öffne Rucksack");
-		add("de_de", "key.usefulbackpacks.curiosintegration.category", "Nützliche Rucksäcke : Curios Integration");
+		add("de_de", "key.usefulbackpacks.slotmodintegration.open_backpack.description", "Öffne Rucksack");
+		add("de_de", "key.usefulbackpacks.slotmodintegration.category", "Nützliche Rucksäcke : Curios / Trinkets Integration");
 	}
 	
 }
