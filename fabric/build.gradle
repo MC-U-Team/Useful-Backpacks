@@ -133,7 +133,7 @@ curseforge {
 			requiredDependency "fabric-api"
 			requiredDependency "u-team-core"
 			optionalDependency "jei"
-			optionalDependency "curios"
+			optionalDependency "trinkets"
 		}
 		
 		mainArtifact(tasks.getByName("remapJar")) {
