@@ -12,7 +12,7 @@ public class TrinketsBackpackSlotModUtil extends BackpackSlotModUtil {
 	
 	@Override
 	public Optional<ItemStack> find(LivingEntity livingEntity) {
-		return TrinketsApi.getTrinketComponent(livingEntity).map(component -> component.getEquipped(stack -> stack.getItem() instanceof Backpack).get(0).getB());
+		return TrinketsApi.getTrinketComponent(livingEntity).map(component -> component.getEquipped(stack -> stack.getItem() instanceof Backpack).stream().findFirst().map(tuple -> tuple.getB()).orElse(null));
 	}
 	
 }
