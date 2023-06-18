@@ -17,7 +17,7 @@ license="Apache-2.0 License"
 	[[dependencies.usefulbackpacks]]
 	    modId="forge"
 	    mandatory=true
-	    versionRange="[47.0.1,)"
+	    versionRange="[47.0.3,)"
 	    ordering="NONE"
 	    side="BOTH"
 	
@@ -31,6 +31,6 @@ license="Apache-2.0 License"
 	[[dependencies.usefulbackpacks]]
 	    modId="uteamcore"
 	    mandatory=true
-	    versionRange="[5.1.2.264,)"
+	    versionRange="[5.1.2.266,)"
 	    ordering="NONE"
 	    side="BOTH"
