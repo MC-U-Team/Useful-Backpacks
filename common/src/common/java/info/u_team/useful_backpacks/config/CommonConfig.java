@@ -1,7 +1,7 @@
 package info.u_team.useful_backpacks.config;
 
+import info.u_team.u_team_core.util.ConfigValueHolder;
 import info.u_team.u_team_core.util.ServiceUtil;
-import info.u_team.useful_backpacks.util.ConfigValueHolder;
 
 public abstract class CommonConfig {
 	
