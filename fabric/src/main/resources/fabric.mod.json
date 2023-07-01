@@ -9,7 +9,8 @@
 	],
 	"contact": {
 		"homepage": "https://u-team.info/mods/usefulbackpacks",
-		"sources": "https://github.com/MC-U-Team/Useful-Backpacks"
+		"sources": "https://github.com/MC-U-Team/Useful-Backpacks",
+		"issues": "https://github.com/MC-U-Team/Useful-Backpacks/issues"
 	},
 	"license": "Apache-2.0 License",
 	"icon": "logo.png",
