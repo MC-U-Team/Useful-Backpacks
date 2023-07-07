@@ -13,7 +13,10 @@ import info.u_team.u_team_core.data.CommonBlockTagsProvider;
 import info.u_team.u_team_core.data.CommonItemTagsProvider;
 import info.u_team.u_team_core.data.GenerationData;
 import info.u_team.u_team_core.util.TagUtil;
+import info.u_team.useful_backpacks.init.UsefulBackpacksCommonTags;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.world.item.Items;
+import net.minecraftforge.common.Tags;
 
 public class UsefulBackpacksItemTagsProvider extends CommonItemTagsProvider {
 	
@@ -28,6 +31,12 @@ public class UsefulBackpacksItemTagsProvider extends CommonItemTagsProvider {
 		
 		tag(TagUtil.createItemTag("curios", "back")).addTag(BACKPACK);
 		tag(TagUtil.createItemTag("trinkets", "chest/back")).addTag(BACKPACK);
+		
+		tag(UsefulBackpacksCommonTags.REDSTONE_DUST).add(Items.REDSTONE).addOptionalTag(Tags.Items.DUSTS_REDSTONE.location());
+		tag(UsefulBackpacksCommonTags.DIAMOND_GEM).add(Items.DIAMOND).addOptionalTag(Tags.Items.GEMS_DIAMOND.location());
+		tag(UsefulBackpacksCommonTags.IRON_INGOT).add(Items.IRON_INGOT).addOptionalTag(Tags.Items.INGOTS_IRON.location());
+		tag(UsefulBackpacksCommonTags.END_STONE).add(Items.END_STONE).addOptionalTag(Tags.Items.END_STONES.location());
+		tag(UsefulBackpacksCommonTags.NETHER_BRICK_INGOT).add(Items.NETHER_BRICK).addOptionalTag(Tags.Items.INGOTS_NETHER_BRICK.location());
 	}
 	
 }

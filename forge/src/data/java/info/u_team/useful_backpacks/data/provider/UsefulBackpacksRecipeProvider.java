@@ -13,12 +13,12 @@ import java.util.function.Consumer;
 import info.u_team.u_team_core.data.CommonRecipeProvider;
 import info.u_team.u_team_core.data.GenerationData;
 import info.u_team.useful_backpacks.data.builder.BackpackCraftingRecipeBuilder;
+import info.u_team.useful_backpacks.init.UsefulBackpacksCommonTags;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
-import net.minecraftforge.common.Tags;
 
 public class UsefulBackpacksRecipeProvider extends CommonRecipeProvider {
 	
@@ -32,7 +32,7 @@ public class UsefulBackpacksRecipeProvider extends CommonRecipeProvider {
 				.pattern("WLW") //
 				.pattern("LSL") //
 				.pattern("WLW") //
-				.define('W', getIngredientOfTag(ItemTags.WOOL)) //
+				.define('W', ItemTags.WOOL) //
 				.define('L', Items.LEATHER) //
 				.define('S', Items.STRING) //
 				.unlockedBy("has_wool", has(ItemTags.WOOL)) //
@@ -43,7 +43,7 @@ public class UsefulBackpacksRecipeProvider extends CommonRecipeProvider {
 				.pattern("WLW") //
 				.pattern("LBL") //
 				.pattern("WLW") //
-				.define('W', getIngredientOfTag(ItemTags.WOOL)) //
+				.define('W', ItemTags.WOOL) //
 				.define('L', Items.LEATHER) //
 				.define('B', SMALL_BACKPACK.get()) //
 				.unlockedBy("has_small_backpack", has(SMALL_BACKPACK.get())) //
@@ -53,7 +53,7 @@ public class UsefulBackpacksRecipeProvider extends CommonRecipeProvider {
 				.pattern("WLW") //
 				.pattern("LBL") //
 				.pattern("WLW") //
-				.define('W', getIngredientOfTag(ItemTags.WOOL)) //
+				.define('W', ItemTags.WOOL) //
 				.define('L', Items.LEATHER) //
 				.define('B', MEDIUM_BACKPACK.get()) //
 				.unlockedBy("has_medium_backpack", has(MEDIUM_BACKPACK.get())) //
@@ -63,7 +63,7 @@ public class UsefulBackpacksRecipeProvider extends CommonRecipeProvider {
 				.pattern("WLW") //
 				.pattern("ESE") //
 				.pattern("WLW") //
-				.define('W', getIngredientOfTag(ItemTags.WOOL)) //
+				.define('W', ItemTags.WOOL) //
 				.define('L', Items.LEATHER) //
 				.define('E', Items.ENDER_CHEST) //
 				.define('S', Items.STRING) //
@@ -74,9 +74,9 @@ public class UsefulBackpacksRecipeProvider extends CommonRecipeProvider {
 				.pattern("WLW") //
 				.pattern("PCP") //
 				.pattern("WLW") //
-				.define('W', getIngredientOfTag(ItemTags.WOOL)) //
+				.define('W', ItemTags.WOOL) //
 				.define('L', Items.LEATHER) //
-				.define('P', getIngredientOfTag(ItemTags.PLANKS)) //
+				.define('P', ItemTags.PLANKS) //
 				.define('C', Items.CRAFTING_TABLE) //
 				.unlockedBy("has_wool", has(ItemTags.WOOL)) //
 				.unlockedBy("has_leather", has(Items.LEATHER)) //
@@ -86,13 +86,13 @@ public class UsefulBackpacksRecipeProvider extends CommonRecipeProvider {
 				.pattern("WLW") //
 				.pattern("RDS") //
 				.pattern("IEI") //
-				.define('W', getIngredientOfTag(ItemTags.WOOL)) //
+				.define('W', ItemTags.WOOL) //
 				.define('L', Items.LEATHER) //
-				.define('R', getIngredientOfTag(Tags.Items.DUSTS_REDSTONE)) //
-				.define('D', getIngredientOfTag(Tags.Items.GEMS_DIAMOND)) //
+				.define('R', UsefulBackpacksCommonTags.REDSTONE_DUST) //
+				.define('D', UsefulBackpacksCommonTags.DIAMOND_GEM) //
 				.define('S', Items.STRING) //
-				.define('I', getIngredientOfTag(Tags.Items.INGOTS_IRON)) //
-				.define('E', getIngredientOfTag(Tags.Items.END_STONES)) //
+				.define('I', UsefulBackpacksCommonTags.IRON_INGOT) //
+				.define('E', UsefulBackpacksCommonTags.END_STONE) //
 				.unlockedBy("has_small_backpack", has(SMALL_BACKPACK.get())) //
 				.save(consumer);
 		
@@ -100,13 +100,13 @@ public class UsefulBackpacksRecipeProvider extends CommonRecipeProvider {
 				.pattern("WLW") //
 				.pattern("RAS") //
 				.pattern("IEI") //
-				.define('W', getIngredientOfTag(ItemTags.WOOL)) //
+				.define('W', ItemTags.WOOL) //
 				.define('L', Items.LEATHER) //
-				.define('R', getIngredientOfTag(Tags.Items.DUSTS_REDSTONE)) //
-				.define('A', getIngredientOfTag(Tags.Items.INGOTS_NETHER_BRICK)) //
+				.define('R', UsefulBackpacksCommonTags.REDSTONE_DUST) //
+				.define('A', UsefulBackpacksCommonTags.NETHER_BRICK_INGOT) //
 				.define('S', Items.STRING) //
-				.define('I', getIngredientOfTag(Tags.Items.INGOTS_IRON)) //
-				.define('E', getIngredientOfTag(Tags.Items.END_STONES)) //
+				.define('I', UsefulBackpacksCommonTags.IRON_INGOT) //
+				.define('E', UsefulBackpacksCommonTags.END_STONE) //
 				.unlockedBy("has_small_backpack", has(SMALL_BACKPACK.get())) //
 				.save(consumer);
 	}

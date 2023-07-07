@@ -3,19 +3,19 @@
 	"category": "misc",
 	"key": {
 		"A": {
-			"tag": "forge:ingots/nether_brick"
+			"tag": "usefulbackpacks:ingot/nether_brick"
 		},
 		"E": {
-			"tag": "forge:end_stones"
+			"tag": "usefulbackpacks:end_stone"
 		},
 		"I": {
-			"tag": "forge:ingots/iron"
+			"tag": "usefulbackpacks:ingot/iron"
 		},
 		"L": {
 			"item": "minecraft:leather"
 		},
 		"R": {
-			"tag": "forge:dusts/redstone"
+			"tag": "usefulbackpacks:dust/redstone"
 		},
 		"S": {
 			"item": "minecraft:string"

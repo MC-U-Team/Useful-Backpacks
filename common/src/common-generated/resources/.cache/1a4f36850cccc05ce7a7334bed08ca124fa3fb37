@@ -1,5 +1,10 @@
-// 1.20.1	2023-06-14T23:36:08.0931494	Item-Tags
+// 1.20.1	2023-07-08T00:20:16.6825032	Item-Tags
 49fe212ff0a72381a6d4a2b4818a81755b13c520 data/curios/tags/items/back.json
 49fe212ff0a72381a6d4a2b4818a81755b13c520 data/trinkets/tags/items/chest/back.json
 3fbf25c7066bdb1c63890726f6609ab9f07d5b13 data/usefulbackpacks/tags/items/backpack.json
+c44e52311322e3c2353e9bc5287d17efe996b8ab data/usefulbackpacks/tags/items/dust/redstone.json
+4513f536f2eda229059705f7c8ea81fb2e4bb75e data/usefulbackpacks/tags/items/end_stone.json
 5b74a2060911634f75e07265c04d6cb47de707ae data/usefulbackpacks/tags/items/filter.json
+eac2b32bb2aac969e325bdd464b050ccb8906188 data/usefulbackpacks/tags/items/gem/diamond.json
+b9ffc74f3f8c3385e254e5db2b151626af8bc445 data/usefulbackpacks/tags/items/ingot/iron.json
+caf8fd8343dcf0ef15f2b972c2c6f8715a144325 data/usefulbackpacks/tags/items/ingot/nether_brick.json
