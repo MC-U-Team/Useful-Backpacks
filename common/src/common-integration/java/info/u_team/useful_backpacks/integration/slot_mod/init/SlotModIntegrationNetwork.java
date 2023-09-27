@@ -10,7 +10,7 @@ import net.minecraft.resources.ResourceLocation;
 
 public class SlotModIntegrationNetwork {
 	
-	public static final NetworkHandler NETWORK = NetworkHandler.create("0", new ResourceLocation(UsefulBackpacksReference.MODID, "slot_mod"));
+	public static final NetworkHandler NETWORK = NetworkHandler.create(0, new ResourceLocation(UsefulBackpacksReference.MODID, "slot_mod"));
 	
 	public static void register() {
 		NETWORK.registerMessage(0, OpenBackpackMessage.class, OpenBackpackMessage::encode, OpenBackpackMessage::decode, OpenBackpackMessage.Handler::handle, Optional.of(NetworkEnvironment.SERVER));
