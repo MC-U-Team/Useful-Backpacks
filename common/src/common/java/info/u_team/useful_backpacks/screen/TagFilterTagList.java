@@ -23,7 +23,7 @@ public class TagFilterTagList extends ScrollableList<TagFilterTagListEntry> {
 		super(x, y, width, height, 10, 15);
 		this.menu = menu;
 		
-		setRenderTopAndBottom(false);
+		setRenderHeader(false, 0);
 		setRenderTransparentBorder(true);
 		
 		updateEntries(unused -> true);

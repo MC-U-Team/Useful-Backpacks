@@ -11,7 +11,6 @@ import info.u_team.useful_backpacks.init.UsefulBackpacksRecipeSerializers;
 import info.u_team.useful_backpacks.item.BackpackItem;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.DyeColor;
@@ -24,8 +23,8 @@ import net.minecraft.world.item.crafting.ShapedRecipe;
 
 public class BackpackCraftingRecipe extends ShapedRecipe {
 	
-	public BackpackCraftingRecipe(ResourceLocation id, String group, CraftingBookCategory category, int width, int height, NonNullList<Ingredient> ingredients, ItemStack output, boolean showNotification) {
-		super(id, group, category, width, height, ingredients, output, showNotification);
+	public BackpackCraftingRecipe(String group, CraftingBookCategory category, int width, int height, NonNullList<Ingredient> ingredients, ItemStack output, boolean showNotification) {
+		super(group, category, width, height, ingredients, output, showNotification);
 	}
 	
 	@Override
@@ -71,9 +70,8 @@ public class BackpackCraftingRecipe extends ShapedRecipe {
 	public static class Serializer extends UShapedRecipeSerializer<BackpackCraftingRecipe> {
 		
 		@Override
-		protected BackpackCraftingRecipe createRecipe(ResourceLocation location, String group, CraftingBookCategory category, int recipeWidth, int recipeHeight, NonNullList<Ingredient> ingredients, ItemStack output, boolean showNotification) {
-			return new BackpackCraftingRecipe(location, group, category, recipeWidth, recipeHeight, ingredients, output, showNotification);
+		protected BackpackCraftingRecipe createRecipe(String group, CraftingBookCategory category, int recipeWidth, int recipeHeigt, NonNullList<Ingredient> ingredients, ItemStack output, boolean showNotification) {
+			return new BackpackCraftingRecipe(group, category, recipeWidth, recipeHeigt, ingredients, output, showNotification);
 		}
 	}
-	
 }
