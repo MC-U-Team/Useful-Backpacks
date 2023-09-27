@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.20.1-2.0.1.122] - 2023-09-27
+### Changed
+ - Update versions
+
 ## [1.20.1-2.0.1.121] - 2023-07-08
 ### Changed
  - Fixed crafting recipe for filters on fabric
