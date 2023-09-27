@@ -32,9 +32,9 @@
 	},
 	"requirements": [
 		[
+			"has_the_recipe",
 			"has_wool",
-			"has_leather",
-			"has_the_recipe"
+			"has_leather"
 		]
 	],
 	"rewards": {
