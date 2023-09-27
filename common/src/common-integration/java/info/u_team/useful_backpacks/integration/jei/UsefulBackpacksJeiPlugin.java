@@ -43,6 +43,6 @@ public class UsefulBackpacksJeiPlugin implements IModPlugin {
 	
 	@Override
 	public void registerVanillaCategoryExtensions(IVanillaCategoryExtensionRegistration registration) {
-		registration.getCraftingCategory().addCategoryExtension(BackpackCraftingRecipe.class, BackpackCraftingRecipeCategoryExtension::new);
+		registration.getCraftingCategory().addExtension(BackpackCraftingRecipe.class, new BackpackCraftingRecipeCategoryExtension());
 	}
 }

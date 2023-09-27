@@ -19,38 +19,28 @@ import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.category.extensions.vanilla.crafting.ICraftingCategoryExtension;
 import net.minecraft.client.Minecraft;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 
-public class BackpackCraftingRecipeCategoryExtension implements ICraftingCategoryExtension {
+public class BackpackCraftingRecipeCategoryExtension implements ICraftingCategoryExtension<BackpackCraftingRecipe> {
 	
-	private final BackpackCraftingRecipe recipe;
-	
-	public BackpackCraftingRecipeCategoryExtension(BackpackCraftingRecipe recipe) {
-		this.recipe = recipe;
+	@Override
+	public int getWidth(RecipeHolder<BackpackCraftingRecipe> holder) {
+		return holder.value().getWidth();
 	}
 	
 	@Override
-	public ResourceLocation getRegistryName() {
-		return recipe.getId();
+	public int getHeight(RecipeHolder<BackpackCraftingRecipe> holder) {
+		return holder.value().getHeight();
 	}
 	
 	@Override
-	public int getWidth() {
-		return recipe.getWidth();
-	}
-	
-	@Override
-	public int getHeight() {
-		return recipe.getHeight();
-	}
-	
-	@Override
-	public void setRecipe(IRecipeLayoutBuilder builder, ICraftingGridHelper craftingGridHelper, IFocusGroup focuses) {
+	public void setRecipe(RecipeHolder<BackpackCraftingRecipe> holder, IRecipeLayoutBuilder builder, ICraftingGridHelper craftingGridHelper, IFocusGroup focuses) {
+		final BackpackCraftingRecipe recipe = holder.value();
 		final List<List<ItemStack>> inputs = recipe.getIngredients().stream().map(ingredient -> Lists.newArrayList(ingredient.getItems())).collect(Collectors.toCollection(ArrayList::new));
 		final List<ItemStack> outputs = Lists.newArrayList(recipe.getResultItem(Minecraft.getInstance().level.registryAccess()));
 		
@@ -100,7 +90,7 @@ public class BackpackCraftingRecipeCategoryExtension implements ICraftingCategor
 			outputs.remove(0);
 		}
 		
-		craftingGridHelper.createAndSetInputs(builder, VanillaTypes.ITEM_STACK, inputs, getWidth(), getHeight());
+		craftingGridHelper.createAndSetInputs(builder, VanillaTypes.ITEM_STACK, inputs, getWidth(holder), getHeight(holder));
 		craftingGridHelper.createAndSetOutputs(builder, VanillaTypes.ITEM_STACK, outputs);
 	}
 	
