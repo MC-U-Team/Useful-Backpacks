@@ -69,14 +69,13 @@ runs {
 	data {
 		workingDirectory file("run/data").with { mkdirs(); it }
 		
-		programArguments "--mod", config.mod.modid
-		programArguments "--all"
-		programArguments "--output", gradlefiles.project("common").file("src/common_generated/resources").absolutePath
-		programArguments "--validate"
-		programArguments "--existing", gradlefiles.project("common").file("src/common/resources").absolutePath
+		arguments "--mod", config.mod.modid
+		arguments "--all"
+		arguments "--output", gradlefiles.project("common").file("src/common_generated/resources").absolutePath
+		arguments "--validate"
+		arguments "--existing", gradlefiles.project("common").file("src/common/resources").absolutePath
 		
-		systemProperties "coremod.uteamcore.dataprovider-set-indent", "coremod.uteamcore.dataprovider-set-indent.value"
-		systemProperties "coremod.uteamcore.dataprovider-set-indent.value", "true"
+		systemProperties "coremod.uteamcore.dataprovider-set-indent", "true"
 		
 		modSources sourceSets.main
 		modSources sourceSets.data
@@ -119,7 +118,8 @@ dependencies {
 	compileOnly "mezz.jei:jei-${config.minecraft.version}-common-api:${config.jei.version}"
 	runtimeOnly "mezz.jei:jei-${config.minecraft.version}-neoforge:${config.jei.version}"
 	
-	compileOnly "top.theillusivec4.curios:curios-neoforge:${config.curios_continuation.version}:api"
+	//compileOnly "top.theillusivec4.curios:curios-neoforge:${config.curios_continuation.version}:api"
+	compileOnly "top.theillusivec4.curios:curios-neoforge:${config.curios_continuation.version}"
 	runtimeOnly "top.theillusivec4.curios:curios-neoforge:${config.curios_continuation.version}"
 }
 
