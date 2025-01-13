@@ -93,6 +93,9 @@ processResources {
 
 repositories {
 	maven {
+		url = "https://maven.minecraftforge.net"
+	}
+	maven {
 		url = "https://maven.blamejared.com"
 	}
 }
