@@ -113,7 +113,7 @@ repositories {
 dependencies {
 	implementation gradlefiles.neoForgeDependency()
 	
-	implementation "info.u-team:u_team_core-neoforge-1.21:5.6.0.317"
+	implementation "info.u-team:u_team_core-neoforge-1.21:5.6.0.328"
 	
 	compileOnly "mezz.jei:jei-${config.minecraft.version}-neoforge-api:${config.jei.version}"
 	compileOnly "mezz.jei:jei-${config.minecraft.version}-common-api:${config.jei.version}"
