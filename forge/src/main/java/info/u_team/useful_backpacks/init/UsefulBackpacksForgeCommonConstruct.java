@@ -10,6 +10,7 @@ import net.minecraftforge.fml.config.ModConfig;
 @Construct(modid = UsefulBackpacksReference.MODID)
 public class UsefulBackpacksForgeCommonConstruct implements ModConstruct {
 	
+	@SuppressWarnings("removal") // TODO remove code later
 	@Override
 	public void construct() {
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ForgeCommonConfig.CONFIG);
