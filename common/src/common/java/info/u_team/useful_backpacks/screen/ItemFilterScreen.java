@@ -47,7 +47,7 @@ public class ItemFilterScreen extends UContainerMenuScreen<ItemFilterMenu> {
 	public void containerTick() {
 		super.containerTick();
 		if (isStrictCheckbox != null) {
-			isStrictCheckbox.active = isStrictCheckbox.visible = menu.hasFilterItem();
+			isStrictCheckbox.visible = menu.hasFilterItem();
 		}
 	}
 }
