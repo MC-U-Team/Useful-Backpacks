@@ -41,6 +41,7 @@ public class ItemFilterScreen extends UContainerMenuScreen<ItemFilterMenu> {
 			menu.setStrict(isStrictCheckbox.isChecked());
 		});
 		isStrictCheckbox.setTooltip(Tooltip.create(strictTooltipTextComponent));
+		isStrictCheckbox.visible = menu.hasFilterItem();
 	}
 	
 	@Override
