@@ -13,7 +13,7 @@ public class ItemFilterComponent {
 	public static final Codec<ItemFilterComponent> CODEC = RecordCodecBuilder.create(instance -> {
 		return instance.group( //
 				Codec.BOOL.orElse(true).fieldOf("strict").forGetter(component -> component.strict), //
-				ItemStack.CODEC.fieldOf("stack").forGetter(component -> component.stack)) //
+				ItemStack.OPTIONAL_CODEC.fieldOf("stack").forGetter(component -> component.stack)) //
 				.apply(instance, ItemFilterComponent::new);
 	});
 	
