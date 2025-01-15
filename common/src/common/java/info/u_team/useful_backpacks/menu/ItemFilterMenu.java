@@ -47,7 +47,11 @@ public class ItemFilterMenu extends UContainerMenu {
 			final boolean newIsStrict = buffer.readBoolean();
 			if (!filterStack.isEmpty()) {
 				filterStack.update(UsefulBackpacksDataComponentTypes.ITEM_FILTER_COMPONENT.get(), ItemFilterComponent.EMPTY, old -> {
-					return ItemFilterComponent.of(newIsStrict, old.getStack());
+					if (!old.isPresent()) {
+						return ItemFilterComponent.EMPTY;
+					} else {
+						return ItemFilterComponent.of(newIsStrict, old.getStack());
+					}
 				});
 			}
 		}));
