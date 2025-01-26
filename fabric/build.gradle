@@ -72,6 +72,14 @@ processResources {
 	}
 }
 
+processResources {
+	inputs.property "version", project.version
+	
+	filesMatching("fabric.mod.json") {
+		expand "version": project.version
+	}
+}
+
 repositories {
 	maven {
 		url = "https://repo.u-team.info"
