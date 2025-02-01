@@ -110,7 +110,7 @@ dependencies {
 		}
 	}
 	
-	implementation "info.u-team:u_team_core-forge-1.21.1:5.6.1.351"
+	implementation "info.u-team:u_team_core-forge-1.21.1:5.6.2.354"
 	
 	implementation "mezz.jei:jei-${config.minecraft.version}-forge:${config.jei.version}"
 }
