@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.21.1-3.0.2.128] - 2025-02-15
+### Changed
+ - Fix logo duplication
+
 ## [1.21.1-3.0.1.127] - 2025-02-01
 ### Changed
  - Update to latest uteamcore
