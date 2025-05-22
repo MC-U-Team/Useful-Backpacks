@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.21.1-3.0.2.129] - 2025-05-22
+### Changed
+ - Update buildscript
+ - Future proof scripts
+
 ## [1.21.1-3.0.2.128] - 2025-02-15
 ### Changed
  - Fix logo duplication
